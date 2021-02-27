@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "version": "0.0.1",
+  "engines": {
+    "node": "12.x.x",
+    "npm": "6.x.x"
+  },
+  "scripts": {
+    "build:ts": "tsc && tscpaths -p tsconfig.json -s ./src -o ./build",
+    "build": "npm run build:ts && cp package.json build"
+  },
+  "devDependencies": {
+    "tscpaths": "0.0.9",
+    "typescript": "4.1.2"
+  }
+}
