@@ -7,13 +7,17 @@
   "scripts": {
     "lint:frontend:js": "eslint --ext .ts --ext .tsx frontend/src --config frontend/.eslintrc.yml --resolve-plugins-relative-to .",
     "lint:frontend": "npm run lint:frontend:js",
-    "lint": "npm run lint:frontend"
+    "lint:editorconfig": "editorconfig-checker",
+    "lint": "npm run lint:editorconfig && npm run lint:frontend"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.15.2",
     "@typescript-eslint/parser": "4.15.2",
+    "editorconfig-checker": "3.3.0",
     "eslint": "7.20.0",
     "eslint-plugin-react": "7.22.0",
+    "simple-pre-commit": "1.2.1",
     "typescript": "4.2.2"
-  }
+  },
+  "simple-pre-commit": "npx lint-staged"
 }
