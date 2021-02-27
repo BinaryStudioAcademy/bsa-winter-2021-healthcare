@@ -40,6 +40,22 @@ code {
   color: rgb(112, 76, 182);
 }
 
+.App-navigation {
+  display: flex;
+  justify-content: center;
+}
+
+.App-navigation-list {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  list-style: none;
+
+  li:not(:last-child) {
+    margin: 0 15px 0 0;
+  }
+}
+
 @keyframes App-logo-float {
   0% {
     transform: translateY(0);
