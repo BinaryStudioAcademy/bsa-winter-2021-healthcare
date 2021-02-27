@@ -5,11 +5,17 @@
     "npm": "6.x.x"
   },
   "scripts": {
+    "shared:build": "cd shared && npm install && npm run build",
+    "shared:frontend": "rm -rf frontend/shared && cp -r shared/build frontend/shared",
+    "shared:backend": "rm -rf backend/shared && cp -r shared/build backend/shared",
+    "shared:init": "npm run shared:build && npm run shared:frontend && npm run shared:backend",
     "lint:editorconfig": "editorconfig-checker",
+    "lint:shared:js": "eslint --ext .ts shared/src --config shared/.eslintrc.yml --resolve-plugins-relative-to .",
+    "lint:shared": "npm run lint:shared:js",
     "lint:frontend:js": "eslint --ext .ts --ext .tsx frontend/src --config frontend/.eslintrc.yml --resolve-plugins-relative-to .",
     "lint:frontend:css": "stylelint frontend/src/**/*.scss --syntax scss --config frontend/.stylelintrc.yml",
     "lint:frontend": "npm run lint:frontend:css && npm run lint:frontend:js",
-    "lint": "npm run lint:editorconfig && npm run lint:frontend"
+    "lint": "npm run lint:editorconfig && npm run lint:shared && npm run lint:frontend"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.15.2",
