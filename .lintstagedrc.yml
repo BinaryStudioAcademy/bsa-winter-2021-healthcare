@@ -1,1 +1,3 @@
-"*": npm run lint:editorconfig
+'*': npm run lint:editorconfig
+'frontend/**/*.scss': npm run lint:frontend:css
+'frontend/**/*.{ts,tsx}': npm run lint:frontend:js
