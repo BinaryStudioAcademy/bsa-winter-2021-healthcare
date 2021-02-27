@@ -1,0 +1,10 @@
+env:
+  browser: true
+
+extends:
+  - ../.eslintrc.yml
+  - plugin:react/recommended
+
+rules:
+  react/prop-types:
+    - off
