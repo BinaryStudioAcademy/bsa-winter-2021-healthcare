@@ -1,5 +1,5 @@
-const ReducerName = {
-  COUNTER: 'counter',
-} as const;
+enum ReducerName {
+  COUNTER = 'counter',
+}
 
 export { ReducerName };
