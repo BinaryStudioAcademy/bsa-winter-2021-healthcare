@@ -3,9 +3,20 @@ import express, { json, urlencoded } from 'express';
 import { ENV } from '~/common/enums';
 import { logger } from '~/services/services';
 import { setTraceId, logRequest } from '~/middlewares';
+import { DbConnectionError } from '~/exceptions';
+import { sequelize } from '~/data/db/connection';
 import config from '../package.json';
 
 const app = express();
+
+sequelize
+  .authenticate()
+  .then(() => {
+    return logger.log('Database connection was successful');
+  })
+  .catch(({ message, stack }: DbConnectionError) => {
+    return logger.error(message, stack);
+  });
 
 app.use(setTraceId);
 app.use(logRequest);
@@ -13,7 +24,7 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 
 app.use(express.static(join(__dirname, '../public')));
-app.use('/*', (_req, res) => {
+app.use('*', (_req, res) => {
   return res.sendFile(join(__dirname, '../public', 'index.html'));
 });
 
