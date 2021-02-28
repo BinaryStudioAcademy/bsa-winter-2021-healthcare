@@ -6,7 +6,7 @@
     "npm": "6.x.x"
   },
   "scripts": {
-    "build:ts": "tsc && tscpaths -p tsconfig.json -s ./src -o ./build",
+    "build:ts": "tsc && tscpaths -p tsconfig.json --src src --out build",
     "build": "npm run build:ts && cp package.json build"
   },
   "devDependencies": {
