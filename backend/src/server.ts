@@ -2,10 +2,13 @@ import { join } from 'path';
 import express, { json, urlencoded } from 'express';
 import { ENV } from '~/common/enums';
 import { logger } from '~/services/services';
+import { setTraceId, logRequest } from '~/middlewares';
 import config from '../package.json';
 
 const app = express();
 
+app.use(setTraceId);
+app.use(logRequest);
 app.use(json());
 app.use(urlencoded({ extended: true }));
 
