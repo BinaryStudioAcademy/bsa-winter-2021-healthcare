@@ -1,1 +1,1 @@
-export * from './check-is-one-of/check-is-one-of.helper';
+export { checkIsOneOf } from 'healthcare-shared/helpers';
