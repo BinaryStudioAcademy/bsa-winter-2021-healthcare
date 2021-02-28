@@ -1,6 +1,7 @@
 import { join } from 'path';
 import express, { json, urlencoded } from 'express';
 import { ENV } from '~/common/enums';
+import { logger } from '~/services/services';
 import config from '../package.json';
 
 const app = express();
@@ -14,7 +15,7 @@ app.use('/*', (_req, res) => {
 });
 
 const server = app.listen(ENV.APP.SERVER_PORT, () => {
-  console.info(
+  logger.log(
     `Listening to connections on port — ${ENV.APP.SERVER_PORT} on node — v${config.engines.node}`,
   );
 });
