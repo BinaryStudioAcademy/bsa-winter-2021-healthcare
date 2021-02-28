@@ -24,7 +24,7 @@ For the [BackEnd](./backend) to work properly, you need to fill in the **`.env`*
 
 For the [FrontEnd](./frontend) to work properly, you need to fill in the **`.env`** file. You can use the **`.env.example`** file as an example.
 
-## Simple start
+## 🏃‍♂️ Simple start
 
 1. **`npx simple-pre-commit`** at the root
 2. Fill ENVs
