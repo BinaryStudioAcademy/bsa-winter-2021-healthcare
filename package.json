@@ -20,7 +20,7 @@
     "install:shared": "cd shared && npm install",
     "install:backend": "cd backend && npm install",
     "install:frontend": "cd frontend && npm install",
-    "install": "npm run install:shared && npm run shared:init && npm run install:backend && npm run install:frontend",
+    "install:all": "npm install && npm run install:shared && npm run shared:init && npm run install:backend && npm run install:frontend",
     "start:backend": "cd backend && npm run start:dev",
     "start:frontend": "cd frontend && npm run start",
     "start": "concurrently -k -p \"{name}: {time}\" -n \"FRONTEND,BACKEND\" \"npm:start:frontend\" \"npm:start:backend\"",
