@@ -1,6 +1,7 @@
 import { join } from 'path';
 import express, { json, urlencoded } from 'express';
 import { ENV } from '~/common/enums';
+import { initApi } from '~/api/api';
 import { logger } from '~/services/services';
 import { setTraceId, logRequest, handleError } from '~/middlewares';
 import { DbConnectionError } from '~/exceptions';
@@ -21,6 +22,8 @@ app.use(setTraceId);
 app.use(logRequest);
 app.use(json());
 app.use(urlencoded({ extended: true }));
+
+initApi(app);
 
 app.use(handleError);
 
