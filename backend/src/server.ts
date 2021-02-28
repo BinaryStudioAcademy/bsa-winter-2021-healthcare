@@ -25,12 +25,12 @@ app.use(urlencoded({ extended: true }));
 
 initApi(app);
 
-app.use(handleError);
-
 app.use(express.static(join(__dirname, '../public')));
 app.use('*', (_req, res) => {
   return res.sendFile(join(__dirname, '../public', 'index.html'));
 });
+
+app.use(handleError);
 
 const server = app.listen(ENV.APP.SERVER_PORT, () => {
   logger.log(`Listening to connections on port — ${ENV.APP.SERVER_PORT}`);

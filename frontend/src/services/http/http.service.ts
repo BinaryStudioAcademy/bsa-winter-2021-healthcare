@@ -4,7 +4,7 @@ import { ContentType, HttpHeader, HttpMethod } from 'common/enums';
 import { HttpOptions } from 'common/types';
 
 class Http {
-  load<T>(url: string, options: Partial<HttpOptions> = {}): Promise<T> {
+  load<T = unknown>(url: string, options: Partial<HttpOptions> = {}): Promise<T> {
     const { method = HttpMethod.GET, payload = null, contentType } = options;
     const headers = this._getHeaders(contentType);
     const isJSON = checkIsOneOf(contentType, ContentType.JSON);
