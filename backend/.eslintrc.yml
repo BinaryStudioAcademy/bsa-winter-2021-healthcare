@@ -3,3 +3,11 @@ env:
 
 extends:
   - ../.eslintrc.yml
+
+overrides:
+  - files:
+    - config/**/*
+    - gulp/**/*
+    rules:
+      '@typescript-eslint/no-var-requires':
+        - off

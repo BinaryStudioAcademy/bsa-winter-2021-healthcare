@@ -1,7 +1,7 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["src/*"],
-  "exclude": ["node_modules/*"],
+  "include": ["src", "config", "package.json", "package-lock.json"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -10,6 +10,7 @@
     "outDir": "build",
     "module": "commonjs",
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "allowJs": true
   }
 }

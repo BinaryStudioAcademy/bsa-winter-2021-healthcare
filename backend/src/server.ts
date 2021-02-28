@@ -5,7 +5,6 @@ import { logger } from '~/services/services';
 import { setTraceId, logRequest } from '~/middlewares';
 import { DbConnectionError } from '~/exceptions';
 import { sequelize } from '~/data/db/connection';
-import config from '../package.json';
 
 const app = express();
 
@@ -30,7 +29,7 @@ app.use('*', (_req, res) => {
 
 const server = app.listen(ENV.APP.SERVER_PORT, () => {
   logger.log(
-    `Listening to connections on port — ${ENV.APP.SERVER_PORT} on node — v${config.engines.node}`,
+    `Listening to connections on port — ${ENV.APP.SERVER_PORT}`,
   );
 });
 

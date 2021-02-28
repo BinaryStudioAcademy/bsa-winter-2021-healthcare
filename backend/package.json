@@ -5,10 +5,12 @@
     "npm": "6.x.x"
   },
   "scripts": {
+    "migrate": "sequelize db:migrate",
+    "migrate:undo": "sequelize db:migrate:undo",
     "start:dev": "nodemon --exec ts-node -r dotenv/config -r tsconfig-paths/register ./src/server.ts",
     "start": "node -r dotenv/config ./src/server.js",
     "build:ts": "tsc && tscpaths -p tsconfig.json --src . --out build",
-    "build:copy": "cp package-lock.json build cp -r shared build && cp -r public build",
+    "build:copy": "cp -r shared build && cp -r public build",
     "build": "npm run build:ts && npm run build:copy"
   },
   "dependencies": {
