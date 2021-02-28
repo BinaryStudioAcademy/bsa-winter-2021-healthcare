@@ -5,17 +5,26 @@
     "npm": "6.x.x"
   },
   "scripts": {
-    "shared:build": "cd shared && npm install && npm run build",
-    "shared:frontend": "rm -rf frontend/shared && cp -r shared/build frontend/shared",
-    "shared:backend": "rm -rf backend/shared && cp -r shared/build backend/shared",
-    "shared:init": "npm run shared:build && npm run shared:frontend && npm run shared:backend",
     "lint:editorconfig": "editorconfig-checker",
     "lint:shared:js": "eslint --ext .ts shared/src --config shared/.eslintrc.yml --resolve-plugins-relative-to .",
     "lint:shared": "npm run lint:shared:js",
+    "lint:backend:js": "eslint --ext .ts --ext .tsx backend/src --config backend/.eslintrc.yml --resolve-plugins-relative-to .",
+    "lint:backend": "npm run lint:backend:js",
     "lint:frontend:js": "eslint --ext .ts --ext .tsx frontend/src --config frontend/.eslintrc.yml --resolve-plugins-relative-to .",
     "lint:frontend:css": "stylelint frontend/src/**/*.scss --syntax scss --config frontend/.stylelintrc.yml",
     "lint:frontend": "npm run lint:frontend:css && npm run lint:frontend:js",
-    "lint": "npm run lint:editorconfig && npm run lint:shared && npm run lint:frontend"
+    "lint": "npm run lint:editorconfig && npm run lint:shared && npm run lint:backend && npm run lint:frontend",
+    "shared:frontend:init": "rm -rf frontend/shared && cp -r shared/build frontend/shared",
+    "shared:backend:init": "rm -rf backend/shared && cp -r shared/build backend/shared",
+    "shared:init": "npm run build:shared && npm run shared:frontend:init && npm run shared:backend:init",
+    "install:shared": "cd shared && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "install": "npm run install:shared && npm run shared:init && npm run install:frontend",
+    "start:frontend": "cd frontend && npm run start",
+    "start": "npm run start:frontend",
+    "build:shared": "cd shared && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build": "npm run shared:init && npm run build:frontend"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.15.2",
@@ -28,7 +37,7 @@
     "stylelint": "13.11.0",
     "stylelint-config-recommended-scss": "4.2.0",
     "stylelint-scss": "3.19.0",
-    "typescript": "4.2.2"
+    "typescript": "4.1.2"
   },
   "simple-pre-commit": "npx lint-staged"
 }
