@@ -26,9 +26,9 @@ For the [FrontEnd](./frontend) to work properly, you need to fill in the **`.env
 
 ## 🏃‍♂️ Simple start
 
-1. **`npx simple-pre-commit`** at the root
+1. **`npm run install:all`** at the root
 2. Fill ENVs
-3. **`npm run install:all`** at the root
+3. **`npx simple-pre-commit`** at the root
 4. **`npm run start`** at the root
 5. Enjoy <3
 
