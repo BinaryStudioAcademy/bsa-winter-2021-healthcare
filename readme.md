@@ -16,7 +16,7 @@ This is the repository responsible for HealthCare's app.
 
 This [folder](./shared) contains all common (helpers, enums and etc.) stuff for other applications (backend, frontend and etc.).
 
-##  BackEnd
+## ⚙️ BackEnd
 
 For the [BackEnd](./backend) to work properly, you need to fill in the **`.env`** file. You can use the **`.env.example`** file as an example.
 
