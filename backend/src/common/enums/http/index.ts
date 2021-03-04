@@ -1,1 +1,1 @@
-export { HttpCode } from 'healthcare-shared/common/enums';
+export { HttpCode } from '../../../../../healthcare-shared/src/common/enums';
