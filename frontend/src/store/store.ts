@@ -4,6 +4,7 @@ import { counterReducer } from './slices';
 
 const store = configureStore({
   reducer: {
+    [ReducerName.USERS]: counterReducer,
     [ReducerName.COUNTER]: counterReducer,
   },
 });
