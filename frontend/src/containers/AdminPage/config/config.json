@@ -1,0 +1,16 @@
+{
+    "entityType":[
+        "id",
+        "Applicant",
+        "Birthday",
+        "Phone",
+        "Password",
+        "Email",
+        "ImagePath",
+        "Geoposition",
+        "Diagnosis",
+        "CreatedAt",
+        "UpdatedAt",
+        "Actions"
+    ]
+}
