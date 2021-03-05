@@ -11,7 +11,8 @@ export const UserFactory = (sequelize: Sequelize.Sequelize, DataTypes: Sequelize
   const attributes: SequelizeAttributes<User> = {
     id: {
       allowNull: false,
-      type: DataTypes.UUID
+      type: DataTypes.UUID,
+      primaryKey:true
     },
     name: {
       allowNull: false,

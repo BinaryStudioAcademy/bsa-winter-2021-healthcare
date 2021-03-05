@@ -13,3 +13,5 @@ export const createModels = (): DbInterface => {
 
   return db;
 };
+
+export const db = createModels();
