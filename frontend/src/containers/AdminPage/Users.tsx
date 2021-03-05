@@ -8,14 +8,14 @@ import styles from './styles.module.scss';
 
 function Users() {
   const { AllUsers } = useSelector(({ users }: RootState) => ({
-    AllUsers: users,
+    AllUsers: users.users,
   }));
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(UsersActionCreator.getUsers(2))
   }, [])
-
+  console.log(AllUsers);
   return (
     <div>
       {AllUsers.map((user: any) => (
