@@ -1,13 +1,44 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { userApi } from 'services/services';
 import { ReducerName } from 'common/enums';
 import { AppThunk } from 'common/types';
+import { UserState } from 'common/interfaces';
 
-type CounterState = {
-  value: number;
-};
+interface StateType {
+  value: number,
+  users: UserState[]
+}
 
-const initialState: CounterState = {
+const initialState: StateType = {
   value: 0,
+  users: [
+    {
+      id:"1",
+      Applicant:"2",
+      Birthday:"3",
+      Phone:"4",
+      Password:"5",
+      Email:"6",
+      ImagePath:"7",
+      Geoposition:"8",
+      Diagnosis:"9",
+      CreatedAt:"10",
+      UpdatedAt:"11"
+    },
+    {
+      id:"1",
+      Applicant:"2",
+      Birthday:"3",
+      Phone:"4",
+      Password:"5",
+      Email:"6",
+      ImagePath:"7",
+      Geoposition:"8",
+      Diagnosis:"9",
+      CreatedAt:"10",
+      UpdatedAt:"11"
+    },
+  ]
 };
 
 const { reducer, actions } = createSlice({
@@ -31,6 +62,7 @@ const { reducer, actions } = createSlice({
   },
 });
 
+
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
 // will call the thunk with the `dispatch` function as the first argument. Async
@@ -41,9 +73,19 @@ const incrementAsync = (amount: number): AppThunk => (dispatch) => {
   }, 1000);
 };
 
+const getUsers = (amount: number): AppThunk => (dispatch) => {
+  const data = userApi.getUsers(amount);
+  console.log(data);
+};
+
 const CounterActionCreator = {
   ...actions,
   incrementAsync,
 };
 
-export { CounterActionCreator, reducer };
+const UsersActionCreator = {
+  ...actions,
+  getUsers,
+};
+
+export { CounterActionCreator, UsersActionCreator, reducer };
