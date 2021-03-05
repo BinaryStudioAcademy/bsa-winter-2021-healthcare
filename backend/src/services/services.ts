@@ -11,3 +11,4 @@ const logger = new Logger({
 });
 
 export { appAsyncStorage, logger };
+export * from './auth/auth.service';
