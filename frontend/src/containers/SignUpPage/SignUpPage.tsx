@@ -1,21 +1,10 @@
 import * as React from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
-import "yup-phone";
 
 import styles from './styles.module.scss';
-
-enum RegisterPayloadKey {
-  NAME = 'name',
-  SURNAME = 'surname',
-  EMAIL = 'email',
-  PASSWORD = 'password',
-  RETYPE_PASSWORD = 'retypePassword',
-  PHONE = 'phone',
-  IS_STAFF = 'isStaff',
-  // AVATAR = 'avatar'
-}
+import { RegisterPayloadKey } from 'healthcare-shared/common/enums/register/register-payload.enum'
+import validationUserSchema from 'healthcare-shared/helpers/validation/auth-schema/auth-schema.helper'
 
 interface IRegisterPayload {
   [RegisterPayloadKey.NAME]: string;
@@ -37,22 +26,10 @@ const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.IS_STAFF]: false
 };
 
-const validationSchema = yup.object().shape({
-  [RegisterPayloadKey.NAME]: yup.string().required(),
-  [RegisterPayloadKey.SURNAME]: yup.string().required(),
-  [RegisterPayloadKey.EMAIL]: yup.string().email(),
-  [RegisterPayloadKey.PASSWORD]: yup.string().required().min(6),
-  [RegisterPayloadKey.RETYPE_PASSWORD]: yup.string().oneOf([yup.ref(RegisterPayloadKey.PASSWORD), null], 'Passwords must match'),
-  [RegisterPayloadKey.PHONE]: yup.string().phone().required(),
-  [RegisterPayloadKey.IS_STAFF]: yup.boolean().required(),
-  // [RegisterPayloadKey.AVATAR]: yup.mixed()
-});
-
-
 const SignUpPage: React.FC = () => {
 
   const { register, handleSubmit, errors } = useForm<IRegisterPayload>({
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(validationUserSchema),
     defaultValues: DEFAULT_VALUES,
   });
 
@@ -65,7 +42,7 @@ const SignUpPage: React.FC = () => {
 
         <form onSubmit={handleSubmit(onSubmit)} >
 
-          {/* <div className={styles.uploadFiles}>
+          <div className={styles.uploadFiles}>
             <label htmlFor="name">avatar</label>
             <input
               type="file"
@@ -73,7 +50,7 @@ const SignUpPage: React.FC = () => {
               name={RegisterPayloadKey.AVATAR}
               ref={register}
             />
-          </div> */}
+          </div>
 
           <div className={styles.name}>
             <label htmlFor="name">Name</label>
