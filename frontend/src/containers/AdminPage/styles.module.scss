@@ -1,0 +1,49 @@
+.container {
+  height: 100%;
+  padding: 3vh 1vw 3vh 1vw;
+  list-style: none;
+  background-color: #f2f2f5;
+}
+.margLeft {
+  margin-left: 24px;
+}
+.inptHght {
+  height: 5vh;
+}
+.button {
+  width: 8vw;
+  min-height: 30px;
+  background-color: #dda5e9;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+.table {
+  margin-top: 20px;
+  width: 100%;
+  height: 78vh;
+  background-color: white;
+  overflow: scroll;
+}
+.row {
+  display: flex;
+}
+.elem {
+  min-width: 200px;
+  width: 100%;
+  height: 8vh;
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  padding: 20px 20px 0 20px;
+}
+.headerElem {
+  height: 5vh;
+  border: 1px solid gray;
+  background-color: #6600cc;
+  padding: 0 20px 0 20px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
