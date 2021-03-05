@@ -1,7 +1,9 @@
 import * as userRepository from '../../data/repositories/userRepository';
-import { User } from '../../../../healthcare-shared/src/interfaces/user.interface';
+import { User } from '../../../../shared/src/interfaces/user.interface';
 
 export const getAllUsers = () => userRepository.getAll();
+
+export const createNewUser = (user:User) => userRepository.createUser(user);
 
 export const getUserById = (id:string) => userRepository.getById(id);
 

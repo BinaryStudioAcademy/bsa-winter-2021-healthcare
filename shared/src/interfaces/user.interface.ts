@@ -15,7 +15,7 @@ export interface User {
     type: UserType
     phone: string
     email: string
-    password?: string
+    password: string
     imagePath: string
     geoposition?: Geoposition
     diagnosis?: string

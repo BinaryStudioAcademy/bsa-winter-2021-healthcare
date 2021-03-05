@@ -50,7 +50,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       geoposition: {
-        type: Sequelize.STRING // Didn't find proper data type
+        type: Sequelize.DataTypes.GEOMETRY
       },
       diagnosis: {
         type: Sequelize.UUID
@@ -61,6 +61,8 @@ module.exports = {
   ]))),
 
   down: async queryInterface => {
-    queryInterface.dropTable('users', { transaction })
+    return queryInterface.sequelize.transaction((transaction) => {
+      return Promise.all([queryInterface.dropTable('users', { transaction })]);
+    });
   }
 };

@@ -1,1 +1,1 @@
-export { checkIsOneOf } from '../../../../healthcare-shared/src/helpers';
+export { checkIsOneOf } from '../../../../shared/src/helpers';

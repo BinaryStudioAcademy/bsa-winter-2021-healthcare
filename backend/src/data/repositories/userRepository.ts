@@ -1,12 +1,14 @@
-import { db } from '../models/index';
-import { User } from '../../../../healthcare-shared/src/interfaces/user.interface';
+import UserModel from '../models/user';
+import { User } from '../../../../shared/src/interfaces/user.interface';
 
-export const getAll = () => db.User.findAll();
+export const getAll = () => UserModel.findAll();
 
-export const getById = (id:string) => db.User.findById(id);
+export const getById = (id:string) => UserModel.findByPk(id);
+
+export const createUser = (user:User) => UserModel.create(user);
 
 export const updateById = async (id:string, data:User) => {
-  const result = await db.User.update(data, {
+  const result = await UserModel.update(data, {
     where: { id },
     returning: true
   });
@@ -14,7 +16,7 @@ export const updateById = async (id:string, data:User) => {
 };
 
 export const deleteById = (id:string) => {
-  return db.User.destroy({
+  return UserModel.destroy({
     where: { id }
   });
 };

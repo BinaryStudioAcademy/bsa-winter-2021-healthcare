@@ -1,19 +1,20 @@
-import * as Sequelize from 'sequelize';
-import { SequelizeAttributes } from '../../common/types';
+import {
+  ModelDefined,
+  DataTypes,
+  Optional
+} from "sequelize";
 
-import { User } from '../../../../healthcare-shared/src/interfaces/user.interface'
+import { sequelize } from '../db/connection';
+import { User } from '../../../../shared/src/interfaces/user.interface';
 
-export interface UserInstance extends Sequelize.Instance<User>, User {
+interface UserCreationAttributes extends Optional<User, "id"> {}
 
-};
-
-export const UserFactory = (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes): Sequelize.Model<UserInstance, User> => {
-  const attributes: SequelizeAttributes<User> = {
-    id: {
-      allowNull: false,
-      type: DataTypes.UUID,
-      primaryKey:true
-    },
+const UserModel: ModelDefined<
+  User,
+  UserCreationAttributes
+> = sequelize.define(
+  'user',
+  {
     name: {
       allowNull: false,
       type: DataTypes.STRING
@@ -59,9 +60,10 @@ export const UserFactory = (sequelize: Sequelize.Sequelize, DataTypes: Sequelize
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
-  };
+  },
+  {
+    tableName: 'users',
+  }
+);
 
-  const User = sequelize.define<UserInstance, User>('User', attributes);
-
-  return User;
-};
+export default UserModel;

@@ -25,6 +25,15 @@ const initUserApi = (apiRouter: Router): Router => {
     }
   });
 
+  userRouter.post(UsersApiPath.ROOT, async (_req, res) => {
+    try {
+      const user = await userService.createNewUser(_req.body);
+      res.status(HttpCode.OK).json(user);
+    } catch(error) {
+      res.status(HttpCode.BAD_REQUEST).json(error);
+    }
+  });
+
   userRouter.put(UsersApiPath.IDPARAM, async (_req, res) => {
     try {
       const user = await userService.updateUser(_req.params.id, _req.body);
@@ -37,7 +46,7 @@ const initUserApi = (apiRouter: Router): Router => {
   userRouter.delete(UsersApiPath.IDPARAM, async (_req, res) => {
     try {
       await userService.deleteUser(_req.params.id);
-      res.status(HttpCode.OK).json();
+      res.status(HttpCode.DELETED).json();
     } catch(error) {
       res.status(HttpCode.BAD_REQUEST).json(error);
     }

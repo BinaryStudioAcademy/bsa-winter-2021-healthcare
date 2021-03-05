@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize';
+import { Sequelize, Dialect } from 'sequelize';
 import {
   database,
   username,
@@ -10,7 +10,7 @@ import {
 
 const sequelize = new Sequelize({
   port: Number(port),
-  dialect,
+  dialect: dialect as Dialect,
   database,
   username,
   password,
