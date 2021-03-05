@@ -40,7 +40,7 @@ const DEFAULT_VALUES: IRegisterPayload = {
 const validationSchema = yup.object().shape({
   [RegisterPayloadKey.NAME]: yup.string().required(),
   [RegisterPayloadKey.SURNAME]: yup.string().required(),
-  [RegisterPayloadKey.EMAIL]: yup.string().email(),
+  [RegisterPayloadKey.EMAIL]: yup.string().email().required(),
   [RegisterPayloadKey.PASSWORD]: yup.string().required().min(6),
   [RegisterPayloadKey.RETYPE_PASSWORD]: yup.string().oneOf([yup.ref(RegisterPayloadKey.PASSWORD), null], 'Passwords must match'),
   [RegisterPayloadKey.PHONE]: yup.string().phone().required(),
