@@ -9,7 +9,6 @@ import SearchAndFilterForm from './SearchAndFilterForm';
 import Users from './Users';
 
 const AdminPage: React.FC = () => {
-  console.log(config.entityType)
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Entries</h2>
