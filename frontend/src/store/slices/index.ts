@@ -1,4 +1,5 @@
 export {
   reducer as counterReducer,
   CounterActionCreator,
-} from './counter/counter.slice';
+  UsersActionCreator,
+} from './users/users.slice';
