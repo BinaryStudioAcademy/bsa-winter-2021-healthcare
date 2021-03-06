@@ -1,19 +1,8 @@
 import { Sequelize, DataTypes, ModelCtor, Model } from 'sequelize';
 import { ModelName } from '~/common/enums';
+import { IAppointment } from '~/common/interfaces';
 
-enum Type {
-  ONLINE = 'online',
-  OFFLINE = 'offline'
-}
-
-interface AppointmentInstance extends Model {
-  date: Date;
-  type: Type;
-  cost: number;
-  subject: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
+interface AppointmentInstance extends IAppointment, Model {}
 
 export default (orm: Sequelize): ModelCtor<AppointmentInstance> => {
   const Appointment = orm.define<AppointmentInstance>(ModelName.APPOINTMENT, {

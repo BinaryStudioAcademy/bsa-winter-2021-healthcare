@@ -1,12 +1,8 @@
 import { Sequelize, DataTypes, Model, ModelCtor } from 'sequelize';
 import { ModelName } from '~/common/enums';
+import { INotification } from '~/common/interfaces';
 
-interface NotificationInstance extends Model {
-  text: string;
-  topic: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
+interface NotificationInstance extends INotification, Model {}
 
 export default (orm: Sequelize): ModelCtor<NotificationInstance> => {
   const Notification = orm.define<NotificationInstance>(ModelName.NOTIFICATION, {

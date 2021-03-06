@@ -1,19 +1,8 @@
 import { Sequelize, DataTypes, Model, ModelCtor } from 'sequelize';
 import { ModelName } from '~/common/enums';
+import { IClinic } from '~/common/interfaces';
 
-enum ClinicType {
-  PRIVATE = 'private',
-  STATE = 'state'
-}
-
-interface ClinicInstance extends Model {
-  name: string;
-  address: string;
-  imagePath: string,
-  clinicType: ClinicType;
-  createdAt: Date;
-  updatedAt: Date;
-}
+interface ClinicInstance extends IClinic, Model {}
 
 export default (orm: Sequelize): ModelCtor<ClinicInstance> => {
   const Clinic = orm.define<ClinicInstance>(ModelName.CLINIC, {

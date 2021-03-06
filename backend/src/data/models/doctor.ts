@@ -1,13 +1,8 @@
 import { Sequelize, DataTypes, Model, ModelCtor } from 'sequelize';
 import { ModelName } from '~/common/enums';
+import { IDoctor } from '~/common/interfaces';
 
-interface DoctorInstance extends Model {
-  department: string;
-  roomNumber: number;
-  about: string,
-  createdAt: Date;
-  updatedAt: Date;
-}
+interface DoctorInstance extends IDoctor, Model {}
 
 export default (orm: Sequelize): ModelCtor<DoctorInstance> => {
   const Doctor = orm.define<DoctorInstance>(ModelName.DOCTOR, {
