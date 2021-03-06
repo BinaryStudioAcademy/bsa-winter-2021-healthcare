@@ -14,29 +14,29 @@ const initialState: StateType = {
   users: [
     {
       id:"1",
-      Applicant:"2",
-      Birthday:"3",
-      Phone:"4",
-      Password:"5",
-      Email:"6",
-      ImagePath:"7",
-      Geoposition:"8",
-      Diagnosis:"9",
-      CreatedAt:"10",
-      UpdatedAt:"11"
+      applicant:"2",
+      birthday:"3",
+      phone:"4",
+      password:"5",
+      email:"6",
+      imagePath:"7",
+      geoposition:"8",
+      diagnosis:"9",
+      createdAt:"10",
+      updatedAt:"11"
     },
     {
       id:"1",
-      Applicant:"2",
-      Birthday:"3",
-      Phone:"4",
-      Password:"5",
-      Email:"6",
-      ImagePath:"7",
-      Geoposition:"8",
-      Diagnosis:"9",
-      CreatedAt:"10",
-      UpdatedAt:"11"
+      applicant:"2",
+      birthday:"3",
+      phone:"4",
+      password:"5",
+      email:"6",
+      imagePath:"7",
+      geoposition:"8",
+      diagnosis:"9",
+      createdAt:"10",
+      updatedAt:"11"
     },
   ]
 };
