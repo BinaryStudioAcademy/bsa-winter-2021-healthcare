@@ -1,15 +1,15 @@
 interface UserState {
   id: string,
-  Applicant: string,
-  Birthday: string,
-  Phone: string,
-  Password: string,
-  Email: string,
-  ImagePath: string,
-  Geoposition: string,
-  Diagnosis: string,
-  CreatedAt: string,
-  UpdatedAt: string
+  applicant: string,
+  birthday: string,
+  phone: string,
+  password: string,
+  email: string,
+  imagePath: string,
+  geoposition: string,
+  diagnosis: string,
+  createdAt: string,
+  updatedAt: string,
 }
 
 export type { UserState };
