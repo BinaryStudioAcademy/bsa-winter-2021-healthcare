@@ -15,6 +15,10 @@ module.exports = {
           allowNull: false,
           type: Sequelize.STRING
         },
+        status: {
+          allowNull: false,
+          type: Sequelize.ENUM('verified', 'in_review')
+        },
         createdAt: Sequelize.DATE,
         updatedAt: Sequelize.DATE
       }, { transaction })
