@@ -24,11 +24,13 @@ body {
   height: 100vh;
   display: flex;
   flex-wrap: wrap;
+  min-height: 850px;
 
 .container__logo {
   width: 65%;
   height: 100%;
 
+  background-color: darkgray;
   background-image: url("../../assets/images/sign-img.jpg");
   background-position: center, center;
   background-size: auto 115%;
@@ -41,7 +43,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -66,6 +67,7 @@ body {
     font-weight: 600;
     line-height: 29px;
     color: black;
+    align-self: flex-start;
   }
 
   form {
