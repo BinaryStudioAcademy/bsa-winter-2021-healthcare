@@ -1,10 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName } from 'common/enums';
-import { AppThunk } from 'common/types';
-
-type CounterState = {
-  value: number;
-};
+import { AppThunk, CounterState } from 'common/types';
 
 const initialState: CounterState = {
   value: 0,
