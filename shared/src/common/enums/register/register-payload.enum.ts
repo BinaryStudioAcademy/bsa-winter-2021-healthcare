@@ -6,7 +6,7 @@ enum RegisterPayloadKey {
   RETYPE_PASSWORD = 'retypePassword',
   PHONE = 'phone',
   IS_STAFF = 'isStaff',
-  AVATAR = 'avatar'
+  // AVATAR = 'avatar'
 }
 
 export { RegisterPayloadKey }
