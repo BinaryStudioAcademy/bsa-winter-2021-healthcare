@@ -3,8 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import styles from './styles.module.scss';
-import { RegisterPayloadKey } from 'healthcare-shared/common/enums/register/register-payload.enum'
-import validationUserSchema from 'healthcare-shared/helpers/validation/auth-schema/auth-schema.helper'
+import { RegisterPayloadKey, validationUserSchema } from 'healthcare-shared'
 
 interface IRegisterPayload {
   [RegisterPayloadKey.NAME]: string;
@@ -93,7 +92,7 @@ const SignUpPage: React.FC = () => {
           <div className={styles.email}>
             <label htmlFor="email">E-mail</label>
             <input
-              type="text"
+              type="email"
               placeholder="E-mail"
               name={RegisterPayloadKey.EMAIL}
             />
@@ -104,6 +103,7 @@ const SignUpPage: React.FC = () => {
             <label htmlFor="password">Password</label>
             <input
               type="password"
+              placeholder="Password"
               name={RegisterPayloadKey.PASSWORD}
               ref={register}
             />
@@ -132,7 +132,7 @@ const SignUpPage: React.FC = () => {
             {errors.phone && <span className={styles.errorSpan}>{errors.phone.message}</span>}
           </div>
 
-          <div className={styles.uploadFiles}>
+          {/* <div className={styles.uploadFiles}>
             <label htmlFor="name">Avatar</label>
             <input
               type="file"
@@ -140,7 +140,7 @@ const SignUpPage: React.FC = () => {
               name={RegisterPayloadKey.AVATAR}
               ref={register}
             />
-          </div>
+          </div> */}
 
           <div className={styles.checkBox}>
             <input
