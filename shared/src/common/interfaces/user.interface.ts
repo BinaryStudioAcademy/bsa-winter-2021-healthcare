@@ -21,4 +21,4 @@ export interface IUser {
     diagnosis?: string
     createdAt: Date
     updatedAt: Date
-};
+}

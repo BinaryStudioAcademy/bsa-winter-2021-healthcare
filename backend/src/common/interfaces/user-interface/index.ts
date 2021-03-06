@@ -1,1 +1,1 @@
-export type { IUser } from '../../../../../shared/src/common/interfaces';
+export type { IUser } from 'healthcare-shared/common/interfaces';
