@@ -4,7 +4,7 @@ import { IDiagnosis } from '~/common/interfaces';
 
 interface DiagnosisInstance extends IDiagnosis, Model {}
 
-export default (orm: Sequelize): ModelCtor<DiagnosisInstance> => {
+const createDiagnosisModel =  (orm: Sequelize): ModelCtor<DiagnosisInstance> => {
   const Diagnosis = orm.define<DiagnosisInstance>(ModelName.DIAGNOSIS, {
     diagnosis: {
       allowNull: false,
@@ -16,3 +16,5 @@ export default (orm: Sequelize): ModelCtor<DiagnosisInstance> => {
 
   return Diagnosis;
 };
+
+export default createDiagnosisModel;

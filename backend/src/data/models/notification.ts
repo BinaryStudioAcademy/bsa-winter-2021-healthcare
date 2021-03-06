@@ -4,7 +4,7 @@ import { INotification } from '~/common/interfaces';
 
 interface NotificationInstance extends INotification, Model {}
 
-export default (orm: Sequelize): ModelCtor<NotificationInstance> => {
+const createNotificationModel = (orm: Sequelize): ModelCtor<NotificationInstance> => {
   const Notification = orm.define<NotificationInstance>(ModelName.NOTIFICATION, {
     text: {
       allowNull: false,
@@ -17,3 +17,5 @@ export default (orm: Sequelize): ModelCtor<NotificationInstance> => {
 
   return Notification;
 };
+
+export default createNotificationModel;

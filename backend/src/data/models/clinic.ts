@@ -5,7 +5,7 @@ import { ClinicType } from '~/common/enums';
 
 interface ClinicInstance extends IClinic, Model {}
 
-export default (orm: Sequelize): ModelCtor<ClinicInstance> => {
+const createClinicModel = (orm: Sequelize): ModelCtor<ClinicInstance> => {
   const Clinic = orm.define<ClinicInstance>(ModelName.CLINIC, {
     name: {
       allowNull: false,
@@ -31,3 +31,5 @@ export default (orm: Sequelize): ModelCtor<ClinicInstance> => {
 
   return Clinic;
 };
+
+export default createClinicModel;

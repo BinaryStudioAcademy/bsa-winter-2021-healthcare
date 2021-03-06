@@ -4,7 +4,7 @@ import { IDoctor } from '~/common/interfaces';
 
 interface DoctorInstance extends IDoctor, Model {}
 
-export default (orm: Sequelize): ModelCtor<DoctorInstance> => {
+const createDoctorModel =  (orm: Sequelize): ModelCtor<DoctorInstance> => {
   const Doctor = orm.define<DoctorInstance>(ModelName.DOCTOR, {
     department: {
       allowNull: false,
@@ -23,3 +23,5 @@ export default (orm: Sequelize): ModelCtor<DoctorInstance> => {
 
   return Doctor;
 };
+
+export default createDoctorModel;

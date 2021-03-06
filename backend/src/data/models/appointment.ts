@@ -5,7 +5,7 @@ import { AppointmentType } from '~/common/enums';
 
 interface AppointmentInstance extends IAppointment, Model {}
 
-export default (orm: Sequelize): ModelCtor<AppointmentInstance> => {
+const createAppointmentModel = (orm: Sequelize): ModelCtor<AppointmentInstance> => {
   const Appointment = orm.define<AppointmentInstance>(ModelName.APPOINTMENT, {
     date: {
       allowNull: false,
@@ -23,3 +23,5 @@ export default (orm: Sequelize): ModelCtor<AppointmentInstance> => {
 
   return Appointment;
 };
+
+export default createAppointmentModel;

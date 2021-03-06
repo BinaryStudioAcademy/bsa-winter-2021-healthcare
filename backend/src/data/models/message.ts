@@ -4,7 +4,7 @@ import { IMessage } from '~/common/interfaces';
 
 interface MessageInstance extends IMessage, Model {}
 
-export default (orm: Sequelize): ModelCtor<MessageInstance> => {
+const createMessageModel = (orm: Sequelize): ModelCtor<MessageInstance> => {
   const Message = orm.define<MessageInstance>(ModelName.MESSAGE, {
     text: {
       allowNull: false,
@@ -16,3 +16,5 @@ export default (orm: Sequelize): ModelCtor<MessageInstance> => {
 
   return Message;
 };
+
+export default createMessageModel;

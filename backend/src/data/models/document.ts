@@ -5,7 +5,7 @@ import { DocumentStatus } from '~/common/enums';
 
 interface DocumentInstance extends IDocument, Model {}
 
-export default (orm: Sequelize): ModelCtor<DocumentInstance> => {
+const createDocumentModel = (orm: Sequelize): ModelCtor<DocumentInstance> => {
   const Document = orm.define<DocumentInstance>(ModelName.DOCUMENT, {
     imagePath: {
       allowNull: false,
@@ -21,3 +21,5 @@ export default (orm: Sequelize): ModelCtor<DocumentInstance> => {
 
   return Document;
 };
+
+export default createDocumentModel;
