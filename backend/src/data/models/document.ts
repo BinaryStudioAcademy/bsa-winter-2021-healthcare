@@ -1,4 +1,5 @@
 import { Sequelize, DataTypes, Model, ModelCtor } from 'sequelize';
+import { ModelName } from '~/common/enums';
 
 interface DocumentInstance extends Model {
   imagePath: string;
@@ -7,7 +8,7 @@ interface DocumentInstance extends Model {
 }
 
 export default (orm: Sequelize): ModelCtor<DocumentInstance> => {
-  const Document = orm.define<DocumentInstance>('document', {
+  const Document = orm.define<DocumentInstance>(ModelName.DOCUMENT, {
     imagePath: {
       allowNull: false,
       type: DataTypes.STRING

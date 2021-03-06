@@ -1,4 +1,5 @@
 import { Sequelize, DataTypes, Model, ModelCtor } from 'sequelize';
+import { ModelName } from '~/common/enums';
 
 enum ClinicType {
   PRIVATE = 'private',
@@ -15,7 +16,7 @@ interface ClinicInstance extends Model {
 }
 
 export default (orm: Sequelize): ModelCtor<ClinicInstance> => {
-  const Clinic = orm.define<ClinicInstance>('clinic', {
+  const Clinic = orm.define<ClinicInstance>(ModelName.CLINIC, {
     name: {
       allowNull: false,
       type: DataTypes.STRING,

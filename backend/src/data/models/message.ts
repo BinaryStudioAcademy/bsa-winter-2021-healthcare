@@ -1,4 +1,5 @@
 import { Sequelize, DataTypes, ModelCtor, Model } from 'sequelize';
+import { ModelName } from '~/common/enums';
 
 interface MessageInstance extends Model {
   text: string
@@ -7,7 +8,7 @@ interface MessageInstance extends Model {
 }
 
 export default (orm: Sequelize): ModelCtor<MessageInstance> => {
-  const Message = orm.define<MessageInstance>('message', {
+  const Message = orm.define<MessageInstance>(ModelName.MESSAGE, {
     text: {
       allowNull: false,
       type: DataTypes.STRING
