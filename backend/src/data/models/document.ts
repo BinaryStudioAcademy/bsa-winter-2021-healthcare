@@ -1,6 +1,7 @@
 import { Sequelize, DataTypes, Model, ModelCtor } from 'sequelize';
 import { ModelName } from '~/common/enums';
 import { IDocument } from '~/common/interfaces';
+import { DocumentStatus } from '~/common/enums';
 
 interface DocumentInstance extends IDocument, Model {}
 
@@ -12,7 +13,7 @@ export default (orm: Sequelize): ModelCtor<DocumentInstance> => {
     },
     status: {
       allowNull: false,
-      type: DataTypes.ENUM('verified', 'in_review')
+      type: DataTypes.ENUM(DocumentStatus.VERIFIED, DocumentStatus.IN_REVIEW)
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE

@@ -1,6 +1,7 @@
 import { Sequelize, DataTypes, Model, ModelCtor } from 'sequelize';
 import { ModelName } from '~/common/enums';
 import { IClinic } from '~/common/interfaces';
+import { ClinicType } from '~/common/enums';
 
 interface ClinicInstance extends IClinic, Model {}
 
@@ -22,7 +23,7 @@ export default (orm: Sequelize): ModelCtor<ClinicInstance> => {
     },
     clinicType: {
       allowNull: false,
-      type: DataTypes.ENUM('private', 'state')
+      type: DataTypes.ENUM(ClinicType.PRIVATE, ClinicType.STATE)
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE

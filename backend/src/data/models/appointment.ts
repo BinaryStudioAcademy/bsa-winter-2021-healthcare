@@ -1,6 +1,7 @@
 import { Sequelize, DataTypes, ModelCtor, Model } from 'sequelize';
 import { ModelName } from '~/common/enums';
 import { IAppointment } from '~/common/interfaces';
+import { AppointmentType } from '~/common/enums';
 
 interface AppointmentInstance extends IAppointment, Model {}
 
@@ -12,7 +13,7 @@ export default (orm: Sequelize): ModelCtor<AppointmentInstance> => {
     },
     type: {
       allowNull: false,
-      type: DataTypes.ENUM('online', 'offline')
+      type: DataTypes.ENUM(AppointmentType.ONLINE, AppointmentType.OFFLINE)
     },
     cost: DataTypes.FLOAT,
     subject: DataTypes.STRING,
