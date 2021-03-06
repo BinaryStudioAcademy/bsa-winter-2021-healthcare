@@ -4,7 +4,10 @@ import { ContentType, HttpHeader, HttpMethod } from 'common/enums';
 import { HttpOptions } from 'common/types';
 
 class Http {
-  load<T = unknown>(url: string, options: Partial<HttpOptions> = {}): Promise<T> {
+  load<T = unknown>(
+    url: string,
+    options: Partial<HttpOptions> = {},
+  ): Promise<T> {
     const { method = HttpMethod.GET, payload = null, contentType } = options;
     const headers = this._getHeaders(contentType);
     const isJSON = checkIsOneOf(contentType, ContentType.JSON);
@@ -21,9 +24,14 @@ class Http {
 
   _getHeaders(contentType?: ContentType): Headers {
     const headers = new Headers();
+    const token = localStorage.getItem('token');
 
     if (contentType) {
       headers.append(HttpHeader.CONTENT_TYPE, contentType);
+    }
+
+    if (token) {
+      headers.append(HttpHeader.AUTHORIZATION, `Bearer ${token}`);
     }
 
     return headers;
