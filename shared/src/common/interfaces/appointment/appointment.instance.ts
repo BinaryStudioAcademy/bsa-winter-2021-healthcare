@@ -1,6 +1,6 @@
 import { AppointmentType } from '~/common/enums';
 
-export interface IAppointment {
+interface IAppointment {
   date: Date;
   type: AppointmentType;
   cost: number;
@@ -8,3 +8,5 @@ export interface IAppointment {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export type { IAppointment };

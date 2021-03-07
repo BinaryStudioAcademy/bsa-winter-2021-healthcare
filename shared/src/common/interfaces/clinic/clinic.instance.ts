@@ -1,6 +1,6 @@
 import { ClinicType } from '~/common/enums'
 
-export interface IClinic {
+interface IClinic {
   name: string;
   address: string;
   imagePath: string,
@@ -8,3 +8,5 @@ export interface IClinic {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export type { IClinic };
