@@ -5,8 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { store } from 'store/store';
 import { AppRoute } from 'common/enums';
 import App from './app';
-import SignUp from './components/signup/signup';
-// import SignIn from './components/signin/signin';
+import Sign from './components/sign/sign'
 
 import './assets/styles/index.scss';
 
@@ -14,8 +13,7 @@ render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        {/* <Route path={AppRoute.SIGN_IN} component={SignIn} /> */}
-        <Route path={AppRoute.SIGN_UP} component={SignUp} />
+        <Route path={[AppRoute.SIGN_UP]} component={Sign} />
         <Route exact path="/" component={App} />
       </Router>
     </Provider>

@@ -4,8 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import styles from './styles.module.scss';
 
-import { Sign } from "../common";
-
+import { Sign } from "../../common";
 import { RegisterPayloadKey, validationUserSchema, IRegisterPayload } from 'healthcare-shared'
 
 const DEFAULT_VALUES: IRegisterPayload = {
@@ -18,7 +17,7 @@ const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.IS_STAFF]: false
 };
 
-const SignUp: React.FC = () => {
+const FormSignUp: React.FC = () => {
 
   const { register, handleSubmit, errors } = useForm<IRegisterPayload>({
     resolver: yupResolver(validationUserSchema),
@@ -28,7 +27,6 @@ const SignUp: React.FC = () => {
   const onSubmit = (data: IRegisterPayload) => console.log(data);
 
   return (
-
     <Sign>
       <h2>Sign Up</h2>
 
@@ -137,4 +135,4 @@ const SignUp: React.FC = () => {
   );
 };
 
-export default SignUp;
+export default FormSignUp;
