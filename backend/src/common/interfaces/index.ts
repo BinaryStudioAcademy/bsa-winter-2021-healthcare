@@ -1,1 +1,1 @@
-export type { IUser } from './user-interface';
+export * from './user-interface';
