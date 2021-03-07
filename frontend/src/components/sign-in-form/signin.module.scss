@@ -9,7 +9,7 @@ p, div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #00D5A5;
+  background-color: #FFFFFF;
 
   .formWrapper {
     display: flex;
@@ -87,11 +87,11 @@ p, div {
         padding:  0.938em;
         border: none;
         border-radius: 4px;
-        background-color: #00D5A5;
+        background-color: #6600CC;
         color: #fefefe;
 
         &:hover {
-          background-color: rgb(22, 165, 58);
+          background-color: #3d0b6b;
           color: #fefefe;
         }
       }

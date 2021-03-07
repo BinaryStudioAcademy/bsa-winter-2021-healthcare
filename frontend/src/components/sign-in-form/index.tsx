@@ -5,6 +5,8 @@ import styles from './signin.module.scss';
 import { IUserLoginPayload } from 'healthcare-shared/common/interfaces';
 import { LoginPayloadKey } from 'healthcare-shared/common/enums';
 import { loginSchema } from 'healthcare-shared/helpers';
+import { Link } from 'components/common';
+import { AppRoute } from 'common/enums';
 
 const SignInPage: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<IUserLoginPayload>({
@@ -15,13 +17,18 @@ const SignInPage: React.FC = () => {
     console.log(formValues);
   };
 
+  const signInWithGoogle = () => {
+    console.log('Sign in with Google');
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.formWrapper}>
         <h2>Sign In</h2>
+        <p>No account? <Link to={AppRoute.SIGN_UP}>Sign up</Link></p>
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <div className={styles.email}>
-            <label htmlFor="email">Email</label>
+            <label htmlFor={LoginPayloadKey.EMAIL}>Email <Link to={AppRoute.ROOT}>Forgot password</Link></label>
             <input
               type={LoginPayloadKey.EMAIL}
               name={LoginPayloadKey.EMAIL}
@@ -33,7 +40,7 @@ const SignInPage: React.FC = () => {
             )}
           </div>
           <div className={styles.password}>
-            <label htmlFor="password">Password</label>
+            <label htmlFor={LoginPayloadKey.PASSWORD}>Password</label>
             <input
               type={LoginPayloadKey.PASSWORD}
               name={LoginPayloadKey.PASSWORD}
@@ -49,7 +56,11 @@ const SignInPage: React.FC = () => {
           <div className={styles.submit}>
             <button type="submit">Sign In</button>
           </div>
+          <div className={styles.submit}>
+          <button type='button' onClick={signInWithGoogle}>Sign in with Google</button>
+        </div>
         </form>
+
       </div>
     </div>
   );
