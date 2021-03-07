@@ -1,6 +1,7 @@
 interface UserState {
   id: string,
-  applicant: string,
+  name: string,
+  surname:string,
   birthday: string,
   phone: string,
   password: string,

@@ -20,7 +20,8 @@ const initialState: StateType = {
   users: [
     {
       id:"1",
-      applicant:"2",
+      name:"2",
+      surname:"2",
       birthday:"3",
       phone:"4",
       password:"5",
@@ -33,7 +34,8 @@ const initialState: StateType = {
     },
     {
       id:"2",
-      applicant:"2",
+      name:"2",
+      surname:"2",
       birthday:"3",
       phone:"4",
       password:"5",
