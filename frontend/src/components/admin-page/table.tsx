@@ -25,7 +25,7 @@ function Table({ columns, data, edit }: IProps) {
   });
 
   return (
-    <div className={styles.table}>
+    <div className={styles.tableDIV}>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
