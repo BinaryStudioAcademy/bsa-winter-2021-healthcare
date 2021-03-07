@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import clsx from 'clsx';
+import { useSelector } from 'react-redux';
 import { RootState } from 'common/types';
-import { UsersActionCreator } from 'store/slices';
 import styles from './styles.module.scss';
 import Users from './users';
 import EditUser from './edit-user';

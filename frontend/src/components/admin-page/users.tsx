@@ -4,9 +4,8 @@ import { RootState } from 'common/types';
 import { Column } from 'common/interfaces';
 import { UsersActionCreator } from 'store/slices';
 import Table from './table';
-import styles from './styles.module.scss';
 
-function Users() {
+const Users: React.FC = () => {
   const { AllUsers } = useSelector(({ users }: RootState) => ({
     AllUsers: users.users,
   }));

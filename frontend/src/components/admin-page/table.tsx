@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTable } from 'react-table';
-import clsx from 'clsx';
 import { RootState } from 'common/types';
 import { Column } from 'common/interfaces';
 import ActionsButton from './actions-button';
@@ -39,7 +38,7 @@ function Table({ columns, data, edit }: IProps) {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row, i) => {
+          {rows.map((row) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()} key={'key'}>
@@ -48,7 +47,7 @@ function Table({ columns, data, edit }: IProps) {
                   cell.column.Header === 'Actions'
                     ? (item = (
                         <td>
-                          <ActionsButton edit={edit} />
+                          <ActionsButton edit={edit} id={cell.row.values.id} />
                         </td>
                       ))
                     : (item = (

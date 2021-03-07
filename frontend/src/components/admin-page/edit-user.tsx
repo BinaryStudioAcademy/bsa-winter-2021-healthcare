@@ -22,7 +22,7 @@ const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.IS_STAFF]: false,
 };
 
-function EditUser() {
+const EditUser: React.FC = () =>{
   const { user } = useSelector(({ users }: RootState) => ({
     user: users.editUser.user,
   }));
