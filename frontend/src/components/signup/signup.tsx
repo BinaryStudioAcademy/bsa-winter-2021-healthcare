@@ -138,7 +138,7 @@ const SignUp: React.FC = () => {
           <span>file2.jpg</span>
         </div> */}
 
-        <input type="submit" value="Sign Up" />
+        <button type="submit">Sign Up</button>
 
       </form>
     </Sign>
