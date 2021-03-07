@@ -56,10 +56,23 @@ table {
   }
 
   th{
+    text-align: left;
     height: 33px;
     padding:11px 19px 11px 19px;
     color:#F2F2F5;
     background-color:#AC5DD9;
     border-right: 1px solid #EDEDF0;
   }
+}
+.iconsDiv{
+  min-width: 171px;
+  display: flex;
+  justify-content: space-around;
+}
+.iconDiv{
+  min-width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor:pointer;
 }

@@ -7,11 +7,12 @@ import ActionsButton from './actions-button';
 import styles from './styles.module.scss';
 
 interface IProps {
-  columns: Column[];
-  data: any;
+  columns: Column[],
+  data: any,
+  edit: (id:string)=>string,
 }
 
-function Table({ columns, data }: IProps) {
+function Table({ columns, data, edit }: IProps) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -47,7 +48,7 @@ function Table({ columns, data }: IProps) {
                   cell.column.Header === 'Actions'
                     ? (item = (
                         <td>
-                          <ActionsButton />
+                          <ActionsButton edit={edit} />
                         </td>
                       ))
                     : (item = (

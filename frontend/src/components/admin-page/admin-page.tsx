@@ -9,21 +9,22 @@ import SearchAndFilterForm from './search-and-filter-form';
 import Users from './users';
 
 const AdminPage: React.FC = () => {
+  const { editUser } = useSelector(({ editUser }: RootState) => ({
+    editUser: editUser,
+  }));
+  console.log(editUser.edit);
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Entries</h2>
-      <SearchAndFilterForm />
-      {/* <div className={styles.table}>
-        <div className={styles.row}>
-          {config.entityType.map((type: string) => (
-            <li className={clsx(styles.elem, styles.headerElem)} key={Date()}>
-              {type}
-            </li>
-          ))}
-        </div>
-      </div> */}
-      <Users />
-    </div>
+    <>
+      {editUser.edit ?
+      <h2>EDIT</h2>
+      :
+      <div className={styles.container}>
+        <h2 className={styles.title}>Entries</h2>
+        <SearchAndFilterForm />
+        <Users />
+      </div>
+        }
+    </>
   );
 };
 
