@@ -7,12 +7,13 @@ import styles from './styles.module.scss';
 
 interface IProps{
     edit:(id:string)=>string,
+    id:string,
 }
 
-function ActionsButton({edit}:IProps) {
+function ActionsButton({ edit, id }:IProps) {
   return (
     <div className={styles.iconsDiv}>
-      <div onClick={()=>edit("2")} className={styles.iconDiv}>
+      <div onClick={()=>edit(id)} className={styles.iconDiv}>
         <img src={editIcon} />
       </div>
       <div className={styles.iconDiv}>
