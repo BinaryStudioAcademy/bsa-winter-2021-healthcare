@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { ApiPath, AuthApiPath } from '~/common/enums';
-import { login } from '~/services/services';
+import { authService } from '~/services/services';
 
 const initAuthApi = (apiRouter: Router): Router => {
   const authRouter = Router();
@@ -8,11 +8,12 @@ const initAuthApi = (apiRouter: Router): Router => {
   apiRouter.use(ApiPath.AUTH, authRouter);
 
   // TODO: create auth middleware for login
-  authRouter.post(AuthApiPath.LOGIN, (req, res, next) =>
-    login(req.body)
+  authRouter.post(AuthApiPath.LOGIN, (req, res, next) => {
+    return authService
+      .login(req.body)
       .then((data) => res.send(data))
-      .catch(next),
-  );
+      .catch(next);
+  });
 
   return authRouter;
 };
