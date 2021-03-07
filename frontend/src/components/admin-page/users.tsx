@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'common/types';
 import { Column } from 'common/interfaces';
-import { UsersActionCreator, EditUserActionCreator } from 'store/slices';
+import { UsersActionCreator } from 'store/slices';
 import Table from './table';
 import styles from './styles.module.scss';
 
@@ -28,7 +28,7 @@ function Users() {
   }, []);
 
   const editUserHandler = (id:string) => {
-    dispatch(EditUserActionCreator.showEdit())
+    dispatch(UsersActionCreator.showEdit(id))
     return id
   };
 
