@@ -12,7 +12,7 @@ const loginSchema = yup.object().shape({
     .required(EmailValidation.REQUIRED),
   [LoginPayloadKey.PASSWORD]: yup
     .string()
-    .length(
+    .min(
       PasswordValidation.MIN_LENGTH,
       PasswordValidation.MIN_LENGTH_MESSAGE,
     )
