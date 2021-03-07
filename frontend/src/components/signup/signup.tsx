@@ -6,17 +6,7 @@ import styles from './styles.module.scss';
 
 import { Sign } from "../common";
 
-import { RegisterPayloadKey, validationUserSchema } from 'healthcare-shared'
-
-interface IRegisterPayload {
-  [RegisterPayloadKey.NAME]: string;
-  [RegisterPayloadKey.SURNAME]: string;
-  [RegisterPayloadKey.EMAIL]: string;
-  [RegisterPayloadKey.PASSWORD]: string;
-  [RegisterPayloadKey.RETYPE_PASSWORD]: string;
-  [RegisterPayloadKey.PHONE]: string;
-  [RegisterPayloadKey.IS_STAFF]: boolean;
-}
+import { RegisterPayloadKey, validationUserSchema, IRegisterPayload } from 'healthcare-shared'
 
 const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.NAME]: '',
