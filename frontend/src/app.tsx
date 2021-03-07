@@ -4,6 +4,7 @@ import { AppRoute } from 'common/enums';
 import Counter from 'components/counter/counter';
 import { Link } from 'components/common';
 import logo from 'assets/images/logo.svg';
+import AdminPage from 'components/admin-page/admin-page';
 
 const App: React.FC = () => {
   const { pathname } = useLocation();
@@ -21,6 +22,9 @@ const App: React.FC = () => {
             </li>
             <li>
               <Link to={AppRoute.SIGN_UP}>Sign up</Link>
+            </li>
+            <li>
+              <Link to={AppRoute.ADMIN_PAGE}>Admin page</Link>
             </li>
           </ul>
           <p>Current path: {pathname}</p>
