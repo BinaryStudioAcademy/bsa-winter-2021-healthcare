@@ -5,7 +5,7 @@ import { ModelName, UserSex, UserType } from '~/common/enums'
 
 interface UserInstance extends IUser, Model {}
 
-const User = (orm:Sequelize): ModelCtor<UserInstance> => {
+const createUserModel = (orm:Sequelize): ModelCtor<UserInstance> => {
   const UserModel = orm.define<UserInstance>(ModelName.USER, {
       name: {
         allowNull: false,
@@ -57,4 +57,4 @@ const User = (orm:Sequelize): ModelCtor<UserInstance> => {
   return UserModel;
 };
 
-export default User;
+export default createUserModel;
