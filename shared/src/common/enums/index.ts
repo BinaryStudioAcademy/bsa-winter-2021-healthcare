@@ -4,3 +4,7 @@ export * from './file';
 export * from './auth';
 export * from './api';
 export * from './validation';
+export * from './user';
+export * from './appointment';
+export * from './clinic';
+export * from './document';
