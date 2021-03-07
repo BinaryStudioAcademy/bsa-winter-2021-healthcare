@@ -1,7 +1,6 @@
 import * as yup from 'yup';
 import 'yup-phone';
-import { RegisterPayloadKey } from '../../../common/enums'
-// import { RegisterPayloadKey, RegisterAvatarType } from '../../../common/enums'
+import { RegisterPayloadKey, ContentType } from '../../../common/enums'
 
 const validationUserSchema = yup.object().shape({
   [RegisterPayloadKey.NAME]: yup.string().required(),
@@ -14,7 +13,7 @@ const validationUserSchema = yup.object().shape({
   // [RegisterPayloadKey.AVATAR]: yup.mixed().defined().test(
   //   "fileFormat",
   //   "Unsupported Format",
-  //   value => (value.type === RegisterAvatarType.PNG) || (value.type === RegisterAvatarType.JPG)
+  //   value => (value.type === ContentType.PNG) || (value.type === ContentType.JPG)
   // )
 });
 
