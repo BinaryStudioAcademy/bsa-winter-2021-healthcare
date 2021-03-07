@@ -1,14 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ReducerName } from 'common/enums';
+import { ReducerName, DataStatus, StorageKey } from 'common/enums';
 import { AppThunk } from 'common/types';
-import { AuthState } from 'common/types/app';
 import { IUserLoginPayload } from 'healthcare-shared/common/interfaces';
-import { authApi } from 'services';
+import { authApi, storage } from 'services';
+
+type AuthState = {
+  user: Record<string, unknown> | null; // TODO: change to User type;
+  isAuthorized: boolean;
+  DataStatus: DataStatus;
+};
 
 const initialState: AuthState = {
-  user: {},
+  user: null,
   isAuthorized: false,
-  isLoading: true,
+  DataStatus: DataStatus.IDLE
 };
 
 const { reducer, actions } = createSlice({
@@ -19,11 +24,9 @@ const { reducer, actions } = createSlice({
   },
 });
 
-const setToken = (token: string) => localStorage.setItem('token', token);
-
 const login = (user: IUserLoginPayload): AppThunk => async () => {
   const token = await authApi.loginUser(user);
-  setToken(token);
+  storage.setItem(StorageKey.TOKEN, token);
   // TODO: add setUser and dispatch it
 };
 
