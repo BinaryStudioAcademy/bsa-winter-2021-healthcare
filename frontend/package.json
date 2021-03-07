@@ -11,15 +11,19 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "healthcare-shared": "file:shared",
+    "@hookform/resolvers": "1.3.5",
     "@reduxjs/toolkit": "1.5.0",
     "clsx": "1.1.1",
+    "healthcare-shared": "file:shared",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-hook-form": "6.15.4",
     "react-redux": "7.2.2",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
-    "redux": "4.0.5"
+    "redux": "4.0.5",
+    "yup": "0.32.9",
+    "yup-phone": "1.2.19"
   },
   "devDependencies": {
     "@types/node": "12.0.0",
