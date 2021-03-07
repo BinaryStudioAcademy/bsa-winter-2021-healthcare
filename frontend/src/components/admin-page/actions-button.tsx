@@ -12,7 +12,7 @@ interface IProps{
 function ActionsButton({edit}:IProps) {
   return (
     <div className={styles.iconsDiv}>
-      <div onClick={()=>edit("21212")} className={styles.iconDiv}>
+      <div onClick={()=>edit("2")} className={styles.iconDiv}>
         <img src={editIcon} />
       </div>
       <div className={styles.iconDiv}>
