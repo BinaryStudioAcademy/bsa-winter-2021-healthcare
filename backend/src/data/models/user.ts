@@ -1,12 +1,12 @@
 import { Sequelize, DataTypes, ModelCtor, Model } from 'sequelize';
 
 import { IUser } from '~/common/interfaces';
-import { Models, UserSex, UserType } from '~/common/enums'
+import { ModelName, UserSex, UserType } from '~/common/enums'
 
 interface UserInstance extends IUser, Model {}
 
 const User = (orm:Sequelize): ModelCtor<UserInstance> => {
-  const UserModel = orm.define<UserInstance>(Models.USER, {
+  const UserModel = orm.define<UserInstance>(ModelName.USER, {
       name: {
         allowNull: false,
         type: DataTypes.STRING

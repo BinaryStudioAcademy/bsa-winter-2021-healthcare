@@ -18,11 +18,11 @@ class UserRepository {
     });
     return result[1];
   }
-  public deleteById(id:string):Promise<any>{
+  public deleteById(id:string):Promise<number>{
     return UserModel.destroy({
       where: { id }
     });
   }
 }
 
-export default UserRepository;
+export { UserRepository };

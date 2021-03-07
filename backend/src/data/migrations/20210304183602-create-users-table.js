@@ -26,11 +26,11 @@ module.exports = {
       },
       sex: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.ENUM('male', 'female')
       },
       type: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.ENUM('doctor', 'patient')
       },
       phone: {
         allowNull: false,
