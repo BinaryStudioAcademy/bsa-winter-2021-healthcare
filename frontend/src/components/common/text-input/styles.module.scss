@@ -1,0 +1,35 @@
+.labelText {
+  margin: 0 100% 5px 0;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.textInput {
+  height: 40px;
+  padding: 0 19px;
+  box-sizing: border-box;
+  border-radius: 7px;
+  border: none;
+  background-color: #f2f2f5;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  color: #424242;
+  outline: none;
+
+  &:focus {
+    background-color: #fff;
+  }
+
+  &::placeholder {
+    color: rgb(172, 172, 172);
+    text-transform: capitalize;
+  }
+}
+
+.validField {
+  border: 1px solid #5b8def;
+}
+
+.invalidField {
+  border: 1px solid #e71616;
+}
