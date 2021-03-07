@@ -5,7 +5,8 @@ enum ModelName {
   DOCTOR = 'doctor',
   DOCUMENT = 'document',
   MESSAGE = 'message',
-  NOTIFICATION = 'notification'
+  NOTIFICATION = 'notification',
+  USER = 'user'
 }
 
 export { ModelName };

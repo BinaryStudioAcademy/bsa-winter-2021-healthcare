@@ -5,6 +5,7 @@ import createDocumentModel from './document';
 import createAppointmentModel from './appointment';
 import createNotificationModel from './notification';
 import createMessageModel from './message';
+import User from './user';
 
 const ClinicModel = createClinicModel(sequelize);
 const DoctorModel = createDoctorModel(sequelize);
@@ -12,6 +13,7 @@ const DocumentModel = createDocumentModel(sequelize);
 const AppointmentModel = createAppointmentModel(sequelize);
 const NotificationModel = createNotificationModel(sequelize);
 const MessageModel = createMessageModel(sequelize);
+const UserModel = User(sequelize);
 
 export {
   ClinicModel,
@@ -19,5 +21,6 @@ export {
   DocumentModel,
   AppointmentModel,
   NotificationModel,
-  MessageModel
+  MessageModel,
+  UserModel
 };

@@ -1,3 +1,4 @@
+export * from './user-interface';
 export * from './appointment';
 export * from './clinic';
 export * from './diagnosis';
