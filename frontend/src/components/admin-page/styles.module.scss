@@ -1,46 +1,26 @@
-.container {
-  height: 100%;
-  padding: 3vh 1vw 3vh 1vw;
-  list-style: none;
-  background-color: #f2f2f5;
-}
-.margLeft {
-  margin-left: 24px;
-}
-.inptHght {
-  height: 5vh;
-}
-.button {
-  width: 8vw;
-  min-height: 30px;
-  background-color: #dda5e9;
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  border: none;
-  border-radius: 5px;
-}
-.table{
-  width: 992px;
-  height: 633px;
-  margin-left:400px;
-  background-color:#FFFFFF;
-  overflow:auto;
+.tableDIV{
+    width: 992px;
+    height: 633px;
+    position:absolute;
+    left: 400px;
+    top: 180px;
+    background-color:white;
+    border-bottom: 1px solid #ededf0;
+    border-left: 1px solid #ededf0;
+    border-right: 1px solid #ededf0;
+    overflow: auto;
 }
 table {
-  // position:absolute;
-  left: 400px;
-  top: 180px;
   height: auto;
   border-spacing: 0;
-  border: 1px solid #EDEDF0;
+  border: 1px solid #ededf0;
 
-  td{
-    height: 31px;
-    padding:10px 19px 11px 10px;
+  td {
+    height: 52px;
+    padding: 10px 19px 11px 10px;
     margin: 0;
-    border-bottom: 1px solid #EDEDF0;
-    border-right: 1px solid #EDEDF0;
+    border-bottom: 1px solid #ededf0;
+    border-right: 1px solid #ededf0;
 
     :last-child {
       border-right: 0;
@@ -55,24 +35,54 @@ table {
     }
   }
 
-  th{
+  th {
     text-align: left;
-    height: 33px;
-    padding:11px 19px 11px 19px;
-    color:#F2F2F5;
-    background-color:#AC5DD9;
-    border-right: 1px solid #EDEDF0;
+    height: 56px;
+    padding: 11px 19px 11px 19px;
+    color: #f2f2f5;
+    background-color: #ac5dd9;
+    border-right: 1px solid #ededf0;
   }
 }
-.iconsDiv{
+.iconsDiv {
   min-width: 171px;
   display: flex;
   justify-content: space-around;
 }
-.iconDiv{
+.iconDiv {
   min-width: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor:pointer;
+  cursor: pointer;
+}
+.errorSpan {
+  color: #e71616;
+}
+.editForm {
+  position:absolute;
+  top:calc(50vh - 350px);
+  left: calc(50vw - 350px);
+  width: 700px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border:2px solid gray;
+}
+.inputElements{
+  width: 60%;
+  height: 70%;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.inputRow{
+  display: flex;
+  justify-content: space-between;
+}
+.editButtons{
+  display:flex;
+  justify-content: space-around;
 }
