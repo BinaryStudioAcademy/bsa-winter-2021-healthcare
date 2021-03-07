@@ -4,9 +4,15 @@ import { ReducerName } from 'common/enums';
 import { AppThunk } from 'common/types';
 import { UserState } from 'common/interfaces';
 
+interface EditUser{
+  edit:boolean,
+  user?:UserState,
+}
+
 interface StateType {
   value: number,
   users: UserState[]
+  editUser: EditUser,
 }
 
 const initialState: StateType = {
@@ -26,7 +32,7 @@ const initialState: StateType = {
       updatedAt:"11"
     },
     {
-      id:"1",
+      id:"2",
       applicant:"2",
       birthday:"3",
       phone:"4",
@@ -38,13 +44,27 @@ const initialState: StateType = {
       createdAt:"10",
       updatedAt:"11"
     },
-  ]
+  ],
+  editUser:{
+    edit:false
+  }
 };
 
 const { reducer, actions } = createSlice({
   name: ReducerName.COUNTER,
   initialState,
   reducers: {
+    showEdit: (state, action: PayloadAction<string>)=>{
+        action.payload ?
+          state .editUser = {
+            edit:true,
+            user:state.users.filter((user)=> user.id === action.payload)[0]
+            } :
+          state.editUser = {
+            edit:false
+            }
+        console.log(state);
+    },
     increment: (state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
