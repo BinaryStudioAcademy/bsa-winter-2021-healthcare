@@ -1,0 +1,20 @@
+env:
+  node: true
+
+extends:
+  - ../.eslintrc.yml
+
+rules:
+  '@typescript-eslint/no-unused-vars':
+  - error
+  - vars: all
+    args: after-used
+    argsIgnorePattern: ^_
+    caughtErrors: all
+
+overrides:
+  - files:
+    - config/**/*
+    rules:
+      '@typescript-eslint/no-var-requires':
+        - off

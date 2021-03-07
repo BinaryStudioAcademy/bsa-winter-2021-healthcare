@@ -1,0 +1,48 @@
+{
+  "private": true,
+  "engines": {
+    "node": "12.x.x",
+    "npm": "6.x.x"
+  },
+  "scripts": {
+    "lint:editorconfig": "editorconfig-checker",
+    "lint:shared:js": "eslint --ext .ts shared/src --config shared/.eslintrc.yml --resolve-plugins-relative-to .",
+    "lint:shared": "npm run lint:shared:js",
+    "lint:backend:js": "eslint --ext .ts --ext .tsx backend/src --config backend/.eslintrc.yml --resolve-plugins-relative-to .",
+    "lint:backend": "npm run lint:backend:js",
+    "lint:frontend:js": "eslint --ext .ts --ext .tsx frontend/src --config frontend/.eslintrc.yml --resolve-plugins-relative-to .",
+    "lint:frontend:css": "stylelint frontend/src/**/*.scss --syntax scss --config frontend/.stylelintrc.yml",
+    "lint:frontend": "npm run lint:frontend:css && npm run lint:frontend:js",
+    "lint": "npm run lint:editorconfig && npm run lint:shared && npm run lint:backend && npm run lint:frontend",
+    "shared:frontend:init": "rm -rf frontend/shared && cp -r shared/build frontend/shared",
+    "shared:backend:init": "rm -rf backend/shared && cp -r shared/build backend/shared",
+    "shared:init": "npm run build:shared && npm run shared:frontend:init && npm run shared:backend:init",
+    "install:shared": "cd shared && npm install",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "install:all": "npm install && npm run install:shared && npm run shared:init && npm run install:backend && npm run install:frontend",
+    "start:backend": "cd backend && npm run start:dev",
+    "start:frontend": "cd frontend && npm run start",
+    "start": "concurrently -k -p \"{name}: {time}\" -n \"FRONTEND,BACKEND\" \"npm:start:frontend\" \"npm:start:backend\"",
+    "build:shared": "cd shared && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:deploy": "npm run build && mv backend/build . && mv frontend/build/* build/public"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "4.15.2",
+    "@typescript-eslint/parser": "4.15.2",
+    "concurrently": "6.0.0",
+    "editorconfig-checker": "3.3.0",
+    "eslint": "7.20.0",
+    "eslint-plugin-react": "7.22.0",
+    "lint-staged": "10.5.4",
+    "simple-pre-commit": "1.2.1",
+    "stylelint": "13.11.0",
+    "stylelint-config-recommended-scss": "4.2.0",
+    "stylelint-scss": "3.19.0",
+    "typescript": "4.1.2"
+  },
+  "simple-pre-commit": "npx lint-staged"
+}

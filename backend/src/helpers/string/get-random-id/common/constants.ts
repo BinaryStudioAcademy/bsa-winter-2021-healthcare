@@ -1,0 +1,3 @@
+const DEFAULT_ID_LENGTH = 10;
+
+export { DEFAULT_ID_LENGTH };

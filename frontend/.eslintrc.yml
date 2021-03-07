@@ -1,0 +1,17 @@
+env:
+  browser: true
+
+plugins:
+  - react
+
+settings:
+  react:
+    version: '17'
+
+extends:
+  - ../.eslintrc.yml
+  - plugin:react/recommended
+
+rules:
+  react/prop-types:
+    - off

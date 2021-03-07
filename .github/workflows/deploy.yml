@@ -1,0 +1,48 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 14
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v2
+
+      - name: Install NodeJS v${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Dependencies
+        run: |
+          npm run install
+
+      - name: BackEnd Build
+        working-directory: ./backend
+        run: |
+          npm run build
+        env:
+          NODE_ENV: production
+          APP_SERVER_PORT: 3001
+
+      - name: FrontEnd Build
+        working-directory: ./frontend
+        run: |
+          npm run build
+        env:
+          REACT_APP_API_ORIGIN_URL: /api/v1
+
+      - name: Move Builds for Deployment
+        run: |
+          mv backend/build .
+          mv frontend/build/* build/public
+
+      ## deploy steps...
