@@ -1,0 +1,33 @@
+.btn {
+  height: 40px;
+  max-width: 240px;
+  padding: 0 18px;
+  border-radius: 7px;
+  color: #000;
+  background: #fff;
+  border: none;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn.make-appointment {
+  border-radius: 15px;
+  height: 45px;
+}
+
+.btn.covid-btn {
+  max-width: 340px;
+  border-radius: 20px;
+  height: 80px;
+  font-size: 20px;
+  color: #ffffff;
+  background: #ff0000;
+}
+
+.btn.filled {
+  background: var(--color-primary-gark);
+}
+
+.btn.bordered {
+  border: 1px solid var(--color-primary-gark);
+}
