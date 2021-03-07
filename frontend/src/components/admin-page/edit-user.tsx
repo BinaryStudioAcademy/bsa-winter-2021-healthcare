@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -22,17 +22,36 @@ const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.IS_STAFF]: false,
 };
 
-const EditUser: React.FC = () =>{
+const EditUser: React.FC = () => {
+  const [userState, setUserState] = useState({
+    name: '',
+    surname: '',
+    phone: '',
+    password: '',
+    retypePassword: '',
+    email: '',
+    diagnosis: '',
+  });
   const { user } = useSelector(({ users }: RootState) => ({
     user: users.editUser.user,
   }));
+
   const dispatch = useDispatch();
   const { register, handleSubmit, errors } = useForm<IRegisterPayload>({
     resolver: yupResolver(validationUserSchema),
     defaultValues: DEFAULT_VALUES,
   });
+
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserState({ ...userState, [e.target.name]: e.target.value });
+  };
+
   const onSubmit = (data: IRegisterPayload) => console.log(data);
-  const closeEdit = () => dispatch(UsersActionCreator.showEdit(""));
+  const closeEdit = () => dispatch(UsersActionCreator.showEdit(''));
+
+  useEffect(() => {
+    user ? setUserState({ ...userState, ...user }) : null;
+  }, []);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.editForm}>
@@ -42,8 +61,10 @@ const EditUser: React.FC = () =>{
           <input
             type="text"
             placeholder="Name"
+            value={userState.name}
             name={RegisterPayloadKey.NAME}
             ref={register}
+            onChange={(e) => inputHandler(e)}
           />
           {errors.name && (
             <span className={styles.errorSpan}>{errors.name.message}</span>
@@ -55,8 +76,10 @@ const EditUser: React.FC = () =>{
           <input
             type="text"
             placeholder="Surname"
+            value={userState.surname}
             name={RegisterPayloadKey.SURNAME}
             ref={register}
+            onChange={(e) => inputHandler(e)}
           />
           {errors.surname && (
             <span className={styles.errorSpan}>{errors.surname.message}</span>
@@ -68,8 +91,10 @@ const EditUser: React.FC = () =>{
           <input
             type="email"
             placeholder="E-mail"
+            value={userState.email}
             name={RegisterPayloadKey.EMAIL}
             ref={register}
+            onChange={(e) => inputHandler(e)}
           />
           {errors.email && (
             <span className={styles.errorSpan}>{errors.email.message}</span>
@@ -81,8 +106,10 @@ const EditUser: React.FC = () =>{
           <input
             type="password"
             placeholder="Password"
+            value={userState.password}
             name={RegisterPayloadKey.PASSWORD}
             ref={register}
+            onChange={(e) => inputHandler(e)}
           />
           {errors.password && (
             <span className={styles.errorSpan}>{errors.password.message}</span>
@@ -94,8 +121,10 @@ const EditUser: React.FC = () =>{
           <input
             type="password"
             placeholder="Retype password"
+            value={userState.retypePassword}
             name={RegisterPayloadKey.RETYPE_PASSWORD}
             ref={register}
+            onChange={(e) => inputHandler(e)}
           />
           {errors.retypePassword && (
             <span className={styles.errorSpan}>
@@ -109,8 +138,10 @@ const EditUser: React.FC = () =>{
           <input
             type="tel"
             placeholder="Phone"
+            value={userState.phone}
             name={RegisterPayloadKey.PHONE}
             ref={register}
+            onChange={(e) => inputHandler(e)}
           />
           {errors.phone && (
             <span className={styles.errorSpan}>{errors.phone.message}</span>
@@ -127,12 +158,12 @@ const EditUser: React.FC = () =>{
         </div>
       </div>
 
-      <div className={styles.editButtons}>
-        <button type="submit">Save</button>
-        <button onClick={closeEdit} type="button">Close</button>
-      </div>
+      <button type="submit">Save</button>
+      <button className={styles.closeButton} onClick={closeEdit} type="button">
+        X
+      </button>
     </form>
   );
-}
+};
 
 export default EditUser;
