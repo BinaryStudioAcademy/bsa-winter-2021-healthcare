@@ -6,10 +6,9 @@ function EditUser() {
 const { user } = useSelector(({ users }: RootState) => ({
     user: users.editUser.user,
   }));
-
     return (
         <div>
-            {user.name}
+
         </div>
     )
 }
