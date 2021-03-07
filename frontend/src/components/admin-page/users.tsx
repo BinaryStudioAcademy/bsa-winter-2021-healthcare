@@ -36,17 +36,6 @@ function Users() {
     <>
       <Table columns={columns} data={AllUsers} edit={editUserHandler} />
     </>
-    // <div>
-    //   {AllUsers.map((user: any) => (
-    //     <div className={styles.row} key={Date()}>
-    //       {config.entityType.map((type: string) => (
-    //         <li className={styles.elem} key={Date()}>
-    //           {user[type] ? user[type] : <ActionsButton/>}
-    //         </li>
-    //       ))}
-    //     </div>
-    //   ))}
-    // </div>
   );
 }
 
