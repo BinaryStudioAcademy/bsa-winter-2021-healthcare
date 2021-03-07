@@ -79,8 +79,8 @@ form {
     }
   }
 
-  input[type="button"],
-  input[type="submit"] {
+  button[type="button"],
+  button[type="submit"] {
     cursor: pointer;
     min-width: 100%;
     margin: 5px;
