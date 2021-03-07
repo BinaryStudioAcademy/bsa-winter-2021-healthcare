@@ -1,0 +1,23 @@
+.select {
+  height: 40px;
+  width: 100%;
+  max-width: 230px;
+  padding-left: 19px;
+  border-radius: 7px;
+  border: 1px solid #dddddd;
+  position: relative;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url('../../../assets/images/arrow-down.svg');
+  background-repeat: no-repeat;
+  background-position: right 13px top 50%;
+  background-size: 15px;
+  color: #00000079;
+  font-family: 'Inter', sans-serif;
+
+  option {
+    display: inline-block;
+    padding: 10px;
+  }
+}
