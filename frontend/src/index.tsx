@@ -7,6 +7,7 @@ import { AppRoute } from 'common/enums';
 import App from './app';
 import SignUp from './components/signup/signup';
 // import SignIn from './components/signin/signin';
+import AdminPage from 'components/admin-page/admin-page'
 
 import './assets/styles/index.scss';
 
@@ -14,6 +15,7 @@ render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
+        <Route path={AppRoute.ADMIN_PAGE} component={AdminPage} />
         {/* <Route path={AppRoute.SIGN_IN} component={SignIn} /> */}
         <Route path={AppRoute.SIGN_UP} component={SignUp} />
         <Route exact path="/" component={App} />
