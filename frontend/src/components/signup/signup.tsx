@@ -62,6 +62,7 @@ const SignUp: React.FC = () => {
             type="email"
             placeholder="E-mail"
             name={RegisterPayloadKey.EMAIL}
+            ref={register}
           />
           {errors.email && <span className={styles.errorSpan}>{errors.email.message}</span>}
         </div>
