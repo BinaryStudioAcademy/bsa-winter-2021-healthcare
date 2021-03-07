@@ -3,3 +3,4 @@ export * from './exceptions';
 export * from './file';
 export * from './auth';
 export * from './api';
+export * from './validation';
