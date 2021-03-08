@@ -23,7 +23,7 @@ const Users: React.FC = () => {
   });
 
   useEffect(() => {
-    dispatch(UsersActionCreator.getUsers(2));
+    dispatch(UsersActionCreator.getUsers());
   }, []);
 
   const editUserHandler = (id:string) => {

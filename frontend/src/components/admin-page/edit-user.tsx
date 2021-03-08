@@ -160,7 +160,7 @@ const EditUser: React.FC = () => {
 
       <button type="submit">Save</button>
       <button className={styles.closeButton} onClick={closeEdit} type="button">
-        X
+        Close
       </button>
     </form>
   );
