@@ -1,12 +1,16 @@
 import { IUser } from '~/common/interfaces/user';
+import { IRegisterPayload } from '~/common/interfaces'
 import { userRepository } from '~/data/repositories';
-import { SignUpResponse } from '~/common/types'
 
 class AuthService {
-  public async signUp({ userCandidate }: { userCandidate: IUser }): Promise<SignUpResponse> {
-    return {
-      user: await userRepository.createUser(userCandidate)
+  public async signUp({ registerPayload }: { registerPayload: IRegisterPayload }): Promise<IUser> {
+    const user: IUser = {
+      ...registerPayload,
+      createdAt: new Date(),
+      updatedAt: new Date()
     };
+
+    return await userRepository.createUser(user);
   }
 }
 
