@@ -4,7 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import styles from './styles.module.scss';
 
-import { RegisterPayloadKey, validationUserSchema, IRegisterPayload, UserType, UserSex } from 'healthcare-shared'
+import { RegisterPayloadKey, IRegisterPayload, UserType, UserSex } from 'healthcare-shared'
+import { validationUserSchema } from 'validation-schema'
 
 const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.NAME]: '',
