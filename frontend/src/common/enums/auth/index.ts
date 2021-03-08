@@ -1,1 +1,1 @@
-export {LoginPayloadKey} from 'healthcare-shared/common/enums';
+export { LoginPayloadKey } from 'healthcare-shared/common/enums';
