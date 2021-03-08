@@ -49,6 +49,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      diagnosis: {
+        type: Sequelize.UUID
+      },
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE
     }, { transaction }),
