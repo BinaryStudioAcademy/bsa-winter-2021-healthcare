@@ -3,6 +3,9 @@ import { useLocation } from 'react-router-dom'
 import { AppRoute } from 'common/enums'
 import FormSignUp from './components/form-sign-up'
 
+import styles from './styles.module.scss';
+import logo from '../../assets/images/logo.svg';
+
 const Sign: React.FC = () => {
   const { pathname } = useLocation();
 
@@ -17,9 +20,16 @@ const Sign: React.FC = () => {
   }
 
   return (
-    <>
-    {getScreen(pathname as AppRoute)}
-    </>
+    <div className={styles.container}>
+      <div className={styles.container__logo}>
+        <div className={styles.container__blur}>
+          <img src={logo} />
+        </div>
+      </div>
+      <div className={styles.container__content}>
+        {getScreen(pathname as AppRoute)}
+      </div>
+    </div>
   )
 }
 
