@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import styles from './signin.module.scss';
-import { IUserLoginType as IUserLoginPayload } from 'common/interfaces';
+import { IUserLoginPayload } from 'common/interfaces';
 import { LoginPayloadKey } from 'common/enums';
 import { login as loginSchema } from 'validation-schemas';
 import { Link } from 'components/common';

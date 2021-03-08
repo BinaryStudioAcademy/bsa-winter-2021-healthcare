@@ -1,6 +1,6 @@
-import { HttpCode } from "shared/common/enums";
 import { AnySchema, ValidationError } from 'yup';
 import { Request, Response, NextFunction } from 'express';
+import { HttpCode } from "~/common/enums";
 
 const validateSchema = <T extends AnySchema>(schema: T) => async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
   const { body } = req;

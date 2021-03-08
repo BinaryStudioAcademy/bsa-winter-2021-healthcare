@@ -1,18 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ReducerName, DataStatus, StorageKey } from 'common/enums';
 import { AppThunk } from 'common/types';
-import { IUserLoginPayload } from 'healthcare-shared/common/interfaces';
+import { IUser, IUserLoginPayload } from 'common/interfaces';
 import { authApi, storage } from 'services';
 
 type AuthState = {
-  user: Record<string, unknown> | null; // TODO: change to User type;
-  isAuthorized: boolean;
+  user: IUser | null;
   dataStatus: DataStatus;
 };
 
 const initialState: AuthState = {
   user: null,
-  isAuthorized: false,
   dataStatus: DataStatus.IDLE
 };
 
