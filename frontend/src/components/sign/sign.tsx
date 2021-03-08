@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useLocation } from 'react-router-dom'
 import { AppRoute } from 'common/enums'
-import FormSignUp from './components/form-sign-up'
+import { FormSignUp } from './components'
 
 import styles from './styles.module.scss';
-import logo from '../../assets/images/logo.svg';
+import logo from 'assets/images/logo.svg';
 
 const Sign: React.FC = () => {
   const { pathname } = useLocation();
@@ -23,7 +23,7 @@ const Sign: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.container__logo}>
         <div className={styles.container__blur}>
-          <img src={logo} />
+          <img src={logo} width="301" height="346" loading="lazy" alt="Health Care logo" />
         </div>
       </div>
       <div className={styles.container__content}>

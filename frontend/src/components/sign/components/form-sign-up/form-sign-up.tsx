@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import styles from './styles.module.scss';
@@ -137,4 +137,4 @@ const FormSignUp: React.FC = () => {
   );
 };
 
-export default FormSignUp;
+export { FormSignUp };
