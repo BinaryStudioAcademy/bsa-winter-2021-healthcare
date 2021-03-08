@@ -1,9 +1,15 @@
 import { UserModel } from '../models';
 import { IUser } from '~/common/interfaces';
+import { UserType } from '~/common/enums';
 
 class UserRepository {
   public getAll():Promise<IUser[]>{
     return UserModel.findAll()
+  }
+  public getByType(type:UserType):Promise<IUser[]>{
+    return UserModel.findAll({
+      where: {type}
+    })
   }
   public getById(id:string):Promise<IUser | null>{
     return UserModel.findByPk(id)

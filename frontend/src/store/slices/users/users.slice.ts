@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName } from 'common/enums';
 import { AppThunk } from 'common/types';
+import { userApi } from 'services';
 
+//Data and types for testing
 const doctors = [
   {
     id: 'fhfjgfhjfjh',
@@ -51,13 +53,15 @@ const { reducer, actions } = createSlice({
   },
 });
 
-const getDoctorsAsync = (): AppThunk => (dispatch) => {
-  console.log(dispatch);
+const getDoctorsAsync = (): AppThunk => async (dispatch) => {
+  const doctors = await userApi.getDoctors();
+  // Will call setDoctors after making associations with doctor and clinic tables on backend
+  console.log('doctors', doctors);
 };
 
-const DoctorsActionCreator = {
+const UsersActionCreator = {
   ...actions,
   getDoctorsAsync
 };
 
-export { DoctorsActionCreator, reducer };
+export { UsersActionCreator, reducer };

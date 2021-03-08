@@ -5,5 +5,5 @@ export {
 
 export {
   reducer as doctorsReducer,
-  DoctorsActionCreator,
-} from './doctors/doctors.slice';
+  UsersActionCreator,
+} from './users/users.slice';
