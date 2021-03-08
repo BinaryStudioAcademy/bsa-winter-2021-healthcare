@@ -3,26 +3,26 @@ type Constructor = {
 };
 
 class Storage {
-  _storage: globalThis.Storage;
+  #storage: globalThis.Storage;
 
   constructor({ storage }: Constructor) {
-    this._storage = storage;
+    this.#storage = storage;
   }
 
   getItem(key: string): string | null {
-    return this._storage.getItem(key);
+    return this.#storage.getItem(key);
   }
 
   setItem(key: string, value: string): void {
-    return this._storage.setItem(key, value);
+    return this.#storage.setItem(key, value);
   }
 
   removeItem(key: string): void {
-    return this._storage.removeItem(key);
+    return this.#storage.removeItem(key);
   }
 
   clear(): void {
-    return this._storage.clear();
+    return this.#storage.clear();
   }
 }
 

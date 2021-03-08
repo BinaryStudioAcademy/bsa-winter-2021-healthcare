@@ -1,6 +1,8 @@
 import { LoginPayloadKey } from '~/common/enums';
 
-export type IUserLoginPayload = {
+type IUserLoginPayload = {
   [LoginPayloadKey.EMAIL]: string;
   [LoginPayloadKey.PASSWORD]: string;
 };
+
+export type { IUserLoginPayload };

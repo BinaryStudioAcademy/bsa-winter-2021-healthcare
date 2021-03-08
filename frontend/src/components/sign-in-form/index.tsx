@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import styles from './signin.module.scss';
 import { IUserLoginPayload } from 'healthcare-shared/common/interfaces';
 import { LoginPayloadKey } from 'healthcare-shared/common/enums';
-import { loginSchema } from 'healthcare-shared/helpers';
+import { login as loginSchema } from 'healthcare-shared/validation-schemas';
 import { Link } from 'components/common';
 import { AppRoute } from 'common/enums';
 

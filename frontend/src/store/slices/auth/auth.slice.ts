@@ -7,13 +7,13 @@ import { authApi, storage } from 'services';
 type AuthState = {
   user: Record<string, unknown> | null; // TODO: change to User type;
   isAuthorized: boolean;
-  DataStatus: DataStatus;
+  dataStatus: DataStatus;
 };
 
 const initialState: AuthState = {
   user: null,
   isAuthorized: false,
-  DataStatus: DataStatus.IDLE
+  dataStatus: DataStatus.IDLE
 };
 
 const { reducer, actions } = createSlice({

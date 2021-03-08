@@ -15,7 +15,7 @@ class Http {
       contentType,
       hasAuth = true,
     } = options;
-    const headers = this._getHeaders(contentType, hasAuth);
+    const headers = this._getHeaders(hasAuth, contentType);
     const isJSON = checkIsOneOf(contentType, ContentType.JSON);
 
     return fetch(url, {
@@ -28,7 +28,7 @@ class Http {
       .catch(this._throwError);
   }
 
-  _getHeaders(contentType?: ContentType, hasAuth?: boolean): Headers {
+  _getHeaders(hasAuth: boolean, contentType?: ContentType): Headers {
     const headers = new Headers();
     const token = storage.getItem(StorageKey.TOKEN);
 
