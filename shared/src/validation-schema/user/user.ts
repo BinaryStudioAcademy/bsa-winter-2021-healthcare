@@ -1,23 +1,18 @@
 import * as yup from 'yup';
 import 'yup-phone';
-import { RegisterPayloadKey, UserType, UserSex } from '../../common/enums'
+import { RegisterPayloadKey, UserType, UserSex, RegisterValidationRule, RegisterValidationMessage } from '../../common/enums'
 
 const userRegister = yup.object().shape({
-  [RegisterPayloadKey.NAME]: yup.string().required(),
-  [RegisterPayloadKey.SURNAME]: yup.string().required(),
-  [RegisterPayloadKey.SEX]: yup.mixed<UserSex>().oneOf(Object.values(UserSex)),
-  [RegisterPayloadKey.BIRTH_DATE]: yup.date().required(),
-  [RegisterPayloadKey.EMAIL]: yup.string().required().email(),
-  [RegisterPayloadKey.PASSWORD]: yup.string().required().min(6),
-  [RegisterPayloadKey.RETYPE_PASSWORD]: yup.string().oneOf([yup.ref(RegisterPayloadKey.PASSWORD), null], 'Passwords must match'),
-  [RegisterPayloadKey.PHONE]: yup.string().required().phone(),
-  [RegisterPayloadKey.TYPE]: yup.mixed<UserType>().oneOf(Object.values(UserType)),
-  [RegisterPayloadKey.IMAGE_PATH]: yup.string().url(),
-  // [RegisterPayloadKey.AVATAR]: yup.mixed().defined().test(
-  //   "fileFormat",
-  //   "Unsupported Format",
-  //   value => (value.type === ContentType.PNG) || (value.type === ContentType.JPG)
-  // )
+  [RegisterPayloadKey.NAME]: yup.string().required(RegisterValidationMessage.NAME_REQUIRED),
+  [RegisterPayloadKey.SURNAME]: yup.string().required(RegisterValidationMessage.EMAIL_REQUIRED),
+  [RegisterPayloadKey.SEX]: yup.mixed<UserSex>().oneOf(Object.values(UserSex)).required(RegisterValidationMessage.SEX_REQUIRED),
+  [RegisterPayloadKey.BIRTH_DATE]: yup.date().required(RegisterValidationMessage.BIRTH_DATE_REQUIRED),
+  [RegisterPayloadKey.EMAIL]: yup.string().required(RegisterValidationMessage.EMAIL_REQUIRED).email(RegisterValidationMessage.EMAIL_INCORRECT),
+  [RegisterPayloadKey.PASSWORD]: yup.string().required(RegisterValidationMessage.PASSWORD_REQUIRED).min(RegisterValidationRule.PASSWORD_MIN_LENGTH, RegisterValidationMessage.PASSWORD_MIN_LENGTH),
+  [RegisterPayloadKey.RETYPE_PASSWORD]: yup.string().oneOf([yup.ref(RegisterPayloadKey.PASSWORD), null], RegisterValidationMessage.PASSWORD_REPEAT_MATCH),
+  [RegisterPayloadKey.PHONE]: yup.string().required(RegisterValidationMessage.PHONE_REQUIRED).phone(RegisterValidationMessage.PHONE_INCORRECT),
+  [RegisterPayloadKey.TYPE]: yup.mixed<UserType>().oneOf(Object.values(UserType)).required(),
+  [RegisterPayloadKey.IMAGE_PATH]: yup.string().required(RegisterValidationMessage.IMAGE_REQUIRED).url(RegisterValidationMessage.IMAGE_INCORRECT),
 });
 
 export { userRegister };

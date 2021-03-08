@@ -7,3 +7,4 @@ export * from './clinic';
 export * from './document';
 export * from './register';
 export * from './api';
+export * from './validation';
