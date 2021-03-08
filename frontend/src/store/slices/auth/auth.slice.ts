@@ -3,6 +3,7 @@ import { ReducerName, DataStatus, StorageKey } from 'common/enums';
 import { AppThunk } from 'common/types';
 import { IUser, IUserLoginPayload } from 'common/interfaces';
 import { authApi, storage } from 'services';
+import { LoginResponse } from 'common/types/responses';
 
 type AuthState = {
   user: IUser | null;
@@ -11,7 +12,7 @@ type AuthState = {
 
 const initialState: AuthState = {
   user: null,
-  dataStatus: DataStatus.IDLE
+  dataStatus: DataStatus.IDLE,
 };
 
 const { reducer, actions } = createSlice({
@@ -22,8 +23,8 @@ const { reducer, actions } = createSlice({
   },
 });
 
-const login = (user: IUserLoginPayload): AppThunk => async () => {
-  const token = await authApi.loginUser(user);
+const login = (userData: IUserLoginPayload): AppThunk => async () => {
+  const { token }: LoginResponse = await authApi.loginUser(userData);
   storage.setItem(StorageKey.TOKEN, token);
   // TODO: add setUser and dispatch it
 };
