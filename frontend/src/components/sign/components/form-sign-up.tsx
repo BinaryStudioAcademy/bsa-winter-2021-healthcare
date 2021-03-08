@@ -4,16 +4,19 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import styles from './styles.module.scss';
 
-import { RegisterPayloadKey, validationUserSchema, IRegisterPayload } from 'healthcare-shared'
+import { RegisterPayloadKey, validationUserSchema, IRegisterPayload, UserType, UserSex } from 'healthcare-shared'
 
 const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.NAME]: '',
   [RegisterPayloadKey.SURNAME]: '',
+  [RegisterPayloadKey.SEX]: UserSex.MALE,
+  [RegisterPayloadKey.BIRTH_DATE]: new Date(),
   [RegisterPayloadKey.EMAIL]: '',
   [RegisterPayloadKey.PASSWORD]: '',
   [RegisterPayloadKey.RETYPE_PASSWORD]: '',
   [RegisterPayloadKey.PHONE]: '',
-  [RegisterPayloadKey.IS_STAFF]: false
+  [RegisterPayloadKey.TYPE]: UserType.PATIENT,
+  [RegisterPayloadKey.IMAGE_PATH]: ''
 };
 
 const FormSignUp: React.FC = () => {
@@ -31,7 +34,7 @@ const FormSignUp: React.FC = () => {
       <h2>Sign Up</h2>
 
       <div className={styles.name}>
-        <label htmlFor="name">Name</label>
+        <label htmlFor={RegisterPayloadKey.NAME}>Name</label>
         <input
           type="text"
           placeholder="Name"
@@ -42,7 +45,7 @@ const FormSignUp: React.FC = () => {
       </div>
 
       <div className={styles.surname}>
-        <label htmlFor="surname">Surname</label>
+        <label htmlFor={RegisterPayloadKey.SURNAME}>Surname</label>
         <input
           type="text"
           placeholder="Surname"
@@ -52,8 +55,21 @@ const FormSignUp: React.FC = () => {
         {errors.surname && <span className={styles.errorSpan}>{errors.surname.message}</span>}
       </div>
 
+      <div className={styles.select}>
+        <label htmlFor={RegisterPayloadKey.SEX}>Gender</label>
+        <select name={RegisterPayloadKey.SEX} ref={register}>
+          <option value={UserSex.FEMALE}>female</option>
+          <option value={UserSex.MALE}>male</option>
+        </select>
+      </div>
+
+      <div className={styles.date}>
+        <label htmlFor={RegisterPayloadKey.BIRTH_DATE}>Birthday</label>
+        <input type="date" name={RegisterPayloadKey.BIRTH_DATE} ref={register} />
+      </div>
+
       <div className={styles.email}>
-        <label htmlFor="email">E-mail</label>
+        <label htmlFor={RegisterPayloadKey.EMAIL}>E-mail</label>
         <input
           type="email"
           placeholder="E-mail"
@@ -64,7 +80,7 @@ const FormSignUp: React.FC = () => {
       </div>
 
       <div className={styles.password}>
-        <label htmlFor="password">Password</label>
+        <label htmlFor={RegisterPayloadKey.PASSWORD}>Password</label>
         <input
           type="password"
           placeholder="Password"
@@ -75,7 +91,7 @@ const FormSignUp: React.FC = () => {
       </div>
 
       <div className={styles.password}>
-        <label htmlFor="password">Retype Password</label>
+        <label htmlFor={RegisterPayloadKey.RETYPE_PASSWORD}>Retype Password</label>
         <input
           type="password"
           placeholder="Retype password"
@@ -86,7 +102,7 @@ const FormSignUp: React.FC = () => {
       </div>
 
       <div className={styles.phone}>
-        <label htmlFor="phone">Phone</label>
+        <label htmlFor={RegisterPayloadKey.PHONE}>Phone</label>
         <input
           type="tel"
           placeholder="Phone"
@@ -96,23 +112,12 @@ const FormSignUp: React.FC = () => {
         {errors.phone && <span className={styles.errorSpan}>{errors.phone.message}</span>}
       </div>
 
-      {/* <div className={styles.uploadFiles}>
-        <label htmlFor="name">Avatar</label>
-        <input
-          type="file"
-          placeholder="Avatar"
-          name={RegisterPayloadKey.AVATAR}
-          ref={register}
-        />
-      </div> */}
-
-      <div className={styles.checkBox}>
-        <input
-          type="checkbox"
-          name={RegisterPayloadKey.IS_STAFF}
-          ref={register}
-        />
-        <label htmlFor="isStaff">Doctor/Nurse</label>
+      <div className={styles.select}>
+        <label htmlFor={RegisterPayloadKey.TYPE}>Status</label>
+        <select name={RegisterPayloadKey.TYPE} ref={register}>
+          <option value={UserType.PATIENT}>Patient</option>
+          <option value={UserType.DOCTOR}>Doctor/Nurse</option>
+        </select>
       </div>
 
       {/* <div className={styles.uploadFiles}>

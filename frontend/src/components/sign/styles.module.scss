@@ -11,7 +11,6 @@ body {
   background-color: #fff;
 }
 
-
 *,
 *:before,
 *:after {
@@ -19,16 +18,14 @@ body {
 }
 
 .container {
-  overflow: hidden;
   background-color: white;
   height: 100vh;
   display: flex;
   flex-wrap: wrap;
-  min-height: 850px;
 
   &__logo {
     width: 65%;
-    height: 100%;
+    min-height: 100%;
 
     background-color: darkgray;
     background-image: url("../../assets/images/sign-img.jpg");

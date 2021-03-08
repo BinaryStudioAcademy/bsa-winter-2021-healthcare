@@ -1,11 +1,14 @@
-import { RegisterPayloadKey } from '../../enums'
+import { RegisterPayloadKey, UserType, UserSex } from '../../enums'
 
 export interface IRegisterPayload {
   [RegisterPayloadKey.NAME]: string;
   [RegisterPayloadKey.SURNAME]: string;
+  [RegisterPayloadKey.SEX]: UserSex;
+  [RegisterPayloadKey.BIRTH_DATE]: Date;
   [RegisterPayloadKey.EMAIL]: string;
   [RegisterPayloadKey.PASSWORD]: string;
   [RegisterPayloadKey.RETYPE_PASSWORD]: string;
   [RegisterPayloadKey.PHONE]: string;
-  [RegisterPayloadKey.IS_STAFF]: boolean;
+  [RegisterPayloadKey.TYPE]: UserType;
+  [RegisterPayloadKey.IMAGE_PATH]: string;
 }

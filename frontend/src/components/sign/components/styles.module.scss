@@ -22,6 +22,8 @@ form {
 
   .name,
   .surname,
+  .select,
+  .date,
   .phone,
   .email,
   .password,
@@ -56,7 +58,8 @@ form {
     color: black;
   }
 
-  input {
+  input,
+  select {
     margin: 5px;
     padding: 10px 10px;
     padding-left: 15px;
