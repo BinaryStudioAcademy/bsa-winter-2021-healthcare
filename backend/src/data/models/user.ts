@@ -44,9 +44,6 @@ const createUserModel = (orm:Sequelize): ModelCtor<UserInstance> => {
         allowNull: false,
         type: DataTypes.STRING
       },
-      diagnosis: {
-        type: DataTypes.UUID
-      },
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE
     },
