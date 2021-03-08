@@ -51,13 +51,13 @@ const { reducer, actions } = createSlice({
   },
 });
 
-/*const getDoctorsAsync = (): AppThunk => (dispatch) => {
-
-};*/
+const getDoctorsAsync = (): AppThunk => (dispatch) => {
+  console.log(dispatch);
+};
 
 const DoctorsActionCreator = {
   ...actions,
-  //getDoctorsAsync
+  getDoctorsAsync
 };
 
 export { DoctorsActionCreator, reducer };
