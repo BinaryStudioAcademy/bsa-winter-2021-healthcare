@@ -13,7 +13,7 @@ const initAuthApi = (apiRouter: Router): Router => {
   authRouter.post(AuthApiPath.LOGIN, validateSchema(loginSchema), (req, res, next) => {
     return authService
       .login(req.body)
-      .then((data) => res.send(data))
+      .then((data) => res.status(HttpCode.SUCCESS).json(data))
       .catch(next);
   });
 
