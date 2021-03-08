@@ -1,12 +1,12 @@
-import { userRepository } from '~/data/repositories';
 import { createToken } from '~/helpers';
-import { LoginResponse } from 'healthcare-shared/common/types';
+import { LoginResponse } from '~/common/types';
+import { IUser } from '~/common/interfaces';
 
 class AuthService {
-  public async login({ id }: { id: string }): Promise<LoginResponse> {
+  public async login(user: IUser): Promise<LoginResponse> {
     return {
-      token: createToken({ id }),
-      user: await userRepository.getById(id)
+      token: createToken({ id: user.id }),
+      user,
     };
   }
 }
