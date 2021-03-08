@@ -1,4 +1,4 @@
 export * from './log-request/log-request.middleware';
 export * from './set-trace-id/set-trace-id.middleware';
 export * from './handle-error/handle-error.middleware';
-export * from './validate-schema/validate-schema.meddleware';
+export * from './validate-schema/validate-schema.middleware';

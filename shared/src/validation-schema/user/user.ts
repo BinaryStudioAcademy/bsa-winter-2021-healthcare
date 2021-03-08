@@ -2,7 +2,7 @@ import * as yup from 'yup';
 import 'yup-phone';
 import { RegisterPayloadKey, UserType, UserSex } from '../../common/enums'
 
-const validationUserSchema = yup.object().shape({
+const userRegisterSchema = yup.object().shape({
   [RegisterPayloadKey.NAME]: yup.string().required(),
   [RegisterPayloadKey.SURNAME]: yup.string().required(),
   [RegisterPayloadKey.SEX]: yup.mixed<UserSex>().oneOf(Object.values(UserSex)),
@@ -20,4 +20,4 @@ const validationUserSchema = yup.object().shape({
   // )
 });
 
-export { validationUserSchema };
+export { userRegisterSchema };

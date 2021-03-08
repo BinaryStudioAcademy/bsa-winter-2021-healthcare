@@ -1,4 +1,3 @@
-
 enum AuthApiPath {
   SIGNUP = '/sign-up',
 }
