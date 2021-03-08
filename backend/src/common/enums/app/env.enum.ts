@@ -6,7 +6,7 @@ const ENV = {
   APP: {
     NODE_ENV: NODE_ENV as AppEnvironment,
     SERVER_PORT: APP_SERVER_PORT ?? 3001,
-    SECRET: SECRET_KEY as string,
+    SECRET: SECRET_KEY ?? '',
   },
 };
 
