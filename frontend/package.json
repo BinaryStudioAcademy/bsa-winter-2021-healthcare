@@ -23,6 +23,7 @@
     "react-scripts": "4.0.3",
     "react-table": "^7.6.3",
     "redux": "4.0.5",
+    "uuid": "^8.3.2",
     "yup": "0.32.9",
     "yup-phone": "1.2.19"
   },
