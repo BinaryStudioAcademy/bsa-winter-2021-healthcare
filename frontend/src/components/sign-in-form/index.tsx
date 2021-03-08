@@ -17,10 +17,6 @@ const SignInPage: React.FC = () => {
     console.log(formValues);
   };
 
-  const signInWithGoogle = () => {
-    console.log('Sign in with Google');
-  }
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.formWrapper}>
@@ -56,9 +52,6 @@ const SignInPage: React.FC = () => {
           <div className={styles.submit}>
             <button type="submit">Sign In</button>
           </div>
-          <div className={styles.submit}>
-          <button type='button' onClick={signInWithGoogle}>Sign in with Google</button>
-        </div>
         </form>
 
       </div>
