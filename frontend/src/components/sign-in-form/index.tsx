@@ -13,7 +13,7 @@ const SignInPage: React.FC = () => {
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (formValues: IUserLoginPayload) => {
+  const handleFormSubmit = (formValues: IUserLoginPayload) => {
     console.log(formValues);
   };
 
@@ -22,7 +22,7 @@ const SignInPage: React.FC = () => {
       <div className={styles.formWrapper}>
         <h2>Sign In</h2>
         <p>No account? <Link to={AppRoute.SIGN_UP}>Sign up</Link></p>
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <form onSubmit={handleSubmit(handleFormSubmit)} noValidate>
           <div className={styles.email}>
             <label htmlFor={LoginPayloadKey.EMAIL}>Email <Link to={AppRoute.ROOT}>Forgot password</Link></label>
             <input
