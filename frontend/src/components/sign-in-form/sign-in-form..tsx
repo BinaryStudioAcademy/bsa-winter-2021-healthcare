@@ -8,7 +8,7 @@ import { login as loginSchema } from 'validation-schemas';
 import { Link } from 'components/common';
 import { AppRoute } from 'common/enums';
 
-const SignInPage: React.FC = () => {
+const SignInForm: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<IUserLoginPayload>({
     resolver: yupResolver(loginSchema),
   });
@@ -59,4 +59,4 @@ const SignInPage: React.FC = () => {
     </div>
   );
 };
-export default SignInPage;
+export default SignInForm;
