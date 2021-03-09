@@ -15,6 +15,6 @@ const RegisterValidationMessage = {
   PASSWORD_REPEAT_MATCH: 'Passwords must match',
   IMAGE_INCORRECT: `User avatar must be ${ContentType.PNG} or ${ContentType.JPG} format`,
   IMAGE_REQUIRED: 'User avatar is required',
-};
+} as const;
 
 export { RegisterValidationMessage }

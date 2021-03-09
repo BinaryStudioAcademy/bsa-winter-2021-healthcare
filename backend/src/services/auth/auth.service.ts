@@ -10,7 +10,7 @@ class AuthService {
       updatedAt: new Date()
     };
 
-    return await userRepository.createUser(user);
+    return userRepository.createUser(user);
   }
 }
 
