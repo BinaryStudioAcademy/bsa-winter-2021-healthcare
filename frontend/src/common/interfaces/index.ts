@@ -1,2 +1,2 @@
-export type { IRegisterPayload } from 'healthcare-shared/common/interfaces';
+export * from './register'
 

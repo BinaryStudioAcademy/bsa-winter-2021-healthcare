@@ -1,1 +1,1 @@
-export * from 'healthcare-shared/validation-schemas';
+export * from './user';
