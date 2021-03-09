@@ -1,6 +1,5 @@
 .btn {
   height: 40px;
-  max-width: 240px;
   padding: 0 18px;
   border-radius: 7px;
   color: #000;
@@ -8,26 +7,116 @@
   border: none;
   font-weight: 600;
   font-family: 'Inter', sans-serif;
+  outline: none;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &:not(:disabled):hover {
+    cursor: pointer;
+    filter: brightness(97%);
+  }
 }
 
-.btn.make-appointment {
-  border-radius: 15px;
-  height: 45px;
+.notificationCount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: var(--color-secondary-gark);
+  color: #fff;
+  font-size: 9px;
+
+  margin-left: 16px;
+  margin-top: -30px;
 }
 
-.btn.covid-btn {
-  max-width: 340px;
-  border-radius: 20px;
-  height: 80px;
-  font-size: 20px;
-  color: #ffffff;
-  background: #ff0000;
+.visuallyHidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
 }
 
-.btn.filled {
-  background: var(--color-primary-gark);
+// Background color
+.white-background {
+  background-color: #fff;
 }
 
-.btn.bordered {
+.primary-dark-background {
+  background-color: var(--color-primary-gark);
+}
+
+.gray-light-background {
+  background-color: var(--color-gray-light);
+}
+
+.transparent-background {
+  background-color: transparent;
+}
+
+// ButtonStyleType
+.non-bordered {
+  border: none;
+}
+
+.bordered {
   border: 1px solid var(--color-primary-gark);
+}
+
+.small-round {
+  width: 30px;
+  height: 30px;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.medium-round {
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.large-round {
+  width: 50px;
+  height: 50px;
+  padding: 13px;
+  border-radius: 50%;
+}
+
+// Icons
+.buttonIcon {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bell {
+  background-image: url('../../../assets/images/bell.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.search {
+  background-image: url('../../../assets/images/loupe.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.expand {
+  background-image: url('../../../assets/images/arrow-down-button.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.chat {
+  background-image: url('../../../assets/images/comment-chat.svg');
+  background-repeat: no-repeat;
+  background-position: center;
 }

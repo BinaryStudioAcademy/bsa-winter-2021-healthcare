@@ -1,42 +1,31 @@
 import clsx from 'clsx';
-import { ButtonNames } from 'common/enums';
+import { ButtonColor, ButtonIcon, ButtonStyleType, ButtonType } from 'common/enums';
+import { ButtonClickCallback } from 'common/types';
 import * as React from 'react';
 import styles from './styles.module.scss';
 
-interface ButtonTypes {
-  [ButtonNames.SIGN_IN]: string;
-  [ButtonNames.SIGN_IN_GOOGLE]: string;
-  [ButtonNames.APPOINTMENT]: string;
-  [ButtonNames.COVID]: string;
-  [ButtonNames.READ_ALL]: string;
+interface Props {
+  type: ButtonType;
+  styleType: ButtonStyleType;
+  color: ButtonColor;
+  label: string;
+  onClick: ButtonClickCallback;
+  hasHiddenLabel: boolean;
+  isDisabled: boolean;
+  icon?: ButtonIcon;
+  notificationCount?: number;
 }
 
-const BUTTON_TEXT: ButtonTypes = {
-  [ButtonNames.SIGN_IN]: 'Sign in',
-  [ButtonNames.SIGN_IN_GOOGLE]: 'Sign in with Google',
-  [ButtonNames.APPOINTMENT]: 'Make an appointment',
-  [ButtonNames.COVID]: 'COVID 19 Help',
-  [ButtonNames.READ_ALL]: 'Read all reviews',
-};
+const Button: React.FC<Props> = ({ type, styleType, color, label, isDisabled, hasHiddenLabel, icon, notificationCount, onClick }) => (
+  <button
+    className={clsx(styles.btn, styles[styleType], styles[color], icon && styles[icon])}
+    type={type}
+    disabled={isDisabled}
+    onClick={onClick}>
+    {hasHiddenLabel ? <span className={styles.visuallyHidden}>{label}</span> : label}
+    {icon && <span className={clsx(styles.buttonIcon, styles[icon])}></span>}
+    {notificationCount && <span className={styles.notificationCount}>{notificationCount}</span>}
+  </button>
+);
 
-interface ButtonType {
-  btnType: keyof ButtonTypes;
-  fill: boolean;
-  border: boolean;
-  onClick(): void;
-}
-
-export const Button: React.FC<ButtonType> = ({ fill, border, btnType, onClick }) => {
-
-  const btnBackground = fill ? styles.filled : '';
-  const btnBorder = border ? styles.bordered : '';
-
-  return (
-    <button
-      className={clsx(styles.btn, styles[btnType], btnBackground, btnBorder)}
-      type='button'
-      onClick={onClick}>
-      {BUTTON_TEXT[btnType]}
-    </button>
-  );
-}
+export default Button;
