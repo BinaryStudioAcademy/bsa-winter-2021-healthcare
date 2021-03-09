@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
-import { RootState } from 'common/types';
+import { AppRoute } from 'common/enums';
 import {
   RegisterPayloadKey,
   validationUserSchema,
   IRegisterPayload,
+  IUser,
 } from 'healthcare-shared';
 import styles from './styles.module.scss';
 import { UsersActionCreator } from 'store/slices';
+
+interface IProps{
+  user?:IUser,
+  func:(data:IRegisterPayload)=>void
+}
 
 const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.NAME]: '',
@@ -22,7 +29,7 @@ const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.IS_STAFF]: false,
 };
 
-const EditUser: React.FC = () => {
+function EditUser({ user, func }:IProps){
   const [userState, setUserState] = useState({
     name: '',
     surname: '',
@@ -32,11 +39,9 @@ const EditUser: React.FC = () => {
     email: '',
     diagnosis: '',
   });
-  const { user } = useSelector(({ users }: RootState) => ({
-    user: users.editUser.user,
-  }));
 
   const dispatch = useDispatch();
+  const history = useHistory();
   const { register, handleSubmit, errors } = useForm<IRegisterPayload>({
     resolver: yupResolver(validationUserSchema),
     defaultValues: DEFAULT_VALUES,
@@ -46,12 +51,12 @@ const EditUser: React.FC = () => {
     setUserState({ ...userState, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = (data: IRegisterPayload) => console.log(data);
-  const closeEdit = () => dispatch(UsersActionCreator.showEdit(''));
+  const onSubmit = (data: IRegisterPayload) => func(data);
+  const closeEdit = () => history.push(AppRoute.ADMIN_PAGE);
 
   useEffect(() => {
     user ? setUserState({ ...userState, ...user }) : null;
-  }, []);
+  },[]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.editForm}>
@@ -164,6 +169,6 @@ const EditUser: React.FC = () => {
       </button>
     </form>
   );
-};
+}
 
 export default EditUser;
