@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import styles from './styles.module.scss';
 
+import { registration } from "services";
 import { RegisterPayloadKey, UserType, UserSex } from 'common/enums'
 import { IRegisterPayload } from 'common/interfaces'
 import { userRegister as validationUserSchema } from 'validation-schemas'
@@ -28,10 +29,23 @@ const FormSignUp: React.FC = () => {
     defaultValues: DEFAULT_VALUES,
   });
 
-  const onSubmit = (data: IRegisterPayload) => console.log(data);
+  const onSubmit = handleSubmit(async data => {
+    console.log('onSubmit data = ', data);
+
+    try {
+      const res = await registration(data);
+      console.log('registration response = ', res);
+
+    } catch (error) {
+      console.log('registration error = ', error);
+    }
+
+
+
+  })
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={onSubmit}>
 
       <h2>Sign Up</h2>
 

@@ -12,7 +12,7 @@ const userRegister = yup.object().shape({
   [RegisterPayloadKey.RETYPE_PASSWORD]: yup.string().oneOf([yup.ref(RegisterPayloadKey.PASSWORD), null], RegisterValidationMessage.PASSWORD_REPEAT_MATCH),
   [RegisterPayloadKey.PHONE]: yup.string().required(RegisterValidationMessage.PHONE_REQUIRED).phone(RegisterValidationMessage.PHONE_INCORRECT),
   [RegisterPayloadKey.TYPE]: yup.mixed<UserType>().oneOf(Object.values(UserType)).required(),
-  [RegisterPayloadKey.IMAGE_PATH]: yup.string().required(RegisterValidationMessage.IMAGE_REQUIRED).url(RegisterValidationMessage.IMAGE_INCORRECT),
+  // [RegisterPayloadKey.IMAGE_PATH]: yup.string().required(RegisterValidationMessage.IMAGE_REQUIRED).url(RegisterValidationMessage.IMAGE_INCORRECT),
 });
 
 export { userRegister };
