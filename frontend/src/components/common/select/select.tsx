@@ -1,19 +1,35 @@
+import { SelectChangeCallback } from 'common/types';
 import * as React from 'react';
 import styles from './styles.module.scss';
+import clsx from 'clsx';
 
-interface SelectType {
-  options: Array<string>;
-  onChange(value: string): void;
+interface IOption<T>  {
+ label: string;
+ value: T;
 }
 
-export const Select: React.FC<SelectType> = ({ onChange, options }) => {
-  return (
-    <select className={styles.select} onChange={(e) => onChange(e.target.value)}>
-      {
-        options.map(option => {
-          return <option value={option.toLowerCase()} key={option}>{option}</option>;
-        })
-      }
-    </select>
-  );
+interface Props {
+  options: IOption<string>[];
+  isDisabled: boolean;
+  hasError: boolean;
+  onChange: SelectChangeCallback;
 }
+
+const Select: React.FC<Props> = ({ options, isDisabled, hasError, onChange }) => (
+  <select className={clsx(styles.select, hasError && styles.error)} onChange={onChange}>
+    {
+      options.map(option => {
+        return <option
+          key={option.value}
+          value={option.value}
+          disabled={isDisabled}
+        >
+          {option.label}
+        </option>;
+      })
+    }
+  </select>
+);
+
+
+export default Select;

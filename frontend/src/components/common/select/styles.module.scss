@@ -4,7 +4,7 @@
   max-width: 230px;
   padding-left: 19px;
   border-radius: 7px;
-  border: 1px solid #dddddd;
+  border: 1px solid transparent;
   position: relative;
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -16,8 +16,26 @@
   color: #00000079;
   font-family: 'Inter', sans-serif;
 
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid var(--color-primary-light);
+  }
+
   option {
     display: inline-block;
     padding: 10px;
   }
+}
+
+.error {
+  border: 1px solid var(--color-error);
+  color: var(--color-error);
 }
