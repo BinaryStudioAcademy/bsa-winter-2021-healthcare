@@ -1,2 +1,2 @@
-export * from './model-name';
-export * from './table-name';
+export * from './model-name.enum';
+export * from './table-name.enum';
