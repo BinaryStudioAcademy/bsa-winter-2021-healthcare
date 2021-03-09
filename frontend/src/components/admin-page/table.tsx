@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTable } from 'react-table';
-import { RootState } from 'common/types';
 import { Column } from 'common/interfaces';
 import ActionsButton from './actions-button';
 import styles from './styles.module.scss';
@@ -8,7 +7,7 @@ import styles from './styles.module.scss';
 interface IProps {
   columns: Column[],
   data: any,
-  edit: (id:string)=>string,
+  edit: (id: string) => void,
 }
 
 function Table({ columns, data, edit }: IProps) {
@@ -27,31 +26,38 @@ function Table({ columns, data, edit }: IProps) {
     <div className={styles.tableDIV}>
       <table {...getTableProps()}>
         <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()} key={'key'}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()} key={'key'}>
-                  <div>{column.render('Header')}</div>
-                </th>
-              ))}
-            </tr>
-          ))}
+          {headerGroups.map((headerGroup) => {
+            const { key } = headerGroup.getHeaderGroupProps();
+            return (
+              <tr {...headerGroup.getHeaderGroupProps()} key={key}>
+                {headerGroup.headers.map((column) => {
+                  return (
+                    <th {...column.getHeaderProps()} key={column.id}>
+                      <div>{column.render('Header')}</div>
+                    </th>
+                  );
+                })}
+              </tr>
+            );
+          })}
         </thead>
         <tbody {...getTableBodyProps()}>
           {rows.map((row) => {
             prepareRow(row);
+            const { key } = row.getRowProps();
             return (
-              <tr {...row.getRowProps()} key={'key'}>
+              <tr {...row.getRowProps()} key={key}>
                 {row.cells.map((cell) => {
                   let item;
+                  const { key } = cell.getCellProps();
                   cell.column.Header === 'Actions'
                     ? (item = (
-                        <td>
+                        <td {...cell.getCellProps()} key={key}>
                           <ActionsButton edit={edit} id={cell.row.values.id} />
                         </td>
                       ))
                     : (item = (
-                        <td {...cell.getCellProps()} key={'key'}>
+                        <td {...cell.getCellProps()} key={key}>
                           <div>{cell.render('Cell')}</div>
                         </td>
                       ));
