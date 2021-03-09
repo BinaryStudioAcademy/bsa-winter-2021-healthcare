@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 import 'yup-phone';
-import { RegisterPayloadKey, UserType, UserSex, RegisterValidationRule, RegisterValidationMessage } from '../../common/enums'
+import { RegisterPayloadKey, UserType, UserSex, RegisterValidationRule, RegisterValidationMessage } from '~/common/enums'
 
 const userRegister = yup.object().shape({
   [RegisterPayloadKey.NAME]: yup.string().required(RegisterValidationMessage.NAME_REQUIRED),
