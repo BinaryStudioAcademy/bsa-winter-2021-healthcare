@@ -10,19 +10,19 @@ interface IState {
   editUser?: IUser;
 }
 const DEFAULT_USER_INSTANCE = {
-  id: '',
-  name: '',
-  surname: '',
-  sex: UserSex.FEMALE,
-  type: UserType.PATIENT,
-  birthdate: '',
-  phone: '',
-  password: '',
-  email: '',
-  imagePath: '',
-  diagnosis: '',
-  createdAt: '',
-  updatedAt: '',
+  'id': '',
+  'name': '',
+  'surname': '',
+  'sex': UserSex.FEMALE,
+  'type': UserType.PATIENT,
+  'birthdate': new Date().toString(),
+  'phone': '',
+  'password': '',
+  'email': '',
+  'imagePath': '',
+  'diagnosis': '',
+  'createdAt': '',
+  'updatedAt': '',
 };
 
 const initialState: IState = {
@@ -32,21 +32,6 @@ const initialState: IState = {
       id: '1',
       name: '1',
       surname: '1',
-      sex: UserSex.FEMALE,
-      type: UserType.DOCTOR,
-      birthdate: 'asd',
-      phone: '4',
-      password: '5',
-      email: '6',
-      imagePath: '7',
-      diagnosis: '9',
-      createdAt: 'asd',
-      updatedAt: 'asd',
-    },
-    {
-      id: '2',
-      name: '2',
-      surname: '2',
       sex: UserSex.FEMALE,
       type: UserType.DOCTOR,
       birthdate: 'asd',
@@ -71,6 +56,17 @@ const { reducer, actions } = createSlice({
           .concat()
           .filter((user: IUser) => user.id === action.payload)[0],
       };
+    },
+    addUsers:(state, action: PayloadAction<IUser[]>) => {
+
+      state.users = [state.users[0], ...action.payload];
+    },
+    editUser:(state, action: PayloadAction<{id:string|undefined,data:IUser}>) => {
+      const id = action.payload.id;
+      state.users = [...state.users.map((user:IUser)=> user.id === id ? action.payload.data : user)];
+    },
+    dltUser:(state, action: PayloadAction<string>) => {
+      state.users = [...state.users.filter((user:IUser)=> user.id !== action.payload)];
     },
     increment: (state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
@@ -102,23 +98,33 @@ const incrementAsync = (amount: number): AppThunk => (dispatch) => {
 const getUsers = (): AppThunk => (dispatch) => {
   const asyncFetch = async () => {
     const response = await userApi.getUsers();
-    console.log(response);
+    dispatch(actions.addUsers(response))
   };
   asyncFetch();
 };
-const editUser = (userInfo: IRegisterPayload): AppThunk => (dispatch) => {
-  console.log(userInfo);
-  // const asyncFetch = async () => {
-  //   const response = await userApi.getUsers();
-  //   console.log(response);
-  // };
-  // asyncFetch()
+const getUser = (id:string): AppThunk => (dispatch) => {
+  const asyncFetch = async () => {
+    const response = await userApi.getUser(id);
+  };
+  asyncFetch();
+};
+const editUser = (userInfo: IUser): AppThunk => (dispatch) => {
+  const asyncFetch = async () => {
+    const response = await userApi.editUser(userInfo.id, {...userInfo});
+    response ? dispatch(actions.editUser({id:userInfo.id, data:{...userInfo}})) : null;
+  };
+  asyncFetch()
 };
 const addUser = (userInfo: IRegisterPayload): AppThunk => (dispatch) => {
-  console.log(userInfo);
   const asyncFetch = async () => {
-    const response = await userApi.registerUser({...DEFAULT_USER_INSTANCE,...userInfo});
-    console.log(response);
+    await userApi.registerUser({...DEFAULT_USER_INSTANCE,...userInfo});
+  };
+  asyncFetch();
+};
+const deleteUser = (id: string): AppThunk => (dispatch) => {
+  dispatch(actions.dltUser(id));
+  const asyncFetch = async () => {
+    await userApi.deleteUser(id);
   };
   asyncFetch();
 };
@@ -131,8 +137,10 @@ const CounterActionCreator = {
 const UsersActionCreator = {
   ...actions,
   getUsers,
+  getUser,
   addUser,
   editUser,
+  deleteUser,
 };
 
 export { CounterActionCreator, UsersActionCreator, reducer };
