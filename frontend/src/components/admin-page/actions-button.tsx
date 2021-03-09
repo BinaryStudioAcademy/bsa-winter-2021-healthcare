@@ -6,16 +6,16 @@ import historyIcon from 'assets/images/admin-page/vectorhistory.svg';
 import styles from './styles.module.scss';
 
 interface IProps{
-    edit:(id:string)=>string,
+    edit:(id:string)=>void,
     id:string,
 }
 
 function ActionsButton({ edit, id }:IProps) {
   return (
     <div className={styles.iconsDiv}>
-      <div onClick={()=>edit(id)} className={styles.iconDiv}>
-        <img src={editIcon} />
-      </div>
+        <div onClick={()=>edit(id)} className={styles.iconDiv}>
+          <img src={editIcon} />
+        </div>
       <div className={styles.iconDiv}>
         <img src={pdfIcon} />
       </div>
