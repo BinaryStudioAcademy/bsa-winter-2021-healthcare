@@ -1,0 +1,26 @@
+.radioInput {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.radioLabel {
+  display: block;
+  position: relative;
+  padding: 8px 18px;
+  margin: 10px 0;
+  background-color: var(--color-gray-light);
+  border-radius: 10px;
+  box-shadow: 0px 2px 2px #dfdfdf;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.isChecked {
+  background-color: var(--color-secondary-gark);
+  color: #fff;
+}
