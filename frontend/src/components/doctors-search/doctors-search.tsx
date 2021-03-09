@@ -7,8 +7,9 @@ import { UsersActionCreator } from 'store/slices';
 import styles from './styles.module.scss';
 
 const DoctorsSearch: React.FC = () => {
-  const { doctors } = useSelector(({ doctors }: RootState) => ({
-    doctors: doctors.doctors
+  const { doctors, loading } = useSelector(({ doctors }: RootState) => ({
+    doctors: doctors.doctors,
+    loading: doctors.loading
   }));
   const dispatch = useDispatch();
 
@@ -19,7 +20,11 @@ const DoctorsSearch: React.FC = () => {
   return (
     <div className={styles.doctorsSearchContainer}>
       <div className={styles.searchPannel}></div>
-      <DoctorsList doctors={doctors}/>
+      {
+        loading ?
+        <div>...Loading</div>
+        : <DoctorsList doctors={doctors}/>
+      }
     </div>
   );
 };

@@ -11,9 +11,18 @@ class UserRepository {
     if (type === UserType.DOCTOR) {
       return UserModel.findAll({
         where: {type},
-        include: {
-          model: DoctorModel
-        }
+        include: [
+          {
+            model: DoctorModel,
+            attributes:['id', 'department', 'about'],
+            include:[
+              {
+                model:ClinicModel,
+                attributes:['id', 'name', 'address', 'clinicType']
+              }
+            ]
+          }
+        ]
       })
     }
     return UserModel.findAll({ where: {type} })

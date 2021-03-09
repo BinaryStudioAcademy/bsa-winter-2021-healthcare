@@ -2,24 +2,21 @@ import * as React from 'react';
 import phoneIcon from 'assets/images/icons/phone.svg';
 import locationIcon from 'assets/images/icons/location.svg';
 import chatIcon from 'assets/images/icons/chat.svg';
+import { IUserTypeDoctor } from '../../common/interfaces';
+import { ClinicType } from 'common/enums';
+import clsx from 'clsx';
 
 import styles from './styles.module.scss';
 
-type Doctor = {
-  id:string
-  name:string
-  imagePath:string
-  department: string
-  clinic: string
-  adress: string
-  phone: string
-}
-type DocItemProps = {
-  doctor:Doctor
+type Props = {
+  doctor:IUserTypeDoctor
 }
 
-const DoctorItem: React.FC<DocItemProps> = ({doctor}) => {
-
+const DoctorItem: React.FC<Props> = ({doctor}) => {
+  const clinicTypeClasses = [styles.clinicType];
+  doctor.Doctor.Clinic.clinicType === ClinicType.PRIVATE
+    ? clinicTypeClasses.push(styles.private)
+    : clinicTypeClasses.push(styles.state)
   return (
     <div className={styles.doctorsItemContainer}>
       <div className={styles.imageContainer}>
@@ -27,14 +24,15 @@ const DoctorItem: React.FC<DocItemProps> = ({doctor}) => {
       </div>
       <div className={styles.infoContainer}>
         <div className={styles.infoContainerHead}>
-          <span className={styles.department}>{doctor.department}</span>
-          <span className={styles.name}>{doctor.name}</span>
-          <div className={styles.clinic}>{doctor.clinic}</div>
+          <span className={styles.department}>{doctor.Doctor.department}</span>
+          <span className={styles.name}>{doctor.name} {doctor.surname}</span>
+          <span className={styles.clinicName}>{doctor.Doctor.Clinic.name}</span>
+          <div className={clsx(...clinicTypeClasses)}>{doctor.Doctor.Clinic.clinicType} clinic</div>
         </div>
         <div className={styles.infoContainerBody}>
           <div className={styles.infoItem}>
             <img src={locationIcon} alt="location-icon"/>
-            <span className={styles.text}>{doctor.adress}</span>
+            <span className={styles.text}>{doctor.Doctor.Clinic.address}</span>
           </div>
           <div className={styles.infoItem}>
             <img src={phoneIcon} alt="phone-icon"/>

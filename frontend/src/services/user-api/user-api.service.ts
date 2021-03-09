@@ -1,7 +1,7 @@
 import { Http } from '../http/http.service';
-import { IUser } from 'healthcare-shared/common/interfaces';
 import { HttpMethod, AppRoute } from 'common/enums';
 import { ENV } from 'common/enums';
+import { IUserTypeDoctor } from 'components/doctors-search/common/interfaces'
 
 type Constructor = {
   http: Http;
@@ -16,7 +16,7 @@ class UserApi {
     this.#apiPrefix = apiPrefix;
   }
 
-  public getDoctors(): Promise<IUser[]> {
+  public getDoctors(): Promise<IUserTypeDoctor[]> {
     return this.#http.load(`${this.#apiPrefix}${AppRoute.DOCTORS}`, {
       method: HttpMethod.GET
     });

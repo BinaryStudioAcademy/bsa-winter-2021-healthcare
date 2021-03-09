@@ -1,22 +1,14 @@
 import * as React from 'react';
-import DoctorItem from '../doctor-item/doctors-item'
+import DoctorItem from '../doctor-item/doctors-item';
+import { IUserTypeDoctor } from '../../common/interfaces';
 
 import styles from './styles.module.scss';
 
-type Doctor = {
-  id:string
-  name:string
-  imagePath:string
-  department: string
-  clinic: string
-  adress: string
-  phone: string
-}
-type DocListProps = {
-  doctors:Doctor[]
+type Props = {
+  doctors:IUserTypeDoctor[]
 }
 
-const DoctorsList: React.FC<DocListProps> = ({doctors}) => {
+const DoctorsList: React.FC<Props> = ({doctors}) => {
 
   return (
     <div className={styles.doctorsListContainer}>
