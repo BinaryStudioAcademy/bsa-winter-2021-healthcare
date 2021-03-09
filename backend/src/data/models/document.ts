@@ -1,7 +1,10 @@
 import { Sequelize, DataTypes, Model, ModelCtor } from 'sequelize';
-import { ModelName } from '~/common/enums';
+import {
+  ModelName,
+  TableName,
+  DocumentStatus
+} from '~/common/enums';
 import { IDocument } from '~/common/interfaces';
-import { DocumentStatus } from '~/common/enums';
 
 interface DocumentInstance extends IDocument, Model {}
 
@@ -17,7 +20,9 @@ const createDocumentModel = (orm: Sequelize): ModelCtor<DocumentInstance> => {
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
-  }, {});
+  }, {
+    tableName: TableName.DOCUMENTS
+  });
 
   return Document;
 };
