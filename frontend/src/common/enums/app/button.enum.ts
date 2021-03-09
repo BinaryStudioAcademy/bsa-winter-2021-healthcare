@@ -1,9 +1,29 @@
-enum ButtonNames {
-  SIGN_IN = 'sign-in',
-  SIGN_IN_GOOGLE = 'sign-in-google',
-  APPOINTMENT = 'make-appointment',
-  COVID = 'covid-btn',
-  READ_ALL = 'read-all-reviews',
+enum ButtonStyleType {
+  WITH_BORDER = 'bordered',
+  WITHOUT_BORDER = 'non-bordered',
+  SMALL_ROUND = 'small-round',
+  MEDIUM_ROUND = 'medium-round',
+  LARGE_ROUND = 'large-round',
 }
 
-export { ButtonNames };
+enum ButtonColor {
+  PRIMARY_DARK = 'primary-dark-background',
+  GRAY_LIGHT = 'gray-light-background',
+  WHITE = 'white-background',
+  TRANSPARENT = 'transparent-background',
+}
+
+enum ButtonType {
+  BUTTON = 'button',
+  SUBMIT = 'submit',
+  RESET = 'reset',
+}
+
+enum ButtonIcon {
+  EXPAND = 'expand',
+  SEARCH = 'search',
+  CHAT = 'chat',
+  BELL = 'bell',
+}
+
+export { ButtonStyleType, ButtonColor, ButtonType, ButtonIcon };
