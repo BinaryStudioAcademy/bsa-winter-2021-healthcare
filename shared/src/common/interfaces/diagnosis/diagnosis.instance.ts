@@ -1,7 +1,7 @@
 interface IDiagnosis {
   diagnosis: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type { IDiagnosis };
