@@ -1,22 +1,23 @@
 import { Http } from '../http/http.service';
 import { IUser } from 'healthcare-shared/common/interfaces';
-import { HttpMethod } from 'common/enums';
-import { AppRoute } from 'common/enums';
+import { HttpMethod, AppRoute } from 'common/enums';
+import { ENV } from 'common/enums';
 
 type Constructor = {
   http: Http;
+  apiPrefix: typeof ENV.API_PATH
 };
-
-const baseUrl = 'http://localhost:3001/api/v1/'
 
 class UserApi {
   #http: Http;
-  constructor({ http }: Constructor) {
+  #apiPrefix: typeof ENV.API_PATH;
+  constructor({ http, apiPrefix }: Constructor) {
     this.#http = http;
+    this.#apiPrefix = apiPrefix;
   }
 
   public getDoctors(): Promise<IUser[]> {
-    return this.#http.load(baseUrl + AppRoute.DOCTORS, {
+    return this.#http.load(`${this.#apiPrefix}${AppRoute.DOCTORS}`, {
       method: HttpMethod.GET
     });
   }

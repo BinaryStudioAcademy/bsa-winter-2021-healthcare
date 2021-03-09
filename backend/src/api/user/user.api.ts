@@ -16,46 +16,45 @@ const initUserApi = (apiRouter: Router): Router => {
     }
   });
 
-  userRouter.get(UsersApiPath.$TYPE, async (_req, res, next) => {
+  userRouter.get(UsersApiPath.TYPE_$TYPE, async (req, res, next) => {
     try {
-      const users = await userService.getUsersByType(_req.params.type as UserType);
-      res.setHeader('Access-Control-Allow-Origin', '*');
+      const users = await userService.getUsersByType(req.params.type as UserType);
       res.status(HttpCode.OK).json(users);
     } catch(error) {
       next(error);
     }
   });
 
-  userRouter.get(UsersApiPath.$ID, async (_req, res, next) => {
+  userRouter.get(UsersApiPath.$ID, async (req, res, next) => {
     try {
-      const user = await userService.getUserById(_req.params.id);
+      const user = await userService.getUserById(req.params.id);
       res.status(HttpCode.OK).json(user);
     } catch(error) {
       next(error);
     }
   });
 
-  userRouter.post(UsersApiPath.ROOT, async (_req, res, next) => {
+  userRouter.post(UsersApiPath.ROOT, async (req, res, next) => {
     try {
-      const user = await userService.createNewUser(_req.body);
+      const user = await userService.createNewUser(req.body);
       res.status(HttpCode.OK).json(user);
     } catch(error) {
       next(error);
     }
   });
 
-  userRouter.put(UsersApiPath.$ID, async (_req, res, next) => {
+  userRouter.put(UsersApiPath.$ID, async (req, res, next) => {
     try {
-      const user = await userService.updateUser(_req.params.id, _req.body);
+      const user = await userService.updateUser(req.params.id, req.body);
       res.status(HttpCode.OK).json(user);
     } catch(error) {
       next(error);
     }
   });
 
-  userRouter.delete(UsersApiPath.$ID, async (_req, res, next) => {
+  userRouter.delete(UsersApiPath.$ID, async (req, res, next) => {
     try {
-      await userService.deleteUser(_req.params.id);
+      await userService.deleteUser(req.params.id);
       res.status(HttpCode.NO_CONTENT).json();
     } catch(error) {
       next(error);

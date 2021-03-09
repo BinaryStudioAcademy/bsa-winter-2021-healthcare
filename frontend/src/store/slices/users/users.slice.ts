@@ -47,7 +47,7 @@ const { reducer, actions } = createSlice({
   name: ReducerName.DOCTORS,
   initialState,
   reducers: {
-    setDocors: (state, action: PayloadAction<Doctor[]>) => {
+    setDoctors: (state, action: PayloadAction<Doctor[]>) => {
       state.doctors = action.payload;
     },
   },

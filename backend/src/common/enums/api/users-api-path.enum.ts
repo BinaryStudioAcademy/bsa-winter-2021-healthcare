@@ -1,7 +1,7 @@
 enum UsersApiPath {
   ROOT = '/',
   $ID = '/:id',
-  $TYPE = '/type/:type'
+  TYPE_$TYPE = '/type/:type'
 }
 
 export { UsersApiPath };
