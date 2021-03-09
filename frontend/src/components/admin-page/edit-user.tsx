@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -12,7 +11,6 @@ import {
   IUser,
 } from 'healthcare-shared';
 import styles from './styles.module.scss';
-import { UsersActionCreator } from 'store/slices';
 
 interface IProps{
   user?:IUser,
@@ -39,8 +37,6 @@ function EditUser({ user, func }:IProps){
     email: '',
     diagnosis: '',
   });
-
-  const dispatch = useDispatch();
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm<IRegisterPayload>({
     resolver: yupResolver(validationUserSchema),
