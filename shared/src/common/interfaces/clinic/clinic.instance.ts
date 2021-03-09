@@ -5,8 +5,8 @@ interface IClinic {
   address: string;
   imagePath: string,
   clinicType: ClinicType;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type { IClinic };

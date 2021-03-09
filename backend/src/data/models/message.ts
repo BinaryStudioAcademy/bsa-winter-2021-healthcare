@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes, ModelCtor, Model } from 'sequelize';
-import { ModelName } from '~/common/enums';
+import { ModelName, TableName } from '~/common/enums';
 import { IMessage } from '~/common/interfaces';
 
 interface MessageInstance extends IMessage, Model {}
@@ -12,7 +12,9 @@ const createMessageModel = (orm: Sequelize): ModelCtor<MessageInstance> => {
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
-  }, {});
+  }, {
+    tableName: TableName.MESSAGES
+  });
 
   return Message;
 };

@@ -2,8 +2,8 @@ interface IDoctor {
   department: string;
   roomNumber: number;
   about: string,
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type { IDoctor };
