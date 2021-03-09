@@ -1,9 +1,12 @@
 import { Sequelize, DataTypes, ModelCtor, Model } from 'sequelize';
-import { ModelName } from '~/common/enums';
+import {
+  ModelName,
+  TableName,
+  AppointmentType
+} from '~/common/enums';
 import { IAppointment } from '~/common/interfaces';
-import { AppointmentType } from '~/common/enums';
 
-interface AppointmentInstance extends IAppointment, Model {}
+interface AppointmentInstance extends IAppointment, Model { }
 
 const createAppointmentModel = (orm: Sequelize): ModelCtor<AppointmentInstance> => {
   const Appointment = orm.define<AppointmentInstance>(ModelName.APPOINTMENT, {
@@ -19,7 +22,9 @@ const createAppointmentModel = (orm: Sequelize): ModelCtor<AppointmentInstance> 
     subject: DataTypes.STRING,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
-  }, {});
+  }, {
+    tableName: TableName.APPOINTMENTS
+  });
 
   return Appointment;
 };

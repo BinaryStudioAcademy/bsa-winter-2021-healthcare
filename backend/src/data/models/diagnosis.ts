@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes, Model, ModelCtor } from 'sequelize';
-import { ModelName } from '~/common/enums';
+import { ModelName, TableName } from '~/common/enums';
 import { IDiagnosis } from '~/common/interfaces';
 
 interface DiagnosisInstance extends IDiagnosis, Model {}
@@ -12,7 +12,9 @@ const createDiagnosisModel =  (orm: Sequelize): ModelCtor<DiagnosisInstance> => 
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
-  }, {});
+  }, {
+    tableName: TableName.DIAGNOSES
+  });
 
   return Diagnosis;
 };
