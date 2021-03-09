@@ -10,7 +10,7 @@ export interface IUser {
     id?: string
     name: string
     surname: string
-    birthdate: Date
+    birthdate: string
     sex: UserSex
     type: UserType
     phone: string
@@ -19,6 +19,6 @@ export interface IUser {
     imagePath: string
     geoposition?: Geoposition
     diagnosis?: string
-    createdAt: Date
-    updatedAt: Date
+    createdAt: string
+    updatedAt: string
 }
