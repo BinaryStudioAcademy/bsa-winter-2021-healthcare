@@ -13,7 +13,7 @@ const initAuthApi = (apiRouter: Router): Router => {
   authRouter.post(AuthApiPath.SIGNUP, validateSchema(userRegisterSchema), (req, res, next) => {
     return authService
       .signUp(req.body)
-      .then((data) => res.status(HttpCode.OK).json(data))
+      .then((data) => res.status(HttpCode.CREATED).json(data))
       .catch(next);
   });
 
