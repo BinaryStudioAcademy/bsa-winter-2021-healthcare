@@ -8,9 +8,10 @@ interface IProps {
   columns: Column[],
   data: any,
   edit: (id: string) => void,
+  deleteUser: (id:string) => void,
 }
 
-function Table({ columns, data, edit }: IProps) {
+function Table({ columns, data, edit, deleteUser }: IProps) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -53,7 +54,7 @@ function Table({ columns, data, edit }: IProps) {
                   cell.column.Header === 'Actions'
                     ? (item = (
                         <td {...cell.getCellProps()} key={key}>
-                          <ActionsButton edit={edit} id={cell.row.values.id} />
+                          <ActionsButton edit={edit} deleteUser={deleteUser} id={cell.row.values.id} />
                         </td>
                       ))
                     : (item = (
