@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes, Model, ModelCtor } from 'sequelize';
-import { ModelName } from '~/common/enums';
+import { ModelName, TableName } from '~/common/enums';
 import { INotification } from '~/common/interfaces';
 
 interface NotificationInstance extends INotification, Model {}
@@ -13,7 +13,9 @@ const createNotificationModel = (orm: Sequelize): ModelCtor<NotificationInstance
     topic: DataTypes.STRING,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
-  }, {});
+  }, {
+    tableName: TableName.NOTIFICATIONS
+  });
 
   return Notification;
 };

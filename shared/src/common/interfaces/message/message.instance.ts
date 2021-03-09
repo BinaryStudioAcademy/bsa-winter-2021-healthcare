@@ -1,7 +1,7 @@
 interface IMessage {
   text: string
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type { IMessage };

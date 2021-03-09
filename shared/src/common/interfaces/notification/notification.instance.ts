@@ -1,8 +1,8 @@
 interface INotification {
   text: string;
   topic: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type { INotification };
