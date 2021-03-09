@@ -1,7 +1,8 @@
+import { ApiPath, UsersApiPath } from 'healthcare-shared/common/enums';
+import { ENV } from 'common/enums';
 import { Http } from '../http/http.service';
-import { UserState as IUser } from 'common/interfaces';
 import { HttpMethod } from 'common/enums';
-// import { UsersApiPath } from 'common/enums';
+import { IUser } from 'healthcare-shared';
 
 type Constructor = {
   http: Http;
@@ -9,28 +10,31 @@ type Constructor = {
 
 class UserApi {
   #http: Http;
+  #apiPrefix:string|undefined;
   constructor({ http }: Constructor) {
     this.#http = http;
+    this.#apiPrefix = ENV.API_PATH;
   }
-    public loginUser(payload: IUserLoginPayload): Promise<IUser> {
-      return this.#http.load(UsersApiPath, {
+    // public loginUser(payload: IUserLoginPayload): Promise<IUser> {
+    //   return this.#http.load(UsersApiPath, {
+    //     method: HttpMethod.POST,
+    //     payload,
+    //   });
+    // }
+    public registerUser(payload: IUser): Promise<IUser> {
+      console.log(payload)
+      return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.ROOT}`, {
         method: HttpMethod.POST,
-        payload,
+        payload:JSON.stringify(payload),
       });
     }
-    public registerUser(payload: IUserRegisterPayload): Promise<IUser> {
-      return this.#http.load(UsersApiPath, {
-        method: HttpMethod.POST,
-        payload,
-      });
-    }
-    public getUser(id: IUser[UserKey.ID]): Promise<IUser> {
-      return this.#http.load(`${UsersApiPath}${id}`, {
-        method: HttpMethod.GET,
-      });
-    }
-  public getUsers(nmb: number): string {
-    return this.#http.load(UsersApiPath, {
+    // public getUser(id: IUser[UserKey.ID]): Promise<IUser> {
+    //   return this.#http.load(`${UsersApiPath}${id}`, {
+    //     method: HttpMethod.GET,
+    //   });
+    // }
+  public getUsers(): Promise<IUser>  {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}`, {
       method: HttpMethod.GET,
     });
   }
