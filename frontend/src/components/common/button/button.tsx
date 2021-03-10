@@ -21,7 +21,7 @@ const Button: React.FC<Props> = ({ type = ButtonType.BUTTON, styleType, color, l
     type={type}
     disabled={isDisabled}
     onClick={onClick}>
-    {hasHiddenLabel ? <span className={styles.visuallyHidden}>{label}</span> : label}
+    {hasHiddenLabel ? <span className="visually-hidden">{label}</span> : label}
     {icon && <span className={clsx(styles.buttonIcon, styles[icon])}></span>}
   </button>
 );
