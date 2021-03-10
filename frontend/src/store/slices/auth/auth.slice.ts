@@ -38,7 +38,7 @@ const { reducer, actions } = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    function sharedReducer(state: AuthState, { payload }: PayloadAction<IUser>) {
+    const sharedReducer = (state: AuthState, { payload }: PayloadAction<IUser>) => {
       state.user = payload;
     }
     builder
