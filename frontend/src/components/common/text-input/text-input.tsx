@@ -1,28 +1,34 @@
 import clsx from 'clsx';
-import { InputType } from 'common/enums';
+import { InputType, InputColor } from 'common/enums';
 import { InputChangeCallback } from 'common/types';
 import * as React from 'react';
 import styles from './styles.module.scss';
 
 interface Props {
   type: InputType;
+  color: InputColor;
   label: string;
   name: string;
   value: string;
+  placeholder?: string;
   hasError: boolean;
   isDisabled: boolean;
   onChange: InputChangeCallback;
 }
 
-const TextInput: React.FC<Props> = ({type, isDisabled, label, name, value, hasError, onChange}) => (
+const TextInput: React.FC<Props> = ({type, color, isDisabled, label, name, value, placeholder, hasError, onChange}) => (
   <label className={styles.label}>
     <p className={styles.labelText}>{label}</p>
     <input
-      className={clsx(styles.textInput, hasError && styles.error)}
+      className={clsx(
+        styles.textInput,
+        styles[color],
+        hasError && styles.error,
+        type == InputType.SEARCH && styles.searchIcon)}
       disabled={isDisabled}
       type={type}
       name={name}
-      placeholder={name}
+      placeholder={placeholder}
       value={value}
       onChange={onChange}
     />
