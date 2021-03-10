@@ -10,8 +10,8 @@ interface IOption<T>  {
 
 interface Props {
   options: IOption<string>[];
-  isDisabled: boolean;
-  hasError: boolean;
+  isDisabled?: boolean;
+  hasError?: boolean;
   onChange: SelectChangeCallback;
 }
 

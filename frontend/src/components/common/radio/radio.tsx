@@ -6,8 +6,8 @@ import styles from './styles.module.scss';
 interface Props {
   onChange: InputChangeCallback;
   isChecked: boolean;
-  isDisabled: boolean;
-  hasError: boolean;
+  isDisabled?: boolean;
+  hasError?: boolean;
   name: string;
   value: string;
   label: string;

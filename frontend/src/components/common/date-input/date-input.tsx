@@ -10,13 +10,13 @@ import styles from './styles.module.scss';
 interface Props {
   onChange: DateChangeEvent;
   selectedDate: DatePayload;
-  isDisabled: boolean;
-  isError: boolean;
+  isDisabled?: boolean;
+  hasError?: boolean;
 }
 
-const DateInput: React.FC<Props> = ({ onChange, isDisabled, isError, selectedDate }) => (
+const DateInput: React.FC<Props> = ({ onChange, isDisabled, hasError, selectedDate }) => (
   <DatePicker
-    calendarClassName={clsx(isDisabled && styles.disabled, isError && styles.error)}
+    calendarClassName={clsx(isDisabled && styles.disabled, hasError && styles.error)}
     selected={selectedDate}
     onChange={onChange}
     disabled

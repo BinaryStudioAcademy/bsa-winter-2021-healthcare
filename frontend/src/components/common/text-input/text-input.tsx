@@ -11,8 +11,8 @@ interface Props {
   name: string;
   value: string;
   placeholder?: string;
-  hasError: boolean;
-  isDisabled: boolean;
+  hasError?: boolean;
+  isDisabled?: boolean;
   onChange: InputChangeCallback;
 }
 
