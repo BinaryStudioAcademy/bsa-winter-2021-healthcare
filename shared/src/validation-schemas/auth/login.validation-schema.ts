@@ -12,7 +12,7 @@ const login = yup.object().shape({
     .required(AuthValidationMessage.EMAIL_REQUIRED),
   [LoginPayloadKey.PASSWORD]: yup
     .string()
-    .length(
+    .min(
       AuthValidationRule.PASSWORD_MIN_LENGTH,
       AuthValidationMessage.PASSWORD_MIN_LENGTH,
     )
