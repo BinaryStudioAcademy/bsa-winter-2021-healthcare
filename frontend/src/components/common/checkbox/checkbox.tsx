@@ -22,9 +22,9 @@ const Checkbox: React.FC<Props> = ({ isChecked, isDisabled, hasError, name, labe
       className={styles.checkboxInput}
       type="checkbox"
     />
-   <span className={styles.checkboxLabel}>
+    <span className={styles.checkboxLabel}>
       {label}
-   </span>
+    </span>
   </label>
 );
 
