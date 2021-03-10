@@ -6,4 +6,3 @@ export * from './input-change-callback.type';
 export * from './input-change-event.type';
 export * from './select-change-event.type';
 export * from './select-change-callback.type';
-

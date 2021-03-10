@@ -7,4 +7,3 @@ enum ButtonStyleType {
 }
 
 export { ButtonStyleType };
-

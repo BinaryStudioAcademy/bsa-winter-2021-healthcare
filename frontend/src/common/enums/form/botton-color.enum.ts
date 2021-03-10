@@ -6,4 +6,3 @@ enum ButtonColor {
 }
 
 export { ButtonColor };
-
