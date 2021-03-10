@@ -1,6 +1,6 @@
 import * as React from 'react';
 import DoctorItem from '../doctor-item/doctors-item';
-import { IUserTypeDoctor } from '../../common/interfaces';
+import { IUserTypeDoctor } from 'common/interfaces';
 
 import styles from './styles.module.scss';
 

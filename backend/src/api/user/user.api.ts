@@ -54,8 +54,8 @@ const initUserApi = (apiRouter: Router): Router => {
 
   userRouter.delete(UsersApiPath.$ID, async (req, res, next) => {
     try {
-      await userService.deleteUser(req.params.id);
-      res.status(HttpCode.NO_CONTENT).json();
+      const result = await userService.deleteUser(req.params.id);
+      res.status(HttpCode.NO_CONTENT).json({res: result});
     } catch(error) {
       next(error);
     }

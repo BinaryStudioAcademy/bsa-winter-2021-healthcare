@@ -1,4 +1,5 @@
 import { DbModels } from '~/common/types';
+import { ModelAlias, ForeingKeys } from '~/common/enums';
 
 const associate = ({
   Appointment,
@@ -10,29 +11,29 @@ const associate = ({
   Notification,
   User
 }: DbModels): void => {
-  User.hasOne(Doctor);
-  User.hasMany(Appointment);
-  User.hasMany(Message);
-  User.hasMany(Notification);
-  User.hasMany(Diagnosis);
+  User.hasOne(Doctor, {foreignKey: ForeingKeys.USER_ID, as: ModelAlias.DOCTORS});
+  User.hasMany(Appointment, {foreignKey: ForeingKeys.USER_ID, as: ModelAlias.APPOINTMENTS});
+  User.hasMany(Message, {foreignKey: ForeingKeys.USER_ID, as: ModelAlias.MESSAGES});
+  User.hasMany(Notification, {foreignKey: ForeingKeys.USER_ID, as: ModelAlias.NOTIFICATIONS});
+  User.hasMany(Diagnosis, {foreignKey: ForeingKeys.USER_ID, as: ModelAlias.DIAGNOSES});
 
-  Doctor.hasMany(Appointment);
-  Doctor.belongsTo(Clinic);
-  Doctor.belongsTo(Document);
-  Doctor.belongsTo(User);
+  Doctor.hasMany(Appointment, {foreignKey: ForeingKeys.DOCTOR_ID, as: ModelAlias.APPOINTMENTS});
+  Doctor.belongsTo(Clinic, {foreignKey: ForeingKeys.CLINIC_ID, as: ModelAlias.CLINICS});
+  Doctor.belongsTo(Document, {foreignKey: ForeingKeys.DOCUMENT_ID, as: ModelAlias.DOCUMENTS});
+  Doctor.belongsTo(User, {foreignKey: ForeingKeys.USER_ID, as: ModelAlias.USERS});
 
-  Appointment.belongsTo(Doctor);
-  Appointment.belongsTo(User);
+  Appointment.belongsTo(Doctor, {foreignKey: ForeingKeys.DOCTOR_ID, as: ModelAlias.DOCTORS});
+  Appointment.belongsTo(User, {foreignKey: ForeingKeys.USER_ID, as: ModelAlias.USERS});
 
-  Document.hasOne(Doctor);
+  Document.hasOne(Doctor, {foreignKey: ForeingKeys.DOCUMENT_ID, as: ModelAlias.DOCTORS});
 
-  Clinic.hasMany(Doctor);
+  Clinic.hasMany(Doctor, {foreignKey: ForeingKeys.CLINIC_ID, as: ModelAlias.DOCTORS});
 
-  Message.belongsTo(User);
+  Message.belongsTo(User, {foreignKey: ForeingKeys.USER_ID, as: ModelAlias.USERS});
 
-  Notification.belongsTo(User);
+  Notification.belongsTo(User, {foreignKey: ForeingKeys.USER_ID, as: ModelAlias.USERS});
 
-  Diagnosis.belongsTo(User);
+  Diagnosis.belongsTo(User, {foreignKey: ForeingKeys.USER_ID, as: ModelAlias.USERS});
 };
 
 export default associate;

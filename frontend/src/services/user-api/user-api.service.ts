@@ -1,16 +1,15 @@
 import { Http } from '../http/http.service';
 import { HttpMethod, AppRoute } from 'common/enums';
-import { ENV } from 'common/enums';
-import { IUserTypeDoctor } from 'components/doctors-search/common/interfaces'
+import { IUserTypeDoctor } from 'common/interfaces';
 
 type Constructor = {
   http: Http;
-  apiPrefix: typeof ENV.API_PATH
+  apiPrefix: string
 };
 
 class UserApi {
   #http: Http;
-  #apiPrefix: typeof ENV.API_PATH;
+  #apiPrefix: string;
   constructor({ http, apiPrefix }: Constructor) {
     this.#http = http;
     this.#apiPrefix = apiPrefix;

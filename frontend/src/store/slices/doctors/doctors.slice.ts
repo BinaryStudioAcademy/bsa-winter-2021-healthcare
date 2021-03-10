@@ -1,17 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ReducerName } from 'common/enums';
+import { ReducerName, DataStatus } from 'common/enums';
 import { AppThunk } from 'common/types';
 import { userApi } from 'services';
-import { IUserTypeDoctor } from 'components/doctors-search/common/interfaces'
+import { IUserTypeDoctor } from 'common/interfaces'
 
 type DoctorsState = {
   doctors: IUserTypeDoctor[]
-  loading: boolean
+  dataStatus: DataStatus
 };
 
 const initialState: DoctorsState = {
   doctors: [],
-  loading: true
+  dataStatus: DataStatus.PENDING
 };
 
 const { reducer, actions } = createSlice({
@@ -20,7 +20,7 @@ const { reducer, actions } = createSlice({
   reducers: {
     setDoctors: (state, action: PayloadAction<IUserTypeDoctor[]>) => {
       state.doctors = action.payload;
-      state.loading = false
+      state.dataStatus = DataStatus.SUCCESS;
     },
   },
 });
@@ -30,9 +30,9 @@ const getDoctorsAsync = (): AppThunk => async (dispatch) => {
   dispatch(actions.setDoctors(doctors));
 };
 
-const UsersActionCreator = {
+const DoctorsActionCreator = {
   ...actions,
   getDoctorsAsync
 };
 
-export { UsersActionCreator, reducer };
+export { DoctorsActionCreator, reducer };

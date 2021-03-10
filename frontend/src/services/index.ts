@@ -6,7 +6,7 @@ const http = new Http();
 
 const userApi = new UserApi({
   http,
-  apiPrefix: ENV.API_PATH
+  apiPrefix: (ENV.API_PATH as string)
 });
 
 export { http, userApi };

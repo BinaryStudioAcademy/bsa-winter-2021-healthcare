@@ -1,6 +1,7 @@
 import { UserModel, DoctorModel, ClinicModel } from '../models';
 import { IUser } from '~/common/interfaces';
 import { UserType } from '~/common/enums';
+import { ModelAlias } from '~/common/enums';
 
 class UserRepository {
   public getAll():Promise<IUser[]>{
@@ -14,11 +15,13 @@ class UserRepository {
         include: [
           {
             model: DoctorModel,
-            attributes:['id', 'department', 'about'],
-            include:[
+            as: ModelAlias.DOCTORS,
+            attributes: ['id', 'department', 'about'],
+            include: [
               {
-                model:ClinicModel,
-                attributes:['id', 'name', 'address', 'clinicType']
+                model: ClinicModel,
+                as: ModelAlias.CLINICS,
+                attributes: ['id', 'name', 'address', 'clinicType']
               }
             ]
           }

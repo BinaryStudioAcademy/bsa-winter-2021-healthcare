@@ -2,29 +2,27 @@ import React, { useEffect } from 'react';
 import DoctorsList from './components/doctors-list/doctors-list';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'common/types';
-import { UsersActionCreator } from 'store/slices';
+import { DoctorsActionCreator } from 'store/slices';
+import { DataStatus } from 'common/enums';
 
 import styles from './styles.module.scss';
 
 const DoctorsSearch: React.FC = () => {
-  const { doctors, loading } = useSelector(({ doctors }: RootState) => ({
+  const { doctors, dataStatus } = useSelector(({ doctors }: RootState) => ({
     doctors: doctors.doctors,
-    loading: doctors.loading
+    dataStatus: doctors.dataStatus
   }));
   const dispatch = useDispatch();
 
   useEffect(()=>{
-    dispatch(UsersActionCreator.getDoctorsAsync())
+    dispatch(DoctorsActionCreator.getDoctorsAsync())
   }, [])
 
   return (
     <div className={styles.doctorsSearchContainer}>
       <div className={styles.searchPannel}></div>
-      {
-        loading ?
-        <div>...Loading</div>
-        : <DoctorsList doctors={doctors}/>
-      }
+        {dataStatus === DataStatus.PENDING && <div>...Loading</div> }
+        {dataStatus === DataStatus.SUCCESS && <DoctorsList doctors={doctors}/>}
     </div>
   );
 };
