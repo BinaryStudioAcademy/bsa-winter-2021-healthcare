@@ -13,23 +13,19 @@ interface Props {
 }
 
 const Checkbox: React.FC<Props> = ({ isChecked, isDisabled, hasError, name, label, onChange }) => (
-  <p className={clsx(styles.checkboxRow, hasError && styles.error)}>
+  <label className={clsx(styles.checkboxRow, hasError && styles.error)}>
     <input
       onChange={onChange}
       checked={isChecked}
       disabled={isDisabled}
       name={name}
-      id={name}
       className={styles.checkboxInput}
       type="checkbox"
     />
-    <label
-      htmlFor={name}
-      className={styles.checkboxLabel}
-      >
+   <span className={styles.checkboxLabel}>
       {label}
-    </label>
-  </p>
+   </span>
+  </label>
 );
 
 export default Checkbox;
