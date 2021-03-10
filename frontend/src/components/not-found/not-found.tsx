@@ -9,11 +9,10 @@ const NotFound: React.FC = () => {
   return (
     <>
       <div className={clsx(styles.notFoundContainer, styles.flexColumnCentered)}>
-        <p className={styles.text404}>404</p>
-        <p className={styles.textNotFound}>Page not Found</p>
+        <h1 className={styles.textNotFound}><span className={styles.text404}>404</span> Page not found</h1>
       </div>
       <footer className={clsx(styles.footerContainer, styles.flexColumnCentered)}>
-        <img src={iconLogo} className={styles.iconCareLogo} alt="icon-logo" />
+        <img src={iconLogo} height="31.76px" width="35px" loading="lazy" alt="HealthCareLogo" />
         <p>{currentYear} <span>&#169;</span> HealthCare</p>
       </footer>
     </>
