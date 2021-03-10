@@ -6,11 +6,10 @@
 }
 
 .notFoundContainer {
-  width: 100%;
-  height: calc(100% - 73.6px);
+  flex-grow: 1;
 }
 
-p {
+.footerText {
   margin: 0;
 }
 
