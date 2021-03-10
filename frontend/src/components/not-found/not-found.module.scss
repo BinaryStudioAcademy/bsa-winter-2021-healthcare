@@ -1,0 +1,31 @@
+.flexColumnCentered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.notFoundContainer {
+  width: 100%;
+  height: calc(100% - 73.6px);
+}
+
+p {
+  margin: 0;
+}
+
+.iconLogo {
+  height: 100px;
+}
+
+.footerContainer {
+  padding-bottom: 20px;
+}
+
+.textNotFound {
+  font-size: 40px;
+}
+
+.text404 {
+  font-size: 70px;
+}
