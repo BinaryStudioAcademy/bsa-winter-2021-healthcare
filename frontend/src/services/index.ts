@@ -1,12 +1,17 @@
 import { ENV } from 'common/enums';
 import { Http } from './http/http.service';
-import { Registration } from './registration/registration.service';
+import { AuthApi } from './auth-api/auth-api.service';
+import { Storage } from './storage/storage.service';
 
 const http = new Http();
 
-const RegistrationApi = new Registration({
+const authApi = new AuthApi({
   http,
   apiPrefix: ENV.API_PATH,
 });
 
-export { http, RegistrationApi };
+const storage = new Storage({
+  storage: localStorage
+});
+
+export { http, authApi, storage };

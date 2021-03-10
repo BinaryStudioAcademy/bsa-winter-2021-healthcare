@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { ReducerName } from 'common/enums';
-import { counterReducer, registrationReducer } from './slices';
+import { counterReducer, authReducer } from './slices';
 
 const store = configureStore({
   reducer: {
     [ReducerName.COUNTER]: counterReducer,
-    [ReducerName.REGISTRATION]: registrationReducer,
+    [ReducerName.AUTH]: authReducer,
   },
 });
 

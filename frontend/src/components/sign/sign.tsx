@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useLocation } from 'react-router-dom'
 import { AppRoute } from 'common/enums'
-import { FormSignUp } from './components'
+import { SignUpForm, SignInForm } from './components'
 
 import styles from './styles.module.scss';
 import logo from 'assets/images/logo.svg';
@@ -12,7 +12,10 @@ const Sign: React.FC = () => {
   const getScreen = (path: AppRoute) => {
     switch(path) {
       case AppRoute.SIGN_UP: {
-        return <FormSignUp/>;
+        return <SignUpForm/>;
+      }
+      case AppRoute.SIGN_IN: {
+        return <SignInForm/>;
       }
     }
 
