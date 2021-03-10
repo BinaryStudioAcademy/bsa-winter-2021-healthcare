@@ -1,8 +1,9 @@
 import bcrypt from 'bcrypt';
 
+const SALT_ROUNDS = 10;
+
 const getPasswordHash = (password: string): Promise<string> => {
-  const saltRounds = 10;
-  return bcrypt.hash(password, saltRounds)
+  return bcrypt.hash(password, SALT_ROUNDS)
 };
 
 export { getPasswordHash }
