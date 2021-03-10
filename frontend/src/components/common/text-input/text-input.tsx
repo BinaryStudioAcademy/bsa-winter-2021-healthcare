@@ -18,7 +18,7 @@ interface Props {
 
 const TextInput: React.FC<Props> = ({type, color, isDisabled, label, name, value, placeholder, hasError, onChange}) => (
   <label className={styles.label}>
-    <p className={styles.labelText}>{label}</p>
+    <span className={styles.labelText}>{label}</span>
     <input
       className={clsx(
         styles.textInput,
