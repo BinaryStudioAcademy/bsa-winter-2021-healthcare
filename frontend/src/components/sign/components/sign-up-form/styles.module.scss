@@ -1,7 +1,7 @@
-h2 {
+.title {
   display: flex;
   justify-content: center;
-  margin-top: 0.25em;
+  margin-top: 5px;
   font-family: 'Inter', sans-serif;
   font-size: 24px;
   font-weight: 600;
@@ -10,7 +10,7 @@ h2 {
   align-self: flex-start;
 }
 
-form {
+.form {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -20,22 +20,9 @@ form {
   font-size: 12px;
   line-height: 15px;
 
-  .name,
-  .surname,
-  .select,
-  .date,
-  .phone,
-  .email,
-  .password,
-  .uploadFiles {
+  .inputBlock {
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
-    width: 100%;
-  }
-
-  .checkBox {
-    display: flex-inline;
     margin-bottom: 15px;
     width: 100%;
   }

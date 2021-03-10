@@ -36,11 +36,11 @@ const SignUpForm: React.FC = () => {
   const onSubmit = (formData: IRegisterPayload) => dispatch(AuthActionCreator.registration(formData))
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
 
-      <h2>Sign Up</h2>
+      <h2 className={styles.title}>Sign Up</h2>
 
-      <div className={styles.name}>
+      <div className={styles.inputBlock}>
         <label htmlFor={RegisterPayloadKey.NAME}>Name</label>
         <input
           type="text"
@@ -51,7 +51,7 @@ const SignUpForm: React.FC = () => {
         {errors.name && <span className={styles.errorSpan}>{errors.name.message}</span>}
       </div>
 
-      <div className={styles.surname}>
+      <div className={styles.inputBlock}>
         <label htmlFor={RegisterPayloadKey.SURNAME}>Surname</label>
         <input
           type="text"
@@ -62,7 +62,7 @@ const SignUpForm: React.FC = () => {
         {errors.surname && <span className={styles.errorSpan}>{errors.surname.message}</span>}
       </div>
 
-      <div className={styles.select}>
+      <div className={styles.inputBlock}>
         <label htmlFor={RegisterPayloadKey.SEX}>Gender</label>
         <select name={RegisterPayloadKey.SEX} ref={register}>
           <option value={UserSex.FEMALE}>female</option>
@@ -70,12 +70,12 @@ const SignUpForm: React.FC = () => {
         </select>
       </div>
 
-      <div className={styles.date}>
+      <div className={styles.inputBlock}>
         <label htmlFor={RegisterPayloadKey.BIRTH_DATE}>Birthday</label>
         <input type="date" name={RegisterPayloadKey.BIRTH_DATE} ref={register} />
       </div>
 
-      <div className={styles.email}>
+      <div className={styles.inputBlock}>
         <label htmlFor={RegisterPayloadKey.EMAIL}>E-mail</label>
         <input
           type="email"
@@ -86,7 +86,7 @@ const SignUpForm: React.FC = () => {
         {errors.email && <span className={styles.errorSpan}>{errors.email.message}</span>}
       </div>
 
-      <div className={styles.password}>
+      <div className={styles.inputBlock}>
         <label htmlFor={RegisterPayloadKey.PASSWORD}>Password</label>
         <input
           type="password"
@@ -97,7 +97,7 @@ const SignUpForm: React.FC = () => {
         {errors.password && <span className={styles.errorSpan}>{errors.password.message}</span>}
       </div>
 
-      <div className={styles.password}>
+      <div className={styles.inputBlock}>
         <label htmlFor={RegisterPayloadKey.RETYPE_PASSWORD}>Retype Password</label>
         <input
           type="password"
@@ -108,7 +108,7 @@ const SignUpForm: React.FC = () => {
         {errors.retypePassword && <span className={styles.errorSpan}>{errors.retypePassword.message}</span>}
       </div>
 
-      <div className={styles.phone}>
+      <div className={styles.inputBlock}>
         <label htmlFor={RegisterPayloadKey.PHONE}>Phone</label>
         <input
           type="tel"
@@ -119,7 +119,7 @@ const SignUpForm: React.FC = () => {
         {errors.phone && <span className={styles.errorSpan}>{errors.phone.message}</span>}
       </div>
 
-      <div className={styles.select}>
+      <div className={styles.inputBlock}>
         <label htmlFor={RegisterPayloadKey.TYPE}>Status</label>
         <select name={RegisterPayloadKey.TYPE} ref={register}>
           <option value={UserType.PATIENT}>Patient</option>
@@ -127,7 +127,7 @@ const SignUpForm: React.FC = () => {
         </select>
       </div>
 
-      {/* <div className={styles.uploadFiles}>
+      {/* <div className={styles.inputBlock}>
         <input type="button" value="Upload documents" />
         <label>
           Upload file:
@@ -137,7 +137,7 @@ const SignUpForm: React.FC = () => {
         <span>file2.jpg</span>
       </div> */}
 
-      <div className={styles.phone}>
+      <div className={styles.inputBlock}>
         <input
           type="hidden"
           name={RegisterPayloadKey.IMAGE_PATH}
