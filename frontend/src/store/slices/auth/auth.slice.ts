@@ -1,6 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { ReducerName, DataStatus, StorageKey } from 'common/enums';
-import { AppThunk } from 'common/types';
 import { IUser, IUserLoginPayload } from 'common/interfaces';
 import { authApi, storage } from 'services';
 import { LoginResponse } from 'common/types/responses';
@@ -15,19 +14,25 @@ const initialState: AuthState = {
   dataStatus: DataStatus.IDLE,
 };
 
+export const login = createAsyncThunk(
+  'auth/login',
+  async (userData: IUserLoginPayload) => {
+    const { token, user }: LoginResponse = await authApi.loginUser(userData);
+    storage.setItem(StorageKey.TOKEN, token);
+    return user;
+  },
+);
+
 const { reducer, actions } = createSlice({
   name: ReducerName.AUTH,
   initialState,
-  reducers: {
-    //TODO: create method that will dispatch in login
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(login.fulfilled, (state, { payload }) => {
+      state.user = payload;
+    });
   },
 });
-
-const login = (userData: IUserLoginPayload): AppThunk => async () => {
-  const { token }: LoginResponse = await authApi.loginUser(userData);
-  storage.setItem(StorageKey.TOKEN, token);
-  // TODO: add setUser and dispatch it
-};
 
 const AuthActionCreator = {
   ...actions,
