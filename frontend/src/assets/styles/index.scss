@@ -1,12 +1,13 @@
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   margin: 0;
-
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   color: #787878;
   -webkit-font-smoothing: antialiased;
-
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 *,
