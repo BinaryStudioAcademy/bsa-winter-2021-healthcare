@@ -6,21 +6,36 @@ import createAppointmentModel from './appointment';
 import createNotificationModel from './notification';
 import createMessageModel from './message';
 import createUserModel from './user';
+import createDiagnosisModel from './diagnosis';
+import associate from '../db/associations';
 
+const AppointmentModel = createAppointmentModel(sequelize);
 const ClinicModel = createClinicModel(sequelize);
+const DiagnosisModel = createDiagnosisModel(sequelize);
 const DoctorModel = createDoctorModel(sequelize);
 const DocumentModel = createDocumentModel(sequelize);
-const AppointmentModel = createAppointmentModel(sequelize);
-const NotificationModel = createNotificationModel(sequelize);
 const MessageModel = createMessageModel(sequelize);
+const NotificationModel = createNotificationModel(sequelize);
 const UserModel = createUserModel(sequelize);
 
+associate({
+  Appointment: AppointmentModel,
+  Clinic: ClinicModel,
+  Diagnosis: DiagnosisModel,
+  Doctor: DoctorModel,
+  Document: DocumentModel,
+  Message: MessageModel,
+  Notification: NotificationModel,
+  User: UserModel
+});
+
 export {
+  AppointmentModel,
   ClinicModel,
+  DiagnosisModel,
   DoctorModel,
   DocumentModel,
-  AppointmentModel,
-  NotificationModel,
   MessageModel,
+  NotificationModel,
   UserModel
 };
