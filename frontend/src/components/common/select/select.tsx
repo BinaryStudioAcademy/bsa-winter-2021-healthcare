@@ -4,8 +4,8 @@ import styles from './styles.module.scss';
 import clsx from 'clsx';
 
 interface IOption<T>  {
- label: string;
- value: T;
+  label: string;
+  value: T;
 }
 
 interface Props {
@@ -30,6 +30,5 @@ const Select: React.FC<Props> = ({ options, isDisabled, hasError, onChange }) =>
     }
   </select>
 );
-
 
 export default Select;
