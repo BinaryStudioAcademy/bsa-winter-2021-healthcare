@@ -1,5 +1,5 @@
 import { UserModel } from '../models';
-import { IRegisterPayload, IUser } from '~/common/interfaces';
+import { IUser } from '~/common/interfaces';
 
 class UserRepository {
   public getAll(): Promise<IUser[]> {
