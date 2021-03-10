@@ -9,9 +9,4 @@ enum InputType {
   SEARCH = 'search',
 }
 
-enum InputColor {
-  GRAY_LIGHT = 'gray-light-background',
-  WHITE = 'white-background',
-}
-
-export { InputType, InputColor };
+export { InputType };
