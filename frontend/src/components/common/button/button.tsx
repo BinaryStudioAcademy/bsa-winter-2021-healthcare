@@ -5,7 +5,7 @@ import * as React from 'react';
 import styles from './styles.module.scss';
 
 interface Props {
-  type: ButtonType;
+  type?: ButtonType;
   styleType: ButtonStyleType;
   color: ButtonColor;
   label: string;
@@ -15,7 +15,7 @@ interface Props {
   icon?: ButtonIcon;
 }
 
-const Button: React.FC<Props> = ({ type, styleType, color, label, isDisabled, hasHiddenLabel, icon, onClick }) => (
+const Button: React.FC<Props> = ({ type = ButtonType.BUTTON, styleType, color, label, isDisabled, hasHiddenLabel, icon, onClick }) => (
   <button
     className={clsx(styles.btn, styles[styleType], styles[color], icon && styles[icon])}
     type={type}
