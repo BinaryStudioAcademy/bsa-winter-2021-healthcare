@@ -1,1 +1,1 @@
-export * from './responses';
+export * from './responses/login-response.types';

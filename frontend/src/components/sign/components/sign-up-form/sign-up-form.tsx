@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { RegistrationActionCreator } from 'store/slices';
+import { AuthActionCreator } from 'store/slices';
 import { RegisterPayloadKey, UserType, UserSex } from 'common/enums'
 import { IRegisterPayload } from 'common/interfaces'
 import { userRegister as validationUserSchema } from 'validation-schemas'
@@ -15,7 +15,7 @@ const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.NAME]: '',
   [RegisterPayloadKey.SURNAME]: '',
   [RegisterPayloadKey.SEX]: UserSex.MALE,
-  [RegisterPayloadKey.BIRTH_DATE]: new Date(),
+  [RegisterPayloadKey.BIRTH_DATE]: '',
   [RegisterPayloadKey.EMAIL]: '',
   [RegisterPayloadKey.PASSWORD]: '',
   [RegisterPayloadKey.RETYPE_PASSWORD]: '',
@@ -24,7 +24,7 @@ const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.IMAGE_PATH]: 'https://www.pikpng.com/pngl/b/80-805523_default-avatar-svg-png-icon-free-download-264157.png'
 };
 
-const FormSignUp: React.FC = () => {
+const SignUpForm: React.FC = () => {
 
   const { register, handleSubmit, errors } = useForm<IRegisterPayload>({
     resolver: yupResolver(validationUserSchema),
@@ -33,7 +33,7 @@ const FormSignUp: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const onSubmit = (formData: IRegisterPayload) => dispatch(RegistrationActionCreator.registration(formData))
+  const onSubmit = (formData: IRegisterPayload) => dispatch(AuthActionCreator.registration(formData))
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -152,4 +152,4 @@ const FormSignUp: React.FC = () => {
   );
 };
 
-export { FormSignUp };
+export default SignUpForm;

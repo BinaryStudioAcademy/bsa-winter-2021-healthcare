@@ -3,7 +3,4 @@ export {
   CounterActionCreator,
 } from './counter/counter.slice';
 
-export {
-  reducer as registrationReducer,
-  RegistrationActionCreator,
-} from './registration/registration.slice';
+export { reducer as authReducer, AuthActionCreator } from './auth/auth.slice';

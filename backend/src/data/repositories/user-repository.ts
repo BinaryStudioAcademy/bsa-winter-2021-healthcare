@@ -1,31 +1,33 @@
 import { UserModel } from '../models';
-import { IRegisterPayload, IUser } from '~/common/interfaces';
+import { IUser } from '~/common/interfaces';
 
 class UserRepository {
-  public getAll(): Promise<IUser[]>{
-    return UserModel.findAll()
+  public getAll(): Promise<IUser[]> {
+    return UserModel.findAll();
   }
-
-  public getById(id: string): Promise<IUser | null>{
-    return UserModel.findByPk(id)
+  public getById(id: string): Promise<IUser | null> {
+    return UserModel.findByPk(id);
   }
-
-  public createUser(registerPayload:IRegisterPayload): Promise<IUser>{
-    return UserModel.create(registerPayload)
+  public createUser(user: IUser): Promise<IUser> {
+    return UserModel.create(user);
   }
-
-  public async updateById(id: string, data: IUser): Promise<IUser[]>{
+  public findByEmail(email: string): Promise<IUser | null> {
+    return UserModel.findOne({
+      where: { email },
+    });
+  }
+  public async updateById(id: string, data: IUser): Promise<IUser[]> {
     const result = await UserModel.update(data, {
       where: { id },
-      returning: true
+      returning: true,
     });
 
     return result[1];
   }
 
-  public deleteById(id: string): Promise<number>{
+  public deleteById(id: string): Promise<number> {
     return UserModel.destroy({
-      where: { id }
+      where: { id },
     });
   }
 }
