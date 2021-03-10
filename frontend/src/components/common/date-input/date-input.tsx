@@ -14,16 +14,14 @@ interface Props {
   isError: boolean;
 }
 
-const DateInput: React.FC<Props> = ({ onChange, isDisabled, isError, selectedDate }) => {
-  return (
-    <DatePicker
-      calendarClassName={clsx(isDisabled && styles.disabled, isError && styles.error)}
-      selected={selectedDate}
-      onChange={onChange}
-      disabled
-      inline
-    />
-  );
-};
+const DateInput: React.FC<Props> = ({ onChange, isDisabled, isError, selectedDate }) => (
+  <DatePicker
+    calendarClassName={clsx(isDisabled && styles.disabled, isError && styles.error)}
+    selected={selectedDate}
+    onChange={onChange}
+    disabled
+    inline
+  />
+);
 
 export default DateInput;
