@@ -17,26 +17,25 @@ const Radio: React.FC<Props> = ({ options, value, isDisabled, hasError, name, on
   <div className={styles.radioContainer}>
     {
       options.map(option => (
-          <label
-            key={option.value}
-            className={clsx(styles.radioLabel,
-              hasError && styles.error,
-              option.value === value && styles.isChecked)
-            }
-          >
-            {option.label}
-            <input
-              onChange={onChange}
-              checked={option.value === value}
-              disabled={isDisabled}
-              name={name}
-              value={option.value}
-              className={styles.radioInput}
-              type="radio"
-            />
-          </label>
-        )
-      )
+        <label
+          key={option.value}
+          className={clsx(styles.radioLabel,
+            hasError && styles.error,
+            option.value === value && styles.isChecked)
+          }
+        >
+          {option.label}
+          <input
+            onChange={onChange}
+            checked={option.value === value}
+            disabled={isDisabled}
+            name={name}
+            value={option.value}
+            className={styles.radioInput}
+            type="radio"
+          />
+        </label>
+      ))
     }
   </div>
 );
