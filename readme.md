@@ -20,6 +20,11 @@ This [folder](./shared) contains all common (helpers, enums and etc.) stuff for 
 
 For the [BackEnd](./backend) to work properly, you need to fill in the **`.env`** file. You can use the **`.env.example`** file as an example.
 
+### 🛠 Useful Scripts
+
+* **`npx sequelize-cli migration:create --name <migration-name>`** — create migration with **`<migration-name>`** param as name.
+
+
 ## 💡 FrontEnd
 
 For the [FrontEnd](./frontend) to work properly, you need to fill in the **`.env`** file. You can use the **`.env.example`** file as an example.

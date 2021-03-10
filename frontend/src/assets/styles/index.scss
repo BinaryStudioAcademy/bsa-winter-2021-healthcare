@@ -73,3 +73,9 @@ code {
     transform: translateY(0px);
   }
 }
+
+#root {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
