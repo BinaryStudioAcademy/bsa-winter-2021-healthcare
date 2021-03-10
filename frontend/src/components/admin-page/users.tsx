@@ -23,7 +23,6 @@ const checkIdentifierType = (identifier:string):Column =>{
 }
 
 const Users: React.FC = () => {
-  const history = useHistory();
   const { AllUsers } = useSelector(({ users }: RootState) => ({
     AllUsers: users.users,
   }));
@@ -41,11 +40,10 @@ const Users: React.FC = () => {
   }, []);
 
   const editUserHandler = (id: string) => {
-    history.push(AppRoute.EDIT_USER);
     dispatch(UsersActionCreator.setEditUser(id));
   };
   const createUserHandler = () =>{
-    history.push(AppRoute.CREATE_USER);
+    console.log("CREATE");
   }
   const deleteUser = (id:string) =>{
     dispatch(UsersActionCreator.deleteUser(id));

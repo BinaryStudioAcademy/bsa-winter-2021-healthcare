@@ -20,29 +20,23 @@ const AdminPage: React.FC = () => {
   const editUser = (data: IRegisterPayload) => {
     const editedUser: IUser = Object.assign({}, user, data)
     dispatch(UsersActionCreator.editUser(editedUser));
-    setTimeout(()=>{
+    setTimeout(() => {
       history.push(AppRoute.ADMIN_PAGE);
-    },0)
+    }, 0)
   }
   const setUser = (data: IRegisterPayload) => {
     dispatch(UsersActionCreator.addUser(data));
-    setTimeout(()=>{
+    setTimeout(() => {
       history.push(AppRoute.ADMIN_PAGE);
-    },0)
+    }, 0)
   }
-
-  switch (pathname) {
-    case AppRoute.EDIT_USER:
-      return <EditUser user={user} func={editUser} />;
-    case AppRoute.CREATE_USER:
-      return <EditUser func={setUser} />;
-    default:
-      return (
-        <div className={styles.container}>
-          <Users />
-        </div>
-      );
-  }
+  return (
+    <div className={styles.container}>
+      <EditUser user={user} func={editUser} />
+      <EditUser func={setUser} />
+      <Users />
+    </div>
+  );
 };
 
 export default AdminPage;
