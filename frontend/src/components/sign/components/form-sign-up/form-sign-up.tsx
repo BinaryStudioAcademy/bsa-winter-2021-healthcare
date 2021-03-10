@@ -1,13 +1,15 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import styles from './styles.module.scss';
-
-import { registration } from "services";
+import { RegistrationActionCreator } from 'store/slices';
 import { RegisterPayloadKey, UserType, UserSex } from 'common/enums'
 import { IRegisterPayload } from 'common/interfaces'
 import { userRegister as validationUserSchema } from 'validation-schemas'
+
+import styles from './styles.module.scss';
+
 
 const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.NAME]: '',
@@ -19,7 +21,7 @@ const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.RETYPE_PASSWORD]: '',
   [RegisterPayloadKey.PHONE]: '',
   [RegisterPayloadKey.TYPE]: UserType.PATIENT,
-  [RegisterPayloadKey.IMAGE_PATH]: ''
+  [RegisterPayloadKey.IMAGE_PATH]: 'https://www.pikpng.com/pngl/b/80-805523_default-avatar-svg-png-icon-free-download-264157.png'
 };
 
 const FormSignUp: React.FC = () => {
@@ -29,23 +31,12 @@ const FormSignUp: React.FC = () => {
     defaultValues: DEFAULT_VALUES,
   });
 
-  const onSubmit = handleSubmit(async data => {
-    console.log('onSubmit data = ', data);
+  const dispatch = useDispatch();
 
-    try {
-      const res = await registration(data);
-      console.log('registration response = ', res);
-
-    } catch (error) {
-      console.log('registration error = ', error);
-    }
-
-
-
-  })
+  const onSubmit = (formData: IRegisterPayload) => dispatch(RegistrationActionCreator.registration(formData))
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
 
       <h2>Sign Up</h2>
 
@@ -145,6 +136,15 @@ const FormSignUp: React.FC = () => {
         <span>file1.pdf</span>
         <span>file2.jpg</span>
       </div> */}
+
+      <div className={styles.phone}>
+        <input
+          type="hidden"
+          name={RegisterPayloadKey.IMAGE_PATH}
+          ref={register}
+        />
+        {errors.imagePath && <span className={styles.errorSpan}>{errors.imagePath.message}</span>}
+      </div>
 
       <button type="submit">Sign Up</button>
 

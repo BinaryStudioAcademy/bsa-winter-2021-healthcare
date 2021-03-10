@@ -1,16 +1,32 @@
 import { Http } from 'services/http/http.service';
-import { ApiPath, AuthApiPath, HttpMethod } from 'common/enums';
-import { IRegisterPayload } from 'common/interfaces'
-import { ENV } from 'common/enums';
+import { IRegisterPayload } from 'common/interfaces';
+import { AuthApiPath } from 'common/enums/api';
+import { ContentType, HttpMethod } from 'common/enums';
+import { RegistrationResponse } from 'common/types/responses';
+import { ApiPath } from 'common/enums/api';
 
-const registration = async (data: IRegisterPayload): Promise<unknown> => {
-  const payload: string = JSON.stringify(data);
-  const http = new Http();
-  const response = await http.load((ENV.API_PATH || '') + ApiPath.AUTH + AuthApiPath.SIGNUP, {
-    method: HttpMethod.POST,
-    payload,
-  });
-  return response;
+type Constructor = {
+  http: Http;
+  apiPrefix: string| undefined;
 };
 
-export { registration };
+class Registration {
+  #http: Http;
+  #apiPrefix: string | undefined;
+
+  constructor({ http, apiPrefix }: Constructor) {
+    this.#http = http;
+    this.#apiPrefix = apiPrefix;
+  }
+
+  // TODO: change promise type to IUser, when add needed repositories.
+  public registrationUser(payload: Partial<IRegisterPayload>): Promise<RegistrationResponse> {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.AUTH}${AuthApiPath.SIGNUP}`, {
+      method: HttpMethod.POST,
+      contentType: ContentType.JSON,
+      payload,
+    });
+  }
+}
+
+export { Registration };
