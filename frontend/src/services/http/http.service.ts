@@ -12,8 +12,8 @@ class Http {
     const {
       method = HttpMethod.GET,
       payload = null,
-      contentType,
       hasAuth = true,
+      contentType,
     } = options;
     const headers = this._getHeaders(hasAuth, contentType);
     const isJSON = checkIsOneOf(contentType, ContentType.JSON);
