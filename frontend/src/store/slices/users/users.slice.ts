@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { userApi } from 'services/services';
+import { userApi } from 'services';
 import { ReducerName } from 'common/enums';
 import { AppThunk } from 'common/types';
 import { IUser, UserType, UserSex, IRegisterPayload } from 'healthcare-shared';
