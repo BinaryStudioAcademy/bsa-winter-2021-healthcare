@@ -28,28 +28,28 @@
 }
 
 // Background color
-.white-background {
+.white {
   background-color: #fff;
 }
 
-.primary-dark-background {
+.primary-dark {
   background-color: var(--color-primary-dark);
 }
 
-.gray-light-background {
+.gray-light {
   background-color: var(--color-gray-light);
 }
 
-.transparent-background {
+.transparent {
   background-color: transparent;
 }
 
 // ButtonStyleType
-.non-bordered {
+.without-border {
   border: none;
 }
 
-.bordered {
+.with-border {
   border: 1px solid var(--color-primary-dark);
 }
 
