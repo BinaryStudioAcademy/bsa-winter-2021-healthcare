@@ -6,29 +6,28 @@ import styles from './styles.module.scss';
 
 interface Props {
   options: IOption<string>[];
-  isChecked: boolean;
+  value: string;
   isDisabled?: boolean;
   hasError?: boolean;
   name: string;
   onChange: InputChangeCallback;
 }
 
-const Radio: React.FC<Props> = ({ options, isChecked, isDisabled, hasError, name, onChange }) => (
+const Radio: React.FC<Props> = ({ options, value, isDisabled, hasError, name, onChange }) => (
   <div className={styles.radioContainer}>
     {
-      options.map(option => {
-        return (
+      options.map(option => (
           <label
             key={option.value}
             className={clsx(styles.radioLabel,
               hasError && styles.error,
-              isChecked && styles.isChecked)
+              option.value === value && styles.isChecked)
             }
           >
             {option.label}
             <input
               onChange={onChange}
-              checked={isChecked}
+              checked={option.value === value}
               disabled={isDisabled}
               name={name}
               value={option.value}
@@ -37,7 +36,7 @@ const Radio: React.FC<Props> = ({ options, isChecked, isDisabled, hasError, name
             />
           </label>
         )
-      })
+      )
     }
   </div>
 );
