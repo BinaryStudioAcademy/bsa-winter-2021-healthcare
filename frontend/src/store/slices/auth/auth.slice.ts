@@ -14,15 +14,6 @@ const initialState: AuthState = {
   dataStatus: DataStatus.IDLE,
 };
 
-export const login = createAsyncThunk(
-  'auth/login',
-  async (userData: IUserLoginPayload) => {
-    const { token, user }: LoginResponse = await authApi.loginUser(userData);
-    storage.setItem(StorageKey.TOKEN, token);
-    return user;
-  },
-);
-
 const { reducer, actions } = createSlice({
   name: ReducerName.AUTH,
   initialState,
@@ -33,6 +24,15 @@ const { reducer, actions } = createSlice({
     });
   },
 });
+
+const login = createAsyncThunk(
+  'auth/login',
+  async (userData: IUserLoginPayload) => {
+    const { token, user }: LoginResponse = await authApi.loginUser(userData);
+    storage.setItem(StorageKey.TOKEN, token);
+    return user;
+  },
+);
 
 const AuthActionCreator = {
   ...actions,
