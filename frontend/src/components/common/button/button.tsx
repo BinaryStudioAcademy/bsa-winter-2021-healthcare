@@ -13,10 +13,9 @@ interface Props {
   hasHiddenLabel: boolean;
   isDisabled: boolean;
   icon?: ButtonIcon;
-  notificationCount?: number;
 }
 
-const Button: React.FC<Props> = ({ type, styleType, color, label, isDisabled, hasHiddenLabel, icon, notificationCount, onClick }) => (
+const Button: React.FC<Props> = ({ type, styleType, color, label, isDisabled, hasHiddenLabel, icon, onClick }) => (
   <button
     className={clsx(styles.btn, styles[styleType], styles[color], icon && styles[icon])}
     type={type}
@@ -24,7 +23,6 @@ const Button: React.FC<Props> = ({ type, styleType, color, label, isDisabled, ha
     onClick={onClick}>
     {hasHiddenLabel ? <span className={styles.visuallyHidden}>{label}</span> : label}
     {icon && <span className={clsx(styles.buttonIcon, styles[icon])}></span>}
-    {notificationCount && <span className={styles.notificationCount}>{notificationCount}</span>}
   </button>
 );
 

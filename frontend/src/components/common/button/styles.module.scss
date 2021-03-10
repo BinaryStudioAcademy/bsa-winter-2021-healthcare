@@ -19,22 +19,6 @@
   }
 }
 
-.notificationCount {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  height: 15px;
-  width: 15px;
-  border-radius: 50%;
-  background-color: var(--color-secondary-gark);
-  color: #fff;
-  font-size: 9px;
-
-  margin-left: 16px;
-  margin-top: -30px;
-}
-
 .visuallyHidden {
   position: absolute;
   clip: rect(0 0 0 0);
@@ -49,7 +33,7 @@
 }
 
 .primary-dark-background {
-  background-color: var(--color-primary-gark);
+  background-color: var(--color-primary-dark);
 }
 
 .gray-light-background {
@@ -66,7 +50,7 @@
 }
 
 .bordered {
-  border: 1px solid var(--color-primary-gark);
+  border: 1px solid var(--color-primary-dark);
 }
 
 .small-round {
