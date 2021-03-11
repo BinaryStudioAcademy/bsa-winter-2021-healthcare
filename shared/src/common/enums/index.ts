@@ -11,3 +11,5 @@ export * from './document';
 export * from './register';
 export * from './api';
 export * from './validation';
+export * from './doctor';
+export * from './payment';
