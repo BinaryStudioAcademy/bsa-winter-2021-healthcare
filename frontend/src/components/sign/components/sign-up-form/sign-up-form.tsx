@@ -8,6 +8,9 @@ import { RegisterPayloadKey, UserType, UserSex } from 'common/enums'
 import { IRegisterPayload } from 'common/interfaces'
 import { userRegister as validationUserSchema } from 'validation-schemas'
 
+import { InputType, InputColor } from 'common/enums';
+import { TextInput } from "components/common";
+
 import styles from './styles.module.scss';
 
 
@@ -26,9 +29,10 @@ const DEFAULT_VALUES: IRegisterPayload = {
 
 const SignUpForm: React.FC = () => {
 
-  const { register, handleSubmit, errors } = useForm<IRegisterPayload>({
+  const { register, handleSubmit, errors, control } = useForm<IRegisterPayload>({
     resolver: yupResolver(validationUserSchema),
     defaultValues: DEFAULT_VALUES,
+    mode: "onChange"
   });
 
   const dispatch = useDispatch();
@@ -40,7 +44,7 @@ const SignUpForm: React.FC = () => {
 
       <h2 className={styles.title}>Sign Up</h2>
 
-      <div className={styles.inputBlock}>
+      {/* <div className={styles.inputBlock}>
         <label htmlFor={RegisterPayloadKey.NAME}>Name</label>
         <input
           type="text"
@@ -49,9 +53,19 @@ const SignUpForm: React.FC = () => {
           ref={register}
         />
         {errors.name && <span className={styles.errorSpan}>{errors.name.message}</span>}
-      </div>
+      </div> */}
 
-      <div className={styles.inputBlock}>
+      <TextInput
+        name={RegisterPayloadKey.NAME}
+        label="Name"
+        placeholder="Name"
+        type={InputType.TEXT}
+        color={InputColor.GRAY_LIGHT}
+        control={control}
+        errors={errors}
+      />
+
+      {/* <div className={styles.inputBlock}>
         <label htmlFor={RegisterPayloadKey.SURNAME}>Surname</label>
         <input
           type="text"
@@ -60,7 +74,17 @@ const SignUpForm: React.FC = () => {
           ref={register}
         />
         {errors.surname && <span className={styles.errorSpan}>{errors.surname.message}</span>}
-      </div>
+      </div> */}
+
+      <TextInput
+        name={RegisterPayloadKey.SURNAME}
+        label="Surname"
+        placeholder="Surname"
+        type={InputType.TEXT}
+        color={InputColor.GRAY_LIGHT}
+        control={control}
+        errors={errors}
+      />
 
       <div className={styles.inputBlock}>
         <label htmlFor={RegisterPayloadKey.SEX}>Gender</label>

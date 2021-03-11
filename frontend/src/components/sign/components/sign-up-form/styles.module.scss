@@ -1,6 +1,4 @@
 .title {
-  display: flex;
-  justify-content: center;
   margin-top: 5px;
   font-family: 'Inter', sans-serif;
   font-size: 24px;
@@ -33,9 +31,9 @@
     flex-wrap: wrap;
   }
 
-  .errorSpan {
-    color: #E71616;
-  }
+  // span {
+  //   color: #E71616;
+  // }
 
   label {
     margin: 5px;
