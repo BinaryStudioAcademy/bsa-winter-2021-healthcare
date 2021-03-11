@@ -8,3 +8,5 @@ export * from './message';
 export * from './notification';
 export * from './doctor-clinic';
 export * from './user-type-doctor';
+export * from './register';
+export * from './form';

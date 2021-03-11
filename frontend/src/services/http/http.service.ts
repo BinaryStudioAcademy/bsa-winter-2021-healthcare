@@ -1,12 +1,21 @@
 import { HttpError } from 'exceptions';
 import { checkIsOneOf } from 'helpers';
-import { ContentType, HttpHeader, HttpMethod } from 'common/enums';
+import { ContentType, HttpHeader, HttpMethod, StorageKey } from 'common/enums';
 import { HttpOptions } from 'common/types';
+import { storage } from 'services';
 
 class Http {
-  load<T = unknown>(url: string, options: Partial<HttpOptions> = {}): Promise<T> {
-    const { method = HttpMethod.GET, payload = null, contentType } = options;
-    const headers = this._getHeaders(contentType);
+  load<T = unknown>(
+    url: string,
+    options: Partial<HttpOptions> = {},
+  ): Promise<T> {
+    const {
+      method = HttpMethod.GET,
+      payload = null,
+      hasAuth = true,
+      contentType,
+    } = options;
+    const headers = this._getHeaders(hasAuth, contentType);
     const isJSON = checkIsOneOf(contentType, ContentType.JSON);
 
     return fetch(url, {
@@ -19,11 +28,16 @@ class Http {
       .catch(this._throwError);
   }
 
-  _getHeaders(contentType?: ContentType): Headers {
+  _getHeaders(hasAuth: boolean, contentType?: ContentType): Headers {
     const headers = new Headers();
+    const token = storage.getItem(StorageKey.TOKEN);
 
     if (contentType) {
       headers.append(HttpHeader.CONTENT_TYPE, contentType);
+    }
+
+    if (hasAuth) {
+      headers.append(HttpHeader.AUTHORIZATION, `Bearer ${token}`);
     }
 
     return headers;

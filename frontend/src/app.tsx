@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { AppRoute } from 'common/enums'
 import { Route, Switch } from 'react-router-dom';
+import { AppRoute } from 'common/enums';
+import Sign from 'components/sign/sign'
+import NotFound from 'components/not-found/not-found';
 import DoctorsSearch from 'components/doctors-search/doctors-search';
-import Counter from 'components/counter/counter'
 
 const App: React.FC = () => (
   <Switch>
-    <Route exact path={AppRoute.ROOT} component={Counter}/>
+    <Route path={[AppRoute.SIGN_IN, AppRoute.SIGN_UP]} component={Sign}/>
     <Route path={AppRoute.DOCTORS} component={DoctorsSearch}/>
+    <Route path="*" exact component={NotFound} />
   </Switch>
 );
 

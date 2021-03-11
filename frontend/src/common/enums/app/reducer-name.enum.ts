@@ -1,6 +1,7 @@
 enum ReducerName {
   COUNTER = 'counter',
-  DOCTORS = 'doctors'
+  DOCTORS = 'doctors',
+  AUTH = 'auth',
 }
 
 export { ReducerName };

@@ -1,1 +1,2 @@
-export type { IUser } from 'healthcare-shared/common/interfaces';
+export type { IUserLoginPayload, IUser } from 'healthcare-shared/common/interfaces';
+

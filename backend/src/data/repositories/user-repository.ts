@@ -1,11 +1,11 @@
 import { UserModel, DoctorModel, ClinicModel } from '../models';
-import { IUser } from '~/common/interfaces';
+import { IUser, IRegisterPayload } from '~/common/interfaces';
 import { UserType, ModelAlias,  Attribute} from '~/common/enums';
-import {  } from '~/helpers'
+
 
 class UserRepository {
-  public getAll():Promise<IUser[]>{
-    return UserModel.findAll()
+  public getAll(): Promise<IUser[]> {
+    return UserModel.findAll();
   }
 
   public getByType(type:UserType):Promise<IUser[]>{
@@ -29,19 +29,26 @@ class UserRepository {
     return UserModel.findAll({ where: {type} })
   }
 
-  public getById(id:string):Promise<IUser | null>{
-    return UserModel.findByPk(id)
+  public getById(id: string): Promise<IUser | null> {
+    return UserModel.findByPk(id);
   }
 
-  public createUser(user:IUser):Promise<IUser>{
-    return UserModel.create(user)
+  public createUser(user: IRegisterPayload): Promise<IUser> {
+    return UserModel.create(user);
   }
 
-  public async updateById(id:string, data:IUser):Promise<IUser[]>{
+  public findByEmail(email: string): Promise<IUser | null> {
+    return UserModel.findOne({
+      where: { email },
+    });
+  }
+
+  public async updateById(id: string, data: IUser): Promise<IUser[]> {
     const result = await UserModel.update(data, {
       where: { id },
-      returning: true
+      returning: true,
     });
+
     return result[1];
   }
 
