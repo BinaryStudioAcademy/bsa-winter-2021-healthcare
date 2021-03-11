@@ -19,7 +19,7 @@ const associate = ({
 
   Doctor.hasMany(Appointment, {foreignKey: ForeingKey.DOCTOR_ID, as: ModelAlias.APPOINTMENTS});
   Doctor.belongsTo(Clinic, {foreignKey: ForeingKey.CLINIC_ID, as: ModelAlias.CLINIC});
-  Doctor.belongsTo(Document, {foreignKey: ForeingKey.DOCUMENT_ID, as: ModelAlias.DOCUMENTS});
+  Doctor.belongsTo(Document, {foreignKey: ForeingKey.DOCUMENT_ID, as: ModelAlias.DOCUMENT});
   Doctor.belongsTo(User, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER});
 
   Appointment.belongsTo(Doctor, {foreignKey: ForeingKey.DOCTOR_ID, as: ModelAlias.DOCTOR});

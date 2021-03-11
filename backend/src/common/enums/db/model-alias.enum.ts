@@ -6,6 +6,7 @@ enum ModelAlias {
     DOCTORS = 'doctors',
     DOCTOR = 'doctor',
     DOCUMENTS = 'documents',
+    DOCUMENT = 'document',
     MESSAGES = 'messages',
     NOTIFICATIONS = 'notifications',
     USERS = 'users',
