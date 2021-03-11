@@ -1,78 +1,40 @@
+:root {
+  --color-primary-dark: #6600cc;
+  --color-primary-light: #5b8def;
+  --color-secondary-dark: #ac5dd9;
+  --color-secondary-light: #dda5e9;
+  --color-gray-light: #f2f2f5;
+  --color-error: #e71616;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #787878;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  background-color: #ffffff;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
-}
-
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-}
-
-.App-link {
-  color: rgb(112, 76, 182);
-}
-
-.App-navigation {
-  display: flex;
-  justify-content: center;
-}
-
-.App-navigation-list {
-  display: flex;
-  justify-content: center;
-  padding: 0;
-  list-style: none;
-
-  li:not(:last-child) {
-    margin: 0 15px 0 0;
-  }
-}
-
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px)
-  }
-  100% {
-    transform: translateY(0px)
-  }
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
 }
 
 #root {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
 }
