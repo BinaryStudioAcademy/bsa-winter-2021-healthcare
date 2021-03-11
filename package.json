@@ -31,7 +31,6 @@
     "build:deploy": "npm run build && mv backend/build . && mv frontend/build/* build/public"
   },
   "devDependencies": {
-    "@types/react-table": "^7.0.28",
     "@typescript-eslint/eslint-plugin": "4.15.2",
     "@typescript-eslint/parser": "4.15.2",
     "concurrently": "6.0.0",
