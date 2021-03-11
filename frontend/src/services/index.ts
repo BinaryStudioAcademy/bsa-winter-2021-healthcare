@@ -18,6 +18,7 @@ const storage = new Storage({
 });
 const userApi = new UserApi({
   http,
+  apiPrefix:ENV.API_PATH,
 });
 
 export { http, userApi, authApi, storage };

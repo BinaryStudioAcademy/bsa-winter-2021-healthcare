@@ -4,3 +4,4 @@ export * from './file';
 export * from './auth';
 export * from './register';
 export * from './users';
+export * from './api';

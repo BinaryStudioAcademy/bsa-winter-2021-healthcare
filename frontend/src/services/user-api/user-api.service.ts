@@ -1,30 +1,20 @@
-import {
-  ApiPath,
-  ContentType,
-  UsersApiPath,
-} from 'healthcare-shared/common/enums';
-import { ENV } from 'common/enums';
+import { ContentType, UsersApiPath, ApiPath } from 'common/enums';
 import { Http } from '../http/http.service';
 import { HttpMethod } from 'common/enums';
-import { IUser } from 'healthcare-shared';
+import { IUser } from 'common/interfaces';
 
 type Constructor = {
   http: Http;
+  apiPrefix: string;
 };
 
 class UserApi {
   #http: Http;
-  #apiPrefix: string | undefined;
-  constructor({ http }: Constructor) {
+  #apiPrefix: string;
+  constructor({ http, apiPrefix }: Constructor) {
     this.#http = http;
-    this.#apiPrefix = ENV.API_PATH;
+    this.#apiPrefix = apiPrefix;
   }
-  // public loginUser(payload: IUserLoginPayload): Promise<IUser> {
-  //   return this.#http.load(UsersApiPath, {
-  //     method: HttpMethod.POST,
-  //     payload,
-  //   });
-  // }
   public registerUser(payload: IUser): Promise<IUser> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.ROOT}`,
@@ -35,7 +25,7 @@ class UserApi {
       },
     );
   }
-  public editUser(id: string | undefined, payload: IUser): Promise<IUser> {
+  public editUser(id: string, payload: IUser): Promise<IUser> {
     return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}/${id}`, {
       method: HttpMethod.PUT,
       payload: { ...payload },
@@ -47,7 +37,7 @@ class UserApi {
       method: HttpMethod.GET,
     });
   }
-  public deleteUser(id: string): Promise<IUser> {
+  public deleteUser(id: string): Promise<boolean> {
     return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}/${id}`, {
       method: HttpMethod.DELETE,
     });
