@@ -1,17 +1,14 @@
 import React from 'react';
 import { useTable } from 'react-table';
 import { Column } from 'common/interfaces';
-import ActionsButton from './actions-button';
 import styles from './styles.module.scss';
 
 interface IProps {
   columns: Column[],
-  data: any,
-  edit: (id: string) => void,
-  deleteUser: (id:string) => void,
+  data: Record<symbol, unknown>[],
 }
 
-function Table({ columns, data, edit, deleteUser }: IProps) {
+const Table: React.FC<IProps> = ({ columns, data }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -49,20 +46,12 @@ function Table({ columns, data, edit, deleteUser }: IProps) {
             return (
               <tr {...row.getRowProps()} key={key}>
                 {row.cells.map((cell) => {
-                  let item;
                   const { key } = cell.getCellProps();
-                  cell.column.Header === 'Actions'
-                    ? (item = (
-                        <td {...cell.getCellProps()} key={key}>
-                          <ActionsButton edit={edit} deleteUser={deleteUser} id={cell.row.values.id} />
-                        </td>
-                      ))
-                    : (item = (
-                        <td {...cell.getCellProps()} key={key}>
-                          <div>{cell.render('Cell')}</div>
-                        </td>
-                      ));
-                  return item;
+                  return (
+                    <td {...cell.getCellProps()} key={key}>
+                      <div>{cell.render('Cell')}</div>
+                    </td>
+                  );
                 })}
               </tr>
             );
