@@ -4,7 +4,7 @@ import { RegisterPayloadKey, UserType, UserSex, RegisterValidationRule, Register
 
 const userRegister = yup.object().shape({
   [RegisterPayloadKey.NAME]: yup.string().required(RegisterValidationMessage.NAME_REQUIRED),
-  [RegisterPayloadKey.SURNAME]: yup.string().required(RegisterValidationMessage.EMAIL_REQUIRED),
+  [RegisterPayloadKey.SURNAME]: yup.string().required(RegisterValidationMessage.SURNAME_REQUIRED),
   [RegisterPayloadKey.SEX]: yup.mixed<UserSex>().oneOf(Object.values(UserSex)).required(RegisterValidationMessage.SEX_REQUIRED),
   [RegisterPayloadKey.BIRTH_DATE]: yup.date().required(RegisterValidationMessage.BIRTH_DATE_REQUIRED),
   [RegisterPayloadKey.EMAIL]: yup.string().required(RegisterValidationMessage.EMAIL_REQUIRED).email(RegisterValidationMessage.EMAIL_INCORRECT),
