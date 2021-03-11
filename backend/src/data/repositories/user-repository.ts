@@ -1,7 +1,7 @@
 import { UserModel, DoctorModel, ClinicModel } from '../models';
 import { IUser } from '~/common/interfaces';
-import { UserType } from '~/common/enums';
-import { ModelAlias } from '~/common/enums';
+import { UserType, ModelAlias,  Attribute} from '~/common/enums';
+import {  } from '~/helpers'
 
 class UserRepository {
   public getAll():Promise<IUser[]>{
@@ -12,20 +12,18 @@ class UserRepository {
     if (type === UserType.DOCTOR) {
       return UserModel.findAll({
         where: {type},
-        include: [
-          {
-            model: DoctorModel,
-            as: ModelAlias.DOCTORS,
-            attributes: ['id', 'department', 'about'],
-            include: [
-              {
-                model: ClinicModel,
-                as: ModelAlias.CLINICS,
-                attributes: ['id', 'name', 'address', 'clinicType']
-              }
-            ]
-          }
-        ]
+        include: {
+          model:DoctorModel,
+          as:ModelAlias.DOCTOR,
+          attributes: [Attribute.ID, Attribute.DEPARTMENT, Attribute.ABOUT],
+          include:[
+            {
+              model: ClinicModel,
+              as: ModelAlias.CLINIC,
+              attributes: [Attribute.ID, Attribute.NAME, Attribute.ADDRESS, Attribute.CLINIC_TYPE]
+            }
+          ]
+        }
       })
     }
     return UserModel.findAll({ where: {type} })
@@ -47,10 +45,12 @@ class UserRepository {
     return result[1];
   }
 
-  public deleteById(id:string):Promise<number>{
-    return UserModel.destroy({
+  public async deleteById(id:string): Promise<boolean> {
+    const deletedRows = await UserModel.destroy({
       where: { id }
     });
+
+    return Boolean(deletedRows)
   }
 }
 

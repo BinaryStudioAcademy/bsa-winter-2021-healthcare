@@ -2,7 +2,7 @@ import { IDoctor } from '../doctor';
 import { IClinic } from '../clinic';
 
 interface IDoctorWithClinic extends IDoctor {
-  clinics: IClinic
+  clinic: IClinic
 }
 
 export type { IDoctorWithClinic }

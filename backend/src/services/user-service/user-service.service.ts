@@ -18,7 +18,7 @@ class UserService {
   public async updateUser(id:string, data:IUser):Promise<IUser[]>{
     return userRepository.updateById(id, data)
   }
-  public deleteUser(id:string):Promise<number>{
+  public deleteUser(id:string):Promise<boolean>{
     return userRepository.deleteById(id)
   }
 }
