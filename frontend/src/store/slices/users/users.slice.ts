@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { userApi } from 'services';
-import { ReducerName } from 'common/enums';
+import { ReducerName, UserSex, UserType } from 'common/enums';
 import { AppThunk } from 'common/types';
-import { IUser, UserType, UserSex, IRegisterPayload } from 'healthcare-shared';
+import { IUser, IRegisterPayload } from 'common/interfaces';
 
 interface IState {
   value: number;
@@ -14,7 +14,7 @@ const DEFAULT_USER_INSTANCE = {
   'name': '',
   'surname': '',
   'sex': UserSex.FEMALE,
-  'type': UserType.PATIENT,
+  'type': UserType.DOCTOR,
   'birthdate': new Date().toString(),
   'phone': '',
   'password': '',
@@ -53,7 +53,6 @@ const { reducer, actions } = createSlice({
     setEditUser: (state, action: PayloadAction<string>) => {
       state.editUser = {
         ...state.users
-          .concat()
           .filter((user: IUser) => user.id === action.payload)[0],
       };
     },
@@ -63,37 +62,13 @@ const { reducer, actions } = createSlice({
     },
     editUser:(state, action: PayloadAction<{id:string|undefined,data:IUser}>) => {
       const id = action.payload.id;
-      state.users = [...state.users.map((user:IUser)=> user.id === id ? action.payload.data : user)];
+      state.users = state.users.map((user:IUser)=> user.id === id ? action.payload.data : user);
     },
-    dltUser:(state, action: PayloadAction<string>) => {
-      state.users = [...state.users.filter((user:IUser)=> user.id !== action.payload)];
-    },
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
-    },
+    deleteUser:(state, action: PayloadAction<string>) => {
+      state.users = state.users.filter((user:IUser)=> user.id !== action.payload);
+    }
   },
 });
-
-// The function below is called a thunk and allows us to perform async logic. It
-// can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
-// will call the thunk with the `dispatch` function as the first argument. Async
-// code can then be executed and other actions can be dispatched
-const incrementAsync = (amount: number): AppThunk => (dispatch) => {
-  setTimeout(() => {
-    dispatch(actions.incrementByAmount(amount));
-  }, 1000);
-};
 
 const getUsers = (): AppThunk => (dispatch) => {
   const asyncFetch = async () => {
@@ -110,7 +85,7 @@ const getUser = (id:string): AppThunk => (dispatch) => {
 };
 const editUser = (userInfo: IUser): AppThunk => (dispatch) => {
   const asyncFetch = async () => {
-    const response = await userApi.editUser(userInfo.id, {...userInfo});
+    const response = await userApi.editUser(userInfo.id as string, {...userInfo});
     response ? dispatch(actions.editUser({id:userInfo.id, data:{...userInfo}})) : null;
   };
   asyncFetch()
@@ -122,16 +97,11 @@ const addUser = (userInfo: IRegisterPayload): AppThunk => (dispatch) => {
   asyncFetch();
 };
 const deleteUser = (id: string): AppThunk => (dispatch) => {
-  dispatch(actions.dltUser(id));
+  dispatch(actions.deleteUser(id));
   const asyncFetch = async () => {
     await userApi.deleteUser(id);
   };
   asyncFetch();
-};
-
-const CounterActionCreator = {
-  ...actions,
-  incrementAsync,
 };
 
 const UsersActionCreator = {
@@ -143,4 +113,4 @@ const UsersActionCreator = {
   deleteUser,
 };
 
-export { CounterActionCreator, UsersActionCreator, reducer };
+export { UsersActionCreator, reducer };
