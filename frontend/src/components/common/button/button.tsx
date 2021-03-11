@@ -1,7 +1,8 @@
+import * as React from 'react';
 import clsx from 'clsx';
 import { ButtonColor, ButtonIcon, ButtonStyleType, ButtonType } from 'common/enums';
 import { ButtonClickCallback } from 'common/types';
-import * as React from 'react';
+
 import styles from './styles.module.scss';
 
 interface Props {
@@ -9,8 +10,8 @@ interface Props {
   styleType: ButtonStyleType;
   color: ButtonColor;
   label: string;
-  onClick: ButtonClickCallback;
-  hasHiddenLabel: boolean;
+  onClick?: ButtonClickCallback;
+  hasHiddenLabel?: boolean;
   isDisabled?: boolean;
   icon?: ButtonIcon;
 }

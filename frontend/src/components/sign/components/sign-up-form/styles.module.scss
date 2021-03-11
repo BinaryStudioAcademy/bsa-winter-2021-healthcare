@@ -19,69 +19,7 @@
   line-height: 15px;
 
   .inputBlock {
-    display: flex;
-    flex-direction: column;
     margin-bottom: 15px;
     width: 100%;
-  }
-
-  .submit {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  // span {
-  //   color: #E71616;
-  // }
-
-  label {
-    margin: 5px;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 15px;
-    color: black;
-  }
-
-  input,
-  select {
-    margin: 5px;
-    padding: 10px 10px;
-    padding-left: 15px;
-    outline: none;
-    background: #F2F2F5;
-    border: 1px solid #F2F2F5;
-    border-radius: 7px;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 15px;
-
-
-    &::placeholder {
-      color: black;
-    }
-
-    &:focus {
-      border: 1px solid #5B8DEF;
-      background-color: white;
-    }
-  }
-
-  button[type="button"],
-  button[type="submit"] {
-    cursor: pointer;
-    min-width: 100%;
-    margin: 5px;
-    padding:  10px;
-    border: none;
-    border-radius: 7px;
-    background-color: #6600CC;
-    color: #fff;
-
-    &:hover {
-      background-color: #5305a1;
-      color: #fff;
-    }
-
   }
 }
