@@ -6,18 +6,20 @@ import historyIcon from 'assets/images/admin-page/vectorhistory.svg';
 import styles from './styles.module.scss';
 
 interface IProps {
-  edit: (id: string) => void,
-  deleteUser: (id:string)=> void,
+  edit: (id:string) => void,
+  deleteUser: (id:string) => void,
   id: string,
 }
 
-function ActionsButton({ edit, id, deleteUser }: IProps) {
+const ActionsButton: React.FC<IProps> = ({ edit, id, deleteUser }) => {
+  const editUserHandler = () => edit(id);
+  const deleteUserHandler = () => deleteUser(id);
   return (
     <div className={styles.iconsDiv}>
-      <div onClick={() => edit(id)} className={styles.iconDiv}>
+      <div onClick={editUserHandler} className={styles.iconDiv}>
         <img src={editIcon} />
       </div>
-      <button onClick={() => deleteUser(id)}>DELETE</button>
+      <button onClick={deleteUserHandler}>DELETE</button>
       <div className={styles.iconDiv}>
         <img src={pdfIcon} />
       </div>
