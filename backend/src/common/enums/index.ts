@@ -5,4 +5,5 @@ export * from './user';
 export * from './appointment';
 export * from './clinic';
 export * from './document';
+export * from './validation';
 export * from './db';

@@ -1,0 +1,32 @@
+.flexColumnCentered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.notFoundContainer {
+  flex-grow: 1;
+}
+
+.logo {
+  margin: 0 0 10px;
+}
+
+.footerText {
+  margin: 0;
+}
+
+.footerContainer {
+  padding-bottom: 20px;
+}
+
+.textNotFound {
+  text-align: center;
+  font-size: 40px;
+}
+
+.text404 {
+  display: block;
+  font-size: 70px;
+}
