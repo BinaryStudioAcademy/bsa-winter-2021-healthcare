@@ -2,33 +2,35 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
-import { EditUserPayloadKey, UserSex, UserType } from 'common/enums';
+import { RegisterPayloadKey } from 'common/enums';
+import {
+  IRegisterPayload,
+  IUser,
+} from 'common/interfaces';
+import { validationUserSchema } from 'helpers';
 import styles from './styles.module.scss';
-import { IEditUserPayload, IUser } from 'common/interfaces';
-import { validationEditUserSchema } from 'helpers';
 
-interface IProps {
-  user?: IUser;
-  func: (data: IEditUserPayload) => void;
-  hideForm: () => void;
+interface IProps{
+  user?:IUser,
+  func:(data:IRegisterPayload)=>void,
+  hideForm: ()=>void,
 }
 
-const DEFAULT_VALUES: IEditUserPayload = {
-  [EditUserPayloadKey.NAME]: '',
-  [EditUserPayloadKey.SURNAME]: '',
-  [EditUserPayloadKey.EMAIL]: '',
-  [EditUserPayloadKey.PASSWORD]: '',
-  [EditUserPayloadKey.RETYPE_PASSWORD]: '',
-  [EditUserPayloadKey.PHONE]: '',
-  [EditUserPayloadKey.BIRTHDATE]: '',
-  [EditUserPayloadKey.TYPE]: UserType.DOCTOR,
-  [EditUserPayloadKey.SEX]: UserSex.MALE,
+const DEFAULT_VALUES: IRegisterPayload = {
+  [RegisterPayloadKey.NAME]: '',
+  [RegisterPayloadKey.SURNAME]: '',
+  [RegisterPayloadKey.EMAIL]: '',
+  [RegisterPayloadKey.PASSWORD]: '',
+  [RegisterPayloadKey.RETYPE_PASSWORD]: '',
+  [RegisterPayloadKey.PHONE]: '',
+  [RegisterPayloadKey.IS_STAFF]: false,
 };
+
 
 const CreateUser: React.FC<IProps> = ({ user, func, hideForm }) => {
   const [userState, setUserState] = useState(DEFAULT_VALUES);
-  const { register, handleSubmit, errors } = useForm<IEditUserPayload>({
-    resolver: yupResolver(validationEditUserSchema),
+  const { register, handleSubmit, errors } = useForm<IRegisterPayload>({
+    resolver: yupResolver(validationUserSchema),
     defaultValues: DEFAULT_VALUES,
   });
 
@@ -36,19 +38,12 @@ const CreateUser: React.FC<IProps> = ({ user, func, hideForm }) => {
     setUserState({ ...userState, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = (data: IEditUserPayload) => func(data);
+  const onSubmit = (data: IRegisterPayload) => func(data);
   const closeEdit = () => hideForm();
-
-  const  onSexChange = (event:any) => {
-    setUserState({...userState,sex:event.target.value});
-  }
-  const  onTypeChange = (event:any) => {
-    setUserState({...userState,type:event.target.value});
-  }
 
   useEffect(() => {
     user ? setUserState({ ...userState, ...user }) : null;
-  }, []);
+  },[]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.editForm}>
@@ -59,7 +54,7 @@ const CreateUser: React.FC<IProps> = ({ user, func, hideForm }) => {
             type="text"
             placeholder="Name"
             value={userState.name}
-            name={EditUserPayloadKey.NAME}
+            name={RegisterPayloadKey.NAME}
             ref={register}
             onChange={(e) => inputHandler(e)}
           />
@@ -74,7 +69,7 @@ const CreateUser: React.FC<IProps> = ({ user, func, hideForm }) => {
             type="text"
             placeholder="Surname"
             value={userState.surname}
-            name={EditUserPayloadKey.SURNAME}
+            name={RegisterPayloadKey.SURNAME}
             ref={register}
             onChange={(e) => inputHandler(e)}
           />
@@ -89,7 +84,7 @@ const CreateUser: React.FC<IProps> = ({ user, func, hideForm }) => {
             type="email"
             placeholder="E-mail"
             value={userState.email}
-            name={EditUserPayloadKey.EMAIL}
+            name={RegisterPayloadKey.EMAIL}
             ref={register}
             onChange={(e) => inputHandler(e)}
           />
@@ -101,10 +96,10 @@ const CreateUser: React.FC<IProps> = ({ user, func, hideForm }) => {
         <div className={clsx(styles.password, styles.inputRow)}>
           <label htmlFor="password">Password</label>
           <input
-            type="text"
+            type="password"
             placeholder="Password"
             value={userState.password}
-            name={EditUserPayloadKey.PASSWORD}
+            name={RegisterPayloadKey.PASSWORD}
             ref={register}
             onChange={(e) => inputHandler(e)}
           />
@@ -116,10 +111,10 @@ const CreateUser: React.FC<IProps> = ({ user, func, hideForm }) => {
         <div className={clsx(styles.password, styles.inputRow)}>
           <label htmlFor="password">Retype Password</label>
           <input
-            type="text"
+            type="password"
             placeholder="Retype password"
             value={userState.retypePassword}
-            name={EditUserPayloadKey.RETYPE_PASSWORD}
+            name={RegisterPayloadKey.RETYPE_PASSWORD}
             ref={register}
             onChange={(e) => inputHandler(e)}
           />
@@ -136,7 +131,7 @@ const CreateUser: React.FC<IProps> = ({ user, func, hideForm }) => {
             type="tel"
             placeholder="Phone"
             value={userState.phone}
-            name={EditUserPayloadKey.PHONE}
+            name={RegisterPayloadKey.PHONE}
             ref={register}
             onChange={(e) => inputHandler(e)}
           />
@@ -145,59 +140,13 @@ const CreateUser: React.FC<IProps> = ({ user, func, hideForm }) => {
           )}
         </div>
 
-        <div className={clsx(styles.phone, styles.inputRow)}>
-          <label htmlFor="birthdate">Date of birth</label>
-          <input
-            type="date"
-            value={userState.birthdate.slice(0,10).toString()}
-            name={EditUserPayloadKey.BIRTHDATE}
-            ref={register}
-            onChange={(e) => inputHandler(e)}
-          />
-          {errors.birthdate && (
-            <span className={styles.errorSpan}>{errors.birthdate.message}</span>
-          )}
-        </div>
-
         <div className={styles.checkBox}>
           <input
-            type="radio"
-            name={EditUserPayloadKey.TYPE}
-            checked={userState.type === UserType.DOCTOR}
-            value={UserType.DOCTOR}
-            onChange={onTypeChange}
+            type="checkbox"
+            name={RegisterPayloadKey.IS_STAFF}
             ref={register}
           />
-          Doctor
-          <input
-            type="radio"
-            name={EditUserPayloadKey.TYPE}
-            checked={userState.type === UserType.PATIENT}
-            value={UserType.PATIENT}
-            onChange={onTypeChange}
-            ref={register}
-          />
-          Patient
-        </div>
-        <div className={styles.checkBox}>
-          <input
-            type="radio"
-            name={EditUserPayloadKey.SEX}
-            checked={userState.sex === UserSex.MALE}
-            value={UserSex.MALE}
-            onChange={onSexChange}
-            ref={register}
-          />
-          Male
-          <input
-            type="radio"
-            name={EditUserPayloadKey.SEX}
-            checked={userState.sex === UserSex.FEMALE}
-            value={UserSex.FEMALE}
-            onChange={onSexChange}
-            ref={register}
-          />
-          Female
+          <label htmlFor="isStaff">Doctor/Nurse</label>
         </div>
       </div>
 
@@ -207,6 +156,6 @@ const CreateUser: React.FC<IProps> = ({ user, func, hideForm }) => {
       </button>
     </form>
   );
-};
+}
 
 export default CreateUser;

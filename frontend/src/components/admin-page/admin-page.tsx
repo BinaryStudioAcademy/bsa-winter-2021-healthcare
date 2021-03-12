@@ -1,40 +1,85 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useHistory } from 'react-router-dom';
 import { RootState } from 'common/types';
-import { AppRoute } from 'common/enums';
 import { UsersActionCreator } from 'store/slices';
 import styles from './styles.module.scss';
 import Users from './users';
+import CreateUser from './create-user';
 import EditUser from './edit-user';
-import { IRegisterPayload, IUser } from 'healthcare-shared';
+import { IEditUserPayload, IRegisterPayload, IUser } from 'common/interfaces';
+import { UserType } from 'common/enums';
+
+const DEFAULT_USER_INSTANCE = {
+  'id': '',
+  'name': '',
+  'surname': '',
+  'sex': '',
+  'type': '',
+  'birthdate': '',
+  'phone': '',
+  'password': '',
+  'email': '',
+  'imagePath': '',
+  'diagnosis': '',
+  'createdAt': '',
+  'updatedAt': '',
+};
+
+// function changeDataToIUser(data:IRegisterPayload){
+//   const userType = data.isStaff ? UserType.DOCTOR : UserType.PATIENT
+//   return{
+//     name:data.name,
+//     surname:data.surname,
+//     email:data.email,
+//     password:data.password,
+//     phone:data.phone,
+//     type:userType
+//   }
+// }
 
 const AdminPage: React.FC = () => {
-  const history = useHistory();
-  const { user } = useSelector(({ users }: RootState) => ({
-    user: users.editUser,
-  }));
+  const [user, setUser] = React.useState(DEFAULT_USER_INSTANCE);
+  const [showPopUp, setShowPopUp] = React.useState(false);
 
-  const { pathname } = useLocation();
   const dispatch = useDispatch();
-  const editUser = (data: IRegisterPayload) => {
-    const editedUser: IUser = Object.assign({}, user, data)
+  const editUser = (data: IEditUserPayload) => {
+    const editedUser: IUser = {...user as IUser, ...data};
     dispatch(UsersActionCreator.editUser(editedUser));
-    setTimeout(() => {
-      history.push(AppRoute.ADMIN_PAGE);
-    }, 0)
+    hideForm();
+
   }
-  const setUser = (data: IRegisterPayload) => {
-    dispatch(UsersActionCreator.addUser(data));
-    setTimeout(() => {
-      history.push(AppRoute.ADMIN_PAGE);
-    }, 0)
+  const addUser = (data: IRegisterPayload) => {
+    // const newData:Record<string, unknown> | string = changeDataToIUser(data);
+    const newUser: IUser = {...user as IUser, ...data,};
+    dispatch(UsersActionCreator.addUser(newUser));
+    hideForm()
+  }
+  const deleteUser = (id: string) => {
+    dispatch(UsersActionCreator.deleteUser(id));
+  }
+
+  const showFormHandler = (user?: IUser) => {
+    user ? (setUser({ ...DEFAULT_USER_INSTANCE, ...user }), setShowPopUp(true)) : setShowPopUp(true);
+  }
+  const hideForm = () => {
+    setUser(DEFAULT_USER_INSTANCE);
+    setShowPopUp(false);
   }
   return (
     <div className={styles.container}>
-      <EditUser user={user} func={editUser} />
-      <EditUser func={setUser} />
-      <Users />
+      {
+        showPopUp ?
+          (<>
+            {
+              user.id ?
+                <EditUser user={user as IUser} func={editUser} hideForm={hideForm} />
+                :
+                <CreateUser func={addUser} hideForm={hideForm} />
+            }
+          </>)
+          : null
+      }
+      <Users showForm={showFormHandler} deleteUser={deleteUser} />
     </div>
   );
 };
