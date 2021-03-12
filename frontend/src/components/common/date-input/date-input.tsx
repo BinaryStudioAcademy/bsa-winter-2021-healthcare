@@ -1,9 +1,10 @@
 import React from "react";
-import { useController, Control, UseControllerOptions, FieldValues, FieldErrors } from "react-hook-form";
+import { useController, Control } from "react-hook-form";
 import { ErrorMessage } from '@hookform/error-message';
 import DatePicker from "react-datepicker";
 import clsx from "clsx";
 import { InputColor } from 'common/enums';
+import { FormDefaultValue, FormErrors } from 'common/types';
 
 import "react-datepicker/dist/react-datepicker.min.css";
 import "./datepicker-custom-styles.scss";
@@ -18,8 +19,8 @@ interface Props {
   color: InputColor;
   isDisabled?: boolean;
   control: Control;
-  errors?: FieldErrors<FieldValues>
-  defaultValue?: UseControllerOptions<FieldValues>;
+  errors?: FormErrors
+  defaultValue?: FormDefaultValue;
 }
 
 const DateInput: React.FC<Props> = ({ name, label, hasHiddenLabel, placeholder, color, isDisabled, control, defaultValue, errors }) => {

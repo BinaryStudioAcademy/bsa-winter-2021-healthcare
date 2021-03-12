@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { useController, Control, UseControllerOptions, FieldValues, FieldErrors } from "react-hook-form";
+import { useController, Control } from "react-hook-form";
 import { ErrorMessage } from '@hookform/error-message';
 import clsx from 'clsx';
 import { IOption } from 'common/interfaces';
 import { InputColor } from 'common/enums';
+import { FormDefaultValue, FormErrors } from 'common/types';
 
 import styles from './styles.module.scss';
 
@@ -16,8 +17,8 @@ interface Props {
   options: IOption<string>[];
   isDisabled?: boolean;
   control: Control;
-  errors?: FieldErrors<FieldValues>
-  defaultValue?: UseControllerOptions<FieldValues>;
+  errors?: FormErrors
+  defaultValue?: FormDefaultValue;
 }
 
 const Select: React.FC<Props> = ({ options, name, label, hasHiddenLabel, placeholder, color, isDisabled, control, defaultValue, errors }) => {
