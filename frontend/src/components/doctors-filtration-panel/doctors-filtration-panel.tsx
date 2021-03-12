@@ -20,7 +20,7 @@ const DoctorsFiltration: React.FC = () => {
         <div className={clsx(styles.commonFilter)}>
           <TextInput
             type={InputType.SEARCH}
-            color={InputColor.GRAY_LIGHT}
+            color={InputColor.WHITE}
             label=""
             name="Search"
             value=""
@@ -34,7 +34,7 @@ const DoctorsFiltration: React.FC = () => {
         >
           <TextInput
             type={InputType.TEXT}
-            color={InputColor.GRAY_LIGHT}
+            color={InputColor.WHITE}
             label=""
             name="City"
             value=""
@@ -43,7 +43,7 @@ const DoctorsFiltration: React.FC = () => {
           />
           <TextInput
             type={InputType.TEXT}
-            color={InputColor.GRAY_LIGHT}
+            color={InputColor.WHITE}
             label=""
             name="District"
             value=""
