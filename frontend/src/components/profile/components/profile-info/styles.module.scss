@@ -1,0 +1,93 @@
+.infoHeader {
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.editButton {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f2f5;
+  border-radius: 50%;
+  margin-left: 35px;
+}
+
+.infoBloks {
+  display: flex;
+  margin-top: 32px;
+}
+
+.photo {
+  width: 157px;
+  height: 150px;
+  background-size: cover;
+  border-radius: 15px;
+}
+
+.mainUserInfo {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 25px;
+  border-right: 1px solid grey;
+}
+
+.card {
+  background-color: #ac5dd9;
+  padding: 5px 10px;
+  border-radius: 50px;
+  color: #f2f2f5;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.sex {
+  color: #787878;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+.dateLabel {
+  color: #787878;
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.date {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.secUserInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-left: 60px;
+  width: 200px;
+}
+
+.item {
+  display: flex;
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 22px;
+  text-align: left;
+}
