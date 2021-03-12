@@ -1,0 +1,103 @@
+.doctorsDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  background-color: #ffffff;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-top: 10px;
+  margin-left: 10px;
+  .personalDataContainer {
+    display: flex;
+    flex-direction: row;
+
+    .doctorImage {
+      height: 60px;
+      width: 58px;
+      border-radius: 15px;
+    }
+    .personalDataBody {
+      display: flex;
+      flex-direction: column;
+      height: 49px;
+      width: 451px;
+      margin-left: 25px;
+      align-content: flex-start;
+
+      .department {
+        font-weight: 400;
+        font-size: 14px;
+        color: #787878;
+      }
+
+      .name {
+        font-weight: 600;
+        font-size: 18px;
+        color: #000000;
+        justify-self: flex-end;
+      }
+
+      .phone {
+        display: inline-flex;
+        align-self: flex-end;
+        justify-self: center;
+
+        .phoneNumber {
+          font-weight: 400;
+          font-size: 14px;
+          color: #000000;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+  .aboutContainer {
+    display: flex;
+    flex-direction: column;
+    // height: 89px;
+    width: 523px;
+    margin-top: 25px;
+
+    .aboutTitle {
+      font-weight: 500;
+      font-size: 16px;
+      color: #000000;
+    }
+    .aboutBody {
+      margin-top: 10px;
+      font-weight: 400;
+      font-size: 14px;
+      color: #787878;
+    }
+  }
+
+  .conditionsContainer {
+    display: flex;
+    flex-direction: column;
+    height: 127px;
+    width: 536px;
+    margin-top: 25px;
+
+    .conditionsTitle {
+      display: flex;
+      font-weight: 500;
+      font-size: 16px;
+      color: #000000;
+      align-content: center;
+
+      .titleText {
+        margin-left: 10px;
+      }
+    }
+    .conditionsList {
+      display: flex;
+      flex-flow: column wrap;
+      height: 96px;
+      width: 499px;
+      align-self: flex-end;
+      justify-self: flex-end;
+      font-weight: 400;
+      font-size: 14px;
+      color: #787878;
+    }
+  }
+}
