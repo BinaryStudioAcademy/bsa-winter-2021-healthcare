@@ -2,7 +2,7 @@ enum ContentType {
   PDF = 'application/pdf',
   OCTET_STREAM = 'application/octet-stream',
   JSON = 'application/json',
-  JPEG = 'image/jpeg',
+  JPG = 'image/jpg',
   PNG = 'image/png'
 }
 

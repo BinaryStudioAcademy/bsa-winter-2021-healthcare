@@ -1,12 +1,14 @@
 enum RegisterPayloadKey {
   NAME = 'name',
   SURNAME = 'surname',
+  SEX = 'sex',
+  BIRTH_DATE = 'birthdate',
   EMAIL = 'email',
   PASSWORD = 'password',
   RETYPE_PASSWORD = 'retypePassword',
   PHONE = 'phone',
-  IS_STAFF = 'isStaff',
-  // AVATAR = 'avatar'
+  TYPE = 'type',
+  IMAGE_PATH = 'imagePath'
 }
 
 export { RegisterPayloadKey }

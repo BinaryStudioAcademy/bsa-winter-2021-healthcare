@@ -1,3 +1,2 @@
-export * from './boolean/check-is-one-of/check-is-one-of.helper';
-export * from './validation';
+export * from './validation/edit-user/edit-user-schema.helper';
 export * from './boolean';

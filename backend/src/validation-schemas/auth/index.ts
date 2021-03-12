@@ -1,1 +1,1 @@
-export { login } from 'healthcare-shared/validation-schemas';
+export { userRegister, login } from 'healthcare-shared/validation-schemas';

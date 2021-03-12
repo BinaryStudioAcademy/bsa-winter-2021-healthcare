@@ -1,4 +1,3 @@
-export * from './register'
 export * from './user';
 export * from './appointment';
 export * from './clinic';
@@ -8,3 +7,4 @@ export * from './document';
 export * from './message';
 export * from './notification';
 export * from './edit-user';
+export * from './register';

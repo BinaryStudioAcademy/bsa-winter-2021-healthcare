@@ -1,37 +1,15 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap'); */
-
-body {
-  margin: 0;
-
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  color: #787878;
-  -webkit-font-smoothing: antialiased;
-
-  background-color: #fff;
-}
-
-
-*,
-*:before,
-*:after {
-    box-sizing: border-box;
-}
-
 .container {
-  overflow: hidden;
   background-color: white;
   height: 100vh;
   display: flex;
   flex-wrap: wrap;
-  min-height: 850px;
 
   &__logo {
     width: 65%;
-    height: 100%;
+    min-height: 100%;
 
     background-color: darkgray;
-    background-image: url("../../../assets/images/sign-img.jpg");
+    background-image: url("../../assets/images/sign-img.jpg");
     background-position: center, center;
     background-size: auto 115%;
   }
