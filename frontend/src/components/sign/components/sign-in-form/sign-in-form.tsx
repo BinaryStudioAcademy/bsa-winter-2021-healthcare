@@ -43,9 +43,6 @@ const SignInForm: React.FC = () => {
           errors={errors}
         />
       </div>
-      <div className={styles.forgotLink}>
-        <Link to={AppRoute.ROOT}>Forgot password</Link>
-      </div>
 
       <div className={styles.inputBlock}>
         <TextInput

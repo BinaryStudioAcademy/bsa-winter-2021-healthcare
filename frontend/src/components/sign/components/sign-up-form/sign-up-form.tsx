@@ -4,12 +4,12 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { AuthActionCreator } from 'store/slices';
-import { RegisterPayloadKey, UserType, UserSex } from 'common/enums'
+import { RegisterPayloadKey, UserType, UserSex, AppRoute } from 'common/enums'
 import { IRegisterPayload } from 'common/interfaces'
 import { userRegister as validationUserSchema } from 'validation-schemas'
 
 import { InputType, InputColor, ButtonType, ButtonColor, ButtonStyleType } from 'common/enums';
-import { TextInput, Select, DateInput, Button } from "components/common";
+import { TextInput, Select, DateInput, Link, Button } from "components/common";
 
 import styles from './styles.module.scss';
 
@@ -43,6 +43,10 @@ const SignUpForm: React.FC = () => {
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
 
       <h2 className={styles.title}>Sign Up</h2>
+
+      <div className={styles.inputBlock}>
+        Have account? <Link to={AppRoute.SIGN_IN}>Sign in</Link>
+      </div>
 
       <div className={styles.inputBlock}>
         <TextInput
@@ -187,6 +191,7 @@ const SignUpForm: React.FC = () => {
         <span>file1.pdf</span>
         <span>file2.jpg</span>
       </div> */}
+
       <div className={styles.submitBtn}>
         <Button
           label="Sign Up"
