@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.scss';
 
-const SearchAndFilterForm: React.FC = () => {
+const AdminPageFilter: React.FC = () => {
   return (
     <div>
       <input
@@ -22,4 +22,4 @@ const SearchAndFilterForm: React.FC = () => {
   );
 };
 
-export default SearchAndFilterForm;
+export default AdminPageFilter;
