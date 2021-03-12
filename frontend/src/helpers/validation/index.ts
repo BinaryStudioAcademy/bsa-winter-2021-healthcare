@@ -1,1 +1,1 @@
-export { validationUserSchema } from 'healthcare-shared/helpers';
+export { validationUserSchema, validationEditUserSchema } from 'healthcare-shared/helpers';

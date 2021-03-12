@@ -10,3 +10,4 @@ export * from './appointment';
 export * from './clinic';
 export * from './document';
 export * from './api';
+export * from './edit-user';
