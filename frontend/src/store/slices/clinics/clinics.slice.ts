@@ -1,9 +1,9 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ReducerName, DataStatus, StorageKey } from 'common/enums';
-import { IUser, IUserLoginPayload, IRegisterPayload, IClinic } from 'common/interfaces';
-import { authApi, storage } from 'services';
-import { LoginResponse } from 'common/types/responses';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ReducerName } from 'common/enums';
+import { IClinic } from 'common/interfaces';
+
 import { clinicApi } from 'services';
+import { AppThunk } from 'common/types';
 
 
 type ClinicsState = {
@@ -13,24 +13,6 @@ type ClinicsState = {
 const initialState: ClinicsState = {
   clinics: []
 };
-
-// const login = createAsyncThunk(
-//   'auth/login',
-//   async (userData: IUserLoginPayload) => {
-//     const { token, user }: LoginResponse = await authApi.loginUser(userData);
-//     storage.setItem(StorageKey.TOKEN, token);
-//     return user;
-//   },
-// );
-
-// const registration = createAsyncThunk(
-//   'auth/registration',
-//   async (userData: IRegisterPayload) => {
-//     const { token, user } = await authApi.registrationUser(userData);
-//     storage.setItem(StorageKey.TOKEN, token);
-//     return user;
-//   },
-// );
 
 const { reducer, actions } = createSlice({
   name: ReducerName.CLINICS,
@@ -42,7 +24,7 @@ const { reducer, actions } = createSlice({
   }
 });
 
-const getClinics = () => async (dispatch) => {
+const getClinics = (): AppThunk => async (dispatch) => {
   const clinics = await clinicApi.getClinics();
   dispatch(actions.setClinics(clinics));
 }
