@@ -178,14 +178,14 @@ const SignUpForm: React.FC = () => {
         <span>file1.pdf</span>
         <span>file2.jpg</span>
       </div> */}
-
-      <Button
-        label="Sign Up"
-        type={ButtonType.SUBMIT}
-        color={ButtonColor.PRIMARY_DARK}
-        styleType={ButtonStyleType.WITHOUT_BORDER}
-      />
-
+      <div className={styles.submitBtn}>
+        <Button
+          label="Sign Up"
+          type={ButtonType.SUBMIT}
+          color={ButtonColor.PRIMARY_DARK}
+          styleType={ButtonStyleType.WITHOUT_BORDER}
+        />
+      </div>
     </form>
   );
 };

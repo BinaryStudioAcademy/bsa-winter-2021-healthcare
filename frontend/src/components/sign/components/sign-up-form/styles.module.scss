@@ -1,12 +1,3 @@
-.title {
-  margin-top: 5px;
-  font-family: 'Inter', sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 29px;
-  color: black;
-  align-self: flex-start;
-}
 
 .form {
   width: 100%;
@@ -18,8 +9,23 @@
   font-size: 12px;
   line-height: 15px;
 
+  .title {
+    margin-top: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 29px;
+    color: black;
+    align-self: flex-start;
+  }
+
   .inputBlock {
     margin-bottom: 15px;
+    width: 100%;
+  }
+
+  .submitBtn {
+    margin-top: 15px;
     width: 100%;
   }
 }
