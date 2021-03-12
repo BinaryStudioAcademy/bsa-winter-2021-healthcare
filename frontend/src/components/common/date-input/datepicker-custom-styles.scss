@@ -11,7 +11,7 @@
   opacity: 0.95;
   border: none;
   border-radius: 20px;
-  padding: 24px 35px;
+  padding: 24px 34px;
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 14px;
@@ -62,13 +62,13 @@
 }
 
 .react-datepicker__day {
-  padding: 5px;
+  padding-top: 2px;
   border-radius: 50%;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   outline: none;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
 
   &:hover {
     border-radius: 50%;

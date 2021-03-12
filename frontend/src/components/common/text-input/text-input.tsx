@@ -16,7 +16,7 @@ interface Props {
   color: InputColor;
   isDisabled?: boolean;
   control: Control;
-  errors?: FormErrors
+  errors: FormErrors
   defaultValue?: FormDefaultValue;
 }
 

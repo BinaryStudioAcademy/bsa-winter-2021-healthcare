@@ -4,12 +4,14 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { AuthActionCreator } from 'store/slices';
-import { RegisterPayloadKey, UserType, UserSex, AppRoute } from 'common/enums'
+import {
+  RegisterPayloadKey, UserType, UserSex, AppRoute,
+  InputType, InputColor, ButtonType, ButtonColor, ButtonStyleType
+} from 'common/enums'
 import { IRegisterPayload } from 'common/interfaces'
 import { userRegister as validationUserSchema } from 'validation-schemas'
-
-import { InputType, InputColor, ButtonType, ButtonColor, ButtonStyleType } from 'common/enums';
 import { TextInput, Select, DateInput, Link, Button } from "components/common";
+import { createOptions } from 'helpers';
 
 import styles from './styles.module.scss';
 
@@ -27,6 +29,9 @@ const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.IMAGE_PATH]: 'https://www.pikpng.com/pngl/b/80-805523_default-avatar-svg-png-icon-free-download-264157.png'
 };
 
+const genderOptions = createOptions<string>(Object.values(UserSex))
+const userTypeOptions = createOptions<string>(Object.values(UserType))
+
 const SignUpForm: React.FC = () => {
 
   const { handleSubmit, errors, control } = useForm<IRegisterPayload>({
@@ -40,7 +45,7 @@ const SignUpForm: React.FC = () => {
   const onSubmit = (formData: IRegisterPayload) => dispatch(AuthActionCreator.registration(formData))
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.formSignUp}>
 
       <h2 className={styles.title}>Sign Up</h2>
 
@@ -80,10 +85,7 @@ const SignUpForm: React.FC = () => {
           label="Gender"
           hasHiddenLabel={false}
           placeholder="Gender"
-          options={[
-            { value: UserSex.FEMALE, label: 'female' },
-            { value: UserSex.MALE, label: 'male' }
-          ]}
+          options={genderOptions}
           color={InputColor.GRAY_LIGHT}
           control={control}
           errors={errors}
@@ -160,10 +162,7 @@ const SignUpForm: React.FC = () => {
           label="Status"
           hasHiddenLabel={false}
           placeholder="Status"
-          options={[
-            { value: UserType.PATIENT, label: 'Patient' },
-            { value: UserType.DOCTOR, label: 'Doctor or Nurse' }
-          ]}
+          options={userTypeOptions}
           color={InputColor.GRAY_LIGHT}
           control={control}
           errors={errors}

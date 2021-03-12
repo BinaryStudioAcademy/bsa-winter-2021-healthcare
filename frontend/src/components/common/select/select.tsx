@@ -17,7 +17,7 @@ interface Props {
   options: IOption<string>[];
   isDisabled?: boolean;
   control: Control;
-  errors?: FormErrors
+  errors: FormErrors
   defaultValue?: FormDefaultValue;
 }
 

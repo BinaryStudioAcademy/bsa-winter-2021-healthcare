@@ -23,7 +23,7 @@ const SignInForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)}>
+    <form onSubmit={handleSubmit(handleFormSubmit)} className={styles.formSignIn}>
 
       <h2 className={styles.title}>Sign In</h2>
 
