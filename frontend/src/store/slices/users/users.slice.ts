@@ -37,7 +37,7 @@ const { reducer, actions } = createSlice({
   reducers: {
     addUsers:(state, action: PayloadAction<IUser[]>) => {
 
-      state.users = [state.users[0], ...action.payload];
+      state.users = [...state.users, ...action.payload];
     },
     editUser:(state, action: PayloadAction<{id:string|undefined,data:IUser}>) => {
       const id = action.payload.id;
@@ -71,7 +71,8 @@ const editUser = (userInfo: IUser): AppThunk => (dispatch) => {
 };
 const addUser = (userInfo: IUser): AppThunk => (dispatch) => {
   const asyncFetch = async () => {
-    await userApi.registerUser({...userInfo, birthdate:new Date().toString()});
+    const response = await userApi.registerUser(userInfo);
+    dispatch(actions.addUsers([response]));
   };
   asyncFetch();
 };
