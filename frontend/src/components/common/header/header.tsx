@@ -8,19 +8,12 @@ import {
   ButtonStyleType,
   ButtonType,
 } from 'common/enums';
-import { Props, useVisible } from './common';
+import { Props } from './common';
+import { useVisible } from 'hooks';
 import styles from './header.module.scss';
 
 const Header: React.FC<Props> = ({ user }) => {
   const { ref, isVisible, setIsVisible } = useVisible(false);
-
-  const handleSearchClick = () => {
-    // TODO: add search logic
-  };
-
-  const handleNotificationsClick = () => {
-    // TODO: add notification logic
-  };
 
   const toggleShowMenu = () => {
     setIsVisible(!isVisible);
@@ -46,8 +39,8 @@ const Header: React.FC<Props> = ({ user }) => {
           type={ButtonType.BUTTON}
           styleType={ButtonStyleType.MEDIUM_ROUND}
           color={ButtonColor.GRAY_LIGHT}
-          label=""
-          onClick={handleSearchClick}
+          label="Search"
+          onClick={() => console.log('Search')}
           hasHiddenLabel={true}
           icon={ButtonIcon.SEARCH}
         />
@@ -55,25 +48,26 @@ const Header: React.FC<Props> = ({ user }) => {
           type={ButtonType.BUTTON}
           styleType={ButtonStyleType.MEDIUM_ROUND}
           color={ButtonColor.GRAY_LIGHT}
-          label=""
-          onClick={handleNotificationsClick}
+          label="Notifications"
+          onClick={() => console.log('Notifications')}
           hasHiddenLabel={true}
+          href={AppRoute.NOTIFICATIONS}
           icon={ButtonIcon.BELL}
         />
-        <img className={styles.avatar} src={user.imagePath} />
-        <div className={styles.userInfo}>{user.name}</div>
+        <img width={35} height={32} className={styles.avatar} src={user ? user.imagePath : 'https://www.pikpng.com/pngl/b/80-805523_default-avatar-svg-png-icon-free-download-264157.png'} />
+        <div className={styles.userInfo}>{user ? user.name : 'Name Surname'}</div>
         <Button
           type={ButtonType.BUTTON}
           styleType={ButtonStyleType.MEDIUM_ROUND}
           color={ButtonColor.GRAY_LIGHT}
-          label=""
+          label="Expand"
           onClick={toggleShowMenu}
           hasHiddenLabel={true}
           icon={ButtonIcon.EXPAND}
         />
-        {isVisible ? (
+        {isVisible && (
           <div className={styles.dropdownMenu} ref={ref}>
-            <div className={styles.userName}>{user.name}</div>
+            <div className={styles.userName}>{user ? user.name : 'Name Surname'}</div>
             <Button
               type={ButtonType.BUTTON}
               styleType={ButtonStyleType.WITHOUT_BORDER}
@@ -83,7 +77,7 @@ const Header: React.FC<Props> = ({ user }) => {
               hasHiddenLabel={false}
             />
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );
