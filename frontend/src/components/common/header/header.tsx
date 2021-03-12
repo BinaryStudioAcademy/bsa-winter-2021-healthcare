@@ -54,8 +54,13 @@ const Header: React.FC<Props> = ({ user }) => {
           href={AppRoute.NOTIFICATIONS}
           icon={ButtonIcon.BELL}
         />
-        <img width={35} height={32} className={styles.avatar} src={user ? user.imagePath : 'https://www.pikpng.com/pngl/b/80-805523_default-avatar-svg-png-icon-free-download-264157.png'} />
-        <div className={styles.userInfo}>{user ? user.name : 'Name Surname'}</div>
+        <img
+          width={35}
+          height={32}
+          className={styles.avatar}
+          src={user.imagePath}
+        />
+        <div className={styles.userInfo}>{user.name}</div>
         <Button
           type={ButtonType.BUTTON}
           styleType={ButtonStyleType.MEDIUM_ROUND}
@@ -67,7 +72,7 @@ const Header: React.FC<Props> = ({ user }) => {
         />
         {isVisible && (
           <div className={styles.dropdownMenu} ref={ref}>
-            <div className={styles.userName}>{user ? user.name : 'Name Surname'}</div>
+            <div className={styles.userName}>{user.name}</div>
             <Button
               type={ButtonType.BUTTON}
               styleType={ButtonStyleType.WITHOUT_BORDER}
