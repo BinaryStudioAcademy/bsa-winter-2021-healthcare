@@ -1,33 +1,27 @@
 import React from 'react';
-import downloadIcon from 'assets/images/admin-page/vectordownload.svg';
-import pdfIcon from 'assets/images/admin-page/vectorpdf.svg';
-import editIcon from 'assets/images/admin-page/vectoredit.svg';
-import historyIcon from 'assets/images/admin-page/vectorhistory.svg';
+import clsx from 'clsx';
 import styles from './styles.module.scss';
+import { IUser } from 'common/interfaces';
 
 interface IProps {
-  edit: (id:string) => void,
+  edit: (user?:IUser) => void,
   deleteUser: (id:string) => void,
-  id: string,
+  value: IUser,
 }
 
-const ActionsButton: React.FC<IProps> = ({ edit, id, deleteUser }) => {
-  const editUserHandler = () => edit(id);
-  const deleteUserHandler = () => deleteUser(id);
+const ActionsButton: React.FC<IProps> = ({ edit, value, deleteUser }) => {
+  const editUserHandler = () => edit(value);
+  const deleteUserHandler = () => deleteUser(value.id as string);
   return (
     <div className={styles.iconsDiv}>
-      <div onClick={editUserHandler} className={styles.iconDiv}>
-        <img src={editIcon} />
+      <div onClick={editUserHandler} className={clsx(styles.iconDiv, styles.editIcon)}>
       </div>
       <button onClick={deleteUserHandler}>DELETE</button>
-      <div className={styles.iconDiv}>
-        <img src={pdfIcon} />
+      <div className={clsx(styles.iconDiv, styles.pdfIcon)}>
       </div>
-      <div className={styles.iconDiv}>
-        <img src={downloadIcon} />
+      <div className={clsx(styles.iconDiv, styles.downloadIcon)}>
       </div>
-      <div className={styles.iconDiv}>
-        <img src={historyIcon} />
+      <div className={clsx(styles.iconDiv, styles.historyIcon)}>
       </div>
     </div>
   );
