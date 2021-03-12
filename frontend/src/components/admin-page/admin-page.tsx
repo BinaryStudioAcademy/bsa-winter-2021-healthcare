@@ -25,18 +25,6 @@ const DEFAULT_USER_INSTANCE = {
   'updatedAt': '',
 };
 
-// function changeDataToIUser(data:IRegisterPayload){
-//   const userType = data.isStaff ? UserType.DOCTOR : UserType.PATIENT
-//   return{
-//     name:data.name,
-//     surname:data.surname,
-//     email:data.email,
-//     password:data.password,
-//     phone:data.phone,
-//     type:userType
-//   }
-// }
-
 const AdminPage: React.FC = () => {
   const [user, setUser] = React.useState(DEFAULT_USER_INSTANCE);
   const [showPopUp, setShowPopUp] = React.useState(false);
@@ -49,7 +37,6 @@ const AdminPage: React.FC = () => {
 
   }
   const addUser = (data: IRegisterPayload) => {
-    // const newData:Record<string, unknown> | string = changeDataToIUser(data);
     const newUser: IUser = {...user as IUser, ...data,};
     dispatch(UsersActionCreator.addUser(newUser));
     hideForm()
@@ -67,6 +54,7 @@ const AdminPage: React.FC = () => {
   }
   return (
     <div className={styles.container}>
+      <Users showForm={showFormHandler} deleteUser={deleteUser} />
       {
         showPopUp ?
           (<>
@@ -79,7 +67,6 @@ const AdminPage: React.FC = () => {
           </>)
           : null
       }
-      <Users showForm={showFormHandler} deleteUser={deleteUser} />
     </div>
   );
 };
