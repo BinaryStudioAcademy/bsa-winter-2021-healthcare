@@ -1,18 +1,21 @@
+import { IClinic } from 'common/interfaces';
 import * as React from 'react';
 import styles from './clinic.module.scss';
-// import iconLogo from 'assets/images/icon-logo.svg';
-// import clsx from 'clsx';
 
-const Clinic: React.FC = () => {
-  // const currentYear = new Date().getFullYear();
+type Props = {
+  clinic: IClinic
+}
 
+const Clinic: React.FC<Props> = ({ clinic }) => {
   return (
     <div className={styles.mainContainer}>
-      <div className={styles.photoContainer}>photo</div>
+      <div className={styles.photoContainer}>
+        <img src={clinic.imagePath} height="199" alt="Clinic image"/>
+      </div>
       <div className={styles.mainContent}>
-        <b>Clinics name</b>
-        <div className={styles.clinicType}>clinicType</div>
-        <p>address</p>
+        <b>{clinic.name}</b>
+        <div className={styles.clinicType}>{clinic.clinicType}</div>
+        <p>{clinic.address}</p>
       </div>
     </div>
   )

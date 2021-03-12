@@ -1,14 +1,24 @@
 import * as React from 'react';
-import styles from './not-found.module.scss';
-import iconLogo from 'assets/images/icon-logo.svg';
-import clsx from 'clsx';
 import { Clinic } from './components';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'common/types';
+import { ClinicsActionCreator } from 'store/slices';
 
 const Clinics: React.FC = () => {
-  // const currentYear = new Date().getFullYear();
+  const { clinics } = useSelector(({ clinics }: RootState) => ({
+    clinics: clinics.clinics,
+  }));
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(ClinicsActionCreator.getClinics())
+    console.log(clinics);
+  }, [])
 
   return (
-    <Clinic />
+    <>
+      {clinics.map(clinic => <Clinic key={clinic.id} clinic={clinic} />)}
+    </>
   )
 }
 

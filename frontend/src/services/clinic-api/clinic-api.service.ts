@@ -1,7 +1,6 @@
 import { IClinic } from 'common/interfaces';
 import { Http } from 'services/http/http.service';
 import {
-  ContentType,
   HttpMethod,
   ApiPath,
   ClinicsApiPath
@@ -23,8 +22,7 @@ class ClinicApi {
 
   public getClinics(): Promise<IClinic[]> {
     return this.#http.load(`${this.#apiPrefix}${ApiPath.CLINICS}${ClinicsApiPath.ROOT}`, {
-      method: HttpMethod.GET,
-      contentType: ContentType.JSON
+      method: HttpMethod.GET
     });
   }
 }

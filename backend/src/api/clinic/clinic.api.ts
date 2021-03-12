@@ -9,7 +9,7 @@ const initClinicApi = (apiRouter: Router): Router => {
 
   clinicRouter.get(ClinicsApiPath.ROOT, async (_req, res) => {
     try {
-      const clinics = await clinicService.getAllClinics()
+      const clinics = await clinicService.getAllClinics();
       res.status(HttpCode.OK).json(clinics);
     } catch(error) {
       res.status(HttpCode.NOT_FOUND).json(error);
