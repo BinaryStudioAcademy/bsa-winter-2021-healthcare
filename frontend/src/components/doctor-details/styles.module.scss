@@ -98,6 +98,16 @@
       font-weight: 400;
       font-size: 14px;
       color: #787878;
+      list-style: none;
+
+      li::before {
+        content: "\2022";
+        color: #5B8DEF;
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+      }
     }
   }
 }
