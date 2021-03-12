@@ -1,3 +1,7 @@
-.active {
-  color: #6600CC;
+.link {
+  color: #000;
+
+  &.active {
+    color: #6600CC;
+  }
 }
