@@ -5,14 +5,14 @@ import { IUserTypeDoctor } from 'common/interfaces';
 import styles from './styles.module.scss';
 
 type Props = {
-  doctors:IUserTypeDoctor[]
+  users:IUserTypeDoctor[]
 }
 
-const DoctorsList: React.FC<Props> = ({doctors}) => {
+const DoctorsList: React.FC<Props> = ({users}) => {
 
   return (
     <div className={styles.doctorsListContainer}>
-      {doctors.map(doctor => <DoctorItem key={doctor.id} doctor={doctor} />)}
+      {users.map(user => <DoctorItem key={user.id} user={user} />)}
     </div>
   );
 };

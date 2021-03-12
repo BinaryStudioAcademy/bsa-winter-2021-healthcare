@@ -1,2 +1,1 @@
-export { AuthApiPath, ApiPath } from 'healthcare-shared/common/enums/api';
-export * from './user-api-path.enum';
+export { AuthApiPath, ApiPath, UsersApiPath } from 'healthcare-shared/common/enums/api';

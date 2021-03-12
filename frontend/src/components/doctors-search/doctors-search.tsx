@@ -22,7 +22,7 @@ const DoctorsSearch: React.FC = () => {
     <div className={styles.doctorsSearchContainer}>
       <div className={styles.searchPannel}></div>
         {dataStatus === DataStatus.PENDING && <div>...Loading</div> }
-        {dataStatus === DataStatus.SUCCESS && <DoctorsList doctors={doctors}/>}
+        {dataStatus === DataStatus.SUCCESS && <DoctorsList users={doctors}/>}
     </div>
   );
 };

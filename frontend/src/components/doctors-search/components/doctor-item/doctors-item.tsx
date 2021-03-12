@@ -9,37 +9,37 @@ import clsx from 'clsx';
 import styles from './styles.module.scss';
 
 type Props = {
-  doctor:IUserTypeDoctor
+  user:IUserTypeDoctor
 }
 
-const DoctorItem: React.FC<Props> = ({doctor}) => {
+const DoctorItem: React.FC<Props> = ({user}) => {
 
-  const clinicType = doctor.doctor.clinic.clinicType;
+  const { clinicType } = user.doctor.clinic;
 
   return (
     <div className={styles.doctorsItemContainer}>
       <div className={styles.imageContainer}>
-        <img className={styles.doctorImage} src={doctor.imagePath} alt={doctor.name} />
+        <img className={styles.doctorImage} src={user.imagePath} alt={user.name} />
       </div>
       <div className={styles.infoContainer}>
         <div className={styles.infoContainerHead}>
-          <span className={styles.department}>{doctor.doctor.department}</span>
-          <span className={styles.name}>{doctor.name} {doctor.surname}</span>
-          <span className={styles.clinicName}>{doctor.doctor.clinic.name}</span>
+          <span className={styles.department}>{user.doctor.department}</span>
+          <span className={styles.name}>{user.name} {user.surname}</span>
+          <span className={styles.clinicName}>{user.doctor.clinic.name}</span>
           <div className={clsx({
             [styles.clinicType]: true,
             [styles.private]: clinicType === ClinicType.PRIVATE,
             [styles.state]: clinicType === ClinicType.STATE
-          })}>{doctor.doctor.clinic.clinicType} clinic</div>
+          })}>{user.doctor.clinic.clinicType} clinic</div>
         </div>
         <div className={styles.infoContainerBody}>
           <div className={styles.infoItem}>
             <img src={locationIcon} width="16" height="22" loading="lazy" alt="location-icon"/>
-            <span className={styles.text}>{doctor.doctor.clinic.address}</span>
+            <span className={styles.text}>{user.doctor.clinic.address}</span>
           </div>
           <div className={styles.infoItem}>
             <img src={phoneIcon} width="20" height="20" loading="lazy" alt="phone-icon"/>
-            <span className={styles.text}>{doctor.phone}</span>
+            <span className={styles.text}>{user.phone}</span>
           </div>
         </div>
         <div className={styles.infoContainerButtons}>

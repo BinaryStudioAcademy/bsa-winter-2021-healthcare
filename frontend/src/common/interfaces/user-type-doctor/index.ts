@@ -1,1 +1,1 @@
-export * from './user-type-doctor';
+export type { IUserTypeDoctor } from 'healthcare-shared/common/interfaces';

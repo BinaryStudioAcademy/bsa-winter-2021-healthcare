@@ -1,6 +1,6 @@
 import { UserModel, DoctorModel, ClinicModel } from '../models';
 import { IUser, IRegisterPayload } from '~/common/interfaces';
-import { UserType, ModelAlias,  Attribute} from '~/common/enums';
+import { UserType, ModelAlias,  DoctorKey, ClinicKey} from '~/common/enums';
 
 
 class UserRepository {
@@ -15,12 +15,12 @@ class UserRepository {
         include: {
           model:DoctorModel,
           as:ModelAlias.DOCTOR,
-          attributes: [Attribute.ID, Attribute.DEPARTMENT, Attribute.ABOUT],
+          attributes: [DoctorKey.ID, DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
           include:[
             {
               model: ClinicModel,
               as: ModelAlias.CLINIC,
-              attributes: [Attribute.ID, Attribute.NAME, Attribute.ADDRESS, Attribute.CLINIC_TYPE]
+              attributes: [ClinicKey.ID, ClinicKey.NAME, ClinicKey.ADDRESS, ClinicKey.CLINIC_TYPE]
             }
           ]
         }

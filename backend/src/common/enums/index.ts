@@ -7,3 +7,4 @@ export * from './clinic';
 export * from './document';
 export * from './validation';
 export * from './db';
+export * from './doctor';

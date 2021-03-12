@@ -1,5 +1,5 @@
 import { Http } from '../http/http.service';
-import { HttpMethod, UserApiPath } from 'common/enums';
+import { HttpMethod, UsersApiPath, UserType, ApiPath } from 'common/enums';
 import { IUserTypeDoctor } from 'common/interfaces';
 
 type Constructor = {
@@ -16,7 +16,7 @@ class UserApi {
   }
 
   public getDoctors(): Promise<IUserTypeDoctor[]> {
-    return this.#http.load(`${this.#apiPrefix}${UserApiPath.DOCTORS}`, {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.TYPE}/${UserType.DOCTOR}`, {
       method: HttpMethod.GET
     });
   }

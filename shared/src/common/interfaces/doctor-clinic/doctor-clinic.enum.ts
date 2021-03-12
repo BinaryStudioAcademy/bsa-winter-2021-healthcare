@@ -1,8 +1,9 @@
 import { IDoctor } from '../doctor';
 import { IClinic } from '../clinic';
+import { DoctorClinicKey } from '~/common/enums';
 
 interface IDoctorWithClinic extends IDoctor {
-  clinic: IClinic
+  [DoctorClinicKey.CLINIC]: IClinic
 }
 
 export type { IDoctorWithClinic }
