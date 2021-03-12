@@ -2,46 +2,31 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { userApi } from 'services';
 import { ReducerName, UserSex, UserType } from 'common/enums';
 import { AppThunk } from 'common/types';
-import { IUser, IRegisterPayload } from 'common/interfaces';
+import { IUser } from 'common/interfaces';
 
 interface IState {
   value: number;
   users: IUser[];
   editUser?: IUser;
 }
-const DEFAULT_USER_INSTANCE = {
-  'id': '',
-  'name': '',
-  'surname': '',
-  'sex': UserSex.FEMALE,
-  'type': UserType.DOCTOR,
-  'birthdate': new Date().toString(),
-  'phone': '',
-  'password': '',
-  'email': '',
-  'imagePath': '',
-  'diagnosis': '',
-  'createdAt': '',
-  'updatedAt': '',
-};
 
 const initialState: IState = {
   value: 0,
   users: [
     {
       id: '1',
-      name: '1',
-      surname: '1',
-      sex: UserSex.FEMALE,
+      name: 'Petr',
+      surname: 'Petrenko',
+      sex: UserSex.MALE,
       type: UserType.DOCTOR,
-      birthdate: 'asd',
-      phone: '4',
-      password: '5',
-      email: '6',
-      imagePath: '7',
-      diagnosis: '9',
-      createdAt: 'asd',
-      updatedAt: 'asd',
+      birthdate: '1978/2/8',
+      phone: '+380976123123',
+      password: '123456',
+      email: 'Petrenko@gmail.com',
+      imagePath: '',
+      diagnosis: '',
+      createdAt: '2021/03/09',
+      updatedAt: '2021/03/09',
     },
   ],
 };
@@ -50,12 +35,6 @@ const { reducer, actions } = createSlice({
   name: ReducerName.COUNTER,
   initialState,
   reducers: {
-    setEditUser: (state, action: PayloadAction<string>) => {
-      state.editUser = {
-        ...state.users
-          .filter((user: IUser) => user.id === action.payload)[0],
-      };
-    },
     addUsers:(state, action: PayloadAction<IUser[]>) => {
 
       state.users = [state.users[0], ...action.payload];
@@ -90,9 +69,9 @@ const editUser = (userInfo: IUser): AppThunk => (dispatch) => {
   };
   asyncFetch()
 };
-const addUser = (userInfo: IRegisterPayload): AppThunk => (dispatch) => {
+const addUser = (userInfo: IUser): AppThunk => (dispatch) => {
   const asyncFetch = async () => {
-    await userApi.registerUser({...DEFAULT_USER_INSTANCE,...userInfo});
+    await userApi.registerUser({...userInfo, birthdate:new Date().toString()});
   };
   asyncFetch();
 };
