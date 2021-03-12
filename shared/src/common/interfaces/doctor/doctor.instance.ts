@@ -1,4 +1,5 @@
 interface IDoctor {
+  id: string;
   department: string;
   roomNumber: number;
   about: string,

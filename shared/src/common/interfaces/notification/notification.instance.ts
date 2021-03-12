@@ -1,4 +1,5 @@
 interface INotification {
+  id: string;
   text: string;
   topic: string;
   createdAt: string;

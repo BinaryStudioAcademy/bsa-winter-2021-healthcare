@@ -1,6 +1,7 @@
 import { ClinicType } from '~/common/enums'
 
 interface IClinic {
+  id: string;
   name: string;
   address: string;
   imagePath: string,
