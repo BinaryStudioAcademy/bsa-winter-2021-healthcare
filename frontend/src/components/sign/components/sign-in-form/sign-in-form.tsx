@@ -35,6 +35,7 @@ const SignInForm: React.FC = () => {
         <TextInput
           name={LoginPayloadKey.EMAIL}
           label="Email"
+          hasHiddenLabel={false}
           placeholder="Email"
           type={InputType.EMAIL}
           color={InputColor.GRAY_LIGHT}
@@ -50,6 +51,7 @@ const SignInForm: React.FC = () => {
         <TextInput
           name={LoginPayloadKey.PASSWORD}
           label="Password"
+          hasHiddenLabel={false}
           placeholder="Password"
           type={InputType.PASSWORD}
           color={InputColor.GRAY_LIGHT}
@@ -61,6 +63,7 @@ const SignInForm: React.FC = () => {
       <div className={styles.submitBtn}>
         <Button
           label="Sign In"
+          hasHiddenLabel={false}
           type={ButtonType.SUBMIT}
           color={ButtonColor.PRIMARY_DARK}
           styleType={ButtonStyleType.WITHOUT_BORDER}

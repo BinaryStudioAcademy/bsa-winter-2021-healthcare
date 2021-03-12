@@ -10,7 +10,7 @@ import styles from './styles.module.scss';
 interface Props {
   name: string;
   label: string;
-  labelHidden?: boolean;
+  hasHiddenLabel: boolean;
   placeholder?: string;
   color: InputColor;
   options: IOption<string>[];
@@ -20,13 +20,13 @@ interface Props {
   defaultValue?: UseControllerOptions<FieldValues>;
 }
 
-const Select: React.FC<Props> = ({ options, name, label, labelHidden, placeholder, color, isDisabled, control, defaultValue, errors }) => {
+const Select: React.FC<Props> = ({ options, name, label, hasHiddenLabel, placeholder, color, isDisabled, control, defaultValue, errors }) => {
   const { field, meta: { invalid } } = useController({ name, control, defaultValue });
 
   return (
     <span className={styles.inputControl}>
       <label className={styles.label}>
-        <span className={clsx(styles.labelText, labelHidden && 'visually-hidden')}>{label}</span>
+        <span className={clsx(styles.labelText, hasHiddenLabel && 'visually-hidden')}>{label}</span>
         <select
           {...field}
           disabled={isDisabled}

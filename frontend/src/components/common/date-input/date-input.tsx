@@ -13,30 +13,28 @@ import styles from './styles.module.scss';
 interface Props {
   name: string;
   label: string;
-  labelHidden?: boolean;
+  hasHiddenLabel: boolean;
   placeholder?: string;
   color: InputColor;
-  inline?: boolean;
   isDisabled?: boolean;
   control: Control;
   errors?: FieldErrors<FieldValues>
   defaultValue?: UseControllerOptions<FieldValues>;
 }
 
-const DateInput: React.FC<Props> = ({ name, label, labelHidden, placeholder, color, inline, isDisabled, control, defaultValue, errors }) => {
+const DateInput: React.FC<Props> = ({ name, label, hasHiddenLabel, placeholder, color, isDisabled, control, defaultValue, errors }) => {
   const { field, meta: { invalid } } = useController({ name, control, defaultValue });
 
   return (
     <span className={styles.inputControl}>
       <label className={styles.label}>
-        <span className={clsx(styles.labelText, labelHidden && 'visually-hidden')}>{label}</span>
+        <span className={clsx(styles.labelText, hasHiddenLabel && 'visually-hidden')}>{label}</span>
         <DatePicker
           {...field}
           selected={field.value}
           dropdownMode="select"
           placeholderText={placeholder}
           disabled={isDisabled}
-          inline={inline}
           className={styles.select}
           calendarClassName={clsx(isDisabled && styles.disabled, styles[color], invalid && styles.error)}
         />

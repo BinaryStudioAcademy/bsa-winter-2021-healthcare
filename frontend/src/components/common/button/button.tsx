@@ -11,7 +11,7 @@ interface Props {
   color: ButtonColor;
   label: string;
   onClick?: ButtonClickCallback;
-  hasHiddenLabel?: boolean;
+  hasHiddenLabel: boolean;
   isDisabled?: boolean;
   icon?: ButtonIcon;
 }

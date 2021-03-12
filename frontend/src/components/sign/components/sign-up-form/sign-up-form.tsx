@@ -48,6 +48,7 @@ const SignUpForm: React.FC = () => {
         <TextInput
           name={RegisterPayloadKey.NAME}
           label="Name"
+          hasHiddenLabel={false}
           placeholder="Name"
           type={InputType.TEXT}
           color={InputColor.GRAY_LIGHT}
@@ -60,6 +61,7 @@ const SignUpForm: React.FC = () => {
         <TextInput
           name={RegisterPayloadKey.SURNAME}
           label="Surname"
+          hasHiddenLabel={false}
           placeholder="Surname"
           type={InputType.TEXT}
           color={InputColor.GRAY_LIGHT}
@@ -72,6 +74,7 @@ const SignUpForm: React.FC = () => {
         <Select
           name={RegisterPayloadKey.SEX}
           label="Gender"
+          hasHiddenLabel={false}
           placeholder="Gender"
           options={[
             { value: UserSex.FEMALE, label: 'female' },
@@ -87,6 +90,7 @@ const SignUpForm: React.FC = () => {
         <DateInput
           name={RegisterPayloadKey.BIRTH_DATE}
           label="Birthday"
+          hasHiddenLabel={false}
           placeholder="Birthday"
           color={InputColor.GRAY_LIGHT}
           control={control}
@@ -98,6 +102,7 @@ const SignUpForm: React.FC = () => {
         <TextInput
           name={RegisterPayloadKey.EMAIL}
           label="Email"
+          hasHiddenLabel={false}
           placeholder="Email"
           type={InputType.EMAIL}
           color={InputColor.GRAY_LIGHT}
@@ -110,6 +115,7 @@ const SignUpForm: React.FC = () => {
         <TextInput
           name={RegisterPayloadKey.PASSWORD}
           label="Password"
+          hasHiddenLabel={false}
           placeholder="Password"
           type={InputType.PASSWORD}
           color={InputColor.GRAY_LIGHT}
@@ -122,6 +128,7 @@ const SignUpForm: React.FC = () => {
         <TextInput
           name={RegisterPayloadKey.RETYPE_PASSWORD}
           label="Retype password"
+          hasHiddenLabel={false}
           placeholder="Retype password"
           type={InputType.PASSWORD}
           color={InputColor.GRAY_LIGHT}
@@ -134,6 +141,7 @@ const SignUpForm: React.FC = () => {
         <TextInput
           name={RegisterPayloadKey.PHONE}
           label="Phone"
+          hasHiddenLabel={false}
           placeholder="Phone"
           type={InputType.PHONE}
           color={InputColor.GRAY_LIGHT}
@@ -146,6 +154,7 @@ const SignUpForm: React.FC = () => {
         <Select
           name={RegisterPayloadKey.TYPE}
           label="Status"
+          hasHiddenLabel={false}
           placeholder="Status"
           options={[
             { value: UserType.PATIENT, label: 'Patient' },
@@ -161,7 +170,7 @@ const SignUpForm: React.FC = () => {
         <TextInput
           name={RegisterPayloadKey.IMAGE_PATH}
           label="Avatar"
-          labelHidden={true}
+          hasHiddenLabel={true}
           type={InputType.HIDDEN}
           color={InputColor.GRAY_LIGHT}
           control={control}
@@ -181,6 +190,7 @@ const SignUpForm: React.FC = () => {
       <div className={styles.submitBtn}>
         <Button
           label="Sign Up"
+          hasHiddenLabel={false}
           type={ButtonType.SUBMIT}
           color={ButtonColor.PRIMARY_DARK}
           styleType={ButtonStyleType.WITHOUT_BORDER}
