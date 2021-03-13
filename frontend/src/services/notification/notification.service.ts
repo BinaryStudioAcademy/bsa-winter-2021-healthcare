@@ -1,7 +1,11 @@
-import { BasicToastrOptions, toastr } from 'react-redux-toastr';
+import { BasicToastrOptions, Toastr, toastr, ToastrEmitter } from 'react-redux-toastr';
 
-class ToasterService {
-  #instance = toastr;
+class NotificationService {
+  #instance: ToastrEmitter;
+
+  constructor() {
+    this.#instance = toastr;
+  }
 
   error(title: string, message: string, options?: BasicToastrOptions): void {
     this.#instance.error(title, message, options);
@@ -16,4 +20,4 @@ class ToasterService {
   }
 }
 
-export default ToasterService;
+export default NotificationService;

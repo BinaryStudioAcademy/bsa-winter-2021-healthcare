@@ -2,7 +2,7 @@ import { ENV } from 'common/enums';
 import { Http } from './http/http.service';
 import { AuthApi } from './auth-api/auth-api.service';
 import { Storage } from './storage/storage.service';
-import ToasterService from './toaster/toaster.service';
+import NotificationService from './notification/notification.service';
 
 const http = new Http();
 
@@ -15,6 +15,6 @@ const storage = new Storage({
   storage: localStorage
 });
 
-const toasterService = new ToasterService();
+const notificationService = new NotificationService();
 
-export { http, authApi, storage, toasterService };
+export { http, authApi, storage, notificationService };
