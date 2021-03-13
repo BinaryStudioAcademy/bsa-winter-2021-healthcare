@@ -6,5 +6,6 @@ import Select from './select/select';
 import Button from './button/button';
 import Link from './link/link';
 import Table from './table/table';
+import Header from './header/header';
 
-export { Link, Checkbox, TextInput, DateInput, Radio, Select, Button, Table };
+export { Link, Checkbox, TextInput, DateInput, Radio, Select, Button, Header, Table };

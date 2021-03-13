@@ -1,9 +1,17 @@
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__month-container {
+  width: 100%;
+}
+
 .react-datepicker {
   background-color: var(--color-gray-light);
   opacity: 0.95;
   border: none;
   border-radius: 20px;
-  padding: 24px 35px;
+  padding: 24px 34px;
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 14px;
@@ -14,12 +22,14 @@
   background: none;
   border: none;
   padding: 0;
+  width: 100%;
 }
 
 .react-datepicker__current-month {
   font-weight: 400;
   font-size: 16px;
   padding-bottom: 10px;
+  width: 100%;
 }
 
 .react-datepicker__navigation {
@@ -52,11 +62,13 @@
 }
 
 .react-datepicker__day {
-  padding: 5px;
+  padding-top: 2px;
   border-radius: 50%;
   font-weight: 500;
   font-size: 14px;
   outline: none;
+  width: 32px;
+  height: 32px;
 
   &:hover {
     border-radius: 50%;

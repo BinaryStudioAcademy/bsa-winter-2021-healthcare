@@ -1,11 +1,11 @@
-import { ContentType, UsersApiPath, ApiPath } from 'common/enums';
 import { Http } from '../http/http.service';
-import { HttpMethod } from 'common/enums';
+import { HttpMethod, ContentType, UsersApiPath, UserType, ApiPath } from 'common/enums';
+import { IUserTypeDoctor } from 'common/interfaces';
 import { IUser } from 'common/interfaces';
 
 type Constructor = {
   http: Http;
-  apiPrefix: string;
+  apiPrefix: string
 };
 
 class UserApi {
@@ -49,6 +49,12 @@ class UserApi {
         method: HttpMethod.GET,
       },
     );
+  }
+
+  public getDoctors(): Promise<IUserTypeDoctor[]> {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.TYPE}/${UserType.DOCTOR}`, {
+      method: HttpMethod.GET
+    });
   }
 }
 export { UserApi };

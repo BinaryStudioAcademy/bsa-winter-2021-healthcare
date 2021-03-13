@@ -10,15 +10,16 @@ const http = new Http();
 
 const authApi = new AuthApi({
   http,
-  apiPrefix: ENV.API_PATH,
+  apiPrefix: ENV.API_PATH
+});
+
+const userApi = new UserApi({
+  http,
+  apiPrefix: ENV.API_PATH
 });
 
 const storage = new Storage({
   storage: localStorage
 });
-const userApi = new UserApi({
-  http,
-  apiPrefix:ENV.API_PATH,
-});
 
-export { http, userApi, authApi, storage };
+export { http, authApi, userApi, storage };

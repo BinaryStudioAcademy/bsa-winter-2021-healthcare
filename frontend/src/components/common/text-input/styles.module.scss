@@ -1,3 +1,10 @@
+.inputControl {
+  width: 100%;
+  & > span {
+    color: var(--color-error);
+  }
+}
+
 .label {
   width: 100%;
 }
@@ -7,12 +14,14 @@
   margin: 0 100% 5px 0;
   font-size: 12px;
   text-transform: capitalize;
+  width: 100%;
 }
 
 .textInput {
   height: 40px;
   width: 100%;
-  padding: 0 40px 0 19px;
+  margin-bottom: 5px;
+  padding: 0 15px 0 19px;
   box-sizing: border-box;
   border-radius: 7px;
   border: 1px solid transparent;
@@ -41,7 +50,15 @@
 .error {
   border: 1px solid var(--color-error);
   color: var(--color-error);
+  background-color: #fff;
+  &::placeholder {
+    color: var(--color-error);
+  }
+  &:focus {
+    color: var(--color-error);
+  }
 }
+
 
 .searchIcon {
   background-image: url(../../../assets/images/search-field-icon.svg);
