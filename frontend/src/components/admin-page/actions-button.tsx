@@ -1,5 +1,4 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import styles from './styles.module.scss';
 import { IUser } from 'common/interfaces';
 import Button from '../common/button/button';

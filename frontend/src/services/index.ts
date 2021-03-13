@@ -1,5 +1,3 @@
-export * from './http/http.service';
-export * from './user-api/user-api.service';
 import { ENV } from 'common/enums';
 import { Http } from './http/http.service';
 import { AuthApi } from './auth-api/auth-api.service';
