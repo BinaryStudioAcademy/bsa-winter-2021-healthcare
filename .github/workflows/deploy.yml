@@ -26,9 +26,8 @@ jobs:
           npm run install:all
 
       - name: BackEnd Build
-        working-directory: ./backend
         run: |
-          npm run build
+          npm run build:backend
 
       - name: FrontEnd Build
         working-directory: ./frontend
@@ -42,7 +41,7 @@ jobs:
           mv backend/build .
           mv frontend/build/* build/public
 
-      - name: Deploy
+      - name: Deployment
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
