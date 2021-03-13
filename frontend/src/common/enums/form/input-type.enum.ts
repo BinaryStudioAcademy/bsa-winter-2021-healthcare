@@ -7,6 +7,7 @@ enum InputType {
   CHECKBOX = 'checkbox',
   RADIO = 'radio',
   SEARCH = 'search',
+  HIDDEN = 'hidden',
 }
 
 export { InputType };
