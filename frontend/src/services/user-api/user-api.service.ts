@@ -20,16 +20,16 @@ class UserApi {
       `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.ROOT}`,
       {
         method: HttpMethod.POST,
-        payload: { ...payload },
         contentType: ContentType.JSON,
+        payload,
       },
     );
   }
   public editUser(id: string, payload: IUser): Promise<IUser> {
     return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}/${id}`, {
       method: HttpMethod.PUT,
-      payload: { ...payload },
       contentType: ContentType.JSON,
+      payload,
     });
   }
   public getUser(id: string): Promise<IUser> {
