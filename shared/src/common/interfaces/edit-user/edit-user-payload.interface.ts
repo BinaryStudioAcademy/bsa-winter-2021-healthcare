@@ -1,6 +1,6 @@
-import { EditUserPayloadKey, UserSex, UserType } from '../../enums'
+import { EditUserPayloadKey, UserSex, UserType } from '~/common/enums';
 
-export interface IEditUserPayload {
+interface IEditUserPayload {
   [EditUserPayloadKey.ID]?:string;
   [EditUserPayloadKey.NAME]: string;
   [EditUserPayloadKey.SURNAME]: string;
@@ -15,3 +15,5 @@ export interface IEditUserPayload {
   [EditUserPayloadKey.CREATED_AT]?:string;
   [EditUserPayloadKey.UPDATED_AT]?:string;
 }
+
+export type {IEditUserPayload}
