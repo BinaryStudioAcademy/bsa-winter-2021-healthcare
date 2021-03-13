@@ -1,25 +1,13 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import styles from './styles.module.scss';
+// import Select from '../common/button/button';
 
-const AdminPageFilter: React.FC = () => {
+const Filter: React.FC = () => {
   return (
     <div>
-      <input
-        className={clsx(styles.inpt, styles.inptHght)}
-        type="text"
-        placeholder="Search by name or email"
-      />
-      <input
-        className={clsx(styles.inpt, styles.margLeft, styles.inptHght)}
-        type="text"
-        placeholder="Search by phone"
-      />
-      <button className={clsx(styles.button, styles.margLeft, styles.inptHght)}>
-        Filters
-      </button>
+      {/* <Select /> */}
     </div>
   );
 };
 
-export default AdminPageFilter;
+export default Filter;
