@@ -1,5 +1,5 @@
-interface IOption<T>  {
-  label: string;
+interface IOption<T = string> {
+  label: T;
   value: T;
 }
 
