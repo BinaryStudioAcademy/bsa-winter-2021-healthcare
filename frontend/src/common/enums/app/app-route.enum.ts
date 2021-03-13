@@ -1,7 +1,8 @@
 enum AppRoute {
-  ROOT = '/root',
+  ROOT = '/',
   SIGN_IN = '/sign-in',
   SIGN_UP = '/sign-up',
+  DOCTORS = '/doctors'
 }
 
 export { AppRoute };

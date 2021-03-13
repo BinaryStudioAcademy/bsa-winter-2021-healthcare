@@ -1,7 +1,10 @@
+import { DiagnosisKey } from '~/common/enums';
+
 interface IDiagnosis {
-  diagnosis: string;
-  createdAt: string;
-  updatedAt: string;
+  [DiagnosisKey.ID]:string;
+  [DiagnosisKey.DIAGNOSIS]: string;
+  [DiagnosisKey.CREATED_AT]: string;
+  [DiagnosisKey.UPDATED_AT]: string;
 }
 
 export type { IDiagnosis };
