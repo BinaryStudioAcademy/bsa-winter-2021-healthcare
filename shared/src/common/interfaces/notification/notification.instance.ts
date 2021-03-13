@@ -1,8 +1,11 @@
+import { NotificationKey } from '~/common/enums';
+
 interface INotification {
-  text: string;
-  topic: string;
-  createdAt: string;
-  updatedAt: string;
+  [NotificationKey.ID]: string;
+  [NotificationKey.TEXT]: string;
+  [NotificationKey.TOPIC]: string;
+  [NotificationKey.CREATED_AT]: string;
+  [NotificationKey.UPDATED_AT]: string;
 }
 
 export type { INotification };
