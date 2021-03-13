@@ -5,7 +5,7 @@ import styles from './styles.module.scss';
 
 interface IProps {
   columns: Column[],
-  data: Record<symbol, unknown>[],
+  data: Record<string, unknown>[],
 }
 
 const Table: React.FC<IProps> = ({ columns, data }) => {
@@ -21,8 +21,8 @@ const Table: React.FC<IProps> = ({ columns, data }) => {
   });
 
   return (
-    <div className={styles.tableDIV}>
-      <table {...getTableProps()}>
+    <div className={styles.tableWrapper}>
+      <table className={styles.table} {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => {
             const { key } = headerGroup.getHeaderGroupProps();
