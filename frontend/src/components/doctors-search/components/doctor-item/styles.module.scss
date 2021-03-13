@@ -36,17 +36,29 @@
         color: #000000;
         font-size: 18px;
         font-weight: 600;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
       }
-      .clinic{
+      .clinicName{
+        font-size: 18px;
+        font-weight: 400;
+        color: #787878;
+        margin-bottom: 5px;
+      }
+      .clinicType{
         width: fit-content;
         padding: 5px 10px;
-        background-color: #AC5DD9;
         border-radius: 50px;
         font-size: 12px;
         font-weight: 400;
         color: #FFFFFF;
         cursor: default;
+        text-transform: uppercase;
+      }
+      .state{
+        background-color: #5B8DEF;
+      }
+      .private{
+        background-color: #AC5DD9;
       }
     }
     .infoContainerBody{
@@ -94,9 +106,3 @@
     }
   }
 }
-
-
-
-
-
-

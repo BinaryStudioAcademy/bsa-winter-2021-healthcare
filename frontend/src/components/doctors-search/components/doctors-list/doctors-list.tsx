@@ -1,26 +1,18 @@
 import * as React from 'react';
-import DoctorItem from '../doctor-item/doctors-item'
+import DoctorItem from '../doctor-item/doctors-item';
+import { IUserTypeDoctor } from 'common/interfaces';
 
 import styles from './styles.module.scss';
 
-type Doctor = {
-  id:string
-  name:string
-  imagePath:string
-  department: string
-  clinic: string
-  adress: string
-  phone: string
-}
-type DocListProps = {
-  doctors:Doctor[]
+type Props = {
+  users:IUserTypeDoctor[]
 }
 
-const DoctorsList: React.FC<DocListProps> = ({doctors}) => {
+const DoctorsList: React.FC<Props> = ({users}) => {
 
   return (
     <div className={styles.doctorsListContainer}>
-      {doctors.map(doctor => <DoctorItem key={doctor.id} doctor={doctor} />)}
+      {users.map(user => <DoctorItem key={user.id} user={user} />)}
     </div>
   );
 };
