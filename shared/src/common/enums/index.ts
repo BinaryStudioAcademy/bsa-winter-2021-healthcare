@@ -15,3 +15,4 @@ export * from './doctor';
 export * from './diagnosis';
 export * from './message';
 export * from './notification';
+export * from './specialization';
