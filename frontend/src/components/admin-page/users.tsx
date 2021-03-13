@@ -1,26 +1,11 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'common/types';
 import { UsersActionCreator } from 'store/slices';
-import { Column, IUser } from 'common/interfaces';
+import { IUser } from 'common/interfaces';
 import Table from '../common/table/table';
 import ActionsButton from './actions-button';
-import { DateIdentifiers } from 'common/enums';
-
-const checkIdentifierType = (identifier:string):Column =>{
-    return {
-      Header: identifier.charAt(0).toUpperCase() + identifier.slice(1),
-      accessor: identifier,
-      Cell : ({value}:any)=>{
-        const dates:string[] = [DateIdentifiers.BIRTHDATE,DateIdentifiers.CREATED_AT,DateIdentifiers.UPDATED_AT];
-        if(dates.includes(identifier)){
-          return value.toString().slice(0,10).replaceAll('-', '/')
-        }else{
-          return value ? value.toString() : ''
-        }
-      }
-    };
-}
+import { checkIdentifierType } from './helpers/check-identifier-type.helper';
 
 interface IProps{
   deleteUser: (id:string) => void,
@@ -43,7 +28,7 @@ const Users: React.FC<IProps> = ({ showForm,deleteUser }) => {
     }
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch(UsersActionCreator.getUsers());
   }, []);
 
