@@ -1,34 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { userApi } from 'services';
-import { ReducerName, UserSex, UserType } from 'common/enums';
+import { ReducerName } from 'common/enums';
 import { AppThunk } from 'common/types';
 import { IUser } from 'common/interfaces';
 
 interface IState {
-  value: number;
   users: IUser[];
-  editUser?: IUser;
 }
 
 const initialState: IState = {
-  value: 0,
-  users: [
-    {
-      id: '1',
-      name: 'Petr',
-      surname: 'Petrenko',
-      sex: UserSex.MALE,
-      type: UserType.DOCTOR,
-      birthdate: '1978/2/8',
-      phone: '+380976123123',
-      password: '123456',
-      email: 'Petrenko@gmail.com',
-      imagePath: '',
-      diagnosis: '',
-      createdAt: '2021/03/09',
-      updatedAt: '2021/03/09',
-    },
-  ],
+  users: [],
 };
 
 const { reducer, actions } = createSlice({
@@ -56,9 +37,9 @@ const getUsers = (): AppThunk => (dispatch) => {
   };
   asyncFetch();
 };
-const getUser = (id:string): AppThunk => (dispatch) => {
+const getUser = (id:string): AppThunk => () => {
   const asyncFetch = async () => {
-    const response = await userApi.getUser(id);
+    await userApi.getUser(id);
   };
   asyncFetch();
 };
