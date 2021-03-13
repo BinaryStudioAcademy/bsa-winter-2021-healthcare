@@ -5,7 +5,7 @@ type Geoposition = {
   long: number
 };
 
-interface IUser {
+type IUser = {
   [UserKey.ID]?: string
   [UserKey.NAME]: string
   [UserKey.SURNAME]: string
