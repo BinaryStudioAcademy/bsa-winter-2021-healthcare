@@ -1,3 +1,12 @@
+:root {
+  --color-primary-dark: #6600cc;
+  --color-primary-light: #5b8def;
+  --color-secondary-dark: #ac5dd9;
+  --color-secondary-light: #dda5e9;
+  --color-gray-light: #f2f2f5;
+  --color-error: #e71616;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -13,11 +22,19 @@ body {
 *,
 *:before,
 *:after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 #root {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
 }

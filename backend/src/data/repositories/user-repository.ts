@@ -1,9 +1,32 @@
-import { UserModel } from '../models';
+import { UserModel, DoctorModel, ClinicModel } from '../models';
 import { IUser, IRegisterPayload } from '~/common/interfaces';
+import { UserType, ModelAlias,  DoctorKey, ClinicKey} from '~/common/enums';
+
 
 class UserRepository {
   public getAll(): Promise<IUser[]> {
     return UserModel.findAll();
+  }
+
+  public getByType(type:UserType):Promise<IUser[]>{
+    if (type === UserType.DOCTOR) {
+      return UserModel.findAll({
+        where: {type},
+        include: {
+          model:DoctorModel,
+          as:ModelAlias.DOCTOR,
+          attributes: [DoctorKey.ID, DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
+          include:[
+            {
+              model: ClinicModel,
+              as: ModelAlias.CLINIC,
+              attributes: [ClinicKey.ID, ClinicKey.NAME, ClinicKey.ADDRESS, ClinicKey.CLINIC_TYPE]
+            }
+          ]
+        }
+      })
+    }
+    return UserModel.findAll({ where: {type} })
   }
 
   public getById(id: string): Promise<IUser | null> {
@@ -29,10 +52,12 @@ class UserRepository {
     return result[1];
   }
 
-  public deleteById(id: string): Promise<number> {
-    return UserModel.destroy({
-      where: { id },
+  public async deleteById(id:string): Promise<boolean> {
+    const deletedRows = await UserModel.destroy({
+      where: { id }
     });
+
+    return Boolean(deletedRows)
   }
 }
 

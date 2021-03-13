@@ -7,7 +7,9 @@ node_modules
 coverage
 
 # production
-build
+backend/build
+frontend/build
+shared/build
 
 # shared
 backend/shared

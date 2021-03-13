@@ -3,6 +3,7 @@ import { LinkProps } from 'react-router-dom';
 
 type Props = LinkProps & {
   to: AppRoute;
+  activeClass?: string;
 };
 
 export type { Props };

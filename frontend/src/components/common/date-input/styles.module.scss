@@ -1,0 +1,82 @@
+.inputControl {
+  width: 100%;
+  & > span {
+    color: var(--color-error);
+  }
+}
+
+.label {
+  width: 100%;
+  max-width: 257px;
+}
+
+.labelText {
+  display: block;
+  margin: 0 100% 5px 0;
+  font-size: 12px;
+  text-transform: capitalize;
+  width: 100%;
+}
+
+.select {
+  height: 40px;
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 0 15px 0 19px;
+  box-sizing: border-box;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  position: relative;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url('../../../assets/images/arrow-down.svg');
+  background-repeat: no-repeat;
+  background-position: right 20px bottom 50%;
+  background-size: 15px;
+  background-color: var(--color-gray-light);
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  color: #424242;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &:focus {
+    outline: none;
+    background-color: #fff;
+    color: #424242;
+    border: 1px solid var(--color-primary-light);
+  }
+
+  &::placeholder {
+    color: #acacac;
+    text-transform: capitalize;
+  }
+}
+
+.error {
+  border: 1px solid var(--color-error);
+  color: var(--color-error);
+  background-color: #fff;
+  &::placeholder {
+    color: var(--color-error);
+  }
+  &:focus {
+    color: var(--color-error);
+  }
+}
+
+.white {
+  background-color: #fff;
+}
+
+.gray-light {
+  background-color: var(--color-gray-light);
+}
