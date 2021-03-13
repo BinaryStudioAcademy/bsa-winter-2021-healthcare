@@ -17,7 +17,7 @@ interface Props {
 const Toaster: React.FC<Props> = ({
   timeOut = 4000,
   isNewestOnTop = true,
-  isDuplicatesPrevented = false,
+  isDuplicatesPrevented = true,
   hasProgressBar = true,
   isClosingOnClick = true,
   position="bottom-right",
