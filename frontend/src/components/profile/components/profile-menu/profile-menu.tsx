@@ -1,33 +1,14 @@
 import React from "react";
 import styles from './styles.module.scss';
+import personIcon from 'assets/images/icons/person.svg';
 
 const ProfileMenu: React.FC = () => {
   return (
     <div className={styles.menuContainer}>
       <span className={styles.infoHeader}>My Profile</span>
       <div className={styles.menuItem}>
-        <div>Icon</div>
+      <img src={personIcon} width="22" height="22" loading="lazy" alt="pen-icon"/>
         <span className={styles.menuText}>Personal information</span>
-      </div>
-      <div className={styles.menuItem}>
-        <div>Icon</div>
-        <span className={styles.menuText}>Health information</span>
-      </div>
-      <div className={styles.menuItem}>
-        <div>Icon</div>
-        <span className={styles.menuText}>Visited</span>
-      </div>
-      <div className={styles.menuItem}>
-        <div>Icon</div>
-        <span className={styles.menuText}>Tests</span>
-      </div>
-      <div className={styles.menuItem}>
-        <div>Icon</div>
-        <span className={styles.menuText}>Medicine</span>
-      </div>
-      <div className={styles.menuItem}>
-        <div>Icon</div>
-        <span className={styles.menuText}>Password and security</span>
       </div>
     </div>
   );
