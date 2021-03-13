@@ -7,23 +7,7 @@ import Users from './users';
 import CreateUser from './create-user';
 import EditUser from './edit-user';
 import { IEditUserPayload, IRegisterPayload, IUser } from 'common/interfaces';
-import { UserType } from 'common/enums';
-
-const DEFAULT_USER_INSTANCE = {
-  'id': '',
-  'name': '',
-  'surname': '',
-  'sex': '',
-  'type': '',
-  'birthdate': '',
-  'phone': '',
-  'password': '',
-  'email': '',
-  'imagePath': '',
-  'diagnosis': '',
-  'createdAt': '',
-  'updatedAt': '',
-};
+import { DEFAULT_USER_INSTANCE } from 'common/constants';
 
 const AdminPage: React.FC = () => {
   const [user, setUser] = React.useState(DEFAULT_USER_INSTANCE);
@@ -31,13 +15,13 @@ const AdminPage: React.FC = () => {
 
   const dispatch = useDispatch();
   const editUser = (data: IEditUserPayload) => {
-    const editedUser: IUser = {...user as IUser, ...data};
+    const editedUser: IUser = {...user, ...data};
     dispatch(UsersActionCreator.editUser(editedUser));
     hideForm();
 
   }
   const addUser = (data: IRegisterPayload) => {
-    const newUser: IUser = {...user as IUser, ...data,};
+    const newUser: IUser = {...user, ...data,};
     dispatch(UsersActionCreator.addUser(newUser));
     hideForm()
   }
@@ -56,16 +40,15 @@ const AdminPage: React.FC = () => {
     <div className={styles.container}>
       <Users showForm={showFormHandler} deleteUser={deleteUser} />
       {
-        showPopUp ?
+        showPopUp &&
           (<>
             {
               user.id ?
-                <EditUser user={user as IUser} func={editUser} hideForm={hideForm} />
+                <EditUser user={user} func={editUser} hideForm={hideForm} />
                 :
                 <CreateUser func={addUser} hideForm={hideForm} />
             }
           </>)
-          : null
       }
     </div>
   );
