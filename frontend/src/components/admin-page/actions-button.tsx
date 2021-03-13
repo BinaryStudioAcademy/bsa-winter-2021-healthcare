@@ -1,30 +1,50 @@
-import React from 'react';
+import * as React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.scss';
 import { IUser } from 'common/interfaces';
+import Button from '../common/button/button';
+import { ButtonColor, ButtonIcon, ButtonStyleType } from 'common/enums';
 
 interface IProps {
-  edit: (user?:IUser) => void,
-  deleteUser: (id:string) => void,
-  value: IUser,
+  edit: (user?: IUser) => void;
+  deleteUser: (id: string) => void;
+  value: IUser;
 }
 
 const ActionsButton: React.FC<IProps> = ({ edit, value, deleteUser }) => {
-  const editUserHandler = () => edit(value);
-  const deleteUserHandler = () => deleteUser(value.id as string);
+  const handleUserBtnEdit = () => edit(value);
+  const handleUserBtnDelete = () => deleteUser(value.id as string);
   return (
     <div className={styles.iconsDiv}>
-      <div onClick={editUserHandler} className={clsx(styles.iconDiv, styles.editIcon)}>
-      </div>
-      <button onClick={deleteUserHandler}>DELETE</button>
-      <div className={clsx(styles.iconDiv, styles.pdfIcon)}>
-      </div>
-      <div className={clsx(styles.iconDiv, styles.downloadIcon)}>
-      </div>
-      <div className={clsx(styles.iconDiv, styles.historyIcon)}>
-      </div>
+      <Button
+        styleType={ButtonStyleType.WITHOUT_BORDER}
+        color={ButtonColor.WHITE}
+        icon={ButtonIcon.EDIT}
+        label={'Edit'}
+        isDisabled={false}
+        hasHiddenLabel={true}
+        onClick={handleUserBtnEdit}
+      />
+      <Button
+        styleType={ButtonStyleType.WITHOUT_BORDER}
+        color={ButtonColor.WHITE}
+        icon={ButtonIcon.DELETE}
+        label={'Delete'}
+        isDisabled={false}
+        hasHiddenLabel={true}
+        onClick={handleUserBtnDelete}
+      />
+      <Button
+        styleType={ButtonStyleType.WITHOUT_BORDER}
+        color={ButtonColor.WHITE}
+        icon={ButtonIcon.PDF}
+        label={'Delete'}
+        isDisabled={false}
+        hasHiddenLabel={true}
+        onClick={handleUserBtnDelete}
+      />
     </div>
   );
-}
+};
 
 export default ActionsButton;
