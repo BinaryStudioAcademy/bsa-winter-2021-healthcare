@@ -7,14 +7,16 @@ import styles from './styles.module.scss';
 
 type Props = {
   user: IUser | null
+  edit: () => void
 }
 
-const ProfileInfo: React.FC<Props> = ({user}) => {
+const ProfileInfo: React.FC<Props> = ({user, edit}) => {
+
   return (
     <div className={styles.mainInfo}>
       <div className={styles.infoHeader}>
         <span>My Profile</span>
-        <div className={styles.editButton}>
+        <div className={styles.editButton} onClick={edit}>
           <img src={penIcon} width="18" height="18" loading="lazy" alt="pen-icon"/>
         </div>
       </div>

@@ -14,6 +14,7 @@
   background-color: #f2f2f5;
   border-radius: 50%;
   margin-left: 35px;
+  cursor: pointer;
 }
 
 .infoBloks {
@@ -74,8 +75,7 @@
 
 .secUserInfo {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: column;  
   align-items: flex-start;
   margin-left: 60px;
   width: 200px;
@@ -83,6 +83,7 @@
 
 .item {
   display: flex;
+  margin-top: 10px;
 }
 
 .text {

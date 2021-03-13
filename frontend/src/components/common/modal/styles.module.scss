@@ -1,0 +1,33 @@
+.modalContainer{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black; 
+}
+
+.open{
+  display: flex;
+}
+
+.close{
+  display: none;
+}
+
+.modalBody{
+  position: relative;
+  width: 300px;
+  height: 300px;
+  background-color: white;
+}
+
+.closeSymbol{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
