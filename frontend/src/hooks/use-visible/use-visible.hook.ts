@@ -18,9 +18,13 @@ const useVisible = (isInitialIsVisible: boolean): VisibleHookType => {
   };
 
   React.useEffect(() => {
-    document.addEventListener('click', handleClickOutside, true);
+    document.addEventListener('click', handleClickOutside, {
+      capture: true,
+    });
     return () => {
-      document.removeEventListener('click', handleClickOutside, true);
+      document.removeEventListener('click', handleClickOutside, {
+        capture: true,
+      });
     };
   }, []);
 
