@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName, DataStatus } from 'common/enums';
 import { AppThunk } from 'common/types';
-import { userApi } from 'services';
+import { userApi, notificationService } from 'services';
 import { IUserTypeDoctor } from 'common/interfaces'
 
 type DoctorsState = {
@@ -26,8 +26,12 @@ const { reducer, actions } = createSlice({
 });
 
 const getDoctorsAsync = (): AppThunk => async (dispatch) => {
-  const doctors = await userApi.getDoctors();
-  dispatch(actions.setDoctors(doctors));
+  try {
+    const doctors = await userApi.getDoctors();
+    dispatch(actions.setDoctors(doctors));
+  } catch(error) {
+    notificationService.error(`Error ${error.status}`, error.message);
+  }
 };
 
 const DoctorsActionCreator = {
