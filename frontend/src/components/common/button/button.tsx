@@ -1,3 +1,4 @@
+import * as React from 'react';
 import clsx from 'clsx';
 import {
   AppRoute,
@@ -7,8 +8,8 @@ import {
   ButtonType,
 } from 'common/enums';
 import { ButtonClickCallback } from 'common/types';
-import * as React from 'react';
 import Link from '../link/link';
+
 import styles from './styles.module.scss';
 
 interface Props {
