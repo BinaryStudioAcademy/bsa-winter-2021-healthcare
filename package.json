@@ -25,7 +25,7 @@
     "start:frontend": "cd frontend && npm run start",
     "start": "concurrently -k -p \"{name}: {time}\" -n \"FRONTEND,BACKEND\" \"npm:start:frontend\" \"npm:start:backend\"",
     "build:shared": "cd shared && npm run build",
-    "build:backend": "cd backend && npm run build",
+    "build:backend": "cd backend && npm run build:full",
     "build:frontend": "cd frontend && npm run build",
     "build": "npm run build:backend && npm run build:frontend",
     "build:deploy": "npm run build && mv backend/build . && mv frontend/build/* build/public"

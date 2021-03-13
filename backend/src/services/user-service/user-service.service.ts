@@ -1,12 +1,15 @@
 import { userRepository } from '~/data/repositories';
+import { UserType } from '~/common/enums';
 import { IRegisterPayload, IUser } from '~/common/interfaces';
 
 class UserService {
   public getAllUsers(): Promise<IUser[]>{
     return userRepository.getAll()
   }
-
-  public getUserById(id: string): Promise<IUser | null>{
+  public getUsersByType(type:UserType):Promise<IUser[]>{
+    return userRepository.getByType(type)
+  }
+  public getUserById(id:string):Promise<IUser | null>{
     return userRepository.getById(id)
   }
 
@@ -17,8 +20,7 @@ class UserService {
   public async updateUser(id: string, data: IUser): Promise<IUser[]>{
     return userRepository.updateById(id, data)
   }
-
-  public deleteUser(id: string): Promise<number>{
+  public deleteUser(id:string):Promise<boolean>{
     return userRepository.deleteById(id)
   }
 }
