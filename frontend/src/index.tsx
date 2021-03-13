@@ -1,3 +1,4 @@
+import { Toaster } from 'components/common';
 import * as React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -13,6 +14,7 @@ render(
       <Router>
         <App />
       </Router>
+      <Toaster/>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
