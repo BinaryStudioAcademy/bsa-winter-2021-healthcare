@@ -1,7 +1,7 @@
 import { ClinicType, ClinicKey } from '~/common/enums'
 
 interface IClinic {
-  [ClinicKey.ID]?:string;
+  [ClinicKey.ID]:string;
   [ClinicKey.NAME]: string;
   [ClinicKey.ADDRESS]: string;
   [ClinicKey.IMAGE_PATH]: string,

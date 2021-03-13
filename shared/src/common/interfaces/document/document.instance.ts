@@ -1,7 +1,7 @@
 import { DocumentStatus, DocumentKey } from '~/common/enums';
 
 interface IDocument {
-  [DocumentKey.ID]?:string;
+  [DocumentKey.ID]:string;
   [DocumentKey.IMAGE_PATH]: string;
   [DocumentKey.DOCUMENT_STATUS]: DocumentStatus;
   [DocumentKey.CREATED_AT]: string;

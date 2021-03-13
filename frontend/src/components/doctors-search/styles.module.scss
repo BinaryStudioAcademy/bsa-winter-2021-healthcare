@@ -1,7 +1,6 @@
 .doctorsSearchContainer{
-  height: 100vh;
   display: flex;
-  overflow-y: scroll;
+  flex-grow: 1;
 }
 
 .searchPannel{

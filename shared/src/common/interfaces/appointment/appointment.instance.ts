@@ -1,7 +1,7 @@
 import { AppointmentType, AppointmentKey } from '~/common/enums';
 
 interface IAppointment {
-  [AppointmentKey.ID]?:string;
+  [AppointmentKey.ID]:string;
   [AppointmentKey.DATE]: string;
   [AppointmentKey.TYPE]: AppointmentType;
   [AppointmentKey.COST]: number;
