@@ -4,7 +4,7 @@ import { RootState } from 'common/types';
 import { UsersActionCreator } from 'store/slices';
 import { IUser } from 'common/interfaces';
 import Table from '../common/table/table';
-import ActionsButton from './actions-button';
+import ActionsButton from './components/actions-button';
 import { checkIdentifierType } from './helpers/check-identifier-type.helper';
 import { CellValue } from 'react-table';
 import styles from './styles.module.scss';

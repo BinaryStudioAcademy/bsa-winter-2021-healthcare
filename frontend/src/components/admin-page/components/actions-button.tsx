@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styles from './styles.module.scss';
 import { IUser } from 'common/interfaces';
-import Button from '../common/button/button';
+import Button from '../../common/button/button';
 import { ButtonColor, ButtonIcon, ButtonStyleType } from 'common/enums';
 
 interface IProps {
