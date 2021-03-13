@@ -43,10 +43,10 @@ jobs:
 
       - name: Update Heroku Source
       - run: |
-        git config user.email "${{ secrets.HEROKU_OWNER_EMAIL }}"
-        git config user.name "Heroku"
-        git add -A
-        git commit -m "updated source code"
+          git config user.email "${{ secrets.HEROKU_OWNER_EMAIL }}"
+          git config user.name "Heroku"
+          git add -A
+          git commit -m "updated source code"
 
       - name: Deployment
         uses: akhileshns/heroku-deploy@v3.12.12
