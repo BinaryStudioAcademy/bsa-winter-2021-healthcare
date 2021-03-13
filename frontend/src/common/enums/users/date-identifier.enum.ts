@@ -1,7 +1,7 @@
 enum DateIdentifiers {
-    birthdate = 'birthdate',
-    createdAt = 'createdAt',
-    updatedAt = 'updatedAt',
+    BIRTHDATE = 'birthdate',
+    CREATED_AT = 'createdAt',
+    UPDATED_AT = 'updatedAt',
 }
 
 export { DateIdentifiers };

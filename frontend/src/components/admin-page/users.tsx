@@ -12,7 +12,7 @@ const checkIdentifierType = (identifier:string):Column =>{
       Header: identifier.charAt(0).toUpperCase() + identifier.slice(1),
       accessor: identifier,
       Cell : ({value}:any)=>{
-        const dates:string[] = [DateIdentifiers.birthdate,DateIdentifiers.createdAt,DateIdentifiers.updatedAt];
+        const dates:string[] = [DateIdentifiers.BIRTHDATE,DateIdentifiers.CREATED_AT,DateIdentifiers.UPDATED_AT];
         if(dates.includes(identifier)){
           return value.toString().slice(0,10).replaceAll('-', '/')
         }else{
