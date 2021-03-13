@@ -32,7 +32,7 @@ jobs:
       - name: FrontEnd Build
         working-directory: ./frontend
         run: |
-          npm run build
+          npm run build:full
         env:
           REACT_APP_API_ORIGIN_URL: /api/v1
 

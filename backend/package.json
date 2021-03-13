@@ -12,7 +12,7 @@
     "start": "node -r dotenv/config ./src/server.js",
     "build:ts": "tsc && tscpaths -p tsconfig.json --src . --out build",
     "build:copy": "cp -r shared build && cp -r public build",
-    "build": "npm run build:ts && npm run build:copy"
+    "build:full": "npm run build:ts && npm run build:copy"
   },
   "dependencies": {
     "bcrypt": "5.0.1",
