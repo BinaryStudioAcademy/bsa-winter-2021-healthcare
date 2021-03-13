@@ -23,15 +23,11 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm run install
+          npm run install:all
 
       - name: BackEnd Build
-        working-directory: ./backend
         run: |
-          npm run build
-        env:
-          NODE_ENV: production
-          APP_SERVER_PORT: 3001
+          npm run build:backend
 
       - name: FrontEnd Build
         working-directory: ./frontend
@@ -45,4 +41,12 @@ jobs:
           mv backend/build .
           mv frontend/build/* build/public
 
-      ## deploy steps...
+      - name: Deployment
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          heroku_email: ${{ secrets.HEROKU_OWNER_EMAIL }}
+          appdir: build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}

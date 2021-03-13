@@ -1,0 +1,39 @@
+import { DbModels } from '~/common/types';
+import { ModelAlias, ForeingKey } from '~/common/enums';
+
+const associate = ({
+  Appointment,
+  Clinic,
+  Diagnosis,
+  Doctor,
+  Document,
+  Message,
+  Notification,
+  User
+}: DbModels): void => {
+  User.hasOne(Doctor, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.DOCTOR});
+  User.hasMany(Appointment, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.APPOINTMENTS});
+  User.hasMany(Message, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.MESSAGES});
+  User.hasMany(Notification, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.NOTIFICATIONS});
+  User.hasMany(Diagnosis, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.DIAGNOSIS});
+
+  Doctor.hasMany(Appointment, {foreignKey: ForeingKey.DOCTOR_ID, as: ModelAlias.APPOINTMENTS});
+  Doctor.belongsTo(Clinic, {foreignKey: ForeingKey.CLINIC_ID, as: ModelAlias.CLINIC});
+  Doctor.belongsTo(Document, {foreignKey: ForeingKey.DOCUMENT_ID, as: ModelAlias.DOCUMENT});
+  Doctor.belongsTo(User, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER});
+
+  Appointment.belongsTo(Doctor, {foreignKey: ForeingKey.DOCTOR_ID, as: ModelAlias.DOCTOR});
+  Appointment.belongsTo(User, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER});
+
+  Document.hasOne(Doctor, {foreignKey: ForeingKey.DOCUMENT_ID, as: ModelAlias.DOCTOR});
+
+  Clinic.hasMany(Doctor, {foreignKey: ForeingKey.CLINIC_ID, as: ModelAlias.DOCTORS});
+
+  Message.belongsTo(User, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER});
+
+  Notification.belongsTo(User, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER});
+
+  Diagnosis.belongsTo(User, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER});
+};
+
+export default associate;

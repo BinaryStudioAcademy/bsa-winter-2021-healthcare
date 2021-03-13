@@ -1,9 +1,12 @@
 import { Sequelize, DataTypes, Model, ModelCtor } from 'sequelize';
-import { ModelName } from '~/common/enums';
+import {
+  ModelName,
+  TableName,
+  ClinicType
+} from '~/common/enums';
 import { IClinic } from '~/common/interfaces';
-import { ClinicType } from '~/common/enums';
 
-interface ClinicInstance extends IClinic, Model {}
+interface ClinicInstance extends IClinic, Model { }
 
 const createClinicModel = (orm: Sequelize): ModelCtor<ClinicInstance> => {
   const Clinic = orm.define<ClinicInstance>(ModelName.CLINIC, {
@@ -27,7 +30,9 @@ const createClinicModel = (orm: Sequelize): ModelCtor<ClinicInstance> => {
     },
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
-  }, {});
+  }, {
+    tableName: TableName.CLINICS
+  });
 
   return Clinic;
 };

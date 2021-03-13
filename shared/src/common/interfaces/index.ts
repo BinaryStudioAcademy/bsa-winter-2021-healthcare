@@ -6,3 +6,6 @@ export * from './doctor';
 export * from './document';
 export * from './message';
 export * from './notification';
+export * from './register'
+export * from './doctor-clinic';
+export * from './user-type-doctor';
