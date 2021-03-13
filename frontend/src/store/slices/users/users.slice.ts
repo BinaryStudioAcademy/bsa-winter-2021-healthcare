@@ -13,7 +13,7 @@ const initialState: IState = {
 };
 
 const { reducer, actions } = createSlice({
-  name: ReducerName.COUNTER,
+  name: ReducerName.USERS,
   initialState,
   reducers: {
     addUsers:(state, action: PayloadAction<IUser[]>) => {
