@@ -1,20 +1,8 @@
 import { Sequelize, Dialect } from 'sequelize';
-import {
-  database,
-  username,
-  password,
-  host,
-  port,
-  dialect,
-} from '../../../config/db.config';
+import { url, dialect } from '../../../config/db.config';
 
-const sequelize = new Sequelize({
-  port: Number(port),
+const sequelize = new Sequelize(url ?? ``, {
   dialect: dialect as Dialect,
-  database,
-  username,
-  password,
-  host,
   logging: false,
 });
 
