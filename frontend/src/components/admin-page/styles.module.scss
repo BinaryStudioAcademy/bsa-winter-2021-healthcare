@@ -1,17 +1,19 @@
-.container{
+.container {
   height: 100vh;
-  background-color:rgba(242, 242, 245, 0.7);
+  background-color: rgba(242, 242, 245, 0.7);
 }
-.editContainer{
+
+.editContainer {
   position: absolute;
-  top:-19px;
+  top: -19px;
   width: 100%;
   min-height: 1116px;
-  background-color:rgba(242, 242, 245, 0.7);
+  background-color: rgba(242, 242, 245, 0.7);
   backdrop-filter: blur(7px);
   z-index: 3;
   padding-bottom: 38px;
 }
+
 .iconsDiv {
   min-width: 171px;
   display: flex;
@@ -24,7 +26,7 @@
 }
 
 .editForm {
-  margin-top:116px;
+  margin-top: 116px;
   margin-left: calc(50vw - 350px);
   font-family: 'Inter', sans-serif;
   font-weight: 400;
@@ -37,24 +39,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius:15px;
+  border-radius: 15px;
   z-index: 2;
   background-color: white;
 }
-.header{
+
+.header {
   width: 100%;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .inputElements {
   width: 100%;
   height: 700px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding-bottom:30px;
+  padding-bottom: 30px;
 }
 
 .title {
@@ -82,11 +86,19 @@
   flex-wrap: wrap;
 }
 
-.closeButton{
+.closeButton {
   font-size: 18px;
-  background:none;
+  background: none;
   border: none;
   color: transparent;
   text-shadow: 0 0 0 gray;
   cursor: pointer;
+}
+
+.tablePosition {
+  position: absolute;
+  width: 992px;
+  height: 633px;
+  left: 400px;
+  top: 180px;
 }

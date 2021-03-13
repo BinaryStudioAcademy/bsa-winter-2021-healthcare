@@ -1,16 +1,13 @@
-.tableDIV{
-    width: 992px;
-    height: 633px;
-    position:absolute;
-    left: 400px;
-    top: 180px;
+.tableWrapper{
+    width: 100%;
+    height: 100%;
     background-color:white;
     border-bottom: 1px solid #ededf0;
     border-left: 1px solid #ededf0;
     border-right: 1px solid #ededf0;
     overflow: auto;
 }
-table {
+.table {
   height: auto;
   border-spacing: 0;
   border: 1px solid #ededf0;
