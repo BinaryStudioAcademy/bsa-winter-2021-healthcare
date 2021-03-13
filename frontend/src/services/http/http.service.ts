@@ -2,7 +2,7 @@ import { HttpError } from 'exceptions';
 import { checkIsOneOf } from 'helpers';
 import { ContentType, HttpHeader, HttpMethod, StorageKey } from 'common/enums';
 import { HttpOptions } from 'common/types';
-import { storage } from 'services';
+import { storage, notificationService } from 'services';
 
 class Http {
   load<T = unknown>(
@@ -45,9 +45,12 @@ class Http {
 
   _checkStatus(response: Response): Response {
     if (!response.ok) {
-      throw new HttpError({
+      const error = new HttpError({
         status: response.status,
+        message: response.statusText,
       });
+      notificationService.error(`Error ${error.status}`, error.message);
+      throw error;
     }
 
     return response;
