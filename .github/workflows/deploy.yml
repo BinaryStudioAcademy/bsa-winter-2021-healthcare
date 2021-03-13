@@ -41,6 +41,10 @@ jobs:
           mv backend/build .
           mv frontend/build/* build/public
 
+      - run: git config user.email "battlographer@github.com"
+      - run: git config user.name "Github"
+      - run: git add -A && git commit -m "Updated code"
+
       - name: Deployment
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
