@@ -1,0 +1,40 @@
+.cardContainer{
+  display: flex;
+  border-radius: 30px;
+  background-color: #FFFFFF;
+  margin-top: 25px;
+  padding: 46px;
+}
+
+.imageContainer{
+  width: 30%;
+
+  .cardImage{
+    height: 199px;
+    width: 208px;
+    border-radius: 15px;
+  }
+}
+
+.cardBody{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.cardMain{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.cardFooter{
+  display: flex;
+  align-items: center;
+}
