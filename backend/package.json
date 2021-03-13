@@ -11,7 +11,7 @@
     "start:dev": "nodemon --exec ts-node -r dotenv/config -r tsconfig-paths/register ./src/server.ts",
     "start": "node -r dotenv/config ./src/server.js",
     "build:ts": "tsc && tscpaths -p tsconfig.json --src . --out build",
-    "build:copy": "cp -r shared build && cp -r public build",
+    "build:copy": "cp -r shared build && cp -r public build && cp .sequelizerc build",
     "build:full": "npm run build:ts && npm run build:copy"
   },
   "dependencies": {
