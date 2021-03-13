@@ -5,6 +5,8 @@ import chatIcon from 'assets/images/icons/chat.svg';
 import { Card, CardBody, CardImage, CardHeader, CardMain, CardFooter } from 'components/common';
 import { IUserTypeDoctor } from 'common/interfaces';
 import { ClinicType } from 'common/enums';
+import { Button } from 'components/common';
+import { ButtonType, ButtonColor, ButtonStyleType } from 'common/enums';
 import clsx from 'clsx';
 
 import styles from './styles.module.scss';
@@ -42,7 +44,15 @@ const DoctorItem: React.FC<Props> = ({user}) => {
           </div>
         </CardMain>
         <CardFooter>
-          <div className={styles.button}>Make an appointment</div>
+          <div className={styles.button}>
+            <Button
+              label="Make an appointment"
+              hasHiddenLabel={false}
+              type={ButtonType.SUBMIT}
+              color={ButtonColor.PRIMARY_DARK}
+              styleType={ButtonStyleType.WITHOUT_BORDER}
+            />
+          </div>
           <div className={styles.icon}>
             <img src={chatIcon} width="23" height="21" loading="lazy" alt="chat-icon"/>
           </div>
