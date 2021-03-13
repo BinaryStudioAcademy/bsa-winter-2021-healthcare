@@ -1,4 +1,4 @@
-import { BasicToastrOptions, Toastr, toastr, ToastrEmitter } from 'react-redux-toastr';
+import { BasicToastrOptions, toastr, ToastrEmitter } from 'react-redux-toastr';
 
 class NotificationService {
   #instance: ToastrEmitter;
