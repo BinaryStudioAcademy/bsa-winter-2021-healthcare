@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'common/types';
+import { useDispatch } from 'react-redux';
 import { UsersActionCreator } from 'store/slices';
 import styles from './styles.module.scss';
-import Users from './users';
+import AdminTable from './admin-table';
 import CreateUser from './create-user';
 import EditUser from './edit-user';
 import { IEditUserPayload, IRegisterPayload, IUser } from 'common/interfaces';
@@ -38,7 +37,7 @@ const AdminPage: React.FC = () => {
   }
   return (
     <div className={styles.container}>
-      <Users showForm={showFormHandler} deleteUser={deleteUser} />
+      <AdminTable showForm={showFormHandler} deleteUser={deleteUser} />
       {
         showPopUp &&
           (<>
