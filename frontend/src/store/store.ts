@@ -8,8 +8,7 @@ const store = configureStore({
     [ReducerName.COUNTER]: counterReducer,
     [ReducerName.AUTH]: authReducer,
     [ReducerName.TOASTR]: toastrReducer,
-    [ReducerName.DOCTORS]: doctorsReducer,
-    [ReducerName.AUTH]: authReducer
+    [ReducerName.DOCTORS]: doctorsReducer
   },
 });
 
