@@ -42,7 +42,7 @@ jobs:
           mv frontend/build/* build/public
 
       - name: Update Heroku Source
-      - run: |
+        run: |
           git config user.email "${{ secrets.HEROKU_OWNER_EMAIL }}"
           git config user.name "Heroku"
           git add -A
