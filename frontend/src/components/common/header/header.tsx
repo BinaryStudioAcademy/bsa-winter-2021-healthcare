@@ -39,17 +39,7 @@ const Header: React.FC<Props> = ({ user }) => {
           type={ButtonType.BUTTON}
           styleType={ButtonStyleType.MEDIUM_ROUND}
           color={ButtonColor.GRAY_LIGHT}
-          label="Search"
-          onClick={() => console.log('Search')}
-          hasHiddenLabel={true}
-          icon={ButtonIcon.SEARCH}
-        />
-        <Button
-          type={ButtonType.BUTTON}
-          styleType={ButtonStyleType.MEDIUM_ROUND}
-          color={ButtonColor.GRAY_LIGHT}
           label="Notifications"
-          onClick={() => console.log('Notifications')}
           hasHiddenLabel={true}
           href={AppRoute.NOTIFICATIONS}
           icon={ButtonIcon.BELL}
