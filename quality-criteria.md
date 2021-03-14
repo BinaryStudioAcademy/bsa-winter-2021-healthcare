@@ -6,10 +6,10 @@
 
 ### Objective
 
-- #### B1 The code corresponds to the Technical Task.#b1
+- **B1.** The code corresponds to the Technical Task.
 
 ## Additional
 
 ### Objective
 
-- A1 The Technical Task is implemented in full.
+- **A1.** The Technical Task is implemented in full.
