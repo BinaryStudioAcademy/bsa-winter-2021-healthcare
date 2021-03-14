@@ -7,6 +7,8 @@ import {
   RegisterValidationMessage,
 } from '~/common/enums';
 
+import { phone as phoneRegExp } from "~/regexps";
+
 const userRegister = yup.object().shape({
   [RegisterPayloadKey.NAME]: yup
     .string()
@@ -40,8 +42,8 @@ const userRegister = yup.object().shape({
     ),
   [RegisterPayloadKey.PHONE]: yup
     .string()
-    .required(RegisterValidationMessage.PHONE_REQUIRED),
-  // .phone(RegisterValidationMessage.PHONE_INCORRECT)
+    .required(RegisterValidationMessage.PHONE_REQUIRED)
+    .matches(phoneRegExp, RegisterValidationMessage.PHONE_INCORRECT),
   [RegisterPayloadKey.TYPE]: yup
     .mixed<UserType>()
     .oneOf(Object.values(UserType))
