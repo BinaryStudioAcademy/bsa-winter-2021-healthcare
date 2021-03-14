@@ -2,10 +2,14 @@
   🟧 Quality Criteria ⬛️
 </h1>
 
-## **Base**
+## Base
 
-1. ### The code corresponds to the **Technical Task**
+### Objective
+
+- [B1](#b1) The code corresponds to the Technical Task.
 
 ## Additional
 
-1. ### The Technical **Task is implemented** in full
+### Objective
+
+- [A1](#a1) The Technical Task is implemented in full.
