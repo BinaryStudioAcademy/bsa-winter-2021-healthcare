@@ -1,9 +1,9 @@
-import { 
-  ButtonType, 
-  ButtonColor, 
+import {
+  ButtonType,
+  ButtonColor,
   ButtonStyleType,
-  AppRoute, 
-  ButtonIcon  
+  AppRoute,
+  ButtonIcon
 } from 'common/enums';
 import { ButtonClickCallback } from 'common/types';
 

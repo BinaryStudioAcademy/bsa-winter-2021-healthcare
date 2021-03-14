@@ -1,7 +1,7 @@
 enum CardIcon {
   PHONE = 'phone',
   LOCATION = 'location',
-  CHAT = 'chat'  
+  CHAT = 'chat'
 }
 
 export { CardIcon };
