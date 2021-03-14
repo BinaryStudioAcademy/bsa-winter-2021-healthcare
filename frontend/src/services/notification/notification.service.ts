@@ -7,16 +7,20 @@ class NotificationService {
     this.#instance = toastr;
   }
 
-  error(title: string, message: string, options?: BasicToastrOptions): void {
-    this.#instance.error(title, message, options);
+  _getFullMessage(messages: string[]): string {
+    return messages.join(', ');
   }
 
-  success(title: string, message: string, options?: BasicToastrOptions): void {
-    this.#instance.success(title, message, options);
+  error(title: string, messages: string[], options?: BasicToastrOptions): void {
+    this.#instance.error(title, this._getFullMessage(messages), options);
   }
 
-  info(title: string, message: string, options?: BasicToastrOptions): void {
-    this.#instance.success(title, message, options);
+  success(title: string, messages: string[], options?: BasicToastrOptions): void {
+    this.#instance.success(title, this._getFullMessage(messages), options);
+  }
+
+  info(title: string, messages: string[], options?: BasicToastrOptions): void {
+    this.#instance.success(title, this._getFullMessage(messages), options);
   }
 }
 
