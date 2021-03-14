@@ -1,10 +1,11 @@
 'use strict';
-import { getPasswordHash } from '~/helpers';
+const bcrypt = require('bcrypt');
+const SALT_ROUNDS = 10;
 
 module.exports = {
   up: async queryInterface =>
     queryInterface.sequelize.transaction(transaction => Promise.all([
-      getPasswordHash('Pa55word').then(passwordHash => {
+      bcrypt.hash('Pa55word', SALT_ROUNDS).then(passwordHash => {
         queryInterface.bulkInsert('users', [
           {
             name: 'admin',
@@ -26,7 +27,9 @@ module.exports = {
                 data[0].map(permission => {
                   return {
                     userId: adminData[0].id,
-                    permissionId: permission.id
+                    permissionId: permission.id,
+                    createdAt: new Date(),
+                    updatedAt: new Date()
                   }
                 })))
           })
