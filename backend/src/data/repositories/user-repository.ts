@@ -1,10 +1,10 @@
 import { UserModel, DoctorModel, ClinicModel, PermissionModel } from '../models';
-import { IUser, IRegisterPayload } from '~/common/interfaces';
+import { IUser, IRegisterPayload, IUserWithPermissions } from '~/common/interfaces';
 import { UserType, ModelAlias, DoctorKey, ClinicKey } from '~/common/enums';
 
 
 class UserRepository {
-  public getAll(): Promise<IUser[]> {
+  public getAll(): Promise<IUserWithPermissions[]> {
     return UserModel.findAll({
       include: {
         model: PermissionModel,
