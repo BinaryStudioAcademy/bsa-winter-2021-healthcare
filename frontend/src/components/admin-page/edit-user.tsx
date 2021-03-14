@@ -10,14 +10,14 @@ import { createOptions } from 'helpers';
 
 interface IProps {
   user: IUser;
-  func: (userData: IEditUserPayload) => void;
-  hideForm: () => void;
+  onEditUser: (userData: IEditUserPayload) => void;
+  onFormHide: () => void;
 }
 
 const genderOptions = createOptions<string>(Object.values(UserSex))
 const userTypeOptions = createOptions<string>(Object.values(UserType))
 
-const EditUser: React.FC<IProps> = ({ user, func, hideForm }) => {
+const EditUser: React.FC<IProps> = ({ user, onEditUser, onFormHide }) => {
 
   const userWithDate = {...user,birthdate:new Date(user.birthdate)};
 
@@ -27,8 +27,9 @@ const EditUser: React.FC<IProps> = ({ user, func, hideForm }) => {
     mode: "onChange"
   });
 
-  const onSubmit = (userData: IEditUserPayload) => func(userData);
-  const closeEdit = () => hideForm();
+  const closeEdit = () => onFormHide();
+
+  const onSubmit = (userData: IEditUserPayload) => onEditUser(userData);
 
   return (
     <div className={styles.editContainer}>

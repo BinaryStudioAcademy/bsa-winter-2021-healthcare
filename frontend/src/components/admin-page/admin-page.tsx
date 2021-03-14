@@ -44,7 +44,7 @@ const AdminPage: React.FC = () => {
       <AdminTable onFormShow={showFormHandler} onUserDelete={deleteUser} />
       <Modal isShow={showPopUp}>
         {user.id ? (
-          <EditUser user={user} func={handleEditUser} hideForm={hideForm} />
+          <EditUser user={user} onEditUser={handleEditUser} onFormHide={hideForm} />
         ) : (
           <CreateUser onCreateUser={addUser} onFormHide={hideForm} />
         )}
