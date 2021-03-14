@@ -6,14 +6,7 @@ import Select from './select/select';
 import Button from './button/button';
 import Link from './link/link';
 import Header from './header/header';
-import {
-    Card,
-    CardBody,
-    CardMain,
-    CardHeader,
-    CardImage,
-    CardFooter
-} from './card';
+import Card from './card/card';
 
 
 export {
@@ -25,10 +18,5 @@ export {
     Select,
     Button,
     Header,
-    Card,
-    CardBody,
-    CardImage,
-    CardHeader,
-    CardMain,
-    CardFooter
+    Card
 };
