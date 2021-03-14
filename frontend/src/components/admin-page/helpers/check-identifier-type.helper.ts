@@ -1,13 +1,13 @@
 import { CellValue } from 'react-table';
-import { DateIdentifier } from 'common/enums';
 import { Column } from 'common/interfaces';
+import { EditUserPayloadKey } from 'common/enums';
 
 const checkIdentifierType = (identifier:string):Column =>{
     return {
       Header: identifier,
       accessor: identifier,
       Cell : ({value}:CellValue)=>{
-        const dates:string[] = [DateIdentifier.BIRTHDATE,DateIdentifier.CREATED_AT,DateIdentifier.UPDATED_AT];
+        const dates:string[] = [EditUserPayloadKey.BIRTHDATE,EditUserPayloadKey.CREATED_AT,EditUserPayloadKey.UPDATED_AT];
         if(dates.includes(identifier)){
           return value.toString().slice(0,10).replaceAll('-', '.')
         }else{
