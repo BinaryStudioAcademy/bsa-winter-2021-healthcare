@@ -21,7 +21,9 @@ module.exports = {
           },
           onUpdate: 'CASCADE',
           onDelete: 'SET NULL'
-        }
+        },
+        createdAt: Sequelize.DATE,
+        updatedAt: Sequelize.DATE
       }, { transaction })
     ])),
   down: async queryInterface => queryInterface.sequelize
