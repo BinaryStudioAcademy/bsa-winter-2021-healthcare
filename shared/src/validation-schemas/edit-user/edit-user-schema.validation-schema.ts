@@ -1,7 +1,7 @@
 import * as yup from 'yup';
-import { EditUserPayloadKey, UserType, UserSex, RegisterValidationRule, RegisterValidationMessage } from '~/common/enums'
+import { EditUserPayloadKey, UserType, UserSex, RegisterValidationMessage } from '~/common/enums'
 
-const validationEditUser = yup.object().shape({
+const editUser = yup.object().shape({
   [EditUserPayloadKey.NAME]: yup.string().required(RegisterValidationMessage.NAME_REQUIRED),
   [EditUserPayloadKey.SURNAME]: yup.string().required(RegisterValidationMessage.SURNAME_REQUIRED),
   [EditUserPayloadKey.SEX]: yup.mixed<UserSex>().oneOf(Object.values(UserSex)).required(RegisterValidationMessage.SEX_REQUIRED),
@@ -11,4 +11,4 @@ const validationEditUser = yup.object().shape({
   [EditUserPayloadKey.TYPE]: yup.mixed<UserType>().oneOf(Object.values(UserType)).required(),
 });
 
-export { validationEditUser };
+export { editUser };

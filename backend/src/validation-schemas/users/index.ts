@@ -1,1 +1,1 @@
-export { validationEditUser } from 'healthcare-shared/validation-schemas';
+export { editUser } from 'healthcare-shared/validation-schemas';

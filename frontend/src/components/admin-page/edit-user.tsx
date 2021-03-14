@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { ButtonColor, ButtonStyleType, ButtonType, EditUserPayloadKey, InputColor, InputType, UserSex, UserType } from 'common/enums';
 import styles from './styles.module.scss';
 import { IEditUserPayload, IUser } from 'common/interfaces';
-import { validationEditUser } from 'validation-schemas';
+import { editUser as validationEditUser  } from 'validation-schemas';
 import { Button, DateInput, Select, TextInput } from 'components/common';
 import { createOptions } from 'helpers';
 

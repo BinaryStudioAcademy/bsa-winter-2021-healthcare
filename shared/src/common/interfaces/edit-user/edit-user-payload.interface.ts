@@ -1,12 +1,10 @@
 import { EditUserPayloadKey, UserSex, UserType } from '~/common/enums';
 
-interface IEditUserPayload {
+type IEditUserPayload = {
   [EditUserPayloadKey.ID]?:string;
   [EditUserPayloadKey.NAME]: string;
   [EditUserPayloadKey.SURNAME]: string;
   [EditUserPayloadKey.EMAIL]: string;
-  [EditUserPayloadKey.PASSWORD]: string;
-  [EditUserPayloadKey.RETYPE_PASSWORD]: string;
   [EditUserPayloadKey.PHONE]: string;
   [EditUserPayloadKey.TYPE]: UserType;
   [EditUserPayloadKey.IMAGE_PATH]?:string;
