@@ -8,6 +8,7 @@ import createMessageModel from './message';
 import createUserModel from './user';
 import createDiagnosisModel from './diagnosis';
 import createPermissionModel from './permission';
+import createUserPermissionModel from './user_permission';
 import associate from '../db/associations';
 
 const AppointmentModel = createAppointmentModel(sequelize);
@@ -19,6 +20,7 @@ const MessageModel = createMessageModel(sequelize);
 const NotificationModel = createNotificationModel(sequelize);
 const UserModel = createUserModel(sequelize);
 const PermissionModel = createPermissionModel(sequelize);
+const UserPermissionModel = createUserPermissionModel(sequelize);
 
 associate({
   Appointment: AppointmentModel,
@@ -29,7 +31,8 @@ associate({
   Message: MessageModel,
   Notification: NotificationModel,
   User: UserModel,
-  Permission: PermissionModel
+  Permission: PermissionModel,
+  UserPermissionModel
 });
 
 export {
@@ -41,5 +44,6 @@ export {
   MessageModel,
   NotificationModel,
   UserModel,
-  PermissionModel
+  PermissionModel,
+  UserPermissionModel
 };

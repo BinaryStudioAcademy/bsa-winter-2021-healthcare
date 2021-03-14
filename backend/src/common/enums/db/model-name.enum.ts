@@ -7,7 +7,8 @@ enum ModelName {
   MESSAGE = 'Message',
   NOTIFICATION = 'Notification',
   USER = 'User',
-  PERMISSION = 'Permission'
+  PERMISSION = 'Permission',
+  USER_PERMISSION = 'UserPermission'
 }
 
 export { ModelName };
