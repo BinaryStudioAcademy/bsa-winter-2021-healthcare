@@ -3,6 +3,7 @@ import { ReducerName, DataStatus, StorageKey } from 'common/enums';
 import { IUser, IUserLoginPayload, IRegisterPayload } from 'common/interfaces';
 import { authApi, notificationService, storage } from 'services';
 import { LoginResponse } from 'common/types/responses';
+import { HttpError } from 'exceptions';
 
 
 type AuthState = {
@@ -23,7 +24,9 @@ const login = createAsyncThunk(
       storage.setItem(StorageKey.TOKEN, token);
       return user;
     } catch(error) {
-      notificationService.error(`Error ${error.status}`, error.message);
+      if (error instanceof HttpError) {
+        notificationService.error(`Error ${error.status}`, error.messages);
+      }
       throw error;
     }
   },
@@ -37,7 +40,9 @@ const registration = createAsyncThunk(
       storage.setItem(StorageKey.TOKEN, token);
       return user;
     } catch(error) {
-      notificationService.error(`Error ${error.status}`, error.message);
+      if (error instanceof HttpError) {
+        notificationService.error(`Error ${error.status}`, error.messages);
+      }
       throw error;
     }
   },

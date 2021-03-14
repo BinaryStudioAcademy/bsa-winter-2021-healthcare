@@ -3,6 +3,7 @@ import { ReducerName, DataStatus } from 'common/enums';
 import { AppThunk } from 'common/types';
 import { userApi, notificationService } from 'services';
 import { IUserTypeDoctor } from 'common/interfaces'
+import { HttpError } from 'exceptions';
 
 type DoctorsState = {
   doctors: IUserTypeDoctor[]
@@ -29,8 +30,10 @@ const getDoctorsAsync = (): AppThunk => async (dispatch) => {
   try {
     const doctors = await userApi.getDoctors();
     dispatch(actions.setDoctors(doctors));
-  } catch(error) {
-    notificationService.error(`Error ${error.status}`, error.message);
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
   }
 };
 
