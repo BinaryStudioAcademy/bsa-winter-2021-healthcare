@@ -731,7 +731,7 @@
 -
   <details>
     <summary>
-       <b>A1.</b> The Technical Task is implemented in full.
+      <b>A1.</b> The Technical Task is implemented in full.
     </summary>
     <p>
       All mandatory and optional tasks of the TT have been fulfilled.
@@ -743,7 +743,7 @@
 -
   <details>
     <summary>
-       <b>A2.</b> Variables have abstract names and don't contain proper names.
+      <b>A2.</b> Variables have abstract names and don't contain proper names.
     </summary>
     <p>
 
@@ -769,7 +769,7 @@
 -
   <details>
     <summary>
-       <b>A3.</b> The names of methods/functions and properties/variables of objects don't contain the names of object/module.
+      <b>A3.</b> The names of methods/functions and properties/variables of objects don't contain the names of object/module.
     </summary>
     <p>
 
