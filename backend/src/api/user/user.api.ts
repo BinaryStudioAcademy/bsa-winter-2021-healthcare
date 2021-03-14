@@ -45,7 +45,7 @@ const initUserApi = (apiRouter: Router): Router => {
     }
   });
 
-  userRouter.put(UsersApiPath.$ID, validateSchema(userRegisterSchema), async (req, res, next) => {
+  userRouter.put(UsersApiPath.$ID, validateSchema(validationEditUser), async (req, res, next) => {
     try {
       const user = await userService.updateUser(req.params.id, req.body);
       res.status(HttpCode.OK).json(user);
