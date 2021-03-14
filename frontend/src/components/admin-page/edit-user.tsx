@@ -10,7 +10,7 @@ import { createOptions } from 'helpers';
 
 interface IProps {
   user: IUser;
-  func: (data: IEditUserPayload) => void;
+  func: (userData: IEditUserPayload) => void;
   hideForm: () => void;
 }
 
@@ -25,7 +25,7 @@ const CreateUser: React.FC<IProps> = ({ user, func, hideForm }) => {
     mode: "onChange"
   });
 
-  const onSubmit = (data: IEditUserPayload) => func(data);
+  const onSubmit = (userData: IEditUserPayload) => func(userData);
   const closeEdit = () => hideForm();
 
   return (
