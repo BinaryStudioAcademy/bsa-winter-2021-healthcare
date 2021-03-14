@@ -9,13 +9,19 @@
 -
   <details>
     <summary>
-      **B1** The code corresponds to the Technical Task.
+      <b>B1.</b> The code corresponds to the Technical Task.
     </summary>
-    All the mandatory points of the **TT** have been fulfilled.
+    All the mandatory tasks of the TT have been fulfilled.
   </details>
 
 ## Additional
 
 ### Objective
 
-- **A1.** The Technical Task is implemented in full.
+-
+  <details>
+    <summary>
+       <b>A1.</b> The Technical Task is implemented in full.
+    </summary>
+    All mandatory and optional tasks of the TT have been fulfilled.
+  </details>
