@@ -38,7 +38,7 @@ const AdminPage: React.FC = () => {
   }
   return (
     <div className={styles.container}>
-      <button onClick={()=>showFormHandler()}>asd</button>
+      {/* <button onClick={()=>showFormHandler()}>asd</button> */}
       <AdminTable showForm={showFormHandler} deleteUser={deleteUser} />
       {
         showPopUp &&
