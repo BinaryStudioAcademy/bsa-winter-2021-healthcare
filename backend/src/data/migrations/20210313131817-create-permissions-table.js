@@ -13,7 +13,11 @@ module.exports = {
         },
         name: {
           allowNull: false,
-          type: Sequelize.STRING,
+          type: Sequelize.ENUM(
+            'create-user',
+            'edit-user',
+            'create-clinic'
+          ),
           unique: true
         },
         createdAt: Sequelize.DATE,
