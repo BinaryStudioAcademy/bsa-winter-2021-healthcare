@@ -1,5 +1,6 @@
 .btn {
   height: 40px;
+  width: 100%;
   padding: 0 18px;
   border-radius: 7px;
   color: #000;
@@ -26,6 +27,7 @@
 
 .primary-dark {
   background-color: var(--color-primary-dark);
+  color: #fff;
 }
 
 .gray-light {

@@ -1,38 +1,46 @@
+import * as React from 'react';
+import { useController, Control } from "react-hook-form";
+import { ErrorMessage } from '@hookform/error-message';
 import clsx from 'clsx';
 import { InputType, InputColor } from 'common/enums';
-import { InputChangeCallback } from 'common/types';
-import * as React from 'react';
+import { FormDefaultValue, FormErrors } from 'common/types';
+
 import styles from './styles.module.scss';
 
 interface Props {
-  type: InputType;
-  color: InputColor;
-  label: string;
   name: string;
-  value: string;
+  type: InputType;
+  label: string;
+  hasHiddenLabel: boolean;
   placeholder?: string;
-  hasError?: boolean;
+  color: InputColor;
   isDisabled?: boolean;
-  onChange: InputChangeCallback;
+  control: Control;
+  errors: FormErrors
+  defaultValue?: FormDefaultValue;
 }
 
-const TextInput: React.FC<Props> = ({type, color, isDisabled, label, name, value, placeholder, hasError, onChange}) => (
-  <label className={styles.label}>
-    <span className={styles.labelText}>{label}</span>
-    <input
-      className={clsx(
-        styles.textInput,
-        styles[color],
-        hasError && styles.error,
-        type == InputType.SEARCH && styles.searchIcon)}
-      disabled={isDisabled}
-      type={type}
-      name={name}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-    />
-  </label>
-);
+const TextInput: React.FC<Props> = ({ name, type, label, hasHiddenLabel, placeholder, color, isDisabled, control, defaultValue, errors }) => {
+  const { field, meta: { invalid } } = useController({ name, control, defaultValue });
 
+  return (
+    <span className={styles.inputControl}>
+      <label className={styles.label}>
+        <span className={clsx(styles.labelText, hasHiddenLabel && 'visually-hidden')}>{label}</span>
+        <input
+          {...field}
+          type={type}
+          disabled={isDisabled}
+          placeholder={placeholder}
+          className={clsx(
+            styles.textInput,
+            styles[color],
+            invalid && styles.error,
+            type === InputType.SEARCH && styles.searchIcon)}
+        />
+      </label>
+      <ErrorMessage errors={errors} as="span" name={name} />
+    </span>
+  );
+}
 export default TextInput;
