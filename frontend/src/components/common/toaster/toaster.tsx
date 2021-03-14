@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ReduxToastr, { positionType, transitionInType, transitionOutType } from 'react-redux-toastr';
-import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
+import './styles-module.scss';
 
 interface Props {
   timeOut?: number;
@@ -39,5 +39,3 @@ const Toaster: React.FC<Props> = ({
 );
 
 export default Toaster;
-
-
