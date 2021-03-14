@@ -16,3 +16,4 @@ export * from './payment';
 export * from './diagnosis';
 export * from './message';
 export * from './notification';
+export * from './filtration';
