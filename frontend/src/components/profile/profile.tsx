@@ -15,13 +15,16 @@ const Profile: React.FC = () => {
   const editUserInfo = () => {        
     setOpenModal(true)    
   }
+  const closeModal = () => {
+    setOpenModal(false)
+  }
   return (
     <div className={styles.profileContainer}>
       <ProfileMenu />
       <div className={styles.infoContainer}>
         <ProfileInfo user ={user} edit={editUserInfo}/>
       </div>
-      <Modal open={openModal} />
+      <Modal open={openModal} close={closeModal}/>
     </div>
   );
 };

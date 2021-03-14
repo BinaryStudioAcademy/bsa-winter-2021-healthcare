@@ -4,20 +4,20 @@ import styles from './styles.module.scss';
 
 type Props = {
   open: boolean
+  close: () => void
 }
 
-const Modal: React.FC<Props> = ({ open=false }) => {    
-  const [isOpen, setIsOpen] = React.useState(open);
+const Modal: React.FC<Props> = ({ open=false, close }) => {    
   return(
       <div className={ clsx({
         [styles.modalContainer]: true,
-        [styles.open]: isOpen,
-        [styles.close]: !isOpen
+        [styles.open]: open,
+        [styles.close]: !open
       })}>
         <div className={styles.modalBody}>
           <span 
             className={styles.closeSymbol}
-            onClick={()=> setIsOpen(false)}
+            onClick={()=> close()}
             >&#10005;</span>
         </div>
       </div>

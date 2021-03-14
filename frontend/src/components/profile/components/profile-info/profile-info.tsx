@@ -2,7 +2,8 @@ import React from "react";
 import phoneIcon from 'assets/images/icons/phone.svg';
 import mailIcon from 'assets/images/icons/mail.svg';
 import penIcon from 'assets/images/icons/pen.svg';
-import { IUser } from 'common/interfaces/user'
+import { IUser } from 'common/interfaces/user';
+import { getDateFormat } from 'helpers';
 import styles from './styles.module.scss';
 
 type Props = {
@@ -11,6 +12,8 @@ type Props = {
 }
 
 const ProfileInfo: React.FC<Props> = ({user, edit}) => {
+  let birthdate
+  if (user) birthdate = getDateFormat(user?.birthdate)
 
   return (
     <div className={styles.mainInfo}>
@@ -32,7 +35,7 @@ const ProfileInfo: React.FC<Props> = ({user, edit}) => {
           <span className={styles.name}>{user?.name} {user?.surname}</span>
           <span className={styles.sex}>{user?.sex}</span>
           <span className={styles.dateLabel}>Date of Birth</span>
-          <span className={styles.date}>12 May 1991</span>
+          <span className={styles.date}>{birthdate}</span>
         </div>
         <div className={styles.secUserInfo}>
           <div className={styles.item}>
