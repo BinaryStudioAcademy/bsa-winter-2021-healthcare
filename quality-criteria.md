@@ -6,7 +6,13 @@
 
 ### Objective
 
-- **B1.** The code corresponds to the Technical Task.
+-
+  <details>
+    <summary>
+      **B1** The code corresponds to the Technical Task.
+    </summary>
+    All the mandatory points of the **TT** have been fulfilled.
+  </details>
 
 ## Additional
 
