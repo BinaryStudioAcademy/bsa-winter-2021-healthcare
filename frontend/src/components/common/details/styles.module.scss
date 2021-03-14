@@ -18,7 +18,7 @@
 
 .commonFilter {
   margin: 5px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   display: flex;
   flex-direction: column;
   align-items: space-around;
@@ -34,6 +34,10 @@
 
   &[open] > .filterInfo::after {
     transform: rotate(180deg);
+  }
+
+  .filterInfo::marker {
+    display:none;
   }
 }
 

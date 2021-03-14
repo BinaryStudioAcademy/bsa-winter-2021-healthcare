@@ -15,7 +15,9 @@ const Details: React.FC<Props> = ({ icon, title, children }) => {
         <img src={icon} loading="lazy" alt="Filter icon."/>
         <div className={clsx(styles.filterName)}>{title}</div>
       </summary>
-      {children}
+      <div className={clsx(styles.content)}>
+        {children}
+      </div>
     </details>
   )
 }
