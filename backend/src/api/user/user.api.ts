@@ -34,6 +34,15 @@ const initUserApi = (apiRouter: Router): Router => {
     }
   });
 
+  userRouter.get(UsersApiPath.DETAILS_$ID, async (req, res, next) => {
+    try {
+      const doctorDetails = await userService.getDoctorDetailsById(req.params.id);
+      res.status(HttpCode.OK).json(doctorDetails);
+    } catch(error) {
+      next(error);
+    }
+  });
+
   userRouter.post(UsersApiPath.ROOT, async (req, res, next) => {
     try {
       const user = await userService.createNewUser(req.body);
