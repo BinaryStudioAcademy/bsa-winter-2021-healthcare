@@ -17,11 +17,13 @@ interface IProps {
 const genderOptions = createOptions<string>(Object.values(UserSex))
 const userTypeOptions = createOptions<string>(Object.values(UserType))
 
-const CreateUser: React.FC<IProps> = ({ user, func, hideForm }) => {
+const EditUser: React.FC<IProps> = ({ user, func, hideForm }) => {
+  
+  const userWithDate = {...user,birthdate:new Date(user.birthdate)};
 
   const { handleSubmit, errors, control } = useForm<IEditUserPayload>({
     resolver: yupResolver(validationEditUser),
-    defaultValues: user,
+    defaultValues: userWithDate,
     mode: "onChange"
   });
 
@@ -31,8 +33,8 @@ const CreateUser: React.FC<IProps> = ({ user, func, hideForm }) => {
   return (
     <div className={styles.editContainer}>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.editForm}>
-      <div className={styles.header}>
-          <h2 className={styles.title}>Add user</h2>
+        <div className={styles.header}>
+          <h2 className={styles.title}>Edit user</h2>
           <button className={styles.closeButton} onClick={closeEdit} type="button">
             &#10060;
         </button>
@@ -104,32 +106,6 @@ const CreateUser: React.FC<IProps> = ({ user, func, hideForm }) => {
 
         <div className={styles.inputBlock}>
           <TextInput
-            name={EditUserPayloadKey.PASSWORD}
-            label="Password"
-            hasHiddenLabel={false}
-            placeholder="Password"
-            type={InputType.PASSWORD}
-            color={InputColor.GRAY_LIGHT}
-            control={control}
-            errors={errors}
-          />
-        </div>
-
-        <div className={styles.inputBlock}>
-          <TextInput
-            name={EditUserPayloadKey.RETYPE_PASSWORD}
-            label="Retype password"
-            hasHiddenLabel={false}
-            placeholder="Retype password"
-            type={InputType.PASSWORD}
-            color={InputColor.GRAY_LIGHT}
-            control={control}
-            errors={errors}
-          />
-        </div>
-
-        <div className={styles.inputBlock}>
-          <TextInput
             name={EditUserPayloadKey.PHONE}
             label="Phone"
             hasHiddenLabel={false}
@@ -168,7 +144,7 @@ const CreateUser: React.FC<IProps> = ({ user, func, hideForm }) => {
 
         <div className={styles.submitBtn}>
           <Button
-            label="Add"
+            label="Edit"
             hasHiddenLabel={false}
             type={ButtonType.SUBMIT}
             color={ButtonColor.PRIMARY_DARK}
@@ -180,4 +156,4 @@ const CreateUser: React.FC<IProps> = ({ user, func, hideForm }) => {
   );
 };
 
-export default CreateUser;
+export default EditUser;

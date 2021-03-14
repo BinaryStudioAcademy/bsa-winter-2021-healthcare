@@ -9,7 +9,7 @@ const checkIdentifierType = (identifier:string):Column =>{
       Cell : ({value}:CellValue)=>{
         const dates:string[] = [DateIdentifier.BIRTHDATE,DateIdentifier.CREATED_AT,DateIdentifier.UPDATED_AT];
         if(dates.includes(identifier)){
-          return value.toString().slice(0,10).replaceAll('-', '/')
+          return value.toString().slice(0,10).replaceAll('-', '.')
         }else{
           return value ? value.toString() : ''
         }

@@ -14,7 +14,8 @@ const AdminPage: React.FC = () => {
 
   const dispatch = useDispatch();
   const editUser = (data: IEditUserPayload) => {
-    const editedUser: IUser = {...user, ...data};
+    const userWithoutDate = {...data,birthdate:data.birthdate.toString()}
+    const editedUser: IUser = {...user, ...userWithoutDate};
     dispatch(UsersActionCreator.editUser(editedUser));
     hideForm();
 
@@ -37,6 +38,7 @@ const AdminPage: React.FC = () => {
   }
   return (
     <div className={styles.container}>
+      <button onClick={()=>showFormHandler()}>asd</button>
       <AdminTable showForm={showFormHandler} deleteUser={deleteUser} />
       {
         showPopUp &&

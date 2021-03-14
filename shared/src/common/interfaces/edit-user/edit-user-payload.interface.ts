@@ -11,7 +11,7 @@ interface IEditUserPayload {
   [EditUserPayloadKey.TYPE]: UserType;
   [EditUserPayloadKey.IMAGE_PATH]?:string;
   [EditUserPayloadKey.SEX]: UserSex;
-  [EditUserPayloadKey.BIRTHDATE]: string;
+  [EditUserPayloadKey.BIRTHDATE]: Date;
   [EditUserPayloadKey.CREATED_AT]?:string;
   [EditUserPayloadKey.UPDATED_AT]?:string;
 }
