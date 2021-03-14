@@ -47,7 +47,7 @@ class Http {
     if (!response.ok) {
       throw new HttpError({
         status: response.status,
-        message: response.statusText,
+        messages: [response.statusText],
       });
     }
 
