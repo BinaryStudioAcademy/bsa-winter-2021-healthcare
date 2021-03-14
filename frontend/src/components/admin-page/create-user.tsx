@@ -7,10 +7,11 @@ import { userRegister as validationUserSchema } from 'validation-schemas';
 import styles from './styles.module.scss';
 import { Button, DateInput, Select, TextInput } from 'components/common';
 import { createOptions } from 'helpers';
+import { PropFunctionType } from './types/prop-function-void.type';
 
 interface IProps {
-  func: (data: IRegisterPayload) => void;
-  hideForm: () => void;
+  onCreateUser: PropFunctionType<IRegisterPayload>;
+  onFormHide: () => void;
 }
 
 const DEFAULT_VALUES: IRegisterPayload = {
@@ -30,15 +31,15 @@ const DEFAULT_VALUES: IRegisterPayload = {
 const genderOptions = createOptions<string>(Object.values(UserSex))
 const userTypeOptions = createOptions<string>(Object.values(UserType))
 
-const CreateUser: React.FC<IProps> = ({ func, hideForm }) => {
+const CreateUser: React.FC<IProps> = ({ onCreateUser, onFormHide }) => {
   const { handleSubmit, errors, control } = useForm<IRegisterPayload>({
     resolver: yupResolver(validationUserSchema),
     defaultValues: DEFAULT_VALUES,
     mode: 'onChange',
   });
 
-  const onSubmit = (data: IRegisterPayload) => func(data);
-  const closeEdit = () => hideForm();
+  const onSubmit = (userData: IRegisterPayload) => onCreateUser(userData);
+  const closeEdit = () => onFormHide();
 
   return (
     <div className={styles.editContainer}>
