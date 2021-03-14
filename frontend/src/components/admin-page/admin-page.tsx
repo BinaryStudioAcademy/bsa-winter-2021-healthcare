@@ -6,51 +6,49 @@ import AdminTable from './admin-table';
 import CreateUser from './create-user';
 import EditUser from './edit-user';
 import { IEditUserPayload, IRegisterPayload, IUser } from 'common/interfaces';
-import { DEFAULT_USER_INSTANCE } from 'common/constants';
+import { DEFAULT_USER_INSTANCE } from 'components/admin-page/constants';
+import { Modal } from 'components/common';
 
 const AdminPage: React.FC = () => {
-  const [user, setUser] = React.useState(DEFAULT_USER_INSTANCE);
-  const [showPopUp, setShowPopUp] = React.useState(false);
+  const [user, setUser] = React.useState<IUser>(DEFAULT_USER_INSTANCE);
+  const [showPopUp, setShowPopUp] = React.useState<boolean>(false);
 
   const dispatch = useDispatch();
-  const editUser = (data: IEditUserPayload) => {
-    const userWithoutDate = {...data,birthdate:data.birthdate.toString()}
-    const editedUser: IUser = {...user, ...userWithoutDate};
+  const handleEditUser = (data: IEditUserPayload) => {
+    const userWithoutDate = { ...data, birthdate: data.birthdate.toString() };
+    const editedUser: IUser = { ...user, ...userWithoutDate };
     dispatch(UsersActionCreator.editUser(editedUser));
     hideForm();
-
-  }
+  };
   const addUser = (data: IRegisterPayload) => {
-    const newUser: IUser = {...user, ...data,};
+    const newUser: IUser = { ...user, ...data };
     dispatch(UsersActionCreator.addUser(newUser));
-    hideForm()
-  }
+    hideForm();
+  };
   const deleteUser = (id: string) => {
     dispatch(UsersActionCreator.deleteUser(id));
-  }
+  };
 
-  const showFormHandler = (user?: IUser) => {
-    user ? (setUser({ ...DEFAULT_USER_INSTANCE, ...user }), setShowPopUp(true)) : setShowPopUp(true);
-  }
+  const showFormHandler = (user: IUser) => {
+    user
+      ? (setUser({ ...DEFAULT_USER_INSTANCE, ...user }), setShowPopUp(true))
+      : setShowPopUp(true);
+  };
   const hideForm = () => {
     setUser(DEFAULT_USER_INSTANCE);
     setShowPopUp(false);
-  }
+  };
   return (
     <div className={styles.container}>
       {/* <button onClick={()=>showFormHandler()}>asd</button> */}
-      <AdminTable showForm={showFormHandler} deleteUser={deleteUser} />
-      {
-        showPopUp &&
-          (<>
-            {
-              user.id ?
-                <EditUser user={user} func={editUser} hideForm={hideForm} />
-                :
-                <CreateUser func={addUser} hideForm={hideForm} />
-            }
-          </>)
-      }
+      <AdminTable onFormShow={showFormHandler} onUserDelete={deleteUser} />
+      <Modal isShow={showPopUp}>
+        {user.id ? (
+          <EditUser user={user} func={handleEditUser} hideForm={hideForm} />
+        ) : (
+          <CreateUser onCreateUser={addUser} onFormHide={hideForm} />
+        )}
+      </Modal>
     </div>
   );
 };
