@@ -13,3 +13,6 @@ export * from './api';
 export * from './validation';
 export * from './doctor';
 export * from './payment';
+export * from './diagnosis';
+export * from './message';
+export * from './notification';
