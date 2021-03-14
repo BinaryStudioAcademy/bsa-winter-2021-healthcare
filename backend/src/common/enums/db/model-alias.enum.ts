@@ -7,7 +7,8 @@ enum ModelAlias {
     DOCUMENT = 'document',
     MESSAGES = 'messages',
     NOTIFICATIONS = 'notifications',
-    USER = 'user'
+    USER = 'user',
+    GEOLOCATION = 'geolocation'
   }
 
 export { ModelAlias };

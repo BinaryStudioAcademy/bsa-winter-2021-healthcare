@@ -7,7 +7,8 @@ import {
   DocumentModel,
   MessageModel,
   NotificationModel,
-  UserModel
+  UserModel,
+  GeolocationModel
 } from '~/data/models';
 
 type DbModels = {
@@ -19,6 +20,7 @@ type DbModels = {
   [ModelName.MESSAGE]: typeof MessageModel;
   [ModelName.NOTIFICATION]: typeof NotificationModel;
   [ModelName.USER]: typeof UserModel;
+  [ModelName.GEOLOCATION]: typeof GeolocationModel;
 };
 
 export type { DbModels };

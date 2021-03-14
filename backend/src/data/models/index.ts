@@ -7,6 +7,7 @@ import createNotificationModel from './notification';
 import createMessageModel from './message';
 import createUserModel from './user';
 import createDiagnosisModel from './diagnosis';
+import createGeolocationModel from './geolocation';
 import associate from '../db/associations';
 
 const AppointmentModel = createAppointmentModel(sequelize);
@@ -17,6 +18,7 @@ const DocumentModel = createDocumentModel(sequelize);
 const MessageModel = createMessageModel(sequelize);
 const NotificationModel = createNotificationModel(sequelize);
 const UserModel = createUserModel(sequelize);
+const GeolocationModel = createGeolocationModel(sequelize);
 
 associate({
   Appointment: AppointmentModel,
@@ -26,7 +28,8 @@ associate({
   Document: DocumentModel,
   Message: MessageModel,
   Notification: NotificationModel,
-  User: UserModel
+  User: UserModel,
+  Geolocation: GeolocationModel
 });
 
 export {
@@ -37,5 +40,6 @@ export {
   DocumentModel,
   MessageModel,
   NotificationModel,
-  UserModel
+  UserModel,
+  GeolocationModel
 };

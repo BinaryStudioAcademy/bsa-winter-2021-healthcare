@@ -9,3 +9,5 @@ export * from './notification';
 export * from './register'
 export * from './doctor-clinic';
 export * from './user-type-doctor';
+export * from './geolocation';
+

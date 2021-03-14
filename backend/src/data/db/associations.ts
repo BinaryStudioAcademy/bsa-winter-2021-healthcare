@@ -9,9 +9,11 @@ const associate = ({
   Document,
   Message,
   Notification,
-  User
+  User,
+  Geolocation
 }: DbModels): void => {
   User.hasOne(Doctor, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.DOCTOR});
+  User.hasOne(Geolocation, {foreignKey: ForeingKey.GEOLOCATION_ID, as: ModelAlias.GEOLOCATION});
   User.hasMany(Appointment, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.APPOINTMENTS});
   User.hasMany(Message, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.MESSAGES});
   User.hasMany(Notification, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.NOTIFICATIONS});
@@ -33,7 +35,9 @@ const associate = ({
 
   Notification.belongsTo(User, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER});
 
-  Diagnosis.belongsTo(User, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER});
+  Diagnosis.belongsTo(User, { foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER });
+
+  Geolocation.belongsTo(User, { foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER });
 };
 
 export default associate;
