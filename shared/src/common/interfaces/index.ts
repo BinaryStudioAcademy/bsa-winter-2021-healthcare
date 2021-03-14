@@ -11,3 +11,4 @@ export * from './doctor-clinic';
 export * from './user-type-doctor';
 export * from './permission';
 export * from './user-permission';
+export * from './user-with-permissions';
