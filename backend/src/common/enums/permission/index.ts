@@ -1,1 +1,1 @@
-export { PermissionName } from 'healthcare-shared/common/enums';
+export { PermissionName, PermissionKey } from 'healthcare-shared/common/enums';
