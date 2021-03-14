@@ -18,7 +18,7 @@ const genderOptions = createOptions<string>(Object.values(UserSex))
 const userTypeOptions = createOptions<string>(Object.values(UserType))
 
 const EditUser: React.FC<IProps> = ({ user, func, hideForm }) => {
-  
+
   const userWithDate = {...user,birthdate:new Date(user.birthdate)};
 
   const { handleSubmit, errors, control } = useForm<IEditUserPayload>({
