@@ -49,8 +49,8 @@ const SignUpForm: React.FC = () => {
 
       <h2 className={styles.title}>Sign Up</h2>
 
-      <div className={styles.inputBlock}>
-        Have account? <Link to={AppRoute.SIGN_IN}>Sign in</Link>
+      <div className={styles.textBlock}>
+        Have account? <Link to={AppRoute.SIGN_IN}>Sign In</Link>
       </div>
 
       <div className={styles.inputBlock}>

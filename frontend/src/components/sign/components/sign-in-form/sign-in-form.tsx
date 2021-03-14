@@ -27,7 +27,7 @@ const SignInForm: React.FC = () => {
 
       <h2 className={styles.title}>Sign In</h2>
 
-      <div className={styles.inputBlock}>
+      <div className={styles.textBlock}>
         No account? <Link to={AppRoute.SIGN_UP}>Sign up</Link>
       </div>
 
