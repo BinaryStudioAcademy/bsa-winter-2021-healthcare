@@ -10,4 +10,4 @@ export * from './register'
 export * from './doctor-clinic';
 export * from './user-type-doctor';
 export * from './permission';
-export * from './user_permission';
+export * from './user-permission';

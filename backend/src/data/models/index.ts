@@ -8,7 +8,7 @@ import createMessageModel from './message';
 import createUserModel from './user';
 import createDiagnosisModel from './diagnosis';
 import createPermissionModel from './permission';
-import createUserPermissionModel from './user_permission';
+import createUserPermissionModel from './user-permission';
 import associate from '../db/associations';
 
 const AppointmentModel = createAppointmentModel(sequelize);
