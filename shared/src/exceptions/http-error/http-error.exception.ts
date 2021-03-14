@@ -1,12 +1,7 @@
 import { HttpCode, CustomExceptionName } from '~/common/enums';
 import { DEFAULT_MESSAGE } from './common/constants';
 
-interface IHttpError {
-  status?: HttpCode;
-  messages: string[];
-}
-
-class HttpError extends Error implements IHttpError {
+class HttpError extends Error {
   status: HttpCode;
   messages: string[];
 
