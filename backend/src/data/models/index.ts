@@ -32,7 +32,7 @@ associate({
   Notification: NotificationModel,
   User: UserModel,
   Permission: PermissionModel,
-  UserPermissionModel
+  UserPermission: UserPermissionModel
 });
 
 export {
