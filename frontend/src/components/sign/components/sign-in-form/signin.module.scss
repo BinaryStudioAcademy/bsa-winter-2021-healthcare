@@ -18,18 +18,25 @@
     align-self: flex-start;
   }
 
-  & a {
-    text-decoration: none;
-  }
-
-  .forgotLink {
-    width: 100%;
-    text-align: right;
-  }
-
-  .inputBlock {
+  .inputBlock,
+  .textBlock {
     margin-bottom: 15px;
     width: 100%;
+    color: #000;
+  }
+
+  .textBlock {
+    color: var(--color-gray);
+
+    & > a {
+      text-transform: capitalize;
+      text-decoration: none;
+      color: var(--color-primary-light);
+
+      &:hover {
+        color: var(--color-primary-dark);
+      }
+    }
   }
 
   .submitBtn {
