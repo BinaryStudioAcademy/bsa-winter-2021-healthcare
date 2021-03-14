@@ -30,39 +30,24 @@ const { reducer, actions } = createSlice({
   },
 });
 
-const getUsers = (): AppThunk => (dispatch) => {
-  const asyncFetch = async () => {
-    const response = await userApi.getUsers();
-    dispatch(actions.addUsers(response))
-  };
-  asyncFetch();
+const getUsers = (): AppThunk => async (dispatch) => {
+  const response = await userApi.getUsers();
+  dispatch(actions.addUsers(response))
 };
-const getUser = (id:string): AppThunk => () => {
-  const asyncFetch = async () => {
+const getUser = (id:string): AppThunk => async () => {
     await userApi.getUser(id);
-  };
-  asyncFetch();
 };
-const editUser = (userInfo: IUser): AppThunk => (dispatch) => {
-  const asyncFetch = async () => {
+const editUser = (userInfo: IUser): AppThunk => async (dispatch) => {
     const response = await userApi.editUser(userInfo.id as string, {...userInfo});
     response ? dispatch(actions.editUser({id:userInfo.id, data:{...userInfo}})) : null;
-  };
-  asyncFetch()
 };
-const addUser = (userInfo: IUser): AppThunk => (dispatch) => {
-  const asyncFetch = async () => {
+const addUser = (userInfo: IUser): AppThunk => async (dispatch) => {
     const response = await userApi.registerUser(userInfo);
     dispatch(actions.addUsers([response]));
-  };
-  asyncFetch();
 };
-const deleteUser = (id: string): AppThunk => (dispatch) => {
+const deleteUser = (id: string): AppThunk => async (dispatch) => {
   dispatch(actions.deleteUser(id));
-  const asyncFetch = async () => {
-    await userApi.deleteUser(id);
-  };
-  asyncFetch();
+  await userApi.deleteUser(id);
 };
 
 const UsersActionCreator = {
