@@ -11,7 +11,9 @@
     <summary>
       <b>B1.</b> The code corresponds to the Technical Task.
     </summary>
-    All the mandatory tasks of the TT have been fulfilled.
+    <p>
+      All the mandatory tasks of the TT have been fulfilled.
+    </p>
   </details>
 
 ## Additional
@@ -23,5 +25,7 @@
     <summary>
        <b>A1.</b> The Technical Task is implemented in full.
     </summary>
-    All mandatory and optional tasks of the TT have been fulfilled.
+    <p>
+      All mandatory and optional tasks of the TT have been fulfilled.
+    </p>
   </details>
