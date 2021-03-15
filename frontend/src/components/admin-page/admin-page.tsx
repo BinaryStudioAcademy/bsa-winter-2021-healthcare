@@ -12,7 +12,7 @@ import { Modal } from 'components/common';
 const AdminPage: React.FC = () => {
   const [user, setUser] = React.useState<IUser>(DEFAULT_USER_INSTANCE);
   const [showPopUp, setShowPopUp] = React.useState<boolean>(false);
-  const userWithDate: IEditUserPayload = {...user,birthdate:new Date(user.birthdate)}; 
+  const userWithDate: IEditUserPayload = {...user,birthdate:new Date(user.birthdate)};
 
   const dispatch = useDispatch();
   const handleEditUser = (data: IEditUserPayload) => {
