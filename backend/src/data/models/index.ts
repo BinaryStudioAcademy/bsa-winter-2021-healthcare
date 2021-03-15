@@ -11,6 +11,7 @@ import createPermissionModel from './permission';
 import createUserPermissionModel from './user-permission';
 import associate from '../db/associations';
 import createSpecializationModel from './specializations';
+import createUserSpecializationModel from './user-specialization';
 
 const AppointmentModel = createAppointmentModel(sequelize);
 const ClinicModel = createClinicModel(sequelize);
@@ -23,6 +24,7 @@ const UserModel = createUserModel(sequelize);
 const PermissionModel = createPermissionModel(sequelize);
 const UserPermissionModel = createUserPermissionModel(sequelize);
 const SpecializationModel = createSpecializationModel(sequelize);
+const UserSpecializationModel = createUserSpecializationModel(sequelize);
 
 associate({
   Appointment: AppointmentModel,
@@ -35,7 +37,8 @@ associate({
   User: UserModel,
   Permission: PermissionModel,
   UserPermission: UserPermissionModel,
-  Specialization: SpecializationModel
+  Specialization: SpecializationModel,
+  UserSpecialization: UserSpecializationModel
 });
 
 export {
@@ -49,5 +52,6 @@ export {
   UserModel,
   PermissionModel,
   UserPermissionModel,
-  SpecializationModel
+  SpecializationModel,
+  UserSpecializationModel
 };
