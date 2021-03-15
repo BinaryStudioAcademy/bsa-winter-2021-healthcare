@@ -12,12 +12,11 @@ import { Modal } from 'components/common';
 const AdminPage: React.FC = () => {
   const [user, setUser] = React.useState<IUser>(DEFAULT_USER_INSTANCE);
   const [showPopUp, setShowPopUp] = React.useState<boolean>(false);
+  const userWithDate: IEditUserPayload = {...user,birthdate:new Date(user.birthdate)}; 
 
   const dispatch = useDispatch();
   const handleEditUser = (data: IEditUserPayload) => {
-    const userWithoutDate = { ...data, birthdate: data.birthdate.toString() };
-    const editedUser: IUser = { ...user, ...userWithoutDate };
-    dispatch(UsersActionCreator.editUser(editedUser));
+    dispatch(UsersActionCreator.editUser({...data,id:user.id}));
     hideForm();
   };
   const addUser = (data: IRegisterPayload) => {
@@ -44,7 +43,7 @@ const AdminPage: React.FC = () => {
       <AdminTable onFormShow={showFormHandler} onUserDelete={deleteUser} />
       <Modal isShow={showPopUp}>
         {user.id ? (
-          <EditUser user={user} onEditUser={handleEditUser} onFormHide={hideForm} />
+          <EditUser user={userWithDate} onEditUser={handleEditUser} onFormHide={hideForm} />
         ) : (
           <CreateUser onCreateUser={addUser} onFormHide={hideForm} />
         )}
