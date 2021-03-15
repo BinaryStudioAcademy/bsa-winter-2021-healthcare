@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName, DataStatus, StorageKey, UserSex, UserType } from 'common/enums';
 import { IUser, IUserLoginPayload, IRegisterPayload } from 'common/interfaces';
-import { authApi, storage } from 'services';
+import { authApi, notificationService, storage } from 'services';
 import { LoginResponse } from 'common/types/responses';
+import { HttpError } from 'exceptions';
 
 
 type AuthState = {
@@ -34,18 +35,32 @@ const initialState: AuthState = {
 const login = createAsyncThunk(
   'auth/login',
   async (userData: IUserLoginPayload) => {
-    const { token, user }: LoginResponse = await authApi.loginUser(userData);
-    storage.setItem(StorageKey.TOKEN, token);
-    return user;
+    try {
+      const { token, user }: LoginResponse = await authApi.loginUser(userData);
+      storage.setItem(StorageKey.TOKEN, token);
+      return user;
+    } catch(error) {
+      if (error instanceof HttpError) {
+        notificationService.error(`Error ${error.status}`, error.messages);
+      }
+      throw error;
+    }
   },
 );
 
 const registration = createAsyncThunk(
   'auth/registration',
   async (userData: IRegisterPayload) => {
-    const { token, user } = await authApi.registrationUser(userData);
-    storage.setItem(StorageKey.TOKEN, token);
-    return user;
+    try {
+      const { token, user } = await authApi.registrationUser(userData);
+      storage.setItem(StorageKey.TOKEN, token);
+      return user;
+    } catch(error) {
+      if (error instanceof HttpError) {
+        notificationService.error(`Error ${error.status}`, error.messages);
+      }
+      throw error;
+    }
   },
 );
 
