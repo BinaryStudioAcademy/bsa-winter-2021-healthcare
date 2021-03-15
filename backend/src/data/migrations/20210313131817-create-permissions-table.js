@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) =>
     queryInterface.sequelize.transaction(transaction => Promise.all([
-      queryInterface.createTable('documents',{
+      queryInterface.createTable('permissions', {
         id: {
           allowNull: false,
           autoIncrement: false,
@@ -11,20 +11,21 @@ module.exports = {
           type: Sequelize.UUID,
           defaultValue: Sequelize.literal('gen_random_uuid()')
         },
-        imagePath: {
+        name: {
           allowNull: false,
-          type: Sequelize.STRING
-        },
-        status: {
-          allowNull: false,
-          type: Sequelize.ENUM('verified', 'in_review')
+          type: Sequelize.ENUM(
+            'create-user',
+            'edit-user',
+            'create-clinic'
+          ),
+          unique: true
         },
         createdAt: Sequelize.DATE,
         updatedAt: Sequelize.DATE
       }, { transaction })
     ])),
   down: async queryInterface => queryInterface.sequelize
-  .transaction(transaction => Promise.all([
-    queryInterface.dropTable('documents', { transaction })
-  ]))
+    .transaction(transaction => Promise.all([
+      queryInterface.dropTable('permissions', { transaction })
+    ]))
 };

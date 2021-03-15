@@ -16,3 +16,5 @@ export * from './doctor';
 export * from './diagnosis';
 export * from './message';
 export * from './notification';
+export * from './permission';
+export * from './user-permission';
