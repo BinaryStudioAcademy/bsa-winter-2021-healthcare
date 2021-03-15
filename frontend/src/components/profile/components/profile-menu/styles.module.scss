@@ -32,9 +32,13 @@
   text-align: left;
 }
 
+.icon{
+  width: 22px;
+  height: 22px;
+}
 
-
-
-
-
-
+.person {
+  background-image: url('../../../../assets/images/person.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}

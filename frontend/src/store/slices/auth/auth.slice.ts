@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ReducerName, DataStatus, StorageKey, UserSex, UserType } from 'common/enums';
+import { ReducerName, DataStatus, StorageKey } from 'common/enums';
 import { IUser, IUserLoginPayload, IRegisterPayload } from 'common/interfaces';
 import { authApi, notificationService, storage } from 'services';
 import { LoginResponse } from 'common/types/responses';
@@ -11,24 +11,8 @@ type AuthState = {
   dataStatus: DataStatus;
 };
 
-
-const user = {
-  id:'ghjgjgjhj',
-  name: 'Alex',
-  surname: 'Zhuk',
-  birthdate: '2021-03-05 18:46:02.208+00',
-  sex: UserSex.FEMALE,
-  type: UserType.PATIENT,
-  phone: '0986541198',
-  email: 'tre@ert.com',
-  password: 'string',
-  imagePath: 'https://resizing.flixster.com/kr0IphfLGZqni5JOWDS2P1-zod4=/280x250/v1.cjs0OTQ2NztqOzE4NDk1OzEyMDA7MjgwOzI1MA',  
-  createdAt: '2021-03-05 18:46:02.208+00',
-  updatedAt: '2021-03-05 18:46:02.208+00'
-}
-
 const initialState: AuthState = {
-  user: user,
+  user: null,
   dataStatus: DataStatus.IDLE,
 };
 

@@ -1,9 +1,7 @@
 import React from "react";
-import phoneIcon from 'assets/images/icons/phone.svg';
-import mailIcon from 'assets/images/icons/mail.svg';
-import penIcon from 'assets/images/icons/pen.svg';
 import { IUser } from 'common/interfaces/user';
 import { getDateFormat } from 'helpers';
+import clsx from "clsx";
 import styles from './styles.module.scss';
 
 type Props = {
@@ -20,7 +18,7 @@ const ProfileInfo: React.FC<Props> = ({user, edit}) => {
       <div className={styles.infoHeader}>
         <span>My Profile</span>
         <div className={styles.editButton} onClick={edit}>
-          <img src={penIcon} width="18" height="18" loading="lazy" alt="pen-icon"/>
+          <span className={clsx(styles.icon, styles.pen)}></span>
         </div>
       </div>
       <div className={styles.infoBloks}>
@@ -39,11 +37,11 @@ const ProfileInfo: React.FC<Props> = ({user, edit}) => {
         </div>
         <div className={styles.secUserInfo}>
           <div className={styles.item}>
-            <img src={phoneIcon} width="20" height="20" loading="lazy" alt="phone-icon"/>
+            <span className={clsx(styles.icon, styles.phone)}></span>
             <span className={styles.text}>{user?.phone}</span>
           </div>
           <div className={styles.item}>
-          <img src={mailIcon} width="21" height="15" loading="lazy" alt="mail-icon"/>
+            <span className={clsx(styles.icon, styles.email)}></span>
             <span className={styles.text}>{user?.email}</span>
           </div>
         </div>

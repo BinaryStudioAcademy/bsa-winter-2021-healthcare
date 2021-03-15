@@ -75,7 +75,7 @@
 
 .secUserInfo {
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   align-items: flex-start;
   margin-left: 60px;
   width: 200px;
@@ -91,4 +91,27 @@
   font-weight: 400;
   margin-left: 22px;
   text-align: left;
+}
+
+.icon{
+  width: 22px;
+  height: 22px;
+}
+
+.phone {
+  background-image: url('../../../../assets/images/phone.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.email {
+  background-image: url('../../../../assets/images/mail.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.pen {
+  background-image: url('../../../../assets/images/pen.svg');
+  background-repeat: no-repeat;
+  background-position: center;
 }
