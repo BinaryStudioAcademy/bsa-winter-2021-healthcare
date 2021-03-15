@@ -1,6 +1,6 @@
 import { UserSex, UserType, UserKey } from '~/common/enums';
 
-type IUser = {
+interface IUser {
   [UserKey.ID]?: string
   [UserKey.NAME]: string
   [UserKey.SURNAME]: string
