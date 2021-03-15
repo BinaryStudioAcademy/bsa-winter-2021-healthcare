@@ -20,7 +20,7 @@ class NotificationService {
   }
 
   info(title: string, messages: string[], options?: BasicToastrOptions): void {
-    this.#instance.success(title, this._getFullMessage(messages), options);
+    this.#instance.info(title, this._getFullMessage(messages), options);
   }
 }
 
