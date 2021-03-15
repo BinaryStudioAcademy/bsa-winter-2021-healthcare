@@ -28,6 +28,6 @@ module.exports = {
     ])),
   down: async queryInterface => queryInterface.sequelize
   .transaction(transaction => Promise.all([
-    queryInterface => queryInterface.dropTable('doctors', { transaction })
+    queryInterface.dropTable('doctors', { transaction })
   ]))
 };
