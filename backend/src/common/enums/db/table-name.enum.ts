@@ -7,7 +7,9 @@ enum TableName {
   MESSAGES = 'messages',
   NOTIFICATIONS = 'notifications',
   USERS = 'users',
-  GEOLOCATION = 'geolocation'
+  GEOLOCATION = 'geolocation',
+  PERMISSIONS = 'permissions',
+  USERS_PERMISSIONS = 'users_permissions'
 }
 
 export { TableName };
