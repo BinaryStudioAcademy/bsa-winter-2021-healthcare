@@ -9,7 +9,6 @@ enum  UserKey {
     EMAIL = 'email',
     PASSWORD = 'password',
     IMAGE_PATH = 'imagePath',
-    GEOPOSITION = 'geoposition',
     DIAGNOSIS = 'diagnosis',
     CREATED_AT = 'createdAt',
     UPDATED_AT = 'updatedAt'

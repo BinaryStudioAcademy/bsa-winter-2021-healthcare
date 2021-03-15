@@ -7,6 +7,7 @@ import createNotificationModel from './notification';
 import createMessageModel from './message';
 import createUserModel from './user';
 import createDiagnosisModel from './diagnosis';
+import createGeolocationModel from './geolocation';
 import createPermissionModel from './permission';
 import createUserPermissionModel from './user-permission';
 import associate from '../db/associations';
@@ -19,6 +20,7 @@ const DocumentModel = createDocumentModel(sequelize);
 const MessageModel = createMessageModel(sequelize);
 const NotificationModel = createNotificationModel(sequelize);
 const UserModel = createUserModel(sequelize);
+const GeolocationModel = createGeolocationModel(sequelize);
 const PermissionModel = createPermissionModel(sequelize);
 const UserPermissionModel = createUserPermissionModel(sequelize);
 
@@ -31,6 +33,7 @@ associate({
   Message: MessageModel,
   Notification: NotificationModel,
   User: UserModel,
+  Geolocation: GeolocationModel,
   Permission: PermissionModel,
   UserPermission: UserPermissionModel
 });
@@ -44,6 +47,7 @@ export {
   MessageModel,
   NotificationModel,
   UserModel,
+  GeolocationModel,
   PermissionModel,
   UserPermissionModel
 };
