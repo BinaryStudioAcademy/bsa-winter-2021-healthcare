@@ -9,6 +9,7 @@ enum ModelAlias {
   NOTIFICATIONS = 'notifications',
   USER = 'user',
   USERS = 'users',
+  GEOLOCATION = 'geolocation',
   PERMISSIONS = 'permissions'
 }
 
