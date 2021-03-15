@@ -20,7 +20,7 @@ const Toaster: React.FC<Props> = ({
   isDuplicatesPrevented = true,
   hasProgressBar = true,
   isClosingOnClick = true,
-  position="bottom-right",
+  position="top-right",
   transitionIn="fadeIn",
   transitionOut = "fadeOut",
   className
