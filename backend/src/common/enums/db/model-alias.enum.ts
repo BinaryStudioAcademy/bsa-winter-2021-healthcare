@@ -1,6 +1,8 @@
 enum ModelAlias {
   APPOINTMENTS = 'appointments',
+  CITY = 'city',
   CLINIC = 'clinic',
+  CLINICS = 'clinics',
   DIAGNOSIS = 'diagnosis',
   DOCTORS = 'doctors',
   DOCTOR = 'doctor',
