@@ -1,6 +1,7 @@
 enum ModelName {
   APPOINTMENT = 'Appointment',
   CLINIC = 'Clinic',
+  CITY = 'City',
   DIAGNOSIS = 'Diagnosis',
   DOCTOR = 'Doctor',
   DOCUMENT = 'Document',
