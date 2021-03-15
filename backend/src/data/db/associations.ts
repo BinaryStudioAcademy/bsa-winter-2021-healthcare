@@ -9,13 +9,16 @@ const associate = ({
   Document,
   Message,
   Notification,
-  User
+  User,
+  Permission,
+  UserPermission
 }: DbModels): void => {
   User.hasOne(Doctor, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.DOCTOR});
   User.hasMany(Appointment, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.APPOINTMENTS});
   User.hasMany(Message, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.MESSAGES});
   User.hasMany(Notification, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.NOTIFICATIONS});
   User.hasMany(Diagnosis, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.DIAGNOSIS});
+  User.belongsToMany(Permission, {through: UserPermission , foreignKey: ForeingKey.USER_ID, as: ModelAlias.PERMISSIONS});
 
   Doctor.hasMany(Appointment, {foreignKey: ForeingKey.DOCTOR_ID, as: ModelAlias.APPOINTMENTS});
   Doctor.belongsTo(Clinic, {foreignKey: ForeingKey.CLINIC_ID, as: ModelAlias.CLINIC});
@@ -34,6 +37,8 @@ const associate = ({
   Notification.belongsTo(User, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER});
 
   Diagnosis.belongsTo(User, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER});
+
+  Permission.belongsToMany(User, {through: UserPermission, foreignKey: ForeingKey.PERMISSION_ID, as: ModelAlias.USERS});
 };
 
 export default associate;
