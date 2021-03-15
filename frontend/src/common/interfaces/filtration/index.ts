@@ -1,1 +1,1 @@
-export type { IDoctorFiltrationPayload } from 'healthcare-shared/common/interfaces';
+export type { IDoctorFiltrationPayload, IDoctorCheckbox } from 'healthcare-shared/common/interfaces';
