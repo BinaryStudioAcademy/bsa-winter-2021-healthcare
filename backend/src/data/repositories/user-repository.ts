@@ -1,6 +1,6 @@
 import { UserModel, DoctorModel, ClinicModel } from '../models';
 import { IUser, IRegisterPayload } from '~/common/interfaces';
-import { UserType, ModelAlias,  DoctorKey, ClinicKey} from '~/common/enums';
+import { UserType, ModelAlias,  DoctorKey, ClinicKey } from '~/common/enums';
 
 
 class UserRepository {
@@ -31,6 +31,16 @@ class UserRepository {
 
   public getById(id: string): Promise<IUser | null> {
     return UserModel.findByPk(id);
+  }
+  public getDoctorDetailsById(id: string): Promise<IUser | null> {
+    return UserModel.findOne({
+      where: {id},
+      include: {
+        model:DoctorModel,
+        as:ModelAlias.DOCTOR,
+        attributes: [DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
+      }
+    })
   }
 
   public createUser(user: IRegisterPayload): Promise<IUser> {
