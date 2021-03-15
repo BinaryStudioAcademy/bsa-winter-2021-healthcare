@@ -16,4 +16,7 @@ export * from './payment';
 export * from './diagnosis';
 export * from './message';
 export * from './notification';
+export * from './geolocation';
+export * from './permission';
+export * from './user-permission';
 export * from './filtration';

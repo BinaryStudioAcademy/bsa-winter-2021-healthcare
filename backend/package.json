@@ -1,7 +1,7 @@
 {
   "private": true,
   "engines": {
-    "node": "12.x.x",
+    "node": "14.x.x",
     "npm": "6.x.x"
   },
   "scripts": {

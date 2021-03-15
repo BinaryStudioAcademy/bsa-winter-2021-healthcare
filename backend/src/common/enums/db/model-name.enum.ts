@@ -6,7 +6,10 @@ enum ModelName {
   DOCUMENT = 'Document',
   MESSAGE = 'Message',
   NOTIFICATION = 'Notification',
-  USER = 'User'
+  USER = 'User',
+  GEOLOCATION = 'Geolocation',
+  PERMISSION = 'Permission',
+  USER_PERMISSION = 'UserPermission'
 }
 
 export { ModelName };
