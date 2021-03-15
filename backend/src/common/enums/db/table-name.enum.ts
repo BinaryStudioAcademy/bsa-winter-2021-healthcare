@@ -6,7 +6,8 @@ enum TableName {
   DOCUMENTS = 'documents',
   MESSAGES = 'messages',
   NOTIFICATIONS = 'notifications',
-  USERS = 'users'
+  USERS = 'users',
+  SPECIALIZATIONS = 'specializations'
 }
 
 export { TableName };
