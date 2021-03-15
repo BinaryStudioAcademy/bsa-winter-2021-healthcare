@@ -3,6 +3,7 @@ import { ModelAlias, ForeingKey } from '~/common/enums';
 
 const associate = ({
   Appointment,
+  City,
   Clinic,
   Diagnosis,
   Doctor,
@@ -32,7 +33,10 @@ const associate = ({
 
   Document.hasOne(Doctor, {foreignKey: ForeingKey.DOCUMENT_ID, as: ModelAlias.DOCTOR});
 
+  City.hasMany(Clinic, { foreignKey: ForeingKey.CITY_ID, as: ModelAlias.CLINICS });
+
   Clinic.hasMany(Doctor, {foreignKey: ForeingKey.CLINIC_ID, as: ModelAlias.DOCTORS});
+  Clinic.belongsTo(City, { foreignKey: ForeingKey.CITY_ID, as: ModelAlias.CITY });
 
   Message.belongsTo(User, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER});
 

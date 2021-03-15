@@ -1,6 +1,7 @@
 enum TableName {
   APPOINTMENTS = 'appointments',
   CLINICS = 'clinics',
+  CITIES = 'cities',
   DIAGNOSES = 'diagnoses',
   DOCTORS = 'doctors',
   DOCUMENTS = 'documents',
@@ -9,7 +10,7 @@ enum TableName {
   USERS = 'users',
   GEOLOCATION = 'geolocation',
   PERMISSIONS = 'permissions',
-  USERS_PERMISSIONS = 'users_permissions'
+  USERS_PERMISSIONS = 'users_permissions',
 }
 
 export { TableName };
