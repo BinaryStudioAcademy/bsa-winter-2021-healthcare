@@ -5,10 +5,10 @@ import { RootState } from 'common/types';
 import { UsersActionCreator } from 'store/slices';
 import { Column, IUser } from 'common/interfaces';
 import {Table} from 'components/common';
-import ActionsButton from './components/actions-button/actions-button';
+import ActionsButton from '../actions-button/actions-button';
 import styles from './styles.module.scss';
 import { DEFAULT_USER_INSTANCE } from 'components/admin-page/constants';
-import { PropFunctionType } from './types/prop-function-void.type';
+import { PropFunctionType } from '../../types/prop-function-void.type';
 
 interface IProps{
   onUserDelete: PropFunctionType<string>,

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { UsersActionCreator } from 'store/slices';
 import styles from './styles.module.scss';
-import AdminTable from './admin-table';
+import AdminTable from './components/admin-table/admin-table';
 import CreateUser from './create-user';
 import EditUser from './edit-user';
 import { IEditUserPayload, IRegisterPayload, IUser } from 'common/interfaces';

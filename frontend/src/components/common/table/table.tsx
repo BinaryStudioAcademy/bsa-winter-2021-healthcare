@@ -6,7 +6,7 @@ import { CustomRecord } from 'common/types';
 
 interface IProps {
   columns: Column[],
-  data: CustomRecord<unknown>[],
+  data: Record<string,unknown>[],
 }
 
 const Table: React.FC<IProps> = ({ columns, data }) => {
