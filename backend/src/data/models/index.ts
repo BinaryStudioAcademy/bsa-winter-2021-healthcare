@@ -8,6 +8,7 @@ import createMessageModel from './message';
 import createUserModel from './user';
 import createDiagnosisModel from './diagnosis';
 import associate from '../db/associations';
+import createSpecializationModel from './specializations';
 
 const AppointmentModel = createAppointmentModel(sequelize);
 const ClinicModel = createClinicModel(sequelize);
@@ -17,6 +18,7 @@ const DocumentModel = createDocumentModel(sequelize);
 const MessageModel = createMessageModel(sequelize);
 const NotificationModel = createNotificationModel(sequelize);
 const UserModel = createUserModel(sequelize);
+const SpecializationModel = createSpecializationModel(sequelize);
 
 associate({
   Appointment: AppointmentModel,
@@ -26,7 +28,8 @@ associate({
   Document: DocumentModel,
   Message: MessageModel,
   Notification: NotificationModel,
-  User: UserModel
+  User: UserModel,
+  Specialization: SpecializationModel
 });
 
 export {
@@ -37,5 +40,6 @@ export {
   DocumentModel,
   MessageModel,
   NotificationModel,
-  UserModel
+  UserModel,
+  SpecializationModel
 };
