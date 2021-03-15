@@ -7,3 +7,6 @@ export * from './document';
 export * from './message';
 export * from './notification';
 export * from './register';
+export * from './permission';
+export * from './user-permission';
+export * from './user-with-permissions';
