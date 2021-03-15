@@ -2,10 +2,11 @@ import React from 'react';
 import { useTable } from 'react-table';
 import { Column } from 'common/interfaces';
 import styles from './styles.module.scss';
+import { CustomRecord } from 'common/types';
 
 interface IProps {
   columns: Column[],
-  data: Record<string, unknown>[],
+  data: CustomRecord<unknown>[],
 }
 
 const Table: React.FC<IProps> = ({ columns, data }) => {
