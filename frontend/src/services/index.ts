@@ -3,6 +3,7 @@ import { Http } from './http/http.service';
 import { AuthApi } from './auth-api/auth-api.service';
 import { UserApi } from './user-api/user-api.service';
 import { Storage } from './storage/storage.service';
+import NotificationService from './notification/notification.service';
 
 const http = new Http();
 
@@ -20,4 +21,6 @@ const storage = new Storage({
   storage: localStorage
 });
 
-export { http, authApi, userApi, storage };
+const notificationService = new NotificationService();
+
+export { http, authApi, userApi, storage, notificationService };
