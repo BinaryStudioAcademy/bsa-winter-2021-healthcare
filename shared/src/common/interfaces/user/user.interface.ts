@@ -16,7 +16,7 @@ type IUser = {
   [UserKey.EMAIL]: string
   [UserKey.PASSWORD]: string
   [UserKey.IMAGE_PATH]: string
-  [UserKey.GEOPOSITION]?: Geoposition
+  // [UserKey.GEOPOSITION]?: Geoposition
   [UserKey.DIAGNOSIS]?: string
   [UserKey.CREATED_AT]: string
   [UserKey.UPDATED_AT]: string
