@@ -34,6 +34,7 @@ const getDoctorsAsync = (): AppThunk => async (dispatch) => {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
     }
+    throw error;
   }
 };
 
