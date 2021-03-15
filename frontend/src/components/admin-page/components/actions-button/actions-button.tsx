@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 import { IUser } from 'common/interfaces';
 import { Button } from 'components/common';
 import { ButtonColor, ButtonIcon, ButtonStyleType } from 'common/enums';
-import { PropFunctionType } from 'components/admin-page/types/prop-function-void.type';
+import { PropFunctionType } from 'components/admin-page/components/types/prop-function-void.type';
 
 interface IProps {
   onUserEdit: PropFunctionType<IUser>;
@@ -29,15 +29,6 @@ const ActionsButton: React.FC<IProps> = ({ onUserEdit, user, onUserDelete }) => 
         styleType={ButtonStyleType.WITHOUT_BORDER}
         color={ButtonColor.WHITE}
         icon={ButtonIcon.DELETE}
-        label={'Delete'}
-        isDisabled={false}
-        hasHiddenLabel={true}
-        onClick={handleUserBtnDelete}
-      />
-      <Button
-        styleType={ButtonStyleType.WITHOUT_BORDER}
-        color={ButtonColor.WHITE}
-        icon={ButtonIcon.PDF}
         label={'Delete'}
         isDisabled={false}
         hasHiddenLabel={true}

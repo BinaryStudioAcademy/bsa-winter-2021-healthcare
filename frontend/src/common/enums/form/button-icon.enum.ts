@@ -5,7 +5,6 @@ enum ButtonIcon {
   BELL = 'bell',
   EDIT = 'edit',
   DELETE = 'delete',
-  PDF = 'pdf',
 }
 
 export { ButtonIcon };
