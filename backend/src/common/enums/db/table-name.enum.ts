@@ -8,7 +8,7 @@ enum TableName {
   NOTIFICATIONS = 'notifications',
   USERS = 'users',
   PERMISSIONS = 'permissions',
-  USERS_PERMISSIONS = 'users_permissions'
+  USERS_PERMISSIONS = 'users_permissions',
   SPECIALIZATIONS = 'specializations'
 }
 
