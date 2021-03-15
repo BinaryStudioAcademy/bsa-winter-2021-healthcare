@@ -1,6 +1,6 @@
-import { UserModel, DoctorModel, ClinicModel, PermissionModel } from '../models';
+import { UserModel, DoctorModel, ClinicModel, PermissionModel, SpecializationModel } from '../models';
 import { IUser, IRegisterPayload, IUserWithPermissions } from '~/common/interfaces';
-import { UserType, ModelAlias, DoctorKey, ClinicKey } from '~/common/enums';
+import { UserType, ModelAlias, DoctorKey, ClinicKey, SpecializationKey } from '~/common/enums';
 
 
 class UserRepository {
@@ -48,11 +48,17 @@ class UserRepository {
   public getDoctorDetailsById(id: string): Promise<IUser | null> {
     return UserModel.findOne({
       where: {id},
-      include: {
+      include: [{
         model:DoctorModel,
         as:ModelAlias.DOCTOR,
         attributes: [DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
+      },
+      {
+        model: SpecializationModel,
+        as: ModelAlias.SPECIALIZATIONS,
+        attributes: [SpecializationKey.ID, SpecializationKey.TEXT]
       }
+    ]
     })
   }
 
