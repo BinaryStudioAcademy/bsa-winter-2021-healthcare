@@ -4,23 +4,16 @@ import styles from './doctors-filtration.module.scss';
 import location from 'assets/images/location.svg';
 import specialty from 'assets/images/specialty.svg';
 import clinic from 'assets/images/clinic.svg';
-import record from 'assets/images/record.svg';
-import wallet from 'assets/images/wallet.svg';
-import star from 'assets/images/star.svg';
 import { TextInput, Checkbox } from 'components/common';
-import { DoctorType, ClinicType, AppointmentType, PaymentType, DoctorAssessment, InputType, InputColor, DoctorFiltration } from 'common/enums';
+import { DoctorType, ClinicType, InputType, InputColor, DoctorFiltration } from 'common/enums';
 import { IDoctorFiltrationPayload, IDoctorCheckbox } from 'common/interfaces';
 import Details from 'components/common/details/details';
 
 const DEFAULT_VALUES: IDoctorFiltrationPayload = {
   [DoctorFiltration.SEARCH]: '',
   [DoctorFiltration.CITY]: '',
-  [DoctorFiltration.DISTRICT]: '',
   [DoctorFiltration.SPECIALTY]: DoctorType.SURGEON,
-  [DoctorFiltration.TYPE_OF_CLINIC]: ClinicType.STATE,
-  [DoctorFiltration.TYPE_OF_RECEPTION]: AppointmentType.OFFLINE,
-  [DoctorFiltration.PAYMENT]: PaymentType.CLINIC_PRICE,
-  [DoctorFiltration.DOCTORS_ASSESSMENT]: DoctorAssessment.NORMAL
+  [DoctorFiltration.TYPE_OF_CLINIC]: ClinicType.STATE
 }
 
 const CHECKBOXES_DEFAULT_VALUES: IDoctorCheckbox = {
@@ -30,15 +23,7 @@ const CHECKBOXES_DEFAULT_VALUES: IDoctorCheckbox = {
   [DoctorType.SURGEON]: false,
   [DoctorType.DERMATOLOGIST]: false,
   [ClinicType.PRIVATE]: false,
-  [ClinicType.STATE]: false,
-  [AppointmentType.OFFLINE]: false,
-  [AppointmentType.ONLINE]: false,
-  [PaymentType.GUARANTEE_PROGRAM]: false,
-  [PaymentType.CLINIC_PRICE]: false,
-  [DoctorAssessment.WITHOUT_ASSESSMENT]: false,
-  [DoctorAssessment.NORMAL]: false,
-  [DoctorAssessment.GOOD]: false,
-  [DoctorAssessment.VERY_GOOD]: false
+  [ClinicType.STATE]: false
 }
 
 const DoctorsFiltration: React.FC = () => {
@@ -86,16 +71,6 @@ const DoctorsFiltration: React.FC = () => {
             label=""
             hasHiddenLabel={false}
             placeholder="City..."
-            type={InputType.TEXT}
-            color={InputColor.WHITE}
-            control={control}
-            errors={errors}
-          />
-          <TextInput
-            name={DoctorFiltration.DISTRICT}
-            label=""
-            hasHiddenLabel={false}
-            placeholder="District..."
             type={InputType.TEXT}
             color={InputColor.WHITE}
             control={control}
@@ -171,93 +146,6 @@ const DoctorsFiltration: React.FC = () => {
               isChecked={checkboxesValues[ClinicType.STATE]}
               name={ClinicType.STATE}
               label={ClinicType.STATE}
-              control={control}
-            />
-          </div>
-        </Details>
-        <Details
-          icon={record}
-          title={DoctorFiltration.TYPE_OF_RECEPTION}
-        >
-          <div className={styles.filterCheckbox}>
-            <Checkbox
-              onChange={() => onCheckboxChange(AppointmentType.ONLINE)}
-              isChecked={checkboxesValues[AppointmentType.ONLINE]}
-              name={AppointmentType.ONLINE}
-              label={AppointmentType.ONLINE}
-              control={control}
-            />
-          </div>
-            <div className={styles.filterCheckbox}>
-            <Checkbox
-              onChange={() => onCheckboxChange(AppointmentType.OFFLINE)}
-              isChecked={checkboxesValues[AppointmentType.OFFLINE]}
-              name={AppointmentType.OFFLINE}
-              label={AppointmentType.OFFLINE}
-              control={control}
-            />
-          </div>
-        </Details>
-        <Details
-          icon={wallet}
-          title={DoctorFiltration.PAYMENT}
-        >
-          <div className={styles.filterCheckbox}>
-            <Checkbox
-              onChange={() => onCheckboxChange(PaymentType.GUARANTEE_PROGRAM)}
-              isChecked={checkboxesValues[PaymentType.GUARANTEE_PROGRAM]}
-              name={PaymentType.GUARANTEE_PROGRAM}
-              label={PaymentType.GUARANTEE_PROGRAM}
-              control={control}
-            />
-          </div>
-            <div className={styles.filterCheckbox}>
-            <Checkbox
-              onChange={() => onCheckboxChange(PaymentType.CLINIC_PRICE)}
-              isChecked={checkboxesValues[PaymentType.CLINIC_PRICE]}
-              name={PaymentType.CLINIC_PRICE}
-              label={PaymentType.CLINIC_PRICE}
-              control={control}
-            />
-          </div>
-        </Details>
-        <Details
-          icon={star}
-          title={DoctorFiltration.DOCTORS_ASSESSMENT}
-        >
-          <div className={styles.filterCheckbox}>
-            <Checkbox
-              onChange={() => onCheckboxChange(DoctorAssessment.WITHOUT_ASSESSMENT)}
-              isChecked={checkboxesValues[DoctorAssessment.WITHOUT_ASSESSMENT]}
-              name={DoctorAssessment.WITHOUT_ASSESSMENT}
-              label={DoctorAssessment.WITHOUT_ASSESSMENT}
-              control={control}
-            />
-          </div>
-            <div className={styles.filterCheckbox}>
-            <Checkbox
-              onChange={() => onCheckboxChange(DoctorAssessment.NORMAL)}
-              isChecked={checkboxesValues[DoctorAssessment.NORMAL]}
-              name={DoctorAssessment.NORMAL}
-              label={DoctorAssessment.NORMAL}
-              control={control}
-            />
-          </div>
-            <div className={styles.filterCheckbox}>
-            <Checkbox
-              onChange={() => onCheckboxChange(DoctorAssessment.GOOD)}
-              isChecked={checkboxesValues[DoctorAssessment.GOOD]}
-              name={DoctorAssessment.GOOD}
-              label={DoctorAssessment.GOOD}
-              control={control}
-            />
-          </div>
-            <div className={styles.filterCheckbox}>
-            <Checkbox
-              onChange={() => onCheckboxChange(DoctorAssessment.VERY_GOOD)}
-              isChecked={checkboxesValues[DoctorAssessment.VERY_GOOD]}
-              name={DoctorAssessment.VERY_GOOD}
-              label={DoctorAssessment.VERY_GOOD}
               control={control}
             />
           </div>
