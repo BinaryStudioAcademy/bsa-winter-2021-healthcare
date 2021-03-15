@@ -3,13 +3,13 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ButtonColor, ButtonStyleType, ButtonType, EditUserPayloadKey, InputColor, InputType, UserSex, UserType } from 'common/enums';
 import styles from './styles.module.scss';
-import { IEditUserPayload, IUser } from 'common/interfaces';
+import { IEditUserPayload } from 'common/interfaces';
 import { editUser as validationEditUser  } from 'validation-schemas';
 import { Button, DateInput, Select, TextInput } from 'components/common';
 import { createOptions } from 'helpers';
 
 interface IProps {
-  user: IUser;
+  user: IEditUserPayload;
   onEditUser: (userData: IEditUserPayload) => void;
   onFormHide: () => void;
 }
@@ -19,11 +19,9 @@ const userTypeOptions = createOptions<string>(Object.values(UserType))
 
 const EditUser: React.FC<IProps> = ({ user, onEditUser, onFormHide }) => {
 
-  const userWithDate = {...user,birthdate:new Date(user.birthdate)};
-
   const { handleSubmit, errors, control } = useForm<IEditUserPayload>({
     resolver: yupResolver(validationEditUser),
-    defaultValues: userWithDate,
+    defaultValues: user,
     mode: "onChange"
   });
 
