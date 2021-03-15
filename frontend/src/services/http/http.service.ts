@@ -46,16 +46,13 @@ class Http {
 
   async _checkStatus(response: Response): Promise<Response> {
     if (!response.ok) {
-
       const parsedException: IServerResponseErr | null = await response.json();
-      console.log(parsedException);
       throw new HttpError({
         status: response.status,
         messages: parsedException?.messages,
       });
     }
     return response;
-    return Promise.resolve(response);
   }
 
   _parseJSON<T>(response: Response): Promise<T> {
