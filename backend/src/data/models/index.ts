@@ -10,9 +10,11 @@ import createDiagnosisModel from './diagnosis';
 import createGeolocationModel from './geolocation';
 import createPermissionModel from './permission';
 import createUserPermissionModel from './user-permission';
+import createCityModel from './city';
 import associate from '../db/associations';
 
 const AppointmentModel = createAppointmentModel(sequelize);
+const CityModel = createCityModel(sequelize);
 const ClinicModel = createClinicModel(sequelize);
 const DiagnosisModel = createDiagnosisModel(sequelize);
 const DoctorModel = createDoctorModel(sequelize);
@@ -26,6 +28,7 @@ const UserPermissionModel = createUserPermissionModel(sequelize);
 
 associate({
   Appointment: AppointmentModel,
+  City: CityModel,
   Clinic: ClinicModel,
   Diagnosis: DiagnosisModel,
   Doctor: DoctorModel,
@@ -40,6 +43,7 @@ associate({
 
 export {
   AppointmentModel,
+  CityModel,
   ClinicModel,
   DiagnosisModel,
   DoctorModel,

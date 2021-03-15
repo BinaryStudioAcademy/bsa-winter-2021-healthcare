@@ -11,3 +11,4 @@ export * from './geolocation';
 export * from './permission';
 export * from './user-permission';
 export * from './user-with-permissions';
+export * from './city';

@@ -3,13 +3,15 @@ import { DEFAULT_MESSAGE } from './common/constants';
 
 class HttpError extends Error {
   status: HttpCode;
+  messages: string[];
 
   constructor({
     status = HttpCode.INTERNAL_SERVER_ERROR,
-    message = DEFAULT_MESSAGE,
+    messages = [DEFAULT_MESSAGE],
   } = {}) {
-    super(message);
+    super(messages.join());
     this.status = status;
+    this.messages = messages;
     this.name = CustomExceptionName.HTTP_ERROR;
   }
 }

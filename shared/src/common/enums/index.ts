@@ -20,3 +20,4 @@ export * from './geolocation';
 export * from './permission';
 export * from './user-permission';
 export * from './filtration';
+export * from './city';

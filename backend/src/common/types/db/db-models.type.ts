@@ -1,6 +1,7 @@
 import { ModelName } from '~/common/enums';
 import {
   AppointmentModel,
+  CityModel,
   ClinicModel,
   DiagnosisModel,
   DoctorModel,
@@ -15,6 +16,7 @@ import {
 
 type DbModels = {
   [ModelName.APPOINTMENT]: typeof AppointmentModel;
+  [ModelName.CITY]: typeof CityModel;
   [ModelName.CLINIC]: typeof ClinicModel;
   [ModelName.DIAGNOSIS]: typeof DiagnosisModel;
   [ModelName.DOCTOR]: typeof DoctorModel;
