@@ -1,19 +1,33 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { ButtonColor, ButtonStyleType, ButtonType, ClinicKey, ClinicType, InputColor, InputType } from 'common/enums';
 import { Button, Select, TextInput } from 'components/common';
 import styles from './styles.module.scss';
 import { IClinic } from 'common/interfaces';
 import { createOptions } from 'helpers';
+import { addClinic as validationClinicSchema } from 'validation-schemas';
 
 interface IProps {
-  onFormHide: () => any;
+  onFormHide: () => void;
+}
+
+const DEFAULT_CLINIC_VALUE:IClinic = {
+  [ClinicKey.ID]:'',
+  [ClinicKey.NAME]:'',
+  [ClinicKey.IMAGE_PATH]:'',
+  [ClinicKey.ADDRESS]:'',
+  [ClinicKey.CLINIC_TYPE]:ClinicType.STATE,
+  [ClinicKey.CREATED_AT]:'',
+  [ClinicKey.UPDATED_AT]:'',
 }
 
 const clinicTypeOptions = createOptions<string>(Object.values(ClinicType))
 
 const AddClinic: React.FC<IProps> = ({ onFormHide }) => {
   const { handleSubmit, errors, control } = useForm({
+    resolver: yupResolver(validationClinicSchema),
+    defaultValues:DEFAULT_CLINIC_VALUE,
     mode: 'onChange',
   });
 
