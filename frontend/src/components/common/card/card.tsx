@@ -1,71 +1,53 @@
-import * as React from 'react';
-import { Button } from 'components/common';
-import { InfoBlock, CardField, SecButton } from 'common/types';
-import { ButtonProps } from 'common/interfaces';
-import clsx from 'clsx';
-import styles from './styles.module.scss';
+import * as React from "react";
+import { ButtonColor, ButtonStyleType, AppRoute } from "common/enums";
+import { Button } from "components/common";
+import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 type Props = {
-  imagePath?:string
-  headerFields?:CardField[]
-  infoBlocks?:InfoBlock[]
-  mainButton?: ButtonProps
-  secButton?: SecButton
-}
+  subtitle?: string;
+  title: string;
+  label?: string;
+  btnLabel?: string;
+  btnHref?: AppRoute;
+  imagePath: string;
+};
 
 const Card: React.FC<Props> = ({
+  subtitle,
+  title,
+  label,
+  btnLabel,
+  btnHref,
   imagePath,
-  headerFields,
-  infoBlocks,
-  mainButton,
-  secButton
+  children
 }) => {
-  return(
-  <div className={styles.cardContainer}>
+  return (
+    <div className={styles.cardContainer}>
       <div className={styles.imageContainer}>
         <img className={styles.image} src={imagePath} />
       </div>
       <div className={styles.cardBody}>
         <div className={styles.cardHead}>
-        {headerFields && headerFields.map(field=>{
-          return(
-            <span
-              key={field.label}
-              className={clsx(styles[field.fieldType], styles[field.label])}>
-                {field.label}
-            </span>
-          )
-        })}
+          <span className={styles.subtitle}>{subtitle}</span>
+          <span className={styles.title}>{title}</span>
+          {label && <span className={clsx(styles.label, styles[label])}>{label}</span>}
         </div>
-        <div className={styles.cardInfoBlocks}>
-          {infoBlocks && infoBlocks.map(infoBlock => {
-            return (
-              <div className={styles.infoItem} key={infoBlock.icon}>
-                <span className={clsx(styles.icon, styles[infoBlock.icon])}></span>
-                <span className={styles.text}>{infoBlock.label}</span>
-              </div>
-            )
-          })}
-        </div>
+        <div className={styles.cardInfoBlocks}>{children}</div>
         <div className={styles.cardFooter}>
-          <div className={styles.mainButton}>
-            {mainButton &&
+          { btnLabel && <div className={styles.button}>
             <Button
-              label={mainButton.label}
-              hasHiddenLabel={mainButton.hasHiddenLabel}
-              type={mainButton.type}
-              color={mainButton.color}
-              styleType={mainButton.styleType}
-            />}
-          </div>
-          {secButton &&
-          <div className={styles.secButton}>
-            <span className={clsx(styles.icon, styles[secButton.icon])}></span>
+              label={btnLabel}
+              href={btnHref}
+              hasHiddenLabel={false}
+              color={ButtonColor.PRIMARY_DARK}
+              styleType={ButtonStyleType.WITHOUT_BORDER}
+            />
           </div>}
         </div>
       </div>
     </div>
-  )
+  );
 };
 
-export default  Card;
+export default Card;
