@@ -1,1 +1,1 @@
-export * from './getRows.helper';
+export * from './get-rows/get-rows.helper';

@@ -3,13 +3,13 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ButtonColor, ButtonStyleType, ButtonType, EditUserPayloadKey, InputColor, InputType, UserSex, UserType } from 'common/enums';
 import styles from './styles.module.scss';
-import { IEditUserPayload } from 'common/interfaces';
+import { IEditUserPayload, IUser } from 'common/interfaces';
 import { editUser as validationEditUser  } from 'validation-schemas';
 import { Button, DateInput, Select, TextInput } from 'components/common';
 import { createOptions } from 'helpers';
 
 interface IProps {
-  user: IEditUserPayload;
+  user: IUser;
   onEditUser: (userData: IEditUserPayload) => void;
   onFormHide: () => void;
 }
@@ -17,24 +17,24 @@ interface IProps {
 const genderOptions = createOptions<string>(Object.values(UserSex))
 const userTypeOptions = createOptions<string>(Object.values(UserType))
 
-const EditUser: React.FC<IProps> = ({ user, onEditUser, onFormHide }) => {
+const EditUserPopup: React.FC<IProps> = ({ user, onEditUser, onFormHide }) => {
+  const userWithDate:IEditUserPayload = {...user,birthdate:new Date(user.birthdate)};
+
 
   const { handleSubmit, errors, control } = useForm<IEditUserPayload>({
     resolver: yupResolver(validationEditUser),
-    defaultValues: user,
+    defaultValues: userWithDate,
     mode: "onChange"
   });
 
-  const closeEdit = () => onFormHide();
-
-  const onSubmit = (userData: IEditUserPayload) => onEditUser(userData);
+  const handleFormSubmit = (userData: IEditUserPayload) => onEditUser(userData);
 
   return (
     <div className={styles.editContainer}>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.editForm}>
+      <form onSubmit={handleSubmit(handleFormSubmit)} className={styles.editForm}>
         <div className={styles.header}>
           <h2 className={styles.title}>Edit user</h2>
-          <button className={styles.closeButton} onClick={closeEdit} type="button">
+          <button className={styles.closeButton} onClick={onFormHide} type="button">
             &#10060;
         </button>
         </div>
@@ -155,4 +155,4 @@ const EditUser: React.FC<IProps> = ({ user, onEditUser, onFormHide }) => {
   );
 };
 
-export default EditUser;
+export default EditUserPopup;

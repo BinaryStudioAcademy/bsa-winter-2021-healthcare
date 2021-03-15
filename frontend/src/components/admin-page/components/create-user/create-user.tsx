@@ -7,7 +7,7 @@ import { userRegister as validationUserSchema } from 'validation-schemas';
 import styles from './styles.module.scss';
 import { Button, DateInput, Select, TextInput } from 'components/common';
 import { createOptions } from 'helpers';
-import { PropFunctionType } from './types/prop-function-void.type';
+import { PropFunctionType } from '../types/prop-function-void.type';
 
 interface IProps {
   onCreateUser: PropFunctionType<IRegisterPayload>;
@@ -31,22 +31,21 @@ const DEFAULT_VALUES: IRegisterPayload = {
 const genderOptions = createOptions<string>(Object.values(UserSex))
 const userTypeOptions = createOptions<string>(Object.values(UserType))
 
-const CreateUser: React.FC<IProps> = ({ onCreateUser, onFormHide }) => {
+const CreateUserPopup: React.FC<IProps> = ({ onCreateUser, onFormHide }) => {
   const { handleSubmit, errors, control } = useForm<IRegisterPayload>({
     resolver: yupResolver(validationUserSchema),
     defaultValues: DEFAULT_VALUES,
     mode: 'onChange',
   });
 
-  const onSubmit = (userData: IRegisterPayload) => onCreateUser(userData);
-  const closeEdit = () => onFormHide();
+  const handleFormSubmit = (userData: IRegisterPayload) => onCreateUser(userData);
 
   return (
     <div className={styles.editContainer}>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.editForm}>
+      <form onSubmit={handleSubmit(handleFormSubmit)} className={styles.createForm}>
         <div className={styles.header}>
           <h2 className={styles.title}>Add user</h2>
-          <button className={styles.closeButton} onClick={closeEdit} type="button">
+          <button className={styles.closeButton} onClick={onFormHide} type="button">
             &#10060;
         </button>
         </div>
@@ -193,4 +192,4 @@ const CreateUser: React.FC<IProps> = ({ onCreateUser, onFormHide }) => {
   );
 };
 
-export default CreateUser;
+export default CreateUserPopup;

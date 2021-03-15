@@ -5,7 +5,7 @@ import { UsersActionCreator } from 'store/slices';
 import { Column, IUser } from 'common/interfaces';
 import {Table} from 'components/common';
 import styles from './styles.module.scss';
-import { PropFunctionType } from 'components/admin-page/types/prop-function-void.type';
+import { PropFunctionType } from 'components/admin-page/components/types';
 import { getRows } from './helpers';
 
 interface IProps{
