@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './doctors-filtration.module.scss';
-import clsx from 'clsx';
 import location from 'assets/images/location.svg';
 import specialty from 'assets/images/specialty.svg';
 import clinic from 'assets/images/clinic.svg';
@@ -34,10 +33,10 @@ const DoctorsFiltration: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-    <div className={clsx(styles.panel)}>
-      <div className={clsx(styles.filters)}>
-        <div className={clsx(styles.filterHeader)}>Filter by</div>
-        <div className={clsx(styles.commonFilter)}>
+    <div className={styles.panel}>
+      <div className={styles.filters}>
+        <div className={styles.filterHeader}>Filter by</div>
+        <div className={styles.commonFilter}>
           <TextInput
             name={DoctorFiltration.SEARCH}
             label=""
@@ -78,7 +77,7 @@ const DoctorsFiltration: React.FC = () => {
           icon={specialty}
           title={DoctorFiltration.SPECIALTY}
         >
-          <div className={clsx(styles.filterCheckbox)}>
+          <div className={styles.filterCheckbox}>
             <Checkbox
               onChange={() => ""}
               isChecked={true}
@@ -86,7 +85,7 @@ const DoctorsFiltration: React.FC = () => {
               label={DoctorType.PEDIATRICIAN}
             />
           </div>
-            <div className={clsx(styles.filterCheckbox)}>
+            <div className={styles.filterCheckbox}>
             <Checkbox
               onChange={() => ""}
               isChecked={true}
@@ -94,7 +93,7 @@ const DoctorsFiltration: React.FC = () => {
               label={DoctorType.ENDOCRINOLOGIST}
             />
           </div>
-            <div className={clsx(styles.filterCheckbox)}>
+            <div className={styles.filterCheckbox}>
             <Checkbox
               onChange={() => ""}
               isChecked={true}
@@ -102,7 +101,7 @@ const DoctorsFiltration: React.FC = () => {
               label={DoctorType.DENTIST}
             />
           </div>
-            <div className={clsx(styles.filterCheckbox)}>
+            <div className={styles.filterCheckbox}>
             <Checkbox
               onChange={() => ""}
               isChecked={true}
@@ -110,7 +109,7 @@ const DoctorsFiltration: React.FC = () => {
               label={DoctorType.SURGEON}
             />
           </div>
-          <div className={clsx(styles.filterCheckbox)}>
+          <div className={styles.filterCheckbox}>
           <Checkbox
               onChange={() => ""}
               isChecked={true}
@@ -123,7 +122,7 @@ const DoctorsFiltration: React.FC = () => {
           icon={clinic}
           title={DoctorFiltration.TYPE_OF_CLINIC}
         >
-          <div className={clsx(styles.filterCheckbox)}>
+          <div className={styles.filterCheckbox}>
             <Checkbox
               onChange={() => ""}
               isChecked={true}
@@ -131,7 +130,7 @@ const DoctorsFiltration: React.FC = () => {
               label={ClinicType.PRIVATE}
             />
           </div>
-            <div className={clsx(styles.filterCheckbox)}>
+            <div className={styles.filterCheckbox}>
             <Checkbox
               onChange={() => ""}
               isChecked={true}
@@ -144,7 +143,7 @@ const DoctorsFiltration: React.FC = () => {
           icon={record}
           title={DoctorFiltration.TYPE_OF_RECEPTION}
         >
-          <div className={clsx(styles.filterCheckbox)}>
+          <div className={styles.filterCheckbox}>
             <Checkbox
               onChange={() => ""}
               isChecked={true}
@@ -152,7 +151,7 @@ const DoctorsFiltration: React.FC = () => {
               label={AppointmentType.ONLINE}
             />
           </div>
-            <div className={clsx(styles.filterCheckbox)}>
+            <div className={styles.filterCheckbox}>
             <Checkbox
               onChange={() => ""}
               isChecked={true}
@@ -165,7 +164,7 @@ const DoctorsFiltration: React.FC = () => {
           icon={wallet}
           title={DoctorFiltration.PAYMENT}
         >
-          <div className={clsx(styles.filterCheckbox)}>
+          <div className={styles.filterCheckbox}>
             <Checkbox
               onChange={() => ""}
               isChecked={true}
@@ -173,7 +172,7 @@ const DoctorsFiltration: React.FC = () => {
               label={PaymentType.GUARANTEE_PROGRAM}
             />
           </div>
-            <div className={clsx(styles.filterCheckbox)}>
+            <div className={styles.filterCheckbox}>
             <Checkbox
               onChange={() => ""}
               isChecked={true}
@@ -186,7 +185,7 @@ const DoctorsFiltration: React.FC = () => {
           icon={star}
           title={DoctorFiltration.DOCTORS_ASSESSMENT}
         >
-          <div className={clsx(styles.filterCheckbox)}>
+          <div className={styles.filterCheckbox}>
             <Checkbox
               onChange={() => ""}
               isChecked={true}
@@ -194,7 +193,7 @@ const DoctorsFiltration: React.FC = () => {
               label={DoctorAssessment.WITHOUT_ASSESSMENT}
             />
           </div>
-            <div className={clsx(styles.filterCheckbox)}>
+            <div className={styles.filterCheckbox}>
             <Checkbox
               onChange={() => ""}
               isChecked={true}
@@ -202,7 +201,7 @@ const DoctorsFiltration: React.FC = () => {
               label={DoctorAssessment.NORMAL}
             />
           </div>
-            <div className={clsx(styles.filterCheckbox)}>
+            <div className={styles.filterCheckbox}>
             <Checkbox
               onChange={() => ""}
               isChecked={true}
@@ -210,7 +209,7 @@ const DoctorsFiltration: React.FC = () => {
               label={DoctorAssessment.GOOD}
             />
           </div>
-            <div className={clsx(styles.filterCheckbox)}>
+            <div className={styles.filterCheckbox}>
             <Checkbox
               onChange={() => ""}
               isChecked={true}
