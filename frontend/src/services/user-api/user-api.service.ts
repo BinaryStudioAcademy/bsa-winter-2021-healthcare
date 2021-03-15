@@ -14,7 +14,7 @@ class UserApi {
     this.#http = http;
     this.#apiPrefix = apiPrefix;
   }
-  public registerUser(payload: IUser): Promise<IUser> {
+  public registerUser(payload: Partial<IUser>): Promise<IUser> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.ROOT}`,
       {

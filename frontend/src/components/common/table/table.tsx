@@ -6,7 +6,7 @@ import { CustomRecord } from 'common/types';
 
 interface IProps {
   columns: Column[],
-  data: Record<string,unknown>[],
+  data: unknown[],
 }
 
 const Table: React.FC<IProps> = ({ columns, data }) => {
@@ -18,7 +18,7 @@ const Table: React.FC<IProps> = ({ columns, data }) => {
     prepareRow,
   } = useTable({
     columns,
-    data,
+    data: data as CustomRecord[],
   });
 
   return (
