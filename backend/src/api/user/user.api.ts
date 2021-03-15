@@ -37,7 +37,7 @@ const initUserApi = (apiRouter: Router): Router => {
   userRouter.get(UsersApiPath.DETAILS_$ID, async (req, res, next) => {
     try {
       const doctorDetails = await userService.getDoctorDetailsById(req.params.id);
-      res.status(HttpCode.OK).json(doctorDetails);
+      (doctorDetails?.type === UserType.DOCTOR ) ? res.status(HttpCode.OK).json(doctorDetails) : res.status(HttpCode.BAD_REQUEST).json('Error! This user is not a doctor!');
     } catch(error) {
       next(error);
     }
