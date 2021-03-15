@@ -52,10 +52,13 @@ const AddClinic: React.FC<IProps> = ({ onFormHide }) => {
         </div>
 
         <div className={styles.inputBlock}>
-          <input type="button" value="Upload documents" />
-          <label>
-            Upload file:
-            <input type="file" multiple />
+          {/* <input type="button" value="Upload documents" /> */}
+          <label className={styles.inputImage}>
+            {/* Upload file: */}
+            <div className={styles.blurBottom}>
+              <div className={styles.cameraIcon}></div>
+            </div>
+            <input type="file" className={styles.inputImageBtn}/>
           </label>
           {/* <span>file1.pdf</span>
           <span>file2.jpg</span> */}
