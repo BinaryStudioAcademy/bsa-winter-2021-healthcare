@@ -1,10 +1,5 @@
 import { UserSex, UserType, UserKey } from '~/common/enums';
 
-type Geoposition = {
-  lat: number
-  long: number
-};
-
 interface IUser {
   [UserKey.ID]?: string
   [UserKey.NAME]: string
@@ -16,7 +11,6 @@ interface IUser {
   [UserKey.EMAIL]: string
   [UserKey.PASSWORD]: string
   [UserKey.IMAGE_PATH]: string
-  [UserKey.GEOPOSITION]?: Geoposition
   [UserKey.DIAGNOSIS]?: string
   [UserKey.CREATED_AT]: string
   [UserKey.UPDATED_AT]: string
