@@ -8,5 +8,6 @@ import Link from './link/link';
 import Toaster from './toaster/toaster';
 import Header from './header/header';
 import Modal from './modal/modal';
+import Card from './card/card';
 
-export { Link, Checkbox, TextInput, DateInput, Radio, Select, Button, Header, Modal, Toaster };
+export { Link, Checkbox, TextInput, DateInput, Radio, Select, Button, Header, Toaster, Card, Modal };
