@@ -6,7 +6,6 @@ import { UsersActionCreator } from 'store/slices';
 import { Column, IUser } from 'common/interfaces';
 import {Table} from 'components/common';
 import ActionsButton from './components/actions-button/actions-button';
-import { checkIdentifierType } from './helpers/check-identifier-type.helper';
 import styles from './styles.module.scss';
 import { DEFAULT_USER_INSTANCE } from 'components/admin-page/constants';
 import { PropFunctionType } from './types/prop-function-void.type';
@@ -22,7 +21,10 @@ const AdminTable: React.FC<IProps> = ({ onFormShow, onUserDelete }) => {
   }));
   const dispatch = useDispatch();
   const columns:Column[] = Object.keys(DEFAULT_USER_INSTANCE).map((identifier) => {
-    return checkIdentifierType(identifier);
+    return {
+      Header:identifier,
+      accessor:identifier
+    }
   });
   columns.push({
     Header: 'Actions',
