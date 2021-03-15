@@ -7,3 +7,4 @@ export * from './document';
 export * from './message';
 export * from './notification';
 export * from './register';
+export * from './specialization';
