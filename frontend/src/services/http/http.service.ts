@@ -3,7 +3,7 @@ import { checkIsOneOf } from 'helpers';
 import { ContentType, HttpHeader, HttpMethod, StorageKey } from 'common/enums';
 import { HttpOptions } from 'common/types';
 import { storage } from 'services';
-import { IServerResponseErr } from 'healthcare-shared/common/interfaces';
+import { IServerResponseErr } from 'common/interfaces';
 
 class Http {
   load<T = unknown>(
