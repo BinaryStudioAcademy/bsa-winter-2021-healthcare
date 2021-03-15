@@ -501,10 +501,12 @@
 -
   <details>
     <summary>
-      <b>B17.</b> The versions of dependencies used are captured in <code>package.json</code>.
+      <b>B17.</b> The versions of dependencies used are fixed in <code>package.json</code>.
     </summary>
   <p>
+
   The dependency lists in the package.json file indicate the exact versions of the packages used. The version must be specified. `^`, `*` and `~` are not allowed.
+
   </p>
   </details>
 
@@ -593,13 +595,17 @@
     Bad:
 
     ```typescript
-      export let latestResult;
+      let latestResult;
+
+      export { latestResult };
     ```
 
     Good:
 
     ```typescript
-      export const latestResult = loadLatestResult();
+      const latestResult = loadLatestResult();
+
+      export { latestResult };
     ```
 
   </p>
