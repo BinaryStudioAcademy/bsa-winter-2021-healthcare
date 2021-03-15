@@ -10,7 +10,8 @@ import {
   UserModel,
   PermissionModel,
   UserPermissionModel,
-  SpecializationModel
+  SpecializationModel,
+  UserSpecializationModel
 } from '~/data/models';
 
 type DbModels = {
@@ -25,6 +26,7 @@ type DbModels = {
   [ModelName.PERMISSION]: typeof PermissionModel;
   [ModelName.USER_PERMISSION]: typeof UserPermissionModel;
   [ModelName.SPECIALIZATION]: typeof SpecializationModel;
+  [ModelName.USER_SPECIALIZATION]: typeof UserSpecializationModel;
 };
 
 export type { DbModels };
