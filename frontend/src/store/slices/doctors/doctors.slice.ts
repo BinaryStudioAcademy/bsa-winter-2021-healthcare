@@ -1,43 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ReducerName, DataStatus } from 'common/enums';
 import { AppThunk } from 'common/types';
 import { userApi, notificationService } from 'services';
 import { IDoctorDetails, IUserTypeDoctor } from 'common/interfaces';
 import { HttpError } from 'exceptions';
-import {
-  DoctorDetailsKey,
-  DoctorKey,
-  UserKey,
-  UserSex,
-  UserType,
-} from 'healthcare-shared/common/enums';
+import { ReducerName, DataStatus } from 'common/enums';
 
 type DoctorsState = {
   doctors: IUserTypeDoctor[];
-  doctorDetails: IDoctorDetails;
+  doctorDetails: IDoctorDetails | null;
   dataStatus: DataStatus;
 };
 
 const initialState: DoctorsState = {
   doctors: [],
-  doctorDetails: {
-    [UserKey.NAME]: '',
-    [UserKey.SURNAME]: '',
-    [UserKey.IMAGE_PATH]: '',
-    [UserKey.PHONE]: '',
-    [UserKey.BIRTHDATE]: '',
-    [UserKey.SEX]: UserSex.MALE,
-    [UserKey.TYPE]: UserType.DOCTOR,
-    [UserKey.EMAIL]: '',
-    [UserKey.PASSWORD]: '',
-    [UserKey.CREATED_AT]: '',
-    [UserKey.UPDATED_AT]: '',
-    doctor: {
-      [DoctorKey.DEPARTMENT]: '',
-      [DoctorKey.ABOUT]: '',
-    },
-    [DoctorDetailsKey.SPECIALIZATIONS]: [],
-  },
+  doctorDetails: null,
   dataStatus: DataStatus.PENDING,
 };
 

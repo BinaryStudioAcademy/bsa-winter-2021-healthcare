@@ -58,7 +58,7 @@ class UserRepository {
         as: ModelAlias.SPECIALIZATIONS,
         attributes: [SpecializationKey.ID, SpecializationKey.TEXT]
       }
-    ]
+      ]
     })
   }
 
