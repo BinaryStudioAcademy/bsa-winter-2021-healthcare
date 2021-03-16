@@ -24,8 +24,12 @@
 
 .photo {
   width: 157px;
-  height: 150px;
-  background-size: cover;
+  height: 157px;
+  overflow: hidden;  
+}
+
+.image{
+  width:100%;
   border-radius: 15px;
 }
 

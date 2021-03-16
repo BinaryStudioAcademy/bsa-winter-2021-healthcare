@@ -1,18 +1,17 @@
 import React from "react";
 import { IUser } from 'common/interfaces/user';
-import { getDateFormat } from 'helpers';
+import { DateFormat } from 'common/enums';
+import { getFormattedDate } from 'helpers';
 import clsx from "clsx";
 import styles from './styles.module.scss';
 
 type Props = {
-  user: IUser | null
+  user: IUser
   edit: () => void
 }
 
-const ProfileInfo: React.FC<Props> = ({user, edit}) => {
-  let birthdate
-  if (user) birthdate = getDateFormat(user?.birthdate)
-
+const ProfileInfo: React.FC<Props> = ({user, edit}) => {  
+  const birthdate = getFormattedDate( user.birthdate, DateFormat.D_MMMM_YYYY);
   return (
     <div className={styles.mainInfo}>
       <div className={styles.infoHeader}>
@@ -22,27 +21,24 @@ const ProfileInfo: React.FC<Props> = ({user, edit}) => {
         </div>
       </div>
       <div className={styles.infoBloks}>
-        <div
-          className={styles.photo}
-          style={{
-            backgroundImage: `url(${user?.imagePath})`
-          }}
-        ></div>
+        <div className={styles.photo}>
+          <img className={styles.image} src={user.imagePath} alt={user.name}/>
+        </div>
         <div className={styles.mainUserInfo}>
-          <div className={styles.card}>Card: BO44CC</div>
-          <span className={styles.name}>{user?.name} {user?.surname}</span>
-          <span className={styles.sex}>{user?.sex}</span>
+          <div className={styles.card}>{user.type}</div>
+          <span className={styles.name}>{user.name} {user?.surname}</span>
+          <span className={styles.sex}>{user.sex}</span>
           <span className={styles.dateLabel}>Date of Birth</span>
           <span className={styles.date}>{birthdate}</span>
         </div>
         <div className={styles.secUserInfo}>
           <div className={styles.item}>
             <span className={clsx(styles.icon, styles.phone)}></span>
-            <span className={styles.text}>{user?.phone}</span>
+            <span className={styles.text}>{user.phone}</span>
           </div>
           <div className={styles.item}>
             <span className={clsx(styles.icon, styles.email)}></span>
-            <span className={styles.text}>{user?.email}</span>
+            <span className={styles.text}>{user.email}</span>
           </div>
         </div>
       </div>
