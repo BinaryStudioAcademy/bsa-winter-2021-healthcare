@@ -1,7 +1,6 @@
 import { Http } from 'services/http/http.service';
 import { IClinic } from 'common/interfaces';
-import { ContentType, HttpMethod } from 'common/enums';
-import { ApiPath, ClinicsApiPath } from 'common/enums';
+import { ContentType, HttpMethod, ApiPath, ClinicsApiPath } from 'common/enums';
 
 
 type Constructor = {
@@ -19,7 +18,7 @@ class ClinicApi {
   }
 
   public addClinic(payload: Partial<IClinic>): Promise<IClinic> {
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.CLINIC}${ClinicsApiPath.ROOT}`, {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.CLINICS}${ClinicsApiPath.ROOT}`, {
       method: HttpMethod.POST,
       contentType: ContentType.JSON,
       payload,
@@ -27,14 +26,14 @@ class ClinicApi {
   }
 
   public deleteClinic(id:string): Promise<IClinic[]> {
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.CLINIC}/${id}`, {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.CLINICS}/${id}`, {
       method: HttpMethod.DELETE,
     });
   }
   
   public getClinics(): Promise<IClinic[]> {
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.CLINIC}${ClinicsApiPath.ROOT}`, {
-      method: HttpMethod.GET,
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.CLINICS}${ClinicsApiPath.ROOT}`, {
+      method: HttpMethod.GET
     });
   }
 }

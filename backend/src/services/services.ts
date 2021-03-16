@@ -3,8 +3,8 @@ import { AppAsyncStorage } from '~/common/types';
 import { AsyncLocalStorage } from './async-storage/async-storage.service';
 import { AuthService } from './auth/auth.service';
 import { UserService } from './user-service/user-service.service';
+import { ClinicService } from './clinic-service/clinic-service.service';
 import { Logger } from './logger/logger.service';
-import { ClinicService } from './clinic/clinic-service.service';
 
 const appAsyncStorage = new AsyncLocalStorage<AppAsyncStorage>();
 

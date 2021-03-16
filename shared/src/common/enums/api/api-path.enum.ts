@@ -1,7 +1,7 @@
 enum ApiPath {
   USERS = '/users',
   AUTH = '/auth',
-  CLINIC = '/clinic',
+  CLINICS = '/clinics'
 }
 
 export { ApiPath };

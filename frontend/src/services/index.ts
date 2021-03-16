@@ -29,4 +29,4 @@ const storage = new Storage({
 
 const notificationService = new NotificationService();
 
-export { http, authApi, userApi, clinicApi, storage, notificationService };
+export { http, authApi, userApi, storage, notificationService, clinicApi };

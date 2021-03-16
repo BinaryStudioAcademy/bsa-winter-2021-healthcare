@@ -3,5 +3,4 @@ enum ClinicsApiPath {
     $ID = '/:id',
   }
   
-  export { ClinicsApiPath };
-  
+export { ClinicsApiPath };

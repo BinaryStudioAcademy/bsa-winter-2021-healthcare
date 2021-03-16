@@ -7,13 +7,13 @@ import { clinicService } from '~/services/services';
 const initClinicApi = (apiRouter: Router): Router => {
   const clinicRouter = Router();
 
-  apiRouter.use(ApiPath.CLINIC, clinicRouter);
+  apiRouter.use(ApiPath.CLINICS, clinicRouter);
 
   clinicRouter.get(ClinicsApiPath.ROOT, async (_req, res, next) => {
     try {
-      const users = await clinicService.getAllClinics();
-      res.status(HttpCode.OK).json(users);
-    } catch(error) {
+      const clinics = await clinicService.getAllClinics();
+      res.status(HttpCode.OK).json(clinics);
+    } catch (error) {
       next(error);
     }
   });
@@ -44,7 +44,6 @@ const initClinicApi = (apiRouter: Router): Router => {
       next(error);
     }
   });
-
 
   return clinicRouter;
 };
