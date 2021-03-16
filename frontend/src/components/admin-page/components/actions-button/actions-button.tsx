@@ -3,15 +3,15 @@ import styles from './styles.module.scss';
 import { IUser } from 'common/interfaces';
 import { Button } from 'components/common';
 import { ButtonColor, ButtonIcon, ButtonStyleType } from 'common/enums';
-import { PropFunctionType } from 'components/admin-page/components/types/prop-function-void.type';
+import { DeleteUserCb, ShowFormCb } from 'components/admin-page/common/types/prop-function-void.type';
 
-interface IProps {
-  onUserEdit: PropFunctionType<IUser>;
-  onUserDelete: PropFunctionType<string>;
+type Props = {
+  onUserEdit: ShowFormCb;
+  onUserDelete: DeleteUserCb;
   user: IUser;
 }
 
-const ActionsButton: React.FC<IProps> = ({ onUserEdit, user, onUserDelete }) => {
+const ActionsButton: React.FC<Props> = ({ onUserEdit, user, onUserDelete }) => {
   const handleUserBtnEdit = () => onUserEdit(user);
   const handleUserBtnDelete = () => onUserDelete(user.id as string);
   return (

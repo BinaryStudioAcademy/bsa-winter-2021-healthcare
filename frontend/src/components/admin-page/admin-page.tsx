@@ -6,31 +6,32 @@ import {AdminTable, CreateUserPopup, EditUserPopup} from './components';
 import { IEditUserPayload, IRegisterPayload, IUser } from 'common/interfaces';
 import { DEFAULT_USER_INSTANCE } from 'components/admin-page/constants';
 import { Modal } from 'components/common';
+import { CreateUserCb, DeleteUserCb, EditUserCb, HideFormCb, ShowFormCb } from './common/types';
 
 const AdminPage: React.FC = () => {
   const [user, setUser] = React.useState<IUser>(DEFAULT_USER_INSTANCE);
   const [isShowPopUp, setIsShowPopUp] = React.useState<boolean>(false);
 
   const dispatch = useDispatch();
-  const handleEditUser = (data: IEditUserPayload) => {
-    dispatch(UsersActionCreator.editUser({...data,id:user.id}));
+  const handleEditUser:EditUserCb = (userData: IEditUserPayload) => {
+    dispatch(UsersActionCreator.editUser({...userData, id:user.id}));
     handleHideForm();
   };
-  const handleAddUser = (data: IRegisterPayload) => {
+  const handleAddUser:CreateUserCb = (data: IRegisterPayload) => {
     const newUser: IUser = { ...user, ...data };
     dispatch(UsersActionCreator.addUser(newUser));
     handleHideForm();
   };
-  const handleDeleteUser = (id: string) => {
+  const handleDeleteUser:DeleteUserCb = (id: string) => {
     dispatch(UsersActionCreator.deleteUser(id));
   };
 
-  const handleShowForm = (user: IUser) => {
+  const handleShowForm:ShowFormCb = (user?: IUser) => {
     user
       ? (setUser({ ...DEFAULT_USER_INSTANCE, ...user }), setIsShowPopUp(true))
       : setIsShowPopUp(true);
   };
-  const handleHideForm = () => {
+  const handleHideForm:HideFormCb = () => {
     setUser(DEFAULT_USER_INSTANCE);
     setIsShowPopUp(false);
   };

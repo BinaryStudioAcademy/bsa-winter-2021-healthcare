@@ -7,11 +7,11 @@ import { userRegister as validationUserSchema } from 'validation-schemas';
 import styles from './styles.module.scss';
 import { Button, DateInput, Select, TextInput } from 'components/common';
 import { createOptions } from 'helpers';
-import { PropFunctionType } from '../types/prop-function-void.type';
+import { CreateUserCb, HideFormCb } from 'components/admin-page/common/types';
 
-interface IProps {
-  onCreateUser: PropFunctionType<IRegisterPayload>;
-  onFormHide: () => void;
+type Props = {
+  onCreateUser: CreateUserCb;
+  onFormHide: HideFormCb;
 }
 
 const DEFAULT_VALUES: IRegisterPayload = {
@@ -31,7 +31,7 @@ const DEFAULT_VALUES: IRegisterPayload = {
 const genderOptions = createOptions<string>(Object.values(UserSex))
 const userTypeOptions = createOptions<string>(Object.values(UserType))
 
-const CreateUserPopup: React.FC<IProps> = ({ onCreateUser, onFormHide }) => {
+const CreateUserPopup: React.FC<Props> = ({ onCreateUser, onFormHide }) => {
   const { handleSubmit, errors, control } = useForm<IRegisterPayload>({
     resolver: yupResolver(validationUserSchema),
     defaultValues: DEFAULT_VALUES,

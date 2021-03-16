@@ -1,15 +1,15 @@
 import ActionsButton from 'components/admin-page/components/actions-button/actions-button'
 import { CellValue } from 'react-table';
-import { PropFunctionType } from 'components/admin-page/components/types/prop-function-void.type';
-import { Column, IUser } from 'common/interfaces';
+import { DeleteUserCb, ShowFormCb } from 'components/admin-page/common/types/prop-function-void.type';
+import { Column } from 'common/interfaces';
 import { UserKey } from 'common/enums';
 
-interface IProps {
-  onUserDelete: PropFunctionType<string>;
-  onFormShow: PropFunctionType<IUser>;
+type Props = {
+  onUserDelete: DeleteUserCb;
+  onFormShow: ShowFormCb;
 }
 
-const getRows = ({ onFormShow, onUserDelete }: IProps): Column[] => {
+const getRows = ({ onFormShow, onUserDelete }: Props): Column[] => {
   return [
     {
       Header: UserKey.ID,

@@ -7,17 +7,18 @@ import { IEditUserPayload, IUser } from 'common/interfaces';
 import { editUser as validationEditUser  } from 'validation-schemas';
 import { Button, DateInput, Select, TextInput } from 'components/common';
 import { createOptions } from 'helpers';
+import { EditUserCb, HideFormCb } from 'components/admin-page/common/types';
 
-interface IProps {
+type Props = {
   user: IUser;
-  onEditUser: (userData: IEditUserPayload) => void;
-  onFormHide: () => void;
+  onEditUser: EditUserCb;
+  onFormHide: HideFormCb;
 }
 
 const genderOptions = createOptions<string>(Object.values(UserSex))
 const userTypeOptions = createOptions<string>(Object.values(UserType))
 
-const EditUserPopup: React.FC<IProps> = ({ user, onEditUser, onFormHide }) => {
+const EditUserPopup: React.FC<Props> = ({ user, onEditUser, onFormHide }) => {
   const userWithDate:IEditUserPayload = {...user,birthdate:new Date(user.birthdate)};
 
 
