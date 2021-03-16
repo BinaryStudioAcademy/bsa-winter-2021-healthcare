@@ -1,7 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { useController, Control } from "react-hook-form";
-import { InputChangeCallback } from 'common/types';
 import { FormDefaultValue } from 'common/types';
 
 import styles from './styles.module.scss';

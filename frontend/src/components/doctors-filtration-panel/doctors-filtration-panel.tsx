@@ -22,8 +22,8 @@ const DoctorsFiltration: React.FC = () => {
     mode: "onChange"
   });
 
-  const handleSubmitForm = (data: IDoctorFiltrationPayload) => {
-    console.log(data);
+  const handleSubmitForm = (formData: IDoctorFiltrationPayload) => {
+    console.log(formData);
   };
 
   return (
