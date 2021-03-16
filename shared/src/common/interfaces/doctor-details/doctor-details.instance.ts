@@ -1,13 +1,13 @@
-import { IDoctor } from '../doctor';
+import { IUser } from '../user';
+import { DoctorDetailsKey, DoctorKey } from '~/common/enums';
 import { ISpecialization } from '../specialization';
-import { UserKey, DoctorDetailsKey} from '~/common/enums';
 
-interface IDoctorDetails extends IDoctor {
-  [UserKey.NAME]: string
-  [UserKey.SURNAME]: string
-  [UserKey.IMAGE_PATH]:string
-  [UserKey.PHONE]:string
-  [DoctorDetailsKey.SPECIALIZATIONS]: [ISpecialization]
+interface IDoctorDetails extends IUser {
+  doctor: {
+    [DoctorKey.DEPARTMENT]: string;
+    [DoctorKey.ABOUT]: string;
+  };
+  [DoctorDetailsKey.SPECIALIZATIONS]: ISpecialization[];
 }
 
-export type { IDoctorDetails }
+export type { IDoctorDetails };
