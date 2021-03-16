@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import { ApiPath, HttpCode, UsersApiPath, UserType } from '~/common/enums';
+import { validateSchema } from '~/middlewares';
+import { userRegister as userRegisterSchema, editUser as validationEditUser } from '~/validation-schemas';
 import { userService } from '~/services/services';
 
 const initUserApi = (apiRouter: Router): Router => {
@@ -43,7 +45,7 @@ const initUserApi = (apiRouter: Router): Router => {
     }
   });
 
-  userRouter.post(UsersApiPath.ROOT, async (req, res, next) => {
+  userRouter.post(UsersApiPath.ROOT, validateSchema(userRegisterSchema), async (req, res, next) => {
     try {
       const user = await userService.createNewUser(req.body);
       res.status(HttpCode.OK).json(user);
@@ -52,7 +54,7 @@ const initUserApi = (apiRouter: Router): Router => {
     }
   });
 
-  userRouter.put(UsersApiPath.$ID, async (req, res, next) => {
+  userRouter.put(UsersApiPath.$ID, validateSchema(validationEditUser), async (req, res, next) => {
     try {
       const user = await userService.updateUser(req.params.id, req.body);
       res.status(HttpCode.OK).json(user);

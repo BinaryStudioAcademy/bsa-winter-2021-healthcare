@@ -1,6 +1,6 @@
 import { Http } from '../http/http.service';
-import { HttpMethod, UsersApiPath, UserType, ApiPath } from 'common/enums';
-import { IDoctorDetails, IUserTypeDoctor } from 'common/interfaces';
+import { HttpMethod, ContentType, UsersApiPath, UserType, ApiPath } from 'common/enums';
+import { IUser, IEditUserPayload, IUserTypeDoctor, IDoctorDetails } from 'common/interfaces';
 
 type Constructor = {
   http: Http;
@@ -13,6 +13,41 @@ class UserApi {
   constructor({ http, apiPrefix }: Constructor) {
     this.#http = http;
     this.#apiPrefix = apiPrefix;
+  }
+  public registerUser(payload: Partial<IUser>): Promise<IUser> {
+    return this.#http.load(
+      `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.ROOT}`,
+      {
+        method: HttpMethod.POST,
+        contentType: ContentType.JSON,
+        payload,
+      },
+    );
+  }
+  public editUser(id: string, payload: IEditUserPayload): Promise<IUser[]> {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}/${id}`, {
+      method: HttpMethod.PUT,
+      contentType: ContentType.JSON,
+      payload,
+    });
+  }
+  public getUser(id: string): Promise<IUser> {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}/${id}`, {
+      method: HttpMethod.GET,
+    });
+  }
+  public deleteUser(id: string): Promise<boolean> {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}/${id}`, {
+      method: HttpMethod.DELETE,
+    });
+  }
+  public getUsers(): Promise<IUser[]> {
+    return this.#http.load(
+      `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.ROOT}`,
+      {
+        method: HttpMethod.GET,
+      },
+    );
   }
 
   public getDoctors(): Promise<IUserTypeDoctor[]> {

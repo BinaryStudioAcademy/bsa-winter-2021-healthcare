@@ -8,6 +8,7 @@ export * from './user';
 export * from './appointment';
 export * from './clinic';
 export * from './document';
+export * from './edit-user';
 export * from './register';
 export * from './api';
 export * from './validation';
