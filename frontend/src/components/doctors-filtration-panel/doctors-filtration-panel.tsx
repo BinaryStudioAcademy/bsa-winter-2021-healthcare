@@ -12,7 +12,7 @@ import Details from 'components/common/details/details';
 const DEFAULT_VALUES: IDoctorFiltrationPayload = {
   [DoctorFiltration.SEARCH]: '',
   [DoctorFiltration.CITY]: '',
-  [DoctorFiltration.SPECIALTY]: DoctorType.SURGEON,
+  [DoctorFiltration.SPECIALTY]: [],
   [DoctorFiltration.TYPE_OF_CLINIC]: ClinicType.STATE
 }
 
