@@ -3,6 +3,7 @@ import { checkIsOneOf } from 'helpers';
 import { ContentType, HttpHeader, HttpMethod, StorageKey } from 'common/enums';
 import { HttpOptions } from 'common/types';
 import { storage } from 'services';
+import { IServerResponseErr } from 'common/interfaces';
 
 class Http {
   load<T = unknown>(
@@ -43,13 +44,14 @@ class Http {
     return headers;
   }
 
-  _checkStatus(response: Response): Response {
+  async _checkStatus(response: Response): Promise<Response> {
     if (!response.ok) {
+      const parsedException: IServerResponseErr | null = await response.json();
       throw new HttpError({
         status: response.status,
+        messages: parsedException?.messages,
       });
     }
-
     return response;
   }
 
