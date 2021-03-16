@@ -1,4 +1,4 @@
-import { DoctorType, ClinicType } from '../../enums';
+import { DoctorType, ClinicType } from '~/common/enums';
 
 interface IDoctorCheckbox {
   [DoctorType.PEDIATRICIAN]: boolean;

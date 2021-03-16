@@ -64,7 +64,7 @@ const DoctorsFiltration: React.FC = () => {
         </div>
         <Details
           icon={location}
-          title={DoctorFiltration.LOCATION}
+          title="location"
         >
           <TextInput
             name={DoctorFiltration.CITY}

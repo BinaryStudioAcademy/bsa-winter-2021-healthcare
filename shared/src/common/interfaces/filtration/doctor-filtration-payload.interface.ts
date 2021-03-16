@@ -1,4 +1,4 @@
-import { DoctorFiltration, DoctorType, ClinicType } from '../../enums';
+import { DoctorFiltration, DoctorType, ClinicType } from '~/common/enums';
 
 interface IDoctorFiltrationPayload {
   [DoctorFiltration.SEARCH]: string;
