@@ -10,7 +10,7 @@ type Props = {
   edit: () => void
 }
 
-const ProfileInfo: React.FC<Props> = ({user, edit}) => {  
+const ProfileInfo: React.FC<Props> = ({user, edit}) => {
   const birthdate = getFormattedDate( user.birthdate, DateFormat.D_MMMM_YYYY);
   return (
     <div className={styles.mainInfo}>
