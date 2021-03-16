@@ -3,6 +3,7 @@ enum ReducerName {
   USERS = 'users',
   DOCTORS = 'doctors',
   AUTH = 'auth',
+  CLINIC = 'clinic'
 }
 
 export { ReducerName };
