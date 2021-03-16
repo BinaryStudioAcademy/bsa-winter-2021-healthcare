@@ -10,3 +10,4 @@ export * from './db';
 export * from './doctor';
 export * from './geolocation';
 export * from './permission';
+export * from './strategy';
