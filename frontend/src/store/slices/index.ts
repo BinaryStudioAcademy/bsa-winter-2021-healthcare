@@ -2,4 +2,4 @@ export { reducer as counterReducer, CounterActionCreator } from './counter/count
 
 export { reducer as doctorsReducer, DoctorsActionCreator } from './doctors/doctors.slice';
 export { reducer as authReducer, AuthActionCreator } from './auth/auth.slice';
-export { reducer as clinicReducer, ClinicsActionCreator } from './clinics/clinics.slice';
+export { reducer as clinicsReducer, ClinicsActionCreator } from './clinics/clinics.slice';

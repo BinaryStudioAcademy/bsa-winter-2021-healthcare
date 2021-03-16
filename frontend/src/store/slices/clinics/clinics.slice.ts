@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName } from 'common/enums';
 import { IClinic } from 'common/interfaces';
-
-import { clinicApi } from 'services';
+import { clinicApi, notificationService } from 'services';
 import { AppThunk } from 'common/types';
-
+import { HttpError } from 'exceptions';
 
 type ClinicsState = {
   clinics: IClinic[]
@@ -25,8 +24,15 @@ const { reducer, actions } = createSlice({
 });
 
 const getClinics = (): AppThunk => async (dispatch) => {
-  const clinics = await clinicApi.getClinics();
-  dispatch(actions.setClinics(clinics));
+  try {
+    const clinics = await clinicApi.getClinics();
+    dispatch(actions.setClinics(clinics));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
 }
 
 const ClinicsActionCreator = {
