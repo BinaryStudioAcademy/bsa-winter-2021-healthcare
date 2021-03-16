@@ -1,7 +1,6 @@
 import { Http } from '../http/http.service';
 import { HttpMethod, ContentType, UsersApiPath, UserType, ApiPath } from 'common/enums';
-import { IUserTypeDoctor } from 'common/interfaces';
-import { IUser } from 'common/interfaces';
+import { IUser, IEditUserPayload, IUserTypeDoctor } from 'common/interfaces';
 
 type Constructor = {
   http: Http;
@@ -15,7 +14,7 @@ class UserApi {
     this.#http = http;
     this.#apiPrefix = apiPrefix;
   }
-  public registerUser(payload: IUser): Promise<IUser> {
+  public registerUser(payload: Partial<IUser>): Promise<IUser> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.ROOT}`,
       {
@@ -25,7 +24,7 @@ class UserApi {
       },
     );
   }
-  public editUser(id: string, payload: IUser): Promise<IUser> {
+  public editUser(id: string, payload: IEditUserPayload): Promise<IUser[]> {
     return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}/${id}`, {
       method: HttpMethod.PUT,
       contentType: ContentType.JSON,

@@ -3,15 +3,15 @@ import styles from './styles.module.scss';
 import { IUser } from 'common/interfaces';
 import { Button } from 'components/common';
 import { ButtonColor, ButtonIcon, ButtonStyleType } from 'common/enums';
-import { PropFunctionType } from 'components/admin-page/types/prop-function-void.type';
+import { DeleteUserCb, ShowFormCb } from 'components/admin-page/common/types/prop-function-void.type';
 
-interface IProps {
-  onUserEdit: PropFunctionType<IUser>;
-  onUserDelete: PropFunctionType<string>;
+type Props = {
+  onUserEdit: ShowFormCb;
+  onUserDelete: DeleteUserCb;
   user: IUser;
 }
 
-const ActionsButton: React.FC<IProps> = ({ onUserEdit, user, onUserDelete }) => {
+const ActionsButton: React.FC<Props> = ({ onUserEdit, user, onUserDelete }) => {
   const handleUserBtnEdit = () => onUserEdit(user);
   const handleUserBtnDelete = () => onUserDelete(user.id as string);
   return (
@@ -29,15 +29,6 @@ const ActionsButton: React.FC<IProps> = ({ onUserEdit, user, onUserDelete }) => 
         styleType={ButtonStyleType.WITHOUT_BORDER}
         color={ButtonColor.WHITE}
         icon={ButtonIcon.DELETE}
-        label={'Delete'}
-        isDisabled={false}
-        hasHiddenLabel={true}
-        onClick={handleUserBtnDelete}
-      />
-      <Button
-        styleType={ButtonStyleType.WITHOUT_BORDER}
-        color={ButtonColor.WHITE}
-        icon={ButtonIcon.PDF}
         label={'Delete'}
         isDisabled={false}
         hasHiddenLabel={true}

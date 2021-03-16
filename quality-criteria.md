@@ -189,8 +189,6 @@
     </summary>
   <p>
 
-  Words are separated by underscores (`UPPER_SNAKE_CASE`), for example:
-
     Bad:
 
     ```javascript

@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { userApi } from 'services';
+import { notificationService, userApi } from 'services';
 import { ReducerName } from 'common/enums';
 import { AppThunk } from 'common/types';
-import { IUser } from 'common/interfaces';
+import { IEditUserPayload, IUser } from 'common/interfaces';
+import { HttpError } from 'exceptions';
 
 interface IState {
   users: IUser[];
@@ -20,9 +21,9 @@ const { reducer, actions } = createSlice({
 
       state.users = [...state.users, ...action.payload];
     },
-    editUser:(state, action: PayloadAction<{id:string|undefined,data:IUser}>) => {
+    editUser:(state, action: PayloadAction<{id:string|undefined,data:IUser[]}>) => {
       const id = action.payload.id;
-      state.users = state.users.map((user:IUser)=> user.id === id ? action.payload.data : user);
+      state.users = state.users.map((user:IUser)=> user.id === id ? action.payload.data[0] : user);
     },
     deleteUser:(state, action: PayloadAction<string>) => {
       state.users = state.users.filter((user:IUser)=> user.id !== action.payload);
@@ -31,23 +32,58 @@ const { reducer, actions } = createSlice({
 });
 
 const getUsers = (): AppThunk => async (dispatch) => {
-  const response = await userApi.getUsers();
-  dispatch(actions.addUsers(response))
+  try{
+    const response = await userApi.getUsers();
+    dispatch(actions.addUsers(response))
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
 };
 const getUser = (id:string): AppThunk => async () => {
+  try{
     await userApi.getUser(id);
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
 };
-const editUser = (userInfo: IUser): AppThunk => async (dispatch) => {
-    const response = await userApi.editUser(userInfo.id as string, {...userInfo});
-    response ? dispatch(actions.editUser({id:userInfo.id, data:{...userInfo}})) : null;
+const editUser = (userInfo: IEditUserPayload): AppThunk => async (dispatch) => {
+  try{
+    const response:IUser[] = await userApi.editUser(userInfo.id as string, userInfo);
+    response ? dispatch(actions.editUser({id:userInfo.id, data: response})) : null;
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
 };
 const addUser = (userInfo: IUser): AppThunk => async (dispatch) => {
+  try{
     const response = await userApi.registerUser(userInfo);
     dispatch(actions.addUsers([response]));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
 };
 const deleteUser = (id: string): AppThunk => async (dispatch) => {
-  dispatch(actions.deleteUser(id));
-  await userApi.deleteUser(id);
+  try{
+    dispatch(actions.deleteUser(id));
+    await userApi.deleteUser(id);
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
 };
 
 const UsersActionCreator = {

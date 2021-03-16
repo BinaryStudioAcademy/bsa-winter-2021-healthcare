@@ -1,6 +1,8 @@
 enum ModelAlias {
   APPOINTMENTS = 'appointments',
+  CITY = 'city',
   CLINIC = 'clinic',
+  CLINICS = 'clinics',
   DIAGNOSIS = 'diagnosis',
   DOCTORS = 'doctors',
   DOCTOR = 'doctor',
@@ -9,6 +11,7 @@ enum ModelAlias {
   NOTIFICATIONS = 'notifications',
   USER = 'user',
   USERS = 'users',
+  GEOLOCATION = 'geolocation',
   PERMISSIONS = 'permissions'
 }
 
