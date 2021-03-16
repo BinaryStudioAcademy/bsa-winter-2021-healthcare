@@ -10,7 +10,7 @@ import { IDoctorFiltrationPayload, IDoctorCheckbox } from 'common/interfaces';
 import Details from 'components/common/details/details';
 
 const DEFAULT_VALUES: IDoctorFiltrationPayload = {
-  [DoctorFiltration.SEARCH]: '',
+  [DoctorFiltration.SEARCH_BY_DOCTOR_NAME]: '',
   [DoctorFiltration.CITY]: '',
   [DoctorFiltration.SPECIALTY]: [],
   [DoctorFiltration.TYPE_OF_CLINIC]: ClinicType.STATE
@@ -52,7 +52,7 @@ const DoctorsFiltration: React.FC = () => {
         <div className={styles.filterHeader}>Filter by</div>
         <div className={styles.commonFilter}>
           <TextInput
-            name={DoctorFiltration.SEARCH}
+            name={DoctorFiltration.SEARCH_BY_DOCTOR_NAME}
             label=""
             hasHiddenLabel={false}
             placeholder="Type a doctor name..."
