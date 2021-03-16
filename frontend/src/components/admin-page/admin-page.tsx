@@ -14,35 +14,35 @@ const AdminPage: React.FC = () => {
   const dispatch = useDispatch();
   const handleEditUser = (data: IEditUserPayload) => {
     dispatch(UsersActionCreator.editUser({...data,id:user.id}));
-    hideForm();
+    handleHideForm();
   };
   const handleAddUser = (data: IRegisterPayload) => {
     const newUser: IUser = { ...user, ...data };
     dispatch(UsersActionCreator.addUser(newUser));
-    hideForm();
+    handleHideForm();
   };
   const handleDeleteUser = (id: string) => {
     dispatch(UsersActionCreator.deleteUser(id));
   };
 
-  const showFormHandler = (user: IUser) => {
+  const handleShowForm = (user: IUser) => {
     user
       ? (setUser({ ...DEFAULT_USER_INSTANCE, ...user }), setIsShowPopUp(true))
       : setIsShowPopUp(true);
   };
-  const hideForm = () => {
+  const handleHideForm = () => {
     setUser(DEFAULT_USER_INSTANCE);
     setIsShowPopUp(false);
   };
   return (
     <div className={styles.container}>
       {/* <button onClick={()=>showFormHandler()}>asd</button> */}
-      <AdminTable onFormShow={showFormHandler} onUserDelete={handleDeleteUser} />
+      <AdminTable onFormShow={handleShowForm} onUserDelete={handleDeleteUser} />
       <Modal isShow={isShowPopUp}>
         {user.id ? (
-          <EditUserPopup user={user} onEditUser={handleEditUser} onFormHide={hideForm} />
+          <EditUserPopup user={user} onEditUser={handleEditUser} onFormHide={handleHideForm} />
         ) : (
-          <CreateUserPopup onCreateUser={handleAddUser} onFormHide={hideForm} />
+          <CreateUserPopup onCreateUser={handleAddUser} onFormHide={handleHideForm} />
         )}
       </Modal>
     </div>
