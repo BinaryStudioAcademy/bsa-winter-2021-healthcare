@@ -10,7 +10,7 @@ const App: React.FC = () => (
   <Switch>
     <Route path={[AppRoute.SIGN_IN, AppRoute.SIGN_UP]} component={Sign}/>
     <Route path={AppRoute.DOCTORS} component={DoctorsSearch}/>
-    <Route path="/" component={DoctorsFiltration}/>
+    <Route path={AppRoute.ROOT} component={DoctorsFiltration}/>
     <Route path="*" exact component={NotFound} />
   </Switch>
 );
