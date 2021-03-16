@@ -20,6 +20,12 @@
   }
 }
 
+.btnLink{
+  display: block;
+  text-align: center;
+  line-height: 40px;
+}
+
 // Background color
 .white {
   background-color: #fff;
@@ -95,6 +101,18 @@
 
 .chat {
   background-image: url('../../../assets/images/comment-chat.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.edit {
+  background-image: url('../../../assets/images/edit-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.delete {
+  background-image: url('../../../assets/images/trash-icon.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
