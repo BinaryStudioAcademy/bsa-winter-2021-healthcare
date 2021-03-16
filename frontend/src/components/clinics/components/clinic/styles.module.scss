@@ -1,0 +1,23 @@
+.infoItem{
+  display: flex;
+
+  .icon{
+    width: 22px;
+    height: 22px;
+  }
+
+  .text{
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 22px;
+  }
+}
+.infoItem:not(:first-child){
+  margin-top: 12px;
+}
+
+.location {
+  background-image: url('../../../../assets/images/location.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
