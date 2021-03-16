@@ -1,6 +1,9 @@
 import { IClinic } from 'common/interfaces';
+import { Card } from 'components/common';
 import * as React from 'react';
-import styles from './clinic.module.scss';
+import styles from './styles.module.scss';
+import clsx from "clsx";
+import { AppRoute } from 'common/enums';
 
 type Props = {
   clinic: IClinic
@@ -8,16 +11,18 @@ type Props = {
 
 const Clinic: React.FC<Props> = ({ clinic }) => {
   return (
-    <div className={styles.mainContainer}>
-      <div className={styles.photoContainer}>
-        <img src={clinic.imagePath} height="199" alt="Clinic image"/>
+    <Card
+      title={clinic.name}
+      label={clinic.clinicType}
+      btnLabel="More details"
+      btnHref={AppRoute.CLINIC}
+      imagePath={clinic.imagePath}
+    >
+      <div className={styles.infoItem}>
+        <span className={clsx(styles.icon, styles.location)}></span>
+        <span className={styles.text}>{clinic.address}</span>
       </div>
-      <div className={styles.mainContent}>
-        <b>{clinic.name}</b>
-        <div className={styles.clinicType}>{clinic.clinicType}</div>
-        <p>{clinic.address}</p>
-      </div>
-    </div>
+    </Card>
   )
 }
 
