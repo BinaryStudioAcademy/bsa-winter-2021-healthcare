@@ -25,6 +25,13 @@ class ClinicApi {
       payload,
     });
   }
+
+  public deleteClinic(id:string): Promise<IClinic[]> {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.CLINIC}/${id}`, {
+      method: HttpMethod.DELETE,
+    });
+  }
+  
   public getClinics(): Promise<IClinic[]> {
     return this.#http.load(`${this.#apiPrefix}${ApiPath.CLINIC}${ClinicsApiPath.ROOT}`, {
       method: HttpMethod.GET,

@@ -7,35 +7,22 @@ import styles from './styles.module.scss';
 import { IClinic } from 'common/interfaces';
 import { createOptions } from 'helpers';
 import { addClinic as validationClinicSchema } from 'validation-schemas';
+import { DEFAULT_CLINIC_VALUE } from './common';
 
 interface IProps {
   onFormHide: () => void;
-}
-
-const DEFAULT_CLINIC_VALUE:IClinic = {
-  [ClinicKey.ID]:'',
-  [ClinicKey.NAME]:'',
-  [ClinicKey.IMAGE_PATH]:'',
-  [ClinicKey.ADDRESS]:'',
-  [ClinicKey.CLINIC_TYPE]:ClinicType.STATE,
-  [ClinicKey.CREATED_AT]:'',
-  [ClinicKey.UPDATED_AT]:'',
+  onCreateClinic:(clinicData:IClinic)=>void
 }
 
 const clinicTypeOptions = createOptions<string>(Object.values(ClinicType))
 
-const AddClinic: React.FC<IProps> = ({ onFormHide }) => {
+const AddClinic: React.FC<IProps> = ({ onFormHide, onCreateClinic }) => {
   const { handleSubmit, errors, control } = useForm({
     resolver: yupResolver(validationClinicSchema),
     defaultValues:DEFAULT_CLINIC_VALUE,
     mode: 'onChange',
   });
-
-  const onSubmit = (clinicData: IClinic) => {
-    console.log(clinicData);
-  };
-
-  const closePopUp = () => onFormHide();
+  const onSubmit = (clinicData: IClinic) => onCreateClinic(clinicData);
 
   return (
     <div className={styles.container}>
@@ -44,7 +31,7 @@ const AddClinic: React.FC<IProps> = ({ onFormHide }) => {
           <h2 className={styles.title}>Add clinic</h2>
           <button
             className={styles.closeButton}
-            onClick={closePopUp}
+            onClick={onFormHide}
             type="button"
           >
             &#10060;
