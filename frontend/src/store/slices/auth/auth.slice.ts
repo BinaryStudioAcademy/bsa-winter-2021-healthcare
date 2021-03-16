@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName, DataStatus, StorageKey } from 'common/enums';
-import { IUser, IUserLoginPayload, IRegisterPayload } from 'common/interfaces';
-import { authApi, notificationService, storage } from 'services';
+import { IUser, IUserLoginPayload, IRegisterPayload, IEditUserPayload } from 'common/interfaces';
+import { authApi, notificationService, storage, userApi } from 'services';
 import { LoginResponse } from 'common/types/responses';
 import { HttpError } from 'exceptions';
-
 
 type AuthState = {
   user: IUser | null;
@@ -48,6 +47,21 @@ const registration = createAsyncThunk(
   },
 );
 
+const editCurrentUser = createAsyncThunk(
+  'user/:id',
+  async (userData: IEditUserPayload) => {
+    try {
+      const user = await userApi.editUser((userData.id as string), userData);
+      return user[0];
+    } catch(error) {
+      if (error instanceof HttpError) {
+        notificationService.error(`Error ${error.status}`, error.messages);
+      }
+      throw error;
+    }
+  },
+);
+
 const { reducer, actions } = createSlice({
   name: ReducerName.AUTH,
   initialState,
@@ -58,7 +72,8 @@ const { reducer, actions } = createSlice({
     }
     builder
       .addCase(login.fulfilled, sharedReducer)
-      .addCase(registration.fulfilled, sharedReducer);
+      .addCase(registration.fulfilled, sharedReducer)
+      .addCase(editCurrentUser.fulfilled, sharedReducer)
   },
 });
 
@@ -66,6 +81,7 @@ const AuthActionCreator = {
   ...actions,
   login,
   registration,
+  editCurrentUser
 };
 
 export { AuthActionCreator, reducer };

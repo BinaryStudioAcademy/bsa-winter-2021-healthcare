@@ -26,7 +26,7 @@ const ProfileInfo: React.FC<Props> = ({user, edit}) => {
         </div>
         <div className={styles.mainUserInfo}>
           <div className={styles.card}>{user.type}</div>
-          <span className={styles.name}>{user.name} {user?.surname}</span>
+          <span className={styles.name}>{user.name} {user.surname}</span>
           <span className={styles.sex}>{user.sex}</span>
           <span className={styles.dateLabel}>Date of Birth</span>
           <span className={styles.date}>{birthdate}</span>
