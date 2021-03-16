@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Clinic } from './components';
+import Clinic from './components/clinic/clinic';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'common/types';
 import { ClinicsActionCreator } from 'store/slices';
+import styles from './styles.module.scss';
 
 const Clinics: React.FC = () => {
   const { clinics } = useSelector(({ clinics }: RootState) => ({
@@ -16,9 +17,9 @@ const Clinics: React.FC = () => {
   }, [])
 
   return (
-    <>
+    <div className={styles.clinicsContainer}>
       {clinics.map(clinic => <Clinic key={clinic.id} clinic={clinic} />)}
-    </>
+    </div>
   )
 }
 
