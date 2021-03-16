@@ -1,13 +1,13 @@
-import { AppointmentType } from '~/common/enums';
+import { AppointmentType, AppointmentKey } from '~/common/enums';
 
 interface IAppointment {
-  id: string;
-  date: string;
-  type: AppointmentType;
-  cost: number;
-  subject: string;
-  createdAt: string;
-  updatedAt: string;
+  [AppointmentKey.ID]:string;
+  [AppointmentKey.DATE]: string;
+  [AppointmentKey.TYPE]: AppointmentType;
+  [AppointmentKey.COST]: number;
+  [AppointmentKey.SUBJECT]: string;
+  [AppointmentKey.CREATED_AT]: string;
+  [AppointmentKey.UPDATED_AT]: string;
 }
 
 export type { IAppointment };

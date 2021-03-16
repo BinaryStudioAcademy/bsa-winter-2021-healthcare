@@ -1,38 +1,52 @@
 import { DbModels } from '~/common/types';
+import { ModelAlias, ForeingKey } from '~/common/enums';
 
 const associate = ({
   Appointment,
+  City,
   Clinic,
   Diagnosis,
   Doctor,
   Document,
   Message,
   Notification,
-  User
+  User,
+  Geolocation,
+  Permission,
+  UserPermission
 }: DbModels): void => {
-  User.hasOne(Doctor);
-  User.hasMany(Appointment);
-  User.hasMany(Message);
-  User.hasMany(Notification);
-  User.hasMany(Diagnosis);
+  User.hasOne(Doctor, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.DOCTOR});
+  User.hasOne(Geolocation, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.GEOLOCATION});
+  User.hasMany(Appointment, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.APPOINTMENTS});
+  User.hasMany(Message, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.MESSAGES});
+  User.hasMany(Notification, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.NOTIFICATIONS});
+  User.hasMany(Diagnosis, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.DIAGNOSIS});
+  User.belongsToMany(Permission, {through: UserPermission , foreignKey: ForeingKey.USER_ID, as: ModelAlias.PERMISSIONS});
 
-  Doctor.hasMany(Appointment);
-  Doctor.belongsTo(Clinic);
-  Doctor.belongsTo(Document);
-  Doctor.belongsTo(User);
+  Doctor.hasMany(Appointment, {foreignKey: ForeingKey.DOCTOR_ID, as: ModelAlias.APPOINTMENTS});
+  Doctor.belongsTo(Clinic, {foreignKey: ForeingKey.CLINIC_ID, as: ModelAlias.CLINIC});
+  Doctor.belongsTo(Document, {foreignKey: ForeingKey.DOCUMENT_ID, as: ModelAlias.DOCUMENT});
+  Doctor.belongsTo(User, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER});
 
-  Appointment.belongsTo(Doctor);
-  Appointment.belongsTo(User);
+  Appointment.belongsTo(Doctor, {foreignKey: ForeingKey.DOCTOR_ID, as: ModelAlias.DOCTOR});
+  Appointment.belongsTo(User, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER});
 
-  Document.hasOne(Doctor);
+  Document.hasOne(Doctor, {foreignKey: ForeingKey.DOCUMENT_ID, as: ModelAlias.DOCTOR});
 
-  Clinic.hasMany(Doctor);
+  City.hasMany(Clinic, { foreignKey: ForeingKey.CITY_ID, as: ModelAlias.CLINICS });
 
-  Message.belongsTo(User);
+  Clinic.hasMany(Doctor, {foreignKey: ForeingKey.CLINIC_ID, as: ModelAlias.DOCTORS});
+  Clinic.belongsTo(City, { foreignKey: ForeingKey.CITY_ID, as: ModelAlias.CITY });
 
-  Notification.belongsTo(User);
+  Message.belongsTo(User, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER});
 
-  Diagnosis.belongsTo(User);
+  Notification.belongsTo(User, {foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER});
+
+  Diagnosis.belongsTo(User, { foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER });
+
+  Geolocation.belongsTo(User, { foreignKey: ForeingKey.USER_ID, as: ModelAlias.USER });
+
+  Permission.belongsToMany(User, {through: UserPermission, foreignKey: ForeingKey.PERMISSION_ID, as: ModelAlias.USERS});
 };
 
 export default associate;

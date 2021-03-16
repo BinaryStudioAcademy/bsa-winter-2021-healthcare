@@ -1,13 +1,49 @@
-import { UserModel } from '../models';
-import { IUser, IRegisterPayload } from '~/common/interfaces';
+import { UserModel, DoctorModel, ClinicModel, PermissionModel } from '../models';
+import { IUser, IRegisterPayload, IUserWithPermissions } from '~/common/interfaces';
+import { UserType, ModelAlias, DoctorKey, ClinicKey } from '~/common/enums';
+
 
 class UserRepository {
-  public getAll(): Promise<IUser[]> {
-    return UserModel.findAll();
+  public getAll(): Promise<IUserWithPermissions[]> {
+    return UserModel.findAll({
+      include: {
+        model: PermissionModel,
+        as: ModelAlias.PERMISSIONS
+      }
+    });
+  }
+
+  public getByType(type: UserType): Promise<IUser[]> {
+    if (type === UserType.DOCTOR) {
+      return UserModel.findAll({
+        where: { type },
+        include: [{
+          model: DoctorModel,
+          as: ModelAlias.DOCTOR,
+          attributes: [DoctorKey.ID, DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
+          include: [
+            {
+              model: ClinicModel,
+              as: ModelAlias.CLINIC,
+              attributes: [ClinicKey.ID, ClinicKey.NAME, ClinicKey.ADDRESS, ClinicKey.CLINIC_TYPE]
+            }
+          ]
+        }, {
+          model: PermissionModel,
+          as: ModelAlias.PERMISSIONS
+        }]
+      })
+    }
+    return UserModel.findAll({ where: { type } })
   }
 
   public getById(id: string): Promise<IUser | null> {
-    return UserModel.findByPk(id);
+    return UserModel.findByPk(id, {
+      include: {
+        model: PermissionModel,
+        as: ModelAlias.PERMISSIONS
+      }
+    });
   }
 
   public createUser(user: IRegisterPayload): Promise<IUser> {
@@ -29,10 +65,12 @@ class UserRepository {
     return result[1];
   }
 
-  public deleteById(id: string): Promise<number> {
-    return UserModel.destroy({
-      where: { id },
+  public async deleteById(id: string): Promise<boolean> {
+    const deletedRows = await UserModel.destroy({
+      where: { id }
     });
+
+    return Boolean(deletedRows)
   }
 }
 

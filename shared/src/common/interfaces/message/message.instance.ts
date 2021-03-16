@@ -1,8 +1,10 @@
+import { MessageKey } from '~/common/enums'
+
 interface IMessage {
-  id: string;
-  text: string
-  createdAt: string;
-  updatedAt: string;
+  [MessageKey.ID]:string;
+  [MessageKey.TEXT]: string;
+  [MessageKey.CREATED_AT]: string;
+  [MessageKey.UPDATED_AT]: string;
 }
 
 export type { IMessage };

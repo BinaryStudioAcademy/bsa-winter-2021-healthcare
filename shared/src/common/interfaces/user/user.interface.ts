@@ -1,26 +1,19 @@
-import { UserSex } from '~/common/enums';
-import { UserType } from '~/common/enums';
-
-type Geoposition = {
-  lat: number
-  long: number
-};
+import { UserSex, UserType, UserKey } from '~/common/enums';
 
 interface IUser {
-  id?: string
-  name: string
-  surname: string
-  birthdate: string
-  sex: UserSex
-  type: UserType
-  phone: string
-  email: string
-  password: string
-  imagePath: string
-  geoposition?: Geoposition
-  diagnosis?: string
-  createdAt: string
-  updatedAt: string
+  [UserKey.ID]?: string
+  [UserKey.NAME]: string
+  [UserKey.SURNAME]: string
+  [UserKey.BIRTHDATE]: string
+  [UserKey.SEX]: UserSex
+  [UserKey.TYPE]: UserType
+  [UserKey.PHONE]: string
+  [UserKey.EMAIL]: string
+  [UserKey.PASSWORD]: string
+  [UserKey.IMAGE_PATH]: string
+  [UserKey.DIAGNOSIS]?: string
+  [UserKey.CREATED_AT]: string
+  [UserKey.UPDATED_AT]: string
 }
 
 export type { IUser };

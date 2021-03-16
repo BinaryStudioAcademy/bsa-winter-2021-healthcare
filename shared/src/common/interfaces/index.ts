@@ -7,3 +7,11 @@ export * from './document';
 export * from './message';
 export * from './notification';
 export * from './register'
+export * from './doctor-clinic';
+export * from './user-type-doctor';
+export * from './exeption-message';
+export * from './geolocation';
+export * from './permission';
+export * from './user-permission';
+export * from './user-with-permissions';
+export * from './city';
