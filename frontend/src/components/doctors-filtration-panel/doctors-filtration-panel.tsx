@@ -6,29 +6,17 @@ import specialty from 'assets/images/specialty.svg';
 import clinic from 'assets/images/clinic.svg';
 import { TextInput, Checkbox } from 'components/common';
 import { DoctorType, ClinicType, InputType, InputColor, DoctorFiltration } from 'common/enums';
-import { IDoctorFiltrationPayload, IDoctorCheckbox } from 'common/interfaces';
+import { IDoctorFiltrationPayload } from 'common/interfaces';
 import Details from 'components/common/details/details';
 
 const DEFAULT_VALUES: IDoctorFiltrationPayload = {
-  [DoctorFiltration.SEARCH_BY_DOCTOR_NAME]: '',
+  [DoctorFiltration.DOCTOR_NAME]: '',
   [DoctorFiltration.CITY]: '',
   [DoctorFiltration.SPECIALTY]: [],
   [DoctorFiltration.TYPE_OF_CLINIC]: ClinicType.STATE
 }
 
-const CHECKBOXES_DEFAULT_VALUES: IDoctorCheckbox = {
-  [DoctorType.PEDIATRICIAN]: false,
-  [DoctorType.ENDOCRINOLOGIST]: false,
-  [DoctorType.DENTIST]: false,
-  [DoctorType.SURGEON]: false,
-  [DoctorType.DERMATOLOGIST]: false,
-  [ClinicType.PRIVATE]: false,
-  [ClinicType.STATE]: false
-}
-
 const DoctorsFiltration: React.FC = () => {
-  const [checkboxesValues, setCheckboxesValues] = React.useState(CHECKBOXES_DEFAULT_VALUES);
-
   const { handleSubmit, control, errors } = useForm<IDoctorFiltrationPayload>({
     defaultValues: DEFAULT_VALUES,
     mode: "onChange"
@@ -38,13 +26,6 @@ const DoctorsFiltration: React.FC = () => {
     console.log(data);
   };
 
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCheckboxesValues({
-      ...checkboxesValues,
-      [event.target.name]: !checkboxesValues[event.target.name as keyof IDoctorCheckbox]
-    })
-  }
-
   return (
     <form onSubmit={handleSubmit(handleSubmitForm)}>
     <div className={styles.panel}>
@@ -52,7 +33,7 @@ const DoctorsFiltration: React.FC = () => {
         <div className={styles.filterHeader}>Filter by</div>
         <div className={styles.commonFilter}>
           <TextInput
-            name={DoctorFiltration.SEARCH_BY_DOCTOR_NAME}
+            name={DoctorFiltration.DOCTOR_NAME}
             label=""
             hasHiddenLabel={false}
             placeholder="Type a doctor name..."
@@ -83,8 +64,6 @@ const DoctorsFiltration: React.FC = () => {
         >
           <div className={styles.filterCheckbox}>
             <Checkbox
-              onChange={handleCheckboxChange}
-              isChecked={checkboxesValues[DoctorType.PEDIATRICIAN]}
               name={DoctorType.PEDIATRICIAN}
               label={DoctorType.PEDIATRICIAN}
               control={control}
@@ -92,8 +71,6 @@ const DoctorsFiltration: React.FC = () => {
           </div>
             <div className={styles.filterCheckbox}>
             <Checkbox
-              onChange={handleCheckboxChange}
-              isChecked={checkboxesValues[DoctorType.ENDOCRINOLOGIST]}
               name={DoctorType.ENDOCRINOLOGIST}
               label={DoctorType.ENDOCRINOLOGIST}
               control={control}
@@ -101,8 +78,6 @@ const DoctorsFiltration: React.FC = () => {
           </div>
             <div className={styles.filterCheckbox}>
             <Checkbox
-              onChange={handleCheckboxChange}
-              isChecked={checkboxesValues[DoctorType.DENTIST]}
               name={DoctorType.DENTIST}
               label={DoctorType.DENTIST}
               control={control}
@@ -110,8 +85,6 @@ const DoctorsFiltration: React.FC = () => {
           </div>
             <div className={styles.filterCheckbox}>
             <Checkbox
-              onChange={handleCheckboxChange}
-              isChecked={checkboxesValues[DoctorType.SURGEON]}
               name={DoctorType.SURGEON}
               label={DoctorType.SURGEON}
               control={control}
@@ -119,8 +92,6 @@ const DoctorsFiltration: React.FC = () => {
           </div>
           <div className={styles.filterCheckbox}>
           <Checkbox
-              onChange={handleCheckboxChange}
-              isChecked={checkboxesValues[DoctorType.DERMATOLOGIST]}
               name={DoctorType.DERMATOLOGIST}
               label={DoctorType.DERMATOLOGIST}
               control={control}
@@ -133,8 +104,6 @@ const DoctorsFiltration: React.FC = () => {
         >
           <div className={styles.filterCheckbox}>
             <Checkbox
-              onChange={handleCheckboxChange}
-              isChecked={checkboxesValues[ClinicType.PRIVATE]}
               name={ClinicType.PRIVATE}
               label={ClinicType.PRIVATE}
               control={control}
@@ -142,8 +111,6 @@ const DoctorsFiltration: React.FC = () => {
           </div>
             <div className={styles.filterCheckbox}>
             <Checkbox
-              onChange={handleCheckboxChange}
-              isChecked={checkboxesValues[ClinicType.STATE]}
               name={ClinicType.STATE}
               label={ClinicType.STATE}
               control={control}
