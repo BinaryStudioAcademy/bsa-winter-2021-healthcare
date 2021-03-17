@@ -11,12 +11,12 @@ class GeolocationRepository {
   }
 
   public async updateById(id: string, data: IGeolocation): Promise<IGeolocation> {
-    const result = await GeolocationModel.update(data, {
+    const [, updatedArticle] = await GeolocationModel.update(data, {
       where: { id },
       returning: true,
     });
 
-    return result[1][0];
+    return updatedArticle[0];
   }
 }
 
