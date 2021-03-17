@@ -1,4 +1,4 @@
-enum Icons {
+enum Icon {
   ARROW_DOWN_BUTTON = 'arrow-down-button',
   ARROW_DOWN = 'arrow-down',
   BELL = 'bell',
@@ -16,4 +16,4 @@ enum Icons {
   TRASH_ICON = 'trash-icon',
 }
 
-export { Icons };
+export { Icon };

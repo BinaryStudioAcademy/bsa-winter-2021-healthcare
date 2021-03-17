@@ -1,9 +1,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
+import { Icon } from 'common/enums';
 import styles from './styles.module.scss';
 
 interface Props {
-  icon: string;
+  icon: Icon;
   title: string;
 }
 
