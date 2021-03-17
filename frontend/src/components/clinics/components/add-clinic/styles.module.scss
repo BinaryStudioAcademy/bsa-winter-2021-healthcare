@@ -26,19 +26,26 @@
 }
 
 .inputImage {
+  padding: 0;
+  margin: 0;
   width: 157px;
   height: 151px;
-  border: 2px solid gray;
   border-radius: 15px;
   cursor: pointer;
+  background-color: rgb(224, 224, 224);
+  background-image: url('../../../../assets/images/camera.svg');
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center 10px;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: flex-end;
 }
 
 .blurBottom {
-  position: sticky;
   width: 157px;
   height: 31px;
-  left: 642px;
-  top: 370px;
   background: rgba(242, 242, 245, 0.8);
   backdrop-filter: blur(4px);
   border-radius: 0px 0px 15px 15px;

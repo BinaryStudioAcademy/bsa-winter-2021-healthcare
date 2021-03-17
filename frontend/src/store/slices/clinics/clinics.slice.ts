@@ -38,7 +38,7 @@ const getClinics = (): AppThunk => async (dispatch) => {
   }
 }
 
-const deleteClinic = (id:string): AppThunk => async (dispatch) => {
+const deleteClinic = (id:string): AppThunk => async () => {
   await clinicApi.deleteClinic(id);
 };
 
