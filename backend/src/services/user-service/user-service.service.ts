@@ -13,6 +13,10 @@ class UserService {
     return userRepository.getById(id)
   }
 
+  public getDoctorDetailsById(id:string):Promise<IUser | null>{
+    return userRepository.getDoctorDetailsById(id)
+  }
+
   public createNewUser(registerPayload: IRegisterPayload): Promise<IUser>{
     return userRepository.createUser(registerPayload)
   }

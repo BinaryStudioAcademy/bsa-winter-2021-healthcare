@@ -12,6 +12,8 @@ import {
   GeolocationModel,
   PermissionModel,
   UserPermissionModel,
+  SpecializationModel,
+  UserSpecializationModel,
 } from '~/data/models';
 
 type DbModels = {
@@ -27,6 +29,8 @@ type DbModels = {
   [ModelName.GEOLOCATION]: typeof GeolocationModel;
   [ModelName.PERMISSION]: typeof PermissionModel;
   [ModelName.USER_PERMISSION]: typeof UserPermissionModel;
+  [ModelName.SPECIALIZATION]: typeof SpecializationModel;
+  [ModelName.USER_SPECIALIZATION]: typeof UserSpecializationModel;
 };
 
 export type { DbModels };

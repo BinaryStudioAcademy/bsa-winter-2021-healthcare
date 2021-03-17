@@ -15,3 +15,4 @@ export * from './form';
 export * from './clinic';
 export * from './exeption-message';
 export * from './geolocation';
+export * from './doctor-details';

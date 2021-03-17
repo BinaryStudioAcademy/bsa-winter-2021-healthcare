@@ -13,6 +13,6 @@ enum ModelAlias {
   USERS = 'users',
   GEOLOCATION = 'geolocation',
   PERMISSIONS = 'permissions',
+  SPECIALIZATIONS = 'specializations',
 }
-
 export { ModelAlias };

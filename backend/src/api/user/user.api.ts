@@ -3,6 +3,7 @@ import { ApiPath, HttpCode, UsersApiPath, UserType } from '~/common/enums';
 import { validateSchema } from '~/middlewares';
 import { userRegister as userRegisterSchema, editUser as validationEditUser } from '~/validation-schemas';
 import { userService } from '~/services/services';
+import { checkIsOneOf } from '~/helpers';
 
 const initUserApi = (apiRouter: Router): Router => {
   const userRouter = Router();
@@ -31,6 +32,21 @@ const initUserApi = (apiRouter: Router): Router => {
     try {
       const user = await userService.getUserById(req.params.id);
       res.status(HttpCode.OK).json(user);
+    } catch(error) {
+      next(error);
+    }
+  });
+
+  userRouter.get(UsersApiPath.DOCTOR_DETAILS_$ID, async (req, res, next) => {
+    try {
+      const doctorDetails = await userService.getDoctorDetailsById(req.params.id);
+      const isDoctorType = checkIsOneOf(doctorDetails?.type, UserType.DOCTOR);
+
+      if (!isDoctorType) {
+        return res.status(HttpCode.BAD_REQUEST).json(['Error! This user is not a doctor!']);
+      }
+
+      return res.status(HttpCode.OK).json(doctorDetails);
     } catch(error) {
       next(error);
     }
