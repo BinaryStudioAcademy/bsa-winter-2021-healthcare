@@ -7,6 +7,7 @@ import NotFound from 'components/not-found/not-found';
 import Clinics from 'components/clinics/clinics';
 import DoctorsSearch from 'components/doctors-search/doctors-search';
 import DoctorDetails from 'components/doctor-details/doctor-details';
+import Permissions from 'components/permissions/permissions-page';
 
 const App: React.FC = () => (
   <Switch>
@@ -15,6 +16,7 @@ const App: React.FC = () => (
     <Route path={AppRoute.CLINICS} component={Clinics} />
     <Route path={AppRoute.DOCTORS} component={DoctorsSearch}/>
     <Route path={AppRoute.DOCTOR_DETAILS_$ID} component={DoctorDetails} />
+    <Route path={AppRoute.PERMISSIONS} component={Permissions}/>
     <Route path="*" exact component={NotFound} />
 
   </Switch>
