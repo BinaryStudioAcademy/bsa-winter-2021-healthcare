@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { ApiPath, ClinicsApiPath, HttpCode, } from '~/common/enums';
+import { ApiPath, ClinicsApiPath, HttpCode } from '~/common/enums';
 import { validateSchema } from '~/middlewares';
 import { addClinic as validationClinicSchema } from '~/validation-schemas';
 import { clinicService } from '~/services/services';

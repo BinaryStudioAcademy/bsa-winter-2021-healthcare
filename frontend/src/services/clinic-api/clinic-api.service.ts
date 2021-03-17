@@ -29,7 +29,7 @@ class ClinicApi {
       method: HttpMethod.DELETE,
     });
   }
-  
+
   public getClinics(): Promise<IClinic[]> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.CLINICS}${ClinicsApiPath.ROOT}`,

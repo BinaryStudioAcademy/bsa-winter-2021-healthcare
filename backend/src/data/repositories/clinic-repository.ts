@@ -11,7 +11,7 @@ class ClinicRepository {
     return ClinicModel.findByPk(id, {
       include: {
         model: ClinicModel,
-      }
+      },
     });
   }
 
@@ -30,7 +30,7 @@ class ClinicRepository {
 
   public async deleteById(id: string): Promise<boolean> {
     const deletedRows = await ClinicModel.destroy({
-      where: { id }
+      where: { id },
     });
 
     return Boolean(deletedRows)
