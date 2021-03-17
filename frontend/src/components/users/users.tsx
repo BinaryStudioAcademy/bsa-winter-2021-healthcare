@@ -4,7 +4,7 @@ import { UsersActionCreator } from 'store/slices';
 import styles from './styles.module.scss';
 import { AdminTable, CreateUserPopup, EditUserPopup } from './components';
 import { IEditUserPayload, IRegisterPayload, IUser } from 'common/interfaces';
-import { DEFAULT_USER_INSTANCE } from 'components/admin-page/constants';
+import { DEFAULT_USER_INSTANCE } from 'components/users/constants';
 import { Modal } from 'components/common';
 import {
   CreateUserCb,
@@ -14,7 +14,7 @@ import {
   ShowFormCb,
 } from './common/types';
 
-const AdminPage: React.FC = () => {
+const Users: React.FC = () => {
   const [user, setUser] = React.useState<IUser>(DEFAULT_USER_INSTANCE);
   const [isShowPopUp, setIsShowPopUp] = React.useState<boolean>(false);
 
@@ -63,4 +63,4 @@ const AdminPage: React.FC = () => {
   );
 };
 
-export default AdminPage;
+export default Users;

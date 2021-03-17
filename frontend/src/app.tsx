@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { AppRoute } from 'common/enums';
-import AdminPage from 'components/admin-page/admin-page';
+import Users from 'components/users/users';
 import Sign from 'components/sign/sign';
 import NotFound from 'components/not-found/not-found';
 import Clinics from 'components/clinics/clinics';
@@ -15,7 +15,7 @@ const App: React.FC = () => (
     <AuthorizedRoute path={AppRoute.CLINICS} component={Clinics} />
     <AuthorizedRoute path={AppRoute.DOCTORS} component={Doctors} />
     <AuthorizedRoute path={AppRoute.DOCTOR_DETAILS_$ID} component={DoctorDetails} />
-    <AuthorizedRoute path={AppRoute.ADMIN_PAGE} exact component={AdminPage} />
+    <AuthorizedRoute path={AppRoute.USERS} exact component={Users}/>
     <Route path="*" exact component={NotFound} />
   </Switch>
 );
