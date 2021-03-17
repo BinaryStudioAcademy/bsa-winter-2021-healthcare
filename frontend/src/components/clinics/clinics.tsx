@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Clinic from './components/clinic/clinic';
+import DoctorsFiltration from '../doctors-filtration-panel/doctors-filtration-panel';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'common/types';
 import { ClinicsActionCreator } from 'store/slices';
@@ -16,11 +17,14 @@ const Clinics: React.FC = () => {
   }, []);
 
   return (
-    <div className={styles.clinicsContainer}>
-      {clinics.map((clinic) => (
-        <Clinic key={clinic.id} clinic={clinic} />
-      ))}
-    </div>
+    <>
+      <DoctorsFiltration />
+      <div className={styles.clinicsContainer}>
+        {clinics.map((clinic) => (
+          <Clinic key={clinic.id} clinic={clinic} />
+        ))}
+      </div>
+    </>
   );
 };
 
