@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './doctors-filtration.module.scss';
-import { TextInput, Checkbox } from 'components/common';
-import { DoctorType, ClinicType, InputType, InputColor, DoctorFiltration, Icons } from 'common/enums';
+import { TextInput, Checkbox, Details } from 'components/common';
+import { DoctorType, ClinicType, InputType, InputColor, DoctorFiltration, Icon } from 'common/enums';
 import { IDoctorFiltrationPayload } from 'common/interfaces';
 import { DEFAULT_VALUES } from './common/constants/payload-default-values'
-import Details from 'components/common/details/details';
 
 const doctorSpecialties = Object.keys(DoctorType);
 const clinicTypes = Object.keys(ClinicType);
@@ -16,11 +15,7 @@ const DoctorsFiltration: React.FC = () => {
     mode: "onChange",
   });
 
-  const handleSubmitForm = (formData: IDoctorFiltrationPayload) => {
-    /* eslint-disable-next-line no-console */
-    console.log(formData);
-
-  };
+  const handleSubmitForm = (formData: IDoctorFiltrationPayload) => formData;
 
   return (
     <form onSubmit={handleSubmit(handleSubmitForm)}>
@@ -31,7 +26,7 @@ const DoctorsFiltration: React.FC = () => {
             <TextInput
               name={DoctorFiltration.DOCTOR_NAME}
               label="Search by doctor's name"
-              hasHiddenLabel={false}
+              hasHiddenLabel
               placeholder="Type a doctor's name..."
               type={InputType.SEARCH}
               color={InputColor.WHITE}
@@ -40,13 +35,13 @@ const DoctorsFiltration: React.FC = () => {
             />
           </div>
           <Details
-            icon={Icons.LOCATION}
+            icon={Icon.LOCATION}
             title="Location"
           >
             <TextInput
               name={DoctorFiltration.CITY}
               label={DoctorFiltration.CITY}
-              hasHiddenLabel={false}
+              hasHiddenLabel
               placeholder="City..."
               type={InputType.TEXT}
               color={InputColor.WHITE}
@@ -55,7 +50,7 @@ const DoctorsFiltration: React.FC = () => {
             />
           </Details>
           <Details
-            icon={Icons.SPECIALTY}
+            icon={Icon.SPECIALTY}
             title="Specialty"
           >
             {doctorSpecialties.map((doctorSpecialty) => (
@@ -69,7 +64,7 @@ const DoctorsFiltration: React.FC = () => {
             ))}
           </Details>
           <Details
-            icon={Icons.CLINIC}
+            icon={Icon.CLINIC}
             title="Type of clinic"
           >
             {clinicTypes.map((clinicType) => (
