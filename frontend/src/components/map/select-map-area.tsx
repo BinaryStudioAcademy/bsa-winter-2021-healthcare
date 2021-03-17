@@ -1,9 +1,9 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { useMap } from 'react-leaflet';
 import L, { LatLng } from 'leaflet';
 import 'leaflet-lasso';
 import { FINISHED_EVENT, ENABLED_EVENT } from 'leaflet-lasso';
-import { useEffect } from 'react';
 
 const SelectMapArea: React.FC = () => {
   const map = useMap();

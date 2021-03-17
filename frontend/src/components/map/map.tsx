@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import 'leaflet';
-import 'leaflet-lasso';
 import styles from './map.module.scss';
 import SelectMapArea from './select-map-area';
 
