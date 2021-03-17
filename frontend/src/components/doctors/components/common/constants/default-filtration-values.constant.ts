@@ -6,6 +6,6 @@ const DEFAULT_FILTER_VALUE: IDoctorFiltrationPayload = {
   [DoctorFiltration.CITY]: '',
   [DoctorFiltration.SPECIALTY]: [],
   [DoctorFiltration.TYPE_OF_CLINIC]: ClinicType.STATE,
-}
+};
 
 export { DEFAULT_FILTER_VALUE };

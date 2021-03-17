@@ -1,7 +1,15 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ButtonColor, ButtonStyleType, ButtonType, ClinicKey, ClinicType, InputColor, InputType } from 'common/enums';
+import {
+  ButtonColor,
+  ButtonStyleType,
+  ButtonType,
+  ClinicKey,
+  ClinicType,
+  InputColor,
+  InputType,
+} from 'common/enums';
 import { Button, Modal, Select, TextInput } from 'components/common';
 import styles from './styles.module.scss';
 import { IClinic } from 'common/interfaces';
@@ -11,16 +19,20 @@ import { DEFAULT_CLINIC_VALUE } from 'components/clinics/components/common/const
 
 interface IProps {
   onFormHide: () => void;
-  onCreateClinic:(clinicData:IClinic)=>void;
+  onCreateClinic: (clinicData: IClinic) => void;
   isOpen: boolean;
 }
 
-const clinicTypeOptions = createOptions<string>(Object.values(ClinicType))
+const clinicTypeOptions = createOptions<string>(Object.values(ClinicType));
 
-const AddClinicPopup: React.FC<IProps> = ({ onFormHide, onCreateClinic, isOpen }) => {
+const AddClinicPopup: React.FC<IProps> = ({
+  onFormHide,
+  onCreateClinic,
+  isOpen,
+}) => {
   const { handleSubmit, errors, control } = useForm({
     resolver: yupResolver(validationClinicSchema),
-    defaultValues:DEFAULT_CLINIC_VALUE,
+    defaultValues: DEFAULT_CLINIC_VALUE,
     mode: 'onChange',
   });
   const handleSubmitForm = (clinicData: IClinic) => onCreateClinic(clinicData);
@@ -28,7 +40,10 @@ const AddClinicPopup: React.FC<IProps> = ({ onFormHide, onCreateClinic, isOpen }
   return (
     <Modal isShow={isOpen}>
       <div className={styles.container}>
-        <form onSubmit={handleSubmit(handleSubmitForm)} className={styles.createForm}>
+        <form
+          onSubmit={handleSubmit(handleSubmitForm)}
+          className={styles.createForm}
+        >
           <div className={styles.header}>
             <h2 className={styles.title}>Add clinic</h2>
             <button
@@ -47,7 +62,7 @@ const AddClinicPopup: React.FC<IProps> = ({ onFormHide, onCreateClinic, isOpen }
               <div className={styles.blurBottom}>
                 <div className={styles.cameraIcon}></div>
               </div>
-              <input type="file" className={styles.inputImageBtn}/>
+              <input type="file" className={styles.inputImageBtn} />
             </label>
             {/* <span>file1.pdf</span>
             <span>file2.jpg</span> */}
@@ -101,7 +116,6 @@ const AddClinicPopup: React.FC<IProps> = ({ onFormHide, onCreateClinic, isOpen }
               styleType={ButtonStyleType.WITHOUT_BORDER}
             />
           </div>
-
         </form>
       </div>
     </Modal>

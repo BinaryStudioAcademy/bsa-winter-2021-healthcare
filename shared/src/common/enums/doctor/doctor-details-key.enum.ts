@@ -1,5 +1,5 @@
-enum  DoctorDetailsKey {
+enum DoctorDetailsKey {
   SPECIALIZATIONS = 'specializations',
 }
 
-export { DoctorDetailsKey }
+export { DoctorDetailsKey };

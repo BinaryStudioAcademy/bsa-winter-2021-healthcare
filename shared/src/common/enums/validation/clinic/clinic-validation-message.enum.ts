@@ -1,4 +1,4 @@
-import { ContentType } from '../../file/content-type.enum'
+import { ContentType } from '../../file/content-type.enum';
 
 const ClinicValidationMessage = {
   NAME_REQUIRED: 'Name is required',
@@ -7,4 +7,4 @@ const ClinicValidationMessage = {
   IMAGE_REQUIRED: 'User avatar is required',
 } as const;
 
-export { ClinicValidationMessage }
+export { ClinicValidationMessage };

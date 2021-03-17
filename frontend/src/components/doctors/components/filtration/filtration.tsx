@@ -2,7 +2,14 @@ import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './filtration.module.scss';
 import { TextInput, Checkbox, Details } from 'components/common';
-import { DoctorType, ClinicType, InputType, InputColor, DoctorFiltration, Icon } from 'common/enums';
+import {
+  DoctorType,
+  ClinicType,
+  InputType,
+  InputColor,
+  DoctorFiltration,
+  Icon,
+} from 'common/enums';
 import { IDoctorFiltrationPayload } from 'common/interfaces';
 import { DEFAULT_FILTER_VALUE } from '../common/constants';
 
@@ -12,7 +19,7 @@ const clinicTypes = Object.keys(ClinicType);
 const Filtration: React.FC = () => {
   const { handleSubmit, control, errors } = useForm<IDoctorFiltrationPayload>({
     defaultValues: DEFAULT_FILTER_VALUE,
-    mode: "onChange",
+    mode: 'onChange',
   });
 
   const handleSubmitForm = (formData: IDoctorFiltrationPayload) => formData;
@@ -34,10 +41,7 @@ const Filtration: React.FC = () => {
               errors={errors}
             />
           </div>
-          <Details
-            icon={Icon.LOCATION}
-            title="Location"
-          >
+          <Details icon={Icon.LOCATION} title="Location">
             <TextInput
               name={DoctorFiltration.CITY}
               label={DoctorFiltration.CITY}
@@ -49,10 +53,7 @@ const Filtration: React.FC = () => {
               errors={errors}
             />
           </Details>
-          <Details
-            icon={Icon.SPECIALTY}
-            title="Specialty"
-          >
+          <Details icon={Icon.SPECIALTY} title="Specialty">
             {doctorSpecialties.map((doctorSpecialty) => (
               <div className={styles.filterCheckbox} key={doctorSpecialty}>
                 <Checkbox
@@ -63,10 +64,7 @@ const Filtration: React.FC = () => {
               </div>
             ))}
           </Details>
-          <Details
-            icon={Icon.CLINIC}
-            title="Type of clinic"
-          >
+          <Details icon={Icon.CLINIC} title="Type of clinic">
             {clinicTypes.map((clinicType) => (
               <div className={styles.filterCheckbox} key={clinicType}>
                 <Checkbox
@@ -80,6 +78,7 @@ const Filtration: React.FC = () => {
         </div>
       </div>
     </form>
-  )}
+  );
+};
 
 export default Filtration;

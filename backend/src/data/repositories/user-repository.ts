@@ -10,7 +10,13 @@ import {
   IRegisterPayload,
   IUserWithPermissions,
 } from '~/common/interfaces';
-import { UserType, ModelAlias, DoctorKey, ClinicKey, SpecializationKey } from '~/common/enums';
+import {
+  UserType,
+  ModelAlias,
+  DoctorKey,
+  ClinicKey,
+  SpecializationKey,
+} from '~/common/enums';
 
 class UserRepository {
   public getAll(): Promise<IUserWithPermissions[]> {
@@ -56,19 +62,20 @@ class UserRepository {
 
   public getDoctorDetailsById(id: string): Promise<IUser | null> {
     return UserModel.findOne({
-      where: {id},
-      include: [{
-        model:DoctorModel,
-        as:ModelAlias.DOCTOR,
-        attributes: [DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
-      },
-      {
-        model: SpecializationModel,
-        as: ModelAlias.SPECIALIZATIONS,
-        attributes: [SpecializationKey.ID, SpecializationKey.TEXT],
-      },
+      where: { id },
+      include: [
+        {
+          model: DoctorModel,
+          as: ModelAlias.DOCTOR,
+          attributes: [DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
+        },
+        {
+          model: SpecializationModel,
+          as: ModelAlias.SPECIALIZATIONS,
+          attributes: [SpecializationKey.ID, SpecializationKey.TEXT],
+        },
       ],
-    })
+    });
   }
 
   public createUser(user: IRegisterPayload): Promise<IUser> {

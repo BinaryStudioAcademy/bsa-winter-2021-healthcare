@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { useController, Control } from "react-hook-form";
+import { useController, Control } from 'react-hook-form';
 import { FormDefaultValue } from 'common/types';
 
 import styles from './styles.module.scss';
@@ -13,8 +13,17 @@ interface Props {
   defaultValue?: FormDefaultValue;
 }
 
-const Checkbox: React.FC<Props> = ({ name, label, isDisabled, control, defaultValue }) => {
-  const { field, meta: { invalid } } = useController({ name, control, defaultValue });
+const Checkbox: React.FC<Props> = ({
+  name,
+  label,
+  isDisabled,
+  control,
+  defaultValue,
+}) => {
+  const {
+    field,
+    meta: { invalid },
+  } = useController({ name, control, defaultValue });
 
   return (
     <label className={clsx(styles.checkboxRow, invalid && styles.error)}>
@@ -25,10 +34,9 @@ const Checkbox: React.FC<Props> = ({ name, label, isDisabled, control, defaultVa
         className={styles.checkboxInput}
         type="checkbox"
       />
-      <span className={styles.checkboxLabel}>
-        {label}
-      </span>
+      <span className={styles.checkboxLabel}>{label}</span>
     </label>
-  )};
+  );
+};
 
 export default Checkbox;

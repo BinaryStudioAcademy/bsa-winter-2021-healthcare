@@ -1,1 +1,1 @@
-export * from './register-payload.interface'
+export * from './register-payload.interface';

@@ -15,11 +15,9 @@ const Details: React.FC<Props> = ({ icon, title, children }) => {
         <div className={clsx(styles[icon], styles.iconWrapper)}></div>
         <div className={styles.filterName}>{title}</div>
       </summary>
-      <div className={styles.content}>
-        {children}
-      </div>
+      <div className={styles.content}>{children}</div>
     </details>
-  )
-}
+  );
+};
 
 export default Details;

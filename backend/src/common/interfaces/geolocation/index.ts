@@ -1,1 +1,1 @@
-export type { IGeolocation} from 'healthcare-shared/common/interfaces';
+export type { IGeolocation } from 'healthcare-shared/common/interfaces';

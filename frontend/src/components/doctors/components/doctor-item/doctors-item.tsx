@@ -1,7 +1,7 @@
-import * as React from "react";
-import { IUserTypeDoctor } from "common/interfaces";
-import { Card } from "components/common";
-import clsx from "clsx";
+import * as React from 'react';
+import { IUserTypeDoctor } from 'common/interfaces';
+import { Card } from 'components/common';
+import clsx from 'clsx';
 import styles from './styles.module.scss';
 
 type Props = {

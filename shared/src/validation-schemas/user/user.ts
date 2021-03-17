@@ -7,7 +7,7 @@ import {
   RegisterValidationMessage,
 } from '~/common/enums';
 
-import { phone as phoneRegExp } from "~/regexps";
+import { phone as phoneRegExp } from '~/regexps';
 
 const userRegister = yup.object().shape({
   [RegisterPayloadKey.NAME]: yup
