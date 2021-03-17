@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Clinic from './components/clinic/clinic';
-import DoctorsFiltration from '../doctors-filtration-panel/doctors-filtration-panel';
+import { Filtration } from 'components';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'common/types';
 import { ClinicsActionCreator } from 'store/slices';
@@ -18,7 +18,7 @@ const Clinics: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      <DoctorsFiltration />
+      <Filtration />
       <div className={styles.clinicsContainer}>
         {clinics.map((clinic) => (
           <Clinic key={clinic.id} clinic={clinic} />

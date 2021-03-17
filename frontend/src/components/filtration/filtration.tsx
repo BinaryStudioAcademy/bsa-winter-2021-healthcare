@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
-import styles from './doctors-filtration.module.scss';
+import styles from './filtration.module.scss';
 import { TextInput, Checkbox, Details } from 'components/common';
 import { DoctorType, ClinicType, InputType, InputColor, DoctorFiltration, Icon } from 'common/enums';
 import { IDoctorFiltrationPayload } from 'common/interfaces';
@@ -9,7 +9,7 @@ import { DEFAULT_VALUES } from './common/constants/payload-default-values'
 const doctorSpecialties = Object.keys(DoctorType);
 const clinicTypes = Object.keys(ClinicType);
 
-const DoctorsFiltration: React.FC = () => {
+const Filtration: React.FC = () => {
   const { handleSubmit, control, errors } = useForm<IDoctorFiltrationPayload>({
     defaultValues: DEFAULT_VALUES,
     mode: "onChange",
@@ -82,4 +82,4 @@ const DoctorsFiltration: React.FC = () => {
     </form>
   )}
 
-export default DoctorsFiltration;
+export { Filtration };
