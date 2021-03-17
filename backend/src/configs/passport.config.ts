@@ -47,10 +47,14 @@ passport.use(
 passport.use(
   StrategyName.REGISTER,
   new LocalStrategy(
-    { passReqToCallback: true },
-    async ({ body: { email } }, username, password, done) => {
+    {
+      passReqToCallback: true,
+      usernameField: 'email',
+      passwordField: 'password',
+    },
+    async ({ body }, username, password, done) => {
       try {
-        return done(null, { email, username, password });
+        return done(null, body);
       } catch (err) {
         return done(err);
       }
