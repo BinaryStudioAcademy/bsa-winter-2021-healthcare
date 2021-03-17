@@ -15,10 +15,22 @@
     color: #000;
   }
 
-  .icon {
+  .iconWrapper {
     height: 22px;
     width: 22px;
     background-repeat: no-repeat;
+  }
+
+  .location {
+    background-image: url('../../../assets/images/location.svg');
+  }
+
+  .specialty {
+    background-image: url('../../../assets/images/specialty.svg');
+  }
+
+  .clinic {
+    background-image: url('../../../assets/images/clinic.svg');
   }
 }
 
