@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName, DataStatus, StorageKey } from 'common/enums';
-import { IUser, IUserLoginPayload, IRegisterPayload } from 'common/interfaces';
+import { IUserWithPermissions, IUserLoginPayload, IRegisterPayload } from 'common/interfaces';
 import { authApi, notificationService, storage, geolocationService } from 'services';
 import { LoginResponse } from 'common/types/responses';
 import { HttpError } from 'exceptions';
 
 type AuthState = {
-  user: IUser | null;
+  user: IUserWithPermissions | null;
   dataStatus: DataStatus;
 };
 
@@ -58,7 +58,7 @@ const { reducer, actions } = createSlice({
   extraReducers: (builder) => {
     const sharedReducer = (
       state: AuthState,
-      { payload }: PayloadAction<IUser>,
+      { payload }: PayloadAction<IUserWithPermissions>,
     ) => {
       state.user = payload;
     };

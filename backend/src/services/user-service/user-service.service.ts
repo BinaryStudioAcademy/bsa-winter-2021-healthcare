@@ -1,12 +1,13 @@
 import { userRepository } from '~/data/repositories';
 import { UserType } from '~/common/enums';
-import { IRegisterPayload, IUser } from '~/common/interfaces';
+import { IRegisterPayload, IUser, IUserWithPermissions } from '~/common/interfaces';
 
 class UserService {
-  public getAllUsers(): Promise<IUser[]> {
+  public getAllUsers(): Promise<IUserWithPermissions[]>{
     return userRepository.getAll();
   }
-  public getUsersByType(type: UserType): Promise<IUser[]> {
+
+  public getUsersByType(type:UserType):Promise<IUserWithPermissions[]>{
     return userRepository.getByType(type);
   }
 

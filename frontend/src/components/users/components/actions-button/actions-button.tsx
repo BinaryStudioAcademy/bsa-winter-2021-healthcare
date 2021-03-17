@@ -3,10 +3,7 @@ import styles from './styles.module.scss';
 import { IUser } from 'common/interfaces';
 import { Button } from 'components/common';
 import { ButtonColor, ButtonIcon, ButtonStyleType } from 'common/enums';
-import {
-  DeleteUserCb,
-  ShowFormCb,
-} from 'components/admin-page/common/types/prop-function-void.type';
+import { DeleteUserCb, ShowFormCb } from 'components/users/common/types/prop-function-void.type';
 
 type Props = {
   onUserEdit: ShowFormCb;

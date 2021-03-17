@@ -1,8 +1,8 @@
-import { IUser } from '~/common/interfaces';
+import { IUserWithPermissions } from '~/common/interfaces';
 
 type LoginResponse = {
   token: string;
-  user: IUser;
+  user: IUserWithPermissions;
 };
 
 export type { LoginResponse };

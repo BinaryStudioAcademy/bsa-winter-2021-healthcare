@@ -5,7 +5,7 @@ import { UsersActionCreator } from 'store/slices';
 import { Column } from 'common/interfaces';
 import { Table } from 'components/common';
 import styles from './styles.module.scss';
-import { HideFormCb, DeleteUserCb } from 'components/admin-page/common/types';
+import { HideFormCb, DeleteUserCb } from 'components/users/common/types';
 import { getRows } from './helpers';
 
 type Props = {
