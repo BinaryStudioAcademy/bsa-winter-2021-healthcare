@@ -13,7 +13,11 @@ const PermissionPage: React.FC = () => {
   }));
   const dispatch = useDispatch();
 
-  const columns: Column[] = getRows();
+  /* eslint-disable no-console */
+  const handleChangePermission = (e: React.ChangeEvent<HTMLInputElement>) => console.log(e.target.checked);
+  /* eslint-enable no-console */
+
+  const columns: Column[] = getRows({handleChangePermission});
 
   React.useEffect(() => {
     dispatch(UsersActionCreator.getUsers());
@@ -23,6 +27,7 @@ const PermissionPage: React.FC = () => {
     <>
       <div className={styles.tablePosition}>
         <Table columns={columns} data={users} />
+        <input name="name" type="checkbox" onChange={handleChangePermission} />
       </div>
     </>
   );
