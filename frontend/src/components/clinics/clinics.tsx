@@ -4,7 +4,7 @@ import { RootState } from 'common/types';
 import { ClinicsActionCreator } from 'store/slices';
 import styles from './styles.module.scss';
 import { Button } from 'components/common';
-import { Clinic, AddClinic } from './components';
+import { Clinic, AddClinicPopup } from './components';
 import { IClinic } from 'common/interfaces';
 import { DEFAULT_CLINIC_VALUE } from './components/common/constants';
 import { ButtonColor, ButtonStyleType, ButtonType } from 'common/enums';
@@ -54,7 +54,7 @@ const Clinics: React.FC = () => {
           </div>
         </div>
       </div>
-      <AddClinic
+      <AddClinicPopup
         onCreateClinic={handleCreateClinic}
         onFormHide={handleHidePopUp}
         isOpen={isShowPopUp}

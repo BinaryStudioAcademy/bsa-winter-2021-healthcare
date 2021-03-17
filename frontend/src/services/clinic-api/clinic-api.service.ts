@@ -17,7 +17,7 @@ class ClinicApi {
   }
 
   public addClinic(payload: Partial<IClinic>): Promise<IClinic> {
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.CLINICS}${ClinicsApiPath.ROOT}`, {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.CLINICS}`, {
       method: HttpMethod.POST,
       contentType: ContentType.JSON,
       payload,

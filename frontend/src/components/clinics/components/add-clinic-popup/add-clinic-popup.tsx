@@ -17,7 +17,7 @@ interface IProps {
 
 const clinicTypeOptions = createOptions<string>(Object.values(ClinicType))
 
-const AddClinic: React.FC<IProps> = ({ onFormHide, onCreateClinic, isOpen }) => {
+const AddClinicPopup: React.FC<IProps> = ({ onFormHide, onCreateClinic, isOpen }) => {
   const { handleSubmit, errors, control } = useForm({
     resolver: yupResolver(validationClinicSchema),
     defaultValues:DEFAULT_CLINIC_VALUE,
@@ -108,4 +108,4 @@ const AddClinic: React.FC<IProps> = ({ onFormHide, onCreateClinic, isOpen }) => 
   );
 };
 
-export default AddClinic;
+export default AddClinicPopup;
