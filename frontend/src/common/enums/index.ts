@@ -12,3 +12,4 @@ export * from './doctor';
 export * from './clinic';
 export * from './appointment';
 export * from './filtration';
+export * from './icons';
