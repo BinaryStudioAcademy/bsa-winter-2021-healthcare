@@ -14,6 +14,8 @@ const associate = ({
   Geolocation,
   Permission,
   UserPermission,
+  Specialization,
+  UserSpecialization,
 }: DbModels): void => {
   User.hasOne(Doctor, {
     foreignKey: ForeingKey.USER_ID,
@@ -43,6 +45,11 @@ const associate = ({
     through: UserPermission,
     foreignKey: ForeingKey.USER_ID,
     as: ModelAlias.PERMISSIONS,
+  });
+  User.belongsToMany(Specialization, {
+    through: UserSpecialization,
+    foreignKey: ForeingKey.USER_ID,
+    as: ModelAlias.SPECIALIZATIONS,
   });
 
   Doctor.hasMany(Appointment, {
@@ -115,6 +122,10 @@ const associate = ({
     foreignKey: ForeingKey.PERMISSION_ID,
     as: ModelAlias.USERS,
   });
+  Specialization.belongsToMany(User, {
+    through: UserSpecialization,
+    foreignKey: ForeingKey.SPECIALIZATION_ID,
+    as: ModelAlias.USERS});
 };
 
 export default associate;

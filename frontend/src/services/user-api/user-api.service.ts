@@ -1,6 +1,6 @@
 import { Http } from '../http/http.service';
 import { HttpMethod, ContentType, UsersApiPath, UserType, ApiPath } from 'common/enums';
-import { IUser, IEditUserPayload, IUserTypeDoctor } from 'common/interfaces';
+import { IUser, IEditUserPayload, IUserTypeDoctor, IDoctorDetails } from 'common/interfaces';
 
 type Constructor = {
   http: Http;
@@ -59,6 +59,12 @@ class UserApi {
         method: HttpMethod.GET,
       },
     );
+  }
+
+  public getDoctorDetails(id:string): Promise<IDoctorDetails> {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.DOCTOR_DETAILS}/${id}`, {
+      method: HttpMethod.GET,
+    });
   }
 }
 export { UserApi };
