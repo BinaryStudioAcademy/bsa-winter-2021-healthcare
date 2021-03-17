@@ -18,8 +18,8 @@ const initGeolocationApi = (apiRouter: Router): Router => {
 
   geolocationRouter.post(GeolocationsApiPath.ROOT, async (req, res, next) => {
     try {
-      const location = await geolocationService.createGeolocation(req.body);
-      res.status(HttpCode.OK).json(location);
+      const geolocation = await geolocationService.createGeolocation(req.body);
+      res.status(HttpCode.CREATED).json(geolocation);
     } catch (error) {
       next(error);
     }
