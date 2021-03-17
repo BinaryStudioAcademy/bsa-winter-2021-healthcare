@@ -10,6 +10,7 @@ import {
   validateSchema,
 } from '~/middlewares';
 import { authService } from '~/services/services';
+import { IUser } from '~/common/interfaces';
 
 const initAuthApi = (apiRouter: Router): Router => {
   const authRouter = Router();
@@ -21,13 +22,11 @@ const initAuthApi = (apiRouter: Router): Router => {
     validateSchema(userRegisterSchema),
     registrationMiddleware,
     (req, res, next) => {
-      const user = req.user;
-      if (user) {
-        return authService
-          .signUp(user)
-          .then((data) => res.status(HttpCode.CREATED).json(data))
-          .catch(next);
-      }
+      const user = req.user as IUser;
+      return authService
+        .signUp(user)
+        .then((data) => res.status(HttpCode.CREATED).json(data))
+        .catch(next);
     },
   );
 
@@ -36,13 +35,11 @@ const initAuthApi = (apiRouter: Router): Router => {
     validateSchema(loginSchema),
     authenticationMiddleware,
     (req, res, next) => {
-      const user = req.user;
-      if (user) {
-        return authService
-          .login(user)
-          .then((data) => res.status(HttpCode.OK).send(data))
-          .catch(next);
-      }
+      const user = req.user as IUser;
+      return authService
+        .login(user)
+        .then((data) => res.status(HttpCode.OK).send(data))
+        .catch(next);
     },
   );
   return authRouter;
