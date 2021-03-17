@@ -17,18 +17,18 @@ const Checkbox: React.FC<Props> = ({ name, label, isDisabled, control, defaultVa
   const { field, meta: { invalid } } = useController({ name, control, defaultValue });
 
   return (
-  <label className={clsx(styles.checkboxRow, invalid && styles.error)}>
-    <input
-      {...field}
-      disabled={isDisabled}
-      name={name}
-      className={styles.checkboxInput}
-      type="checkbox"
-    />
-    <span className={styles.checkboxLabel}>
-      {label}
-    </span>
-  </label>
-)};
+    <label className={clsx(styles.checkboxRow, invalid && styles.error)}>
+      <input
+        {...field}
+        disabled={isDisabled}
+        name={name}
+        className={styles.checkboxInput}
+        type="checkbox"
+      />
+      <span className={styles.checkboxLabel}>
+        {label}
+      </span>
+    </label>
+  )};
 
 export default Checkbox;
