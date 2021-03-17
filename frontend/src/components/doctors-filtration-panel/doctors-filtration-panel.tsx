@@ -28,9 +28,9 @@ const DoctorsFiltration: React.FC = () => {
         <div className={styles.commonFilter}>
           <TextInput
             name={DoctorFiltration.DOCTOR_NAME}
-            label=""
+            label="Search by doctor's name"
             hasHiddenLabel={false}
-            placeholder="Type a doctor name..."
+            placeholder="Type a doctor's name..."
             type={InputType.SEARCH}
             color={InputColor.WHITE}
             control={control}
@@ -39,11 +39,11 @@ const DoctorsFiltration: React.FC = () => {
         </div>
         <Details
           icon={location}
-          title="location"
+          title="Location"
         >
           <TextInput
             name={DoctorFiltration.CITY}
-            label=""
+            label={DoctorFiltration.CITY}
             hasHiddenLabel={false}
             placeholder="City..."
             type={InputType.TEXT}
@@ -54,7 +54,7 @@ const DoctorsFiltration: React.FC = () => {
         </Details>
         <Details
           icon={specialty}
-          title={DoctorFiltration.SPECIALTY}
+          title="Specialty"
         >
           <div className={styles.filterCheckbox}>
             <Checkbox
@@ -94,7 +94,7 @@ const DoctorsFiltration: React.FC = () => {
         </Details>
         <Details
           icon={clinic}
-          title={DoctorFiltration.TYPE_OF_CLINIC}
+          title="Type of clinic"
         >
           <div className={styles.filterCheckbox}>
             <Checkbox
