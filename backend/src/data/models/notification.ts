@@ -4,18 +4,24 @@ import { INotification } from '~/common/interfaces';
 
 interface NotificationInstance extends INotification, Model {}
 
-const createNotificationModel = (orm: Sequelize): ModelCtor<NotificationInstance> => {
-  const Notification = orm.define<NotificationInstance>(ModelName.NOTIFICATION, {
-    text: {
-      allowNull: false,
-      type: DataTypes.STRING
+const createNotificationModel = (
+  orm: Sequelize,
+): ModelCtor<NotificationInstance> => {
+  const Notification = orm.define<NotificationInstance>(
+    ModelName.NOTIFICATION,
+    {
+      text: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      topic: DataTypes.STRING,
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
     },
-    topic: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
-  }, {
-    tableName: TableName.NOTIFICATIONS
-  });
+    {
+      tableName: TableName.NOTIFICATIONS,
+    },
+  );
 
   return Notification;
 };

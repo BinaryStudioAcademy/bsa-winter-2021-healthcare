@@ -61,7 +61,6 @@ const initUserApi = (apiRouter: Router): Router => {
     }
   });
 
-
   return userRouter;
 };
 
