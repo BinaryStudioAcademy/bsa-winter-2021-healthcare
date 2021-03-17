@@ -5,7 +5,7 @@ enum ClinicKey {
   IMAGE_PATH = 'imagePath',
   CLINIC_TYPE = 'clinicType',
   CREATED_AT = 'createdAt',
-  UPDATED_AT = 'updatedAt'
+  UPDATED_AT = 'updatedAt',
 }
 
 export { ClinicKey };

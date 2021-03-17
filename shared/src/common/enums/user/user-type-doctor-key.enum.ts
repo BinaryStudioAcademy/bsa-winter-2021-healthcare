@@ -1,5 +1,5 @@
-enum  UserTypeDoctorKey {
-  DOCTOR = 'doctor'
+enum UserTypeDoctorKey {
+  DOCTOR = 'doctor',
 }
 
 export { UserTypeDoctorKey };

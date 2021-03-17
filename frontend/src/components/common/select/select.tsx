@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useController, Control } from "react-hook-form";
+import { useController, Control } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import SelectReact from 'react-select';
 import clsx from 'clsx';
@@ -8,8 +8,8 @@ import { InputColor } from 'common/enums';
 import { IOption } from 'common/interfaces';
 import { FormDefaultValue, FormErrors } from 'common/types';
 
-import { inputColorToCssColorValue } from './maps'
-import { customStyles } from './styles'
+import { inputColorToCssColorValue } from './maps';
+import { customStyles } from './styles';
 
 import styles from './styles.module.scss';
 import './styles-select.scss';
@@ -23,21 +23,39 @@ interface Props {
   options: IOption<string>[];
   isDisabled?: boolean;
   control: Control;
-  errors: FormErrors
+  errors: FormErrors;
   defaultValue?: FormDefaultValue;
 }
 
-
-const Select: React.FC<Props> = ({ options, name, label, hasHiddenLabel, placeholder, color, isDisabled, control, defaultValue, errors }) => {
+const Select: React.FC<Props> = ({
+  options,
+  name,
+  label,
+  hasHiddenLabel,
+  placeholder,
+  color,
+  isDisabled,
+  control,
+  defaultValue,
+  errors,
+}) => {
   const { field } = useController({ name, control, defaultValue });
 
-  const handleSelectChange = (option: IOption<string> | null) => field.onChange(option?.value);
-  const handleSelectSetValue = options.find(c => c.value === field.value);
+  const handleSelectChange = (option: IOption<string> | null) =>
+    field.onChange(option?.value);
+  const handleSelectSetValue = options.find((c) => c.value === field.value);
 
   return (
     <span className={styles.inputControl}>
       <label className={styles.label}>
-        <span className={clsx(styles.labelText, hasHiddenLabel && 'visually-hidden')}>{label}</span>
+        <span
+          className={clsx(
+            styles.labelText,
+            hasHiddenLabel && 'visually-hidden',
+          )}
+        >
+          {label}
+        </span>
         <SelectReact
           {...field}
           options={options}
@@ -55,6 +73,6 @@ const Select: React.FC<Props> = ({ options, name, label, hasHiddenLabel, placeho
       <ErrorMessage errors={errors} as="span" name={name} />
     </span>
   );
-}
+};
 
 export default Select;

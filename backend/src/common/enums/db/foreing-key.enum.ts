@@ -5,7 +5,7 @@ enum ForeingKey {
   CLINIC_ID = 'clinicId',
   DOCUMENT_ID = 'documentId',
   GEOLOCATION_ID = 'geolocationId',
-  PERMISSION_ID = 'permissionId'
+  PERMISSION_ID = 'permissionId',
 }
 
 export { ForeingKey };

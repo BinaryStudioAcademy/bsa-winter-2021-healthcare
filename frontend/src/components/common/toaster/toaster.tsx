@@ -1,5 +1,9 @@
 import * as React from 'react';
-import ReduxToastr, { positionType, transitionInType, transitionOutType } from 'react-redux-toastr';
+import ReduxToastr, {
+  positionType,
+  transitionInType,
+  transitionOutType,
+} from 'react-redux-toastr';
 import './styles-module.scss';
 
 interface Props {
@@ -20,10 +24,10 @@ const Toaster: React.FC<Props> = ({
   isDuplicatesPrevented = true,
   hasProgressBar = true,
   isClosingOnClick = true,
-  position="top-right",
-  transitionIn="fadeIn",
-  transitionOut = "fadeOut",
-  className
+  position = 'top-right',
+  transitionIn = 'fadeIn',
+  transitionOut = 'fadeOut',
+  className,
 }) => (
   <ReduxToastr
     timeOut={timeOut}

@@ -17,24 +17,30 @@ const { reducer, actions } = createSlice({
   name: ReducerName.USERS,
   initialState,
   reducers: {
-    addUsers:(state, action: PayloadAction<IUser[]>) => {
-
+    addUsers: (state, action: PayloadAction<IUser[]>) => {
       state.users = [...state.users, ...action.payload];
     },
-    editUser:(state, action: PayloadAction<{id:string|undefined,data:IUser[]}>) => {
+    editUser: (
+      state,
+      action: PayloadAction<{ id: string | undefined; data: IUser[] }>,
+    ) => {
       const id = action.payload.id;
-      state.users = state.users.map((user:IUser)=> user.id === id ? action.payload.data[0] : user);
+      state.users = state.users.map((user: IUser) =>
+        user.id === id ? action.payload.data[0] : user,
+      );
     },
-    deleteUser:(state, action: PayloadAction<string>) => {
-      state.users = state.users.filter((user:IUser)=> user.id !== action.payload);
-    }
+    deleteUser: (state, action: PayloadAction<string>) => {
+      state.users = state.users.filter(
+        (user: IUser) => user.id !== action.payload,
+      );
+    },
   },
 });
 
 const getUsers = (): AppThunk => async (dispatch) => {
-  try{
+  try {
     const response = await userApi.getUsers();
-    dispatch(actions.addUsers(response))
+    dispatch(actions.addUsers(response));
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
@@ -42,8 +48,8 @@ const getUsers = (): AppThunk => async (dispatch) => {
     throw error;
   }
 };
-const getUser = (id:string): AppThunk => async () => {
-  try{
+const getUser = (id: string): AppThunk => async () => {
+  try {
     await userApi.getUser(id);
   } catch (error) {
     if (error instanceof HttpError) {
@@ -53,9 +59,14 @@ const getUser = (id:string): AppThunk => async () => {
   }
 };
 const editUser = (userInfo: IEditUserPayload): AppThunk => async (dispatch) => {
-  try{
-    const response:IUser[] = await userApi.editUser(userInfo.id as string, userInfo);
-    response ? dispatch(actions.editUser({id:userInfo.id, data: response})) : null;
+  try {
+    const response: IUser[] = await userApi.editUser(
+      userInfo.id as string,
+      userInfo,
+    );
+    response
+      ? dispatch(actions.editUser({ id: userInfo.id, data: response }))
+      : null;
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
@@ -64,7 +75,7 @@ const editUser = (userInfo: IEditUserPayload): AppThunk => async (dispatch) => {
   }
 };
 const addUser = (userInfo: IUser): AppThunk => async (dispatch) => {
-  try{
+  try {
     const response = await userApi.registerUser(userInfo);
     dispatch(actions.addUsers([response]));
   } catch (error) {
@@ -75,7 +86,7 @@ const addUser = (userInfo: IUser): AppThunk => async (dispatch) => {
   }
 };
 const deleteUser = (id: string): AppThunk => async (dispatch) => {
-  try{
+  try {
     dispatch(actions.deleteUser(id));
     await userApi.deleteUser(id);
   } catch (error) {

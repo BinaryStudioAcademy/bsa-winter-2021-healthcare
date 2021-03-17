@@ -1,6 +1,6 @@
 enum ClinicType {
   PRIVATE = 'private',
-  STATE = 'state'
+  STATE = 'state',
 }
 
 export { ClinicType };

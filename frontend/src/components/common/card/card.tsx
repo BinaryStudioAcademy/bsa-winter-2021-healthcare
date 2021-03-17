@@ -1,8 +1,8 @@
-import * as React from "react";
-import { ButtonColor, ButtonStyleType, AppRoute } from "common/enums";
-import { Button } from "components/common";
-import clsx from "clsx";
-import styles from "./styles.module.scss";
+import * as React from 'react';
+import { ButtonColor, ButtonStyleType, AppRoute } from 'common/enums';
+import { Button } from 'components/common';
+import clsx from 'clsx';
+import styles from './styles.module.scss';
 
 type Props = {
   subtitle?: string;
@@ -20,7 +20,7 @@ const Card: React.FC<Props> = ({
   btnLabel,
   btnHref,
   imagePath,
-  children
+  children,
 }) => {
   return (
     <div className={styles.cardContainer}>
@@ -31,19 +31,23 @@ const Card: React.FC<Props> = ({
         <div className={styles.cardHead}>
           <span className={styles.subtitle}>{subtitle}</span>
           <span className={styles.title}>{title}</span>
-          {label && <span className={clsx(styles.label, styles[label])}>{label}</span>}
+          {label && (
+            <span className={clsx(styles.label, styles[label])}>{label}</span>
+          )}
         </div>
         <div className={styles.cardInfoBlocks}>{children}</div>
         <div className={styles.cardFooter}>
-          { btnLabel && <div className={styles.button}>
-            <Button
-              label={btnLabel}
-              href={btnHref}
-              hasHiddenLabel={false}
-              color={ButtonColor.PRIMARY_DARK}
-              styleType={ButtonStyleType.WITHOUT_BORDER}
-            />
-          </div>}
+          {btnLabel && (
+            <div className={styles.button}>
+              <Button
+                label={btnLabel}
+                href={btnHref}
+                hasHiddenLabel={false}
+                color={ButtonColor.PRIMARY_DARK}
+                styleType={ButtonStyleType.WITHOUT_BORDER}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>
