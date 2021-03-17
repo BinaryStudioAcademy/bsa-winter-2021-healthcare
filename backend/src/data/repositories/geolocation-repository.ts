@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { GeolocationModel } from '../models';
 import { IGeolocation } from '~/common/interfaces';
 
@@ -11,12 +12,12 @@ class GeolocationRepository {
   }
 
   public async updateById(id: string, data: IGeolocation): Promise<IGeolocation> {
-    const [, updatedArticle] = await GeolocationModel.update(data, {
+    const [, [updatedGeolocation]] = await GeolocationModel.update(data, {
       where: { id },
       returning: true,
     });
 
-    return updatedArticle[0];
+    return updatedGeolocation;
   }
 }
 
