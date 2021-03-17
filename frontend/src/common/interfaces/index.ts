@@ -1,3 +1,5 @@
+export * from './app';
+export * from './edit-user';
 export * from './user';
 export * from './appointment';
 export * from './clinic';
@@ -10,4 +12,5 @@ export * from './doctor-clinic';
 export * from './user-type-doctor';
 export * from './register';
 export * from './form';
+export * from './clinic';
 export * from './exeption-message';
