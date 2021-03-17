@@ -10,6 +10,9 @@ import { IDoctorFiltrationPayload } from 'common/interfaces';
 import { DEFAULT_VALUES } from './common/constants/payload-default-values'
 import Details from 'components/common/details/details';
 
+const doctorSpecialties = Object.keys(DoctorType);
+const clinicTypes = Object.keys(ClinicType);
+
 const DoctorsFiltration: React.FC = () => {
   const { handleSubmit, control, errors } = useForm<IDoctorFiltrationPayload>({
     defaultValues: DEFAULT_VALUES,
@@ -56,60 +59,29 @@ const DoctorsFiltration: React.FC = () => {
           icon={specialty}
           title="Specialty"
         >
-          <div className={styles.filterCheckbox}>
-            <Checkbox
-              name={DoctorType.PEDIATRICIAN}
-              label={DoctorType.PEDIATRICIAN}
-              control={control}
-            />
-          </div>
-            <div className={styles.filterCheckbox}>
-            <Checkbox
-              name={DoctorType.ENDOCRINOLOGIST}
-              label={DoctorType.ENDOCRINOLOGIST}
-              control={control}
-            />
-          </div>
-            <div className={styles.filterCheckbox}>
-            <Checkbox
-              name={DoctorType.DENTIST}
-              label={DoctorType.DENTIST}
-              control={control}
-            />
-          </div>
-            <div className={styles.filterCheckbox}>
-            <Checkbox
-              name={DoctorType.SURGEON}
-              label={DoctorType.SURGEON}
-              control={control}
-            />
-          </div>
-          <div className={styles.filterCheckbox}>
-          <Checkbox
-              name={DoctorType.DERMATOLOGIST}
-              label={DoctorType.DERMATOLOGIST}
-              control={control}
-            />
-          </div>
+          {doctorSpecialties.map((doctorSpecialty) => (
+            <div className={styles.filterCheckbox} key={doctorSpecialty}>
+              <Checkbox
+                name={doctorSpecialty}
+                label={doctorSpecialty}
+                control={control}
+              />
+            </div>
+          ))}
         </Details>
         <Details
           icon={clinic}
           title="Type of clinic"
         >
-          <div className={styles.filterCheckbox}>
-            <Checkbox
-              name={ClinicType.PRIVATE}
-              label={ClinicType.PRIVATE}
-              control={control}
-            />
-          </div>
-            <div className={styles.filterCheckbox}>
-            <Checkbox
-              name={ClinicType.STATE}
-              label={ClinicType.STATE}
-              control={control}
-            />
-          </div>
+          {clinicTypes.map((clinicType) => (
+            <div className={styles.filterCheckbox} key={clinicType}>
+              <Checkbox
+                name={clinicType}
+                label={clinicType}
+                control={control}
+              />
+            </div>
+          ))}
         </Details>
       </div>
     </div>
