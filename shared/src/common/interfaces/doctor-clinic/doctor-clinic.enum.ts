@@ -3,7 +3,7 @@ import { IClinic } from '../clinic';
 import { DoctorClinicKey } from '~/common/enums';
 
 interface IDoctorWithClinic extends IDoctor {
-  [DoctorClinicKey.CLINIC]: IClinic
+  [DoctorClinicKey.CLINIC]: IClinic;
 }
 
-export type { IDoctorWithClinic }
+export type { IDoctorWithClinic };

@@ -20,6 +20,9 @@ const { reducer, actions } = createSlice({
     setClinics: (state, action: PayloadAction<IClinic[]>) => {
       state.clinics = action.payload;
     },
+    addClinic: (state, action: PayloadAction<IClinic[]>) => {
+      state.clinics = [...state.clinics, ...action.payload];
+    },
   },
 });
 
@@ -35,9 +38,22 @@ const getClinics = (): AppThunk => async (dispatch) => {
   }
 };
 
+const addClinic = (clinicInfo: IClinic): AppThunk => async (dispatch) => {
+  try {
+    const response = await clinicApi.addClinic(clinicInfo);
+    dispatch(actions.addClinic([response]));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
 const ClinicsActionCreator = {
   ...actions,
   getClinics,
+  addClinic,
 };
 
 export { ClinicsActionCreator, reducer };

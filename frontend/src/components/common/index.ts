@@ -10,5 +10,7 @@ import Toaster from './toaster/toaster';
 import Header from './header/header';
 import Card from './card/card';
 import Modal from './modal/modal';
+import Details from './details/details';
+import AuthorizedRoute from './authorized-route/authorized-route';
 
-export { Link, Checkbox, TextInput, DateInput, Radio, Select, Button, Header, Table, Modal, Toaster, Card };
+export { Link, Checkbox, TextInput, DateInput, Radio, Select, Button, Header, Table, Modal, Toaster, Card, Details, AuthorizedRoute };

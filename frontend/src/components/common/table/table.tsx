@@ -5,8 +5,8 @@ import styles from './styles.module.scss';
 import { CustomRecord } from 'common/types';
 
 interface IProps {
-  columns: Column[],
-  data: unknown[],
+  columns: Column[];
+  data: unknown[];
 }
 
 const Table: React.FC<IProps> = ({ columns, data }) => {
@@ -61,6 +61,6 @@ const Table: React.FC<IProps> = ({ columns, data }) => {
       </table>
     </div>
   );
-}
+};
 
 export default Table;

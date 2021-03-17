@@ -1,0 +1,64 @@
+.filterInfo {
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  margin: 5px 0;
+  position: relative;
+
+  &:focus {
+    outline: none;
+  }
+
+  .filterName {
+    margin: 5px 15px;
+    font-size: 12pt;
+    color: #000;
+  }
+
+  .iconWrapper {
+    height: 22px;
+    width: 22px;
+    background-repeat: no-repeat;
+  }
+
+  .location {
+    background-image: url('../../../assets/images/location.svg');
+  }
+
+  .specialty {
+    background-image: url('../../../assets/images/specialty.svg');
+  }
+
+  .clinic {
+    background-image: url('../../../assets/images/clinic.svg');
+  }
+}
+
+.commonFilter {
+  margin: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: space-around;
+  border-bottom: 1px solid #787878;
+
+  & > .filterInfo::after {
+    content: url('../../../assets/images/arrow-down.svg');
+    position: absolute;
+    right: 1px;
+    top: 5px;
+    transition: transform 0.5s;
+  }
+
+  &[open] > .filterInfo::after {
+    transform: rotate(180deg);
+  }
+
+  .filterInfo::marker {
+    display:none;
+  }
+}
+
+.filterCheckbox {
+  color: #787878;
+}

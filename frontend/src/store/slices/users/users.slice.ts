@@ -48,16 +48,6 @@ const getUsers = (): AppThunk => async (dispatch) => {
     throw error;
   }
 };
-const getUser = (id: string): AppThunk => async () => {
-  try {
-    await userApi.getUser(id);
-  } catch (error) {
-    if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
-    }
-    throw error;
-  }
-};
 const editUser = (userInfo: IEditUserPayload): AppThunk => async (dispatch) => {
   try {
     const response: IUser[] = await userApi.editUser(
@@ -100,7 +90,6 @@ const deleteUser = (id: string): AppThunk => async (dispatch) => {
 const UsersActionCreator = {
   ...actions,
   getUsers,
-  getUser,
   addUser,
   editUser,
   deleteUser,

@@ -10,7 +10,13 @@ import {
   IRegisterPayload,
   IUserWithPermissions,
 } from '~/common/interfaces';
-import { UserType, ModelAlias, DoctorKey, ClinicKey, SpecializationKey } from '~/common/enums';
+import {
+  UserType,
+  ModelAlias,
+  DoctorKey,
+  ClinicKey,
+  SpecializationKey,
+} from '~/common/enums';
 
 class UserRepository {
   public getAll(): Promise<IUserWithPermissions[]> {
@@ -22,7 +28,7 @@ class UserRepository {
     });
   }
 
-  public getByType(type: UserType): Promise<IUser[]> {
+  public getByType(type: UserType): Promise<IUserWithPermissions[]> {
     if (type === UserType.DOCTOR) {
       return UserModel.findAll({
         where: { type },
@@ -54,38 +60,35 @@ class UserRepository {
     return UserModel.findAll({ where: { type } });
   }
 
-  public getById(id: string): Promise<IUser | null> {
-    return UserModel.findByPk(id, {
-      include: {
-        model: PermissionModel,
-        as: ModelAlias.PERMISSIONS,
-      },
-    });
-  }
   public getDoctorDetailsById(id: string): Promise<IUser | null> {
     return UserModel.findOne({
-      where: {id},
-      include: [{
-        model:DoctorModel,
-        as:ModelAlias.DOCTOR,
-        attributes: [DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
-      },
-      {
-        model: SpecializationModel,
-        as: ModelAlias.SPECIALIZATIONS,
-        attributes: [SpecializationKey.ID, SpecializationKey.TEXT],
-      },
+      where: { id },
+      include: [
+        {
+          model: DoctorModel,
+          as: ModelAlias.DOCTOR,
+          attributes: [DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
+        },
+        {
+          model: SpecializationModel,
+          as: ModelAlias.SPECIALIZATIONS,
+          attributes: [SpecializationKey.ID, SpecializationKey.TEXT],
+        },
       ],
-    })
+    });
   }
 
   public createUser(user: IRegisterPayload): Promise<IUser> {
     return UserModel.create(user);
   }
 
-  public findByEmail(email: string): Promise<IUser | null> {
+  public findByEmail(email: string): Promise<IUserWithPermissions | null> {
     return UserModel.findOne({
       where: { email },
+      include: {
+        model: PermissionModel,
+        as: ModelAlias.PERMISSIONS,
+      },
     });
   }
 

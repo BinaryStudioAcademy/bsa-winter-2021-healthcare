@@ -3,4 +3,4 @@ enum UserSpecializationKey {
   UPDATED_AT = 'updatedAt',
 }
 
-export { UserSpecializationKey }
+export { UserSpecializationKey };

@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName, DataStatus, StorageKey } from 'common/enums';
-import { IUser, IUserLoginPayload, IRegisterPayload } from 'common/interfaces';
-import { authApi, notificationService, storage } from 'services';
+import { IUserWithPermissions, IUserLoginPayload, IRegisterPayload } from 'common/interfaces';
+import { authApi, notificationService, storage, geolocationService } from 'services';
 import { LoginResponse } from 'common/types/responses';
 import { HttpError } from 'exceptions';
 
 type AuthState = {
-  user: IUser | null;
+  user: IUserWithPermissions | null;
   dataStatus: DataStatus;
 };
 
@@ -21,6 +21,10 @@ const login = createAsyncThunk(
     try {
       const { token, user }: LoginResponse = await authApi.loginUser(userData);
       storage.setItem(StorageKey.TOKEN, token);
+
+      const geolocation = await geolocationService.getByUserId(user.id);
+      geolocation ? geolocationService.updateGeolocation(geolocation.id) : geolocationService.addGeolocation(user.id);
+
       return user;
     } catch (error) {
       if (error instanceof HttpError) {
@@ -54,7 +58,7 @@ const { reducer, actions } = createSlice({
   extraReducers: (builder) => {
     const sharedReducer = (
       state: AuthState,
-      { payload }: PayloadAction<IUser>,
+      { payload }: PayloadAction<IUserWithPermissions>,
     ) => {
       state.user = payload;
     };
