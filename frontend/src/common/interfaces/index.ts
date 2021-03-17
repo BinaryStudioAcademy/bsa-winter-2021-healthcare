@@ -12,7 +12,7 @@ export * from './doctor-clinic';
 export * from './user-type-doctor';
 export * from './register';
 export * from './form';
-export * from './clinic';
+export * from './filtration';
 export * from './exeption-message';
 export * from './geolocation';
 export * from './doctor-details';

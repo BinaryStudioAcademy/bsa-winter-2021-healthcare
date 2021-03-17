@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import DoctorsList from './components/doctors-list/doctors-list';
+import { Filtration } from './components';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'common/types';
 import { DoctorsActionCreator } from 'store/slices';
@@ -7,7 +8,7 @@ import { DataStatus } from 'common/enums';
 
 import styles from './styles.module.scss';
 
-const DoctorsSearch: React.FC = () => {
+const Doctors: React.FC = () => {
   const { doctors, dataStatus } = useSelector(({ doctors }: RootState) => ({
     doctors: doctors.doctors,
     dataStatus: doctors.dataStatus,
@@ -20,11 +21,13 @@ const DoctorsSearch: React.FC = () => {
 
   return (
     <div className={styles.doctorsSearchContainer}>
-      <div className={styles.searchPannel}></div>
+      <div className={styles.searchPannel}>
+        <Filtration />
+      </div>
       {dataStatus === DataStatus.PENDING && <div>...Loading</div>}
       {dataStatus === DataStatus.SUCCESS && <DoctorsList users={doctors} />}
     </div>
   );
 };
 
-export default DoctorsSearch;
+export default Doctors;
