@@ -54,14 +54,6 @@ class UserRepository {
     return UserModel.findAll({ where: { type } });
   }
 
-  public getById(id: string): Promise<IUser | null> {
-    return UserModel.findByPk(id, {
-      include: {
-        model: PermissionModel,
-        as: ModelAlias.PERMISSIONS,
-      },
-    });
-  }
   public getDoctorDetailsById(id: string): Promise<IUser | null> {
     return UserModel.findOne({
       where: {id},

@@ -31,11 +31,6 @@ class UserApi {
       payload,
     });
   }
-  public getUser(id: string): Promise<IUser> {
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}/${id}`, {
-      method: HttpMethod.GET,
-    });
-  }
   public deleteUser(id: string): Promise<boolean> {
     return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}/${id}`, {
       method: HttpMethod.DELETE,
