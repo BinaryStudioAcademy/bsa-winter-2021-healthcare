@@ -31,12 +31,12 @@ passport.use(
         return (await checkIsPasswordSame(user, password))
           ? done(null, user)
           : done(
-              {
-                status: HttpCode.UNAUTHORIZED,
-                messages: [AuthValidationMessage.PASSWORD_INCORRECT],
-              },
-              false,
-            );
+            {
+              status: HttpCode.UNAUTHORIZED,
+              messages: [AuthValidationMessage.PASSWORD_INCORRECT],
+            },
+            false,
+          );
       } catch (err) {
         return done(err);
       }
@@ -69,12 +69,12 @@ passport.use(
       return user
         ? done(null, user)
         : done(
-            {
-              status: HttpCode.UNAUTHORIZED,
-              messages: [AuthValidationMessage.TOKEN_INVALID],
-            },
-            null,
-          );
+          {
+            status: HttpCode.UNAUTHORIZED,
+            messages: [AuthValidationMessage.TOKEN_INVALID],
+          },
+          null,
+        );
     } catch (err) {
       done(err);
     }
