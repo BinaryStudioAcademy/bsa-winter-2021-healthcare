@@ -17,14 +17,14 @@ const Clinics: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <DoctorsFiltration />
       <div className={styles.clinicsContainer}>
         {clinics.map((clinic) => (
           <Clinic key={clinic.id} clinic={clinic} />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
