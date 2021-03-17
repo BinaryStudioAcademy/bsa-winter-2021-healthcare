@@ -4,7 +4,7 @@ import {
   ApiPath,
   GeolocationsApiPath,
   HttpMethod,
-  ContentType
+  ContentType,
 } from 'common/enums';
 
 type Constructor = {
@@ -22,9 +22,8 @@ class GeolocationService {
   }
 
   public getByUserId(userId: string | undefined): Promise<IGeolocation> {
-    console.log(GeolocationsApiPath.ROOT)
     return this.#http.load(`${this.#apiPrefix}${ApiPath.GEOLOCATIONS}${GeolocationsApiPath.BYUSER}/${userId}`, {
-      method: HttpMethod.GET
+      method: HttpMethod.GET,
     });
   }
 
@@ -33,13 +32,13 @@ class GeolocationService {
       navigator.geolocation.getCurrentPosition(position => {
         const payload: Partial<IGeolocation> = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lng: position.coords.longitude,
         }
 
         return this.#http.load(`${this.#apiPrefix}${ApiPath.GEOLOCATIONS}/${id}`, {
           method: HttpMethod.PUT,
           contentType: ContentType.JSON,
-          payload
+          payload,
         });
       })
     }
@@ -51,13 +50,13 @@ class GeolocationService {
         const payload: Partial<IGeolocation> = {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
-          userId: userId
+          userId: userId,
         }
 
         return this.#http.load(`${this.#apiPrefix}${ApiPath.GEOLOCATIONS}${GeolocationsApiPath.ROOT}`, {
           method: HttpMethod.POST,
           contentType: ContentType.JSON,
-          payload
+          payload,
         });
       })
     }

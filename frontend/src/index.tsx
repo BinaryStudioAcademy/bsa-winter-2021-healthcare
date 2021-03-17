@@ -14,7 +14,7 @@ render(
       <Router>
         <App />
       </Router>
-      <Toaster/>
+      <Toaster />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),

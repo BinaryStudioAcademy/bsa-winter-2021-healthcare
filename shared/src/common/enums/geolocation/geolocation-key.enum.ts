@@ -7,4 +7,4 @@ enum GeolocationKey {
   UPDATED_AT = 'updatedAt'
 }
 
-export { GeolocationKey }
+export { GeolocationKey };

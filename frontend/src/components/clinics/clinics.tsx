@@ -12,15 +12,16 @@ const Clinics: React.FC = () => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(ClinicsActionCreator.getClinics())
-    console.log(clinics);
-  }, [])
+    dispatch(ClinicsActionCreator.getClinics());
+  }, []);
 
   return (
     <div className={styles.clinicsContainer}>
-      {clinics.map(clinic => <Clinic key={clinic.id} clinic={clinic} />)}
+      {clinics.map((clinic) => (
+        <Clinic key={clinic.id} clinic={clinic} />
+      ))}
     </div>
-  )
-}
+  );
+};
 
 export default Clinics;

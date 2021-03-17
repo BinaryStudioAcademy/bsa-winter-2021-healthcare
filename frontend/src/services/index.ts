@@ -11,26 +11,26 @@ const http = new Http();
 
 const authApi = new AuthApi({
   http,
-  apiPrefix: ENV.API_PATH
+  apiPrefix: ENV.API_PATH,
 });
 
 const userApi = new UserApi({
   http,
-  apiPrefix: ENV.API_PATH
+  apiPrefix: ENV.API_PATH,
 });
 
 const clinicApi = new ClinicApi({
   http,
-  apiPrefix: ENV.API_PATH
-})
+  apiPrefix: ENV.API_PATH,
+});
 
 const storage = new Storage({
-  storage: localStorage
+  storage: localStorage,
 });
 
 const geolocationService = new GeolocationService({
   http,
-  apiPrefix: ENV.API_PATH
+  apiPrefix: ENV.API_PATH,
 });
 
 const notificationService = new NotificationService();
@@ -42,5 +42,5 @@ export {
   storage,
   notificationService,
   clinicApi,
-  geolocationService
+  geolocationService,
 };

@@ -38,7 +38,7 @@ associate({
   User: UserModel,
   Geolocation: GeolocationModel,
   Permission: PermissionModel,
-  UserPermission: UserPermissionModel
+  UserPermission: UserPermissionModel,
 });
 
 export {
@@ -53,5 +53,5 @@ export {
   UserModel,
   GeolocationModel,
   PermissionModel,
-  UserPermissionModel
+  UserPermissionModel,
 };

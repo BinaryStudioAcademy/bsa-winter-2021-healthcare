@@ -7,15 +7,6 @@ interface Props {
 }
 
 const Modal: React.FC<Props> = ({ isShow, children }) => {
-
-  return (
-      <>
-        {isShow &&
-            <div className={styles.container}>
-                {children}
-            </div>
-        }
-      </>
-  );
-}
+  return <>{isShow && <div className={styles.container}>{children}</div>}</>;
+};
 export default Modal;

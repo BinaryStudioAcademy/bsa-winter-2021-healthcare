@@ -11,7 +11,7 @@ import {
   UserModel,
   GeolocationModel,
   PermissionModel,
-  UserPermissionModel
+  UserPermissionModel,
 } from '~/data/models';
 
 type DbModels = {

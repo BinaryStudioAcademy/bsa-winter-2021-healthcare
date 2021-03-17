@@ -2,17 +2,17 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName, DataStatus } from 'common/enums';
 import { AppThunk } from 'common/types';
 import { userApi, notificationService } from 'services';
-import { IUserTypeDoctor } from 'common/interfaces'
+import { IUserTypeDoctor } from 'common/interfaces';
 import { HttpError } from 'exceptions';
 
 type DoctorsState = {
-  doctors: IUserTypeDoctor[]
-  dataStatus: DataStatus
+  doctors: IUserTypeDoctor[];
+  dataStatus: DataStatus;
 };
 
 const initialState: DoctorsState = {
   doctors: [],
-  dataStatus: DataStatus.PENDING
+  dataStatus: DataStatus.PENDING,
 };
 
 const { reducer, actions } = createSlice({
@@ -40,7 +40,7 @@ const getDoctorsAsync = (): AppThunk => async (dispatch) => {
 
 const DoctorsActionCreator = {
   ...actions,
-  getDoctorsAsync
+  getDoctorsAsync,
 };
 
 export { DoctorsActionCreator, reducer };

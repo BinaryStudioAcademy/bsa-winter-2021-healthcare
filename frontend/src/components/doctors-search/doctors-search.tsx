@@ -10,19 +10,19 @@ import styles from './styles.module.scss';
 const DoctorsSearch: React.FC = () => {
   const { doctors, dataStatus } = useSelector(({ doctors }: RootState) => ({
     doctors: doctors.doctors,
-    dataStatus: doctors.dataStatus
+    dataStatus: doctors.dataStatus,
   }));
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    dispatch(DoctorsActionCreator.getDoctorsAsync())
-  }, [])
+  useEffect(() => {
+    dispatch(DoctorsActionCreator.getDoctorsAsync());
+  }, []);
 
   return (
     <div className={styles.doctorsSearchContainer}>
       <div className={styles.searchPannel}></div>
-        {dataStatus === DataStatus.PENDING && <div>...Loading</div> }
-        {dataStatus === DataStatus.SUCCESS && <DoctorsList users={doctors}/>}
+      {dataStatus === DataStatus.PENDING && <div>...Loading</div>}
+      {dataStatus === DataStatus.SUCCESS && <DoctorsList users={doctors} />}
     </div>
   );
 };

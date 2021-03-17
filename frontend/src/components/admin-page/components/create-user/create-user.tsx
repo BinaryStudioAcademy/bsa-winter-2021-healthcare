@@ -1,7 +1,16 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ButtonColor, ButtonStyleType, ButtonType, InputColor, InputType, RegisterPayloadKey, UserSex, UserType } from 'common/enums';
+import {
+  ButtonColor,
+  ButtonStyleType,
+  ButtonType,
+  InputColor,
+  InputType,
+  RegisterPayloadKey,
+  UserSex,
+  UserType,
+} from 'common/enums';
 import { IRegisterPayload } from 'common/interfaces';
 import { userRegister as validationUserSchema } from 'validation-schemas';
 import styles from './styles.module.scss';
@@ -12,7 +21,7 @@ import { CreateUserCb, HideFormCb } from 'components/admin-page/common/types';
 type Props = {
   onCreateUser: CreateUserCb;
   onFormHide: HideFormCb;
-}
+};
 
 const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.NAME]: '',
@@ -28,8 +37,8 @@ const DEFAULT_VALUES: IRegisterPayload = {
     'https://www.pikpng.com/pngl/b/80-805523_default-avatar-svg-png-icon-free-download-264157.png',
 };
 
-const genderOptions = createOptions<string>(Object.values(UserSex))
-const userTypeOptions = createOptions<string>(Object.values(UserType))
+const genderOptions = createOptions<string>(Object.values(UserSex));
+const userTypeOptions = createOptions<string>(Object.values(UserType));
 
 const CreateUserPopup: React.FC<Props> = ({ onCreateUser, onFormHide }) => {
   const { handleSubmit, errors, control } = useForm<IRegisterPayload>({
@@ -38,16 +47,24 @@ const CreateUserPopup: React.FC<Props> = ({ onCreateUser, onFormHide }) => {
     mode: 'onChange',
   });
 
-  const handleFormSubmit = (userData: IRegisterPayload) => onCreateUser(userData);
+  const handleFormSubmit = (userData: IRegisterPayload) =>
+    onCreateUser(userData);
 
   return (
     <div className={styles.editContainer}>
-      <form onSubmit={handleSubmit(handleFormSubmit)} className={styles.createForm}>
+      <form
+        onSubmit={handleSubmit(handleFormSubmit)}
+        className={styles.createForm}
+      >
         <div className={styles.header}>
           <h2 className={styles.title}>Add user</h2>
-          <button className={styles.closeButton} onClick={onFormHide} type="button">
+          <button
+            className={styles.closeButton}
+            onClick={onFormHide}
+            type="button"
+          >
             &#10060;
-        </button>
+          </button>
         </div>
 
         <div className={styles.inputBlock}>

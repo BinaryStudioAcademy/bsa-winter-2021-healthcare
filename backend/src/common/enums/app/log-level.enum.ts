@@ -4,7 +4,7 @@ enum LogLevel {
   WARN = 'warn',
   INFO = 'info',
   DEBUG = 'debug',
-  TRACE = 'trace'
+  TRACE = 'trace',
 }
 
 export { LogLevel };
