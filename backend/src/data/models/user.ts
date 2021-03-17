@@ -35,6 +35,7 @@ const createUserModel = (orm: Sequelize): ModelCtor<UserInstance> => {
       email: {
         allowNull: false,
         type: DataTypes.STRING,
+        unique: true,
       },
       password: {
         allowNull: false,
