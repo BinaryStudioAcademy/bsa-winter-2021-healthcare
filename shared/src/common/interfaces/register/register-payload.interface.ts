@@ -1,6 +1,6 @@
 import { RegisterPayloadKey, UserType, UserSex } from '../../enums';
 
-type IRegisterPayload = {
+interface IRegisterPayload {
   [RegisterPayloadKey.NAME]: string;
   [RegisterPayloadKey.SURNAME]: string;
   [RegisterPayloadKey.SEX]: UserSex;
@@ -11,6 +11,6 @@ type IRegisterPayload = {
   [RegisterPayloadKey.PHONE]: string;
   [RegisterPayloadKey.TYPE]: UserType;
   [RegisterPayloadKey.IMAGE_PATH]: string;
-};
+}
 
 export type { IRegisterPayload };

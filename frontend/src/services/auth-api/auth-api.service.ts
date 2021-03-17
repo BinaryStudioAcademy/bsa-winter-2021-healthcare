@@ -19,7 +19,9 @@ class AuthApi {
     this.#apiPrefix = apiPrefix;
   }
 
-  public loginUser(payload: IUserLoginPayload): Promise<LoginResponse> {
+  public loginUser(
+    payload: Partial<IUserLoginPayload>,
+  ): Promise<LoginResponse> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.AUTH}${AuthApiPath.LOGIN}`,
       {
@@ -29,7 +31,9 @@ class AuthApi {
       },
     );
   }
-  public registrationUser(payload: IRegisterPayload): Promise<LoginResponse> {
+  public registrationUser(
+    payload: Partial<IRegisterPayload>,
+  ): Promise<LoginResponse> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.AUTH}${AuthApiPath.SIGNUP}`,
       {
