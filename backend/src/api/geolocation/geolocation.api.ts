@@ -7,10 +7,28 @@ const initGeolocationApi = (apiRouter: Router): Router => {
 
   apiRouter.use(ApiPath.GEOLOCATIONS, geolocationRouter);
 
+  geolocationRouter.get(`${GeolocationsApiPath.BYUSER}${GeolocationsApiPath.$ID}`, async (req, res, next) => {
+    try {
+      const geolocation = await geolocationService.getByUserId(req.params.id);
+      res.status(HttpCode.OK).json(geolocation);
+    } catch (error) {
+      next(error);
+    }
+  });
+
   geolocationRouter.post(GeolocationsApiPath.ROOT, async (req, res, next) => {
     try {
-      const location = await geolocationService.createLocation(req.body);
+      const location = await geolocationService.createGeolocation(req.body);
       res.status(HttpCode.OK).json(location);
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  geolocationRouter.put(GeolocationsApiPath.$ID, async (req, res, next) => {
+    try {
+      const geolocation = await geolocationService.updateGeolocation(req.params.id, req.body);
+      res.status(HttpCode.OK).json(geolocation);
     } catch (error) {
       next(error);
     }
