@@ -21,10 +21,13 @@ const initAuthApi = (apiRouter: Router): Router => {
     validateSchema(userRegisterSchema),
     registrationMiddleware,
     (req, res, next) => {
-      return authService
-        .signUp(req.body)
-        .then((data) => res.status(HttpCode.CREATED).json(data))
-        .catch(next);
+      const user = req.user;
+      if (user) {
+        return authService
+          .signUp(user)
+          .then((data) => res.status(HttpCode.CREATED).json(data))
+          .catch(next);
+      }
     },
   );
 
@@ -32,7 +35,7 @@ const initAuthApi = (apiRouter: Router): Router => {
     AuthApiPath.LOGIN,
     validateSchema(loginSchema),
     authenticationMiddleware,
-    async (req, res, next) => {
+    (req, res, next) => {
       const user = req.user;
       if (user) {
         return authService
