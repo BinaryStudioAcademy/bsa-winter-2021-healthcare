@@ -9,5 +9,5 @@ const geolocationRepository = new GeolocationRepository();
 export {
   userRepository,
   clinicRepository,
-  geolocationRepository
+  geolocationRepository,
 };

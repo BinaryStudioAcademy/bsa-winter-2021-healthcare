@@ -25,5 +25,5 @@ export {
   authService,
   userService,
   clinicService,
-  geolocationService
+  geolocationService,
 };
