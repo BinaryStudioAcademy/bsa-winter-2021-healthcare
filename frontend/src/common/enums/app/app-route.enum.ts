@@ -11,6 +11,7 @@ enum AppRoute {
   MY_CHATS = '/my-chats',
   NOTIFICATIONS = '/notifications',
   DOCTOR_DETAILS_$ID = '/doctor-details/:id',
+  NOT_FOUND = '/not-found',
 }
 
 export { AppRoute };

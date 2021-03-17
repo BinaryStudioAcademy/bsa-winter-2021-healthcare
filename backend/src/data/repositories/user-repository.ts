@@ -28,7 +28,7 @@ class UserRepository {
     });
   }
 
-  public getByType(type: UserType): Promise<IUser[]> {
+  public getByType(type: UserType): Promise<IUserWithPermissions[]> {
     if (type === UserType.DOCTOR) {
       return UserModel.findAll({
         where: { type },
@@ -82,9 +82,13 @@ class UserRepository {
     return UserModel.create(user);
   }
 
-  public findByEmail(email: string): Promise<IUser | null> {
+  public findByEmail(email: string): Promise<IUserWithPermissions | null> {
     return UserModel.findOne({
       where: { email },
+      include: {
+        model: PermissionModel,
+        as: ModelAlias.PERMISSIONS,
+      },
     });
   }
 

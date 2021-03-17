@@ -2,31 +2,37 @@ import React from "react";
 import { Route, Redirect, RouteProps } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { RootState } from 'common/types';
-import { AppRoute } from 'common/enums';
-import { IPermission } from 'common/interfaces';
+import { AppRoute, PermissionKey, PermissionName } from 'common/enums';
+import { IPermission } from "common/interfaces";
 
 interface  IRouteProps extends RouteProps {
-  exact?: boolean,
-  path: string,
-  redirect?: AppRoute,
-  permissions?: IPermission[],
+  redirectTo?: AppRoute,
+  permissions?: PermissionName[],
   component: React.ComponentType<any>,
 }
 
-const AuthorizedRoute: React.FC<IRouteProps> = ({ component: Component, redirect = AppRoute.SIGN_IN, permissions = [], ...otherProps}) => {
+const checkPermission = (checkListPermissionName: PermissionName[], Permissions: IPermission[]) =>
+  checkListPermissionName.reduce((accumulator: boolean, checkPermission: PermissionName) => {
+    const hasCheckPermission = Permissions.some((permission) => permission[PermissionKey.NAME] === checkPermission);
+    return (hasCheckPermission && accumulator) ? true : false;
+  }, true);
+
+const AuthorizedRoute: React.FC<IRouteProps> = ({ component: Component, redirectTo = AppRoute.NOT_FOUND, permissions = [], ...otherProps}) => {
   const { user } = useSelector(({ auth }: RootState) => ({
     user: auth.user,
   }));
 
   const hasUser = Boolean(user);
-  const hasPermission = Boolean(permissions) // check permissions logic;
-  const hasAccess = hasUser && hasPermission;
+
+  const hasPermission = checkPermission(permissions, user?.permissions ?? []);
 
   return (
     <Route {...otherProps} render={ props => {
-      return hasAccess
-        ? <Component {...props} />
-        : <Redirect to={redirect} />
+      return hasUser
+        ? hasPermission
+          ? <Component {...props} />
+          : <Redirect to={redirectTo} />
+        : <Redirect to={AppRoute.SIGN_IN} />
     }} />
   )
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { AppRoute } from 'common/enums';
+import { AppRoute, PermissionName } from 'common/enums';
 import Users from 'components/users/users';
 import Sign from 'components/sign/sign';
 import NotFound from 'components/not-found/not-found';
@@ -15,7 +15,10 @@ const App: React.FC = () => (
     <AuthorizedRoute path={AppRoute.CLINICS} component={Clinics} />
     <AuthorizedRoute path={AppRoute.DOCTORS} component={Doctors} />
     <AuthorizedRoute path={AppRoute.DOCTOR_DETAILS_$ID} component={DoctorDetails} />
-    <AuthorizedRoute path={AppRoute.USERS} exact component={Users}/>
+    <AuthorizedRoute exact path={AppRoute.USERS} component={Users}
+      permissions={[PermissionName.CREATE_USER, PermissionName.EDIT_USER]}
+    />
+    <Route path={AppRoute.NOT_FOUND} exact component={NotFound} />
     <Route path="*" exact component={NotFound} />
   </Switch>
 );
