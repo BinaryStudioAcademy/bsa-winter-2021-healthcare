@@ -63,7 +63,7 @@ class UserApi {
 
   public getDoctorDetails(id:string): Promise<IDoctorDetails> {
     return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}/details/${id}`, {
-      method: HttpMethod.GET
+      method: HttpMethod.GET,
     });
   }
 }

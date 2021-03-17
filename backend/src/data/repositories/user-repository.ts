@@ -3,7 +3,7 @@ import {
   DoctorModel,
   ClinicModel,
   PermissionModel,
-  SpecializationModel
+  SpecializationModel,
 } from '../models';
 import {
   IUser,
@@ -73,9 +73,9 @@ class UserRepository {
       {
         model: SpecializationModel,
         as: ModelAlias.SPECIALIZATIONS,
-        attributes: [SpecializationKey.ID, SpecializationKey.TEXT]
-      }
-      ]
+        attributes: [SpecializationKey.ID, SpecializationKey.TEXT],
+      },
+      ],
     })
   }
 

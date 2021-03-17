@@ -7,9 +7,9 @@ interface UserSpecializationInstance extends IUserSpecialization, Model { }
 const createUserSpecializationModel = (orm: Sequelize): ModelCtor<UserSpecializationInstance> => {
   const UserSpecialization = orm.define<UserSpecializationInstance>(ModelName.USER_SPECIALIZATION, {
     createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE,
   }, {
-    tableName: TableName.USERS_SPECIALIZATIONS
+    tableName: TableName.USERS_SPECIALIZATIONS,
   });
 
   return UserSpecialization;

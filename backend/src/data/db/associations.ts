@@ -15,7 +15,7 @@ const associate = ({
   Permission,
   UserPermission,
   Specialization,
-  UserSpecialization
+  UserSpecialization,
 }: DbModels): void => {
   User.hasOne(Doctor, {
     foreignKey: ForeingKey.USER_ID,
@@ -49,7 +49,7 @@ const associate = ({
   User.belongsToMany(Specialization, {
     through: UserSpecialization,
     foreignKey: ForeingKey.USER_ID,
-    as: ModelAlias.SPECIALIZATIONS
+    as: ModelAlias.SPECIALIZATIONS,
   });
 
   Doctor.hasMany(Appointment, {

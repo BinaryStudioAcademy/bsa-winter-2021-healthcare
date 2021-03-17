@@ -8,12 +8,12 @@ const createSpecializationModel =  (orm: Sequelize): ModelCtor<SpecializationIns
   const Specialization = orm.define<SpecializationInstance>(ModelName.SPECIALIZATION, {
     text: {
       allowNull: false,
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
+    updatedAt: DataTypes.DATE,
   }, {
-    tableName: TableName.SPECIALIZATIONS
+    tableName: TableName.SPECIALIZATIONS,
   });
 
   return Specialization;

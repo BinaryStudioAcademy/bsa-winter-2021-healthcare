@@ -44,7 +44,7 @@ associate({
   Permission: PermissionModel,
   UserPermission: UserPermissionModel,
   Specialization: SpecializationModel,
-  UserSpecialization: UserSpecializationModel
+  UserSpecialization: UserSpecializationModel,
 });
 
 export {
@@ -61,5 +61,5 @@ export {
   PermissionModel,
   UserPermissionModel,
   SpecializationModel,
-  UserSpecializationModel
+  UserSpecializationModel,
 };

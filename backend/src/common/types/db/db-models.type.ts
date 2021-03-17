@@ -13,7 +13,7 @@ import {
   PermissionModel,
   UserPermissionModel,
   SpecializationModel,
-  UserSpecializationModel
+  UserSpecializationModel,
 } from '~/data/models';
 
 type DbModels = {

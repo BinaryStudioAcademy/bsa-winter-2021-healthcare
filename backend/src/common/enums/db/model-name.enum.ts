@@ -12,7 +12,7 @@ enum ModelName {
   PERMISSION = 'Permission',
   USER_PERMISSION = 'UserPermission',
   SPECIALIZATION = 'Specialization',
-  USER_SPECIALIZATION = 'UserSpecialization'
+  USER_SPECIALIZATION = 'UserSpecialization',
 }
 
 export { ModelName };

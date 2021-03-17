@@ -17,7 +17,7 @@ const DoctorDetails: React.FC = () => {
 
   const { doctorDetails, dataStatus } = useSelector(({ doctors }: RootState) => ({
     doctorDetails: doctors.doctorDetails,
-    dataStatus: doctors.dataStatus
+    dataStatus: doctors.dataStatus,
   }));
   const dispatch = useDispatch();
   const { id } = useParams<ParamTypes>();
@@ -56,7 +56,7 @@ const DoctorDetails: React.FC = () => {
         </div>
         <ul className={styles.conditionsList}>
           {doctorDetails?.specializations.map(spec =>
-            <li key={spec.id}>{spec.text}</li>
+            <li key={spec.id}>{spec.text}</li>,
           )}
         </ul>
       </div>
