@@ -1,5 +1,5 @@
-enum  DoctorClinicKey {
-  CLINIC = 'clinic'
+enum DoctorClinicKey {
+  CLINIC = 'clinic',
 }
 
-export { DoctorClinicKey }
+export { DoctorClinicKey };

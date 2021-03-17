@@ -14,3 +14,4 @@ export * from './register';
 export * from './form';
 export * from './clinic';
 export * from './exeption-message';
+export * from './doctor-details';

@@ -1,5 +1,5 @@
 enum ClinicsApiPath {
-  ROOT = '/'
+  ROOT = '/',
 }
 
 export { ClinicsApiPath };

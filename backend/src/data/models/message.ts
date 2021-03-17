@@ -5,16 +5,20 @@ import { IMessage } from '~/common/interfaces';
 interface MessageInstance extends IMessage, Model {}
 
 const createMessageModel = (orm: Sequelize): ModelCtor<MessageInstance> => {
-  const Message = orm.define<MessageInstance>(ModelName.MESSAGE, {
-    text: {
-      allowNull: false,
-      type: DataTypes.STRING
+  const Message = orm.define<MessageInstance>(
+    ModelName.MESSAGE,
+    {
+      text: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
     },
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
-  }, {
-    tableName: TableName.MESSAGES
-  });
+    {
+      tableName: TableName.MESSAGES,
+    },
+  );
 
   return Message;
 };

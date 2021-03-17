@@ -43,7 +43,7 @@ const Button: React.FC<Props> = ({
         styles.btnLink,
         styles[styleType],
         styles[color],
-        icon && styles[icon]
+        icon && styles[icon],
       )}
     >
       {hasHiddenLabel ? (
