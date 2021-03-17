@@ -7,7 +7,7 @@ const initGeolocationApi = (apiRouter: Router): Router => {
 
   apiRouter.use(ApiPath.GEOLOCATIONS, geolocationRouter);
 
-  geolocationRouter.get(`${GeolocationsApiPath.BYUSER}${GeolocationsApiPath.$ID}`, async (req, res, next) => {
+  geolocationRouter.get(GeolocationsApiPath.USERS_$ID, async (req, res, next) => {
     try {
       const geolocation = await geolocationService.getByUserId(req.params.id);
       res.status(HttpCode.OK).json(geolocation);
