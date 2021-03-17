@@ -1,6 +1,6 @@
 import { Response, Request, NextFunction } from 'express';
 import { AuthApiPath } from '~/common/enums';
-import { jwtMiddleWare } from './jwt.middleware';
+import { jwtMiddleWare } from '../jwt/jwt.middleware';
 
 const authorizationMiddleware = (routesWhiteList: AuthApiPath[] = []) => (
   req: Request,
