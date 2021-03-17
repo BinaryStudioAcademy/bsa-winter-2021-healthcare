@@ -1,5 +1,5 @@
-import { RegisterValidationRule } from './register-validation-rule.enum'
-import { ContentType } from '../../file/content-type.enum'
+import { RegisterValidationRule } from './register-validation-rule.enum';
+import { ContentType } from '../../file/content-type.enum';
 
 const RegisterValidationMessage = {
   NAME_REQUIRED: 'Name is required',
@@ -17,4 +17,4 @@ const RegisterValidationMessage = {
   IMAGE_REQUIRED: 'User avatar is required',
 } as const;
 
-export { RegisterValidationMessage }
+export { RegisterValidationMessage };

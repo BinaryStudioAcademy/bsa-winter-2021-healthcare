@@ -2,12 +2,12 @@ import { IClinic } from 'common/interfaces';
 import { Card } from 'components/common';
 import * as React from 'react';
 import styles from './styles.module.scss';
-import clsx from "clsx";
+import clsx from 'clsx';
 import { AppRoute } from 'common/enums';
 
 type Props = {
-  clinic: IClinic
-}
+  clinic: IClinic;
+};
 
 const Clinic: React.FC<Props> = ({ clinic }) => {
   return (
@@ -23,7 +23,7 @@ const Clinic: React.FC<Props> = ({ clinic }) => {
         <span className={styles.text}>{clinic.address}</span>
       </div>
     </Card>
-  )
-}
+  );
+};
 
 export default Clinic;

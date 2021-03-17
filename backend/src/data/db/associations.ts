@@ -125,7 +125,8 @@ const associate = ({
   Specialization.belongsToMany(User, {
     through: UserSpecialization,
     foreignKey: ForeingKey.SPECIALIZATION_ID,
-    as: ModelAlias.USERS});
+    as: ModelAlias.USERS,
+  });
 };
 
 export default associate;

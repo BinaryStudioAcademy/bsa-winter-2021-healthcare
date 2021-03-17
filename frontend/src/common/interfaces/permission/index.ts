@@ -1,1 +1,1 @@
-export * from 'healthcare-shared/common/interfaces/permission'
+export type { IPermission } from 'healthcare-shared/common/interfaces';

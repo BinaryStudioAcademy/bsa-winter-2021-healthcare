@@ -9,7 +9,7 @@ import {
 
 type Constructor = {
   http: Http;
-  apiPrefix: string
+  apiPrefix: string;
 };
 
 class GeolocationService {
@@ -22,40 +22,52 @@ class GeolocationService {
   }
 
   public getByUserId(userId: string | undefined): Promise<IGeolocation> {
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.GEOLOCATIONS}${GeolocationsApiPath.USERS}/${userId}`, {
-      method: HttpMethod.GET,
-    });
+    return this.#http.load(
+      `${this.#apiPrefix}${ApiPath.GEOLOCATIONS}${
+        GeolocationsApiPath.USERS
+      }/${userId}`,
+      {
+        method: HttpMethod.GET,
+      },
+    );
   }
 
-  public updateGeolocation(id: string | undefined): Promise<IGeolocation> | void {
-    navigator.geolocation?.getCurrentPosition(position => {
+  public updateGeolocation(
+    id: string | undefined,
+  ): Promise<IGeolocation> | void {
+    navigator.geolocation?.getCurrentPosition((position) => {
       const payload: Partial<IGeolocation> = {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
-      }
+      };
 
-      return this.#http.load(`${this.#apiPrefix}${ApiPath.GEOLOCATIONS}/${id}`, {
-        method: HttpMethod.PUT,
-        contentType: ContentType.JSON,
-        payload,
-      });
-    })
+      return this.#http.load(
+        `${this.#apiPrefix}${ApiPath.GEOLOCATIONS}/${id}`,
+        {
+          method: HttpMethod.PUT,
+          contentType: ContentType.JSON,
+          payload,
+        },
+      );
+    });
   }
 
-  public addGeolocation(userId: string | undefined): Promise<IGeolocation> | void {
-    navigator.geolocation?.getCurrentPosition(position => {
+  public addGeolocation(
+    userId: string | undefined,
+  ): Promise<IGeolocation> | void {
+    navigator.geolocation?.getCurrentPosition((position) => {
       const payload: Partial<IGeolocation> = {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
         userId: userId,
-      }
+      };
 
       return this.#http.load(`${this.#apiPrefix}${ApiPath.GEOLOCATIONS}`, {
         method: HttpMethod.POST,
         contentType: ContentType.JSON,
         payload,
       });
-    })
+    });
   }
 }
 

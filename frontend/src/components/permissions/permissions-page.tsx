@@ -14,10 +14,11 @@ const PermissionPage: React.FC = () => {
   const dispatch = useDispatch();
 
   /* eslint-disable no-console */
-  const handleChangePermission = (e: React.ChangeEvent<HTMLInputElement>) => console.log(e.target.checked);
+  const handleChangePermission = (e: React.ChangeEvent<HTMLInputElement>) =>
+    console.log(e.target.checked);
   /* eslint-enable no-console */
 
-  const columns: Column[] = getRows({handleChangePermission});
+  const columns: Column[] = getRows({ handleChangePermission });
 
   React.useEffect(() => {
     dispatch(UsersActionCreator.getUsers());

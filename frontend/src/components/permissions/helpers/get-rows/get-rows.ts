@@ -13,7 +13,7 @@ const checkPermission = (row: CellValue, name: string) => {
     (permission: IPermission) => permission.name,
   );
 
-  return permissions.includes(name) ? true : false
+  return permissions.includes(name) ? true : false;
 };
 
 const getRows = ({ handleChangePermission }: IProps): Column[] => {
