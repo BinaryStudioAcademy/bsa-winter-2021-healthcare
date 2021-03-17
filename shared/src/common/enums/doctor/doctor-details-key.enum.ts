@@ -1,5 +1,5 @@
 enum  DoctorDetailsKey {
-  SPECIALIZATIONS = 'specializations'
+  SPECIALIZATIONS = 'specializations',
 }
 
 export { DoctorDetailsKey }
