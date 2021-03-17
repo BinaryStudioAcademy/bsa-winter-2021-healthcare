@@ -37,7 +37,7 @@ const initUserApi = (apiRouter: Router): Router => {
     }
   });
 
-  userRouter.get(UsersApiPath.DETAILS_$ID, async (req, res, next) => {
+  userRouter.get(UsersApiPath.DOCTOR_DETAILS_$ID, async (req, res, next) => {
     try {
       const doctorDetails = await userService.getDoctorDetailsById(req.params.id);
       const isDoctorType = checkIsOneOf(doctorDetails?.type, UserType.DOCTOR);

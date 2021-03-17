@@ -3,7 +3,8 @@ enum UsersApiPath {
   $ID = '/:id',
   TYPE = '/type',
   TYPE_$TYPE = '/type/:type',
-  DETAILS_$ID = '/details/:id',
+  DOCTOR_DETAILS = '/doctor-details',
+  DOCTOR_DETAILS_$ID = '/doctor-details/:id',
 }
 
 export { UsersApiPath };
