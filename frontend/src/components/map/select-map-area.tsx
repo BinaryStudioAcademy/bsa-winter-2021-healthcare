@@ -33,7 +33,7 @@ const SelectMapArea: React.FC = () => {
     control.addTo(map);
   }
 
-  function handleSelection(event: any):void  {
+  function handleSelection(event: any): void {
     event.latLngs.forEach((coords: LatLng) => {
       if (coords.lat < minLat) minLat = coords.lat;
       if (coords.lat > maxLat) maxLat = coords.lat;
@@ -50,8 +50,8 @@ const SelectMapArea: React.FC = () => {
 
     selectedAreaPolygon.addTo(map);
   }
-  
+
   return null;
-}
+};
 
 export default SelectMapArea;
