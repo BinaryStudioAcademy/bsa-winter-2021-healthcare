@@ -4,14 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DoctorsActionCreator } from 'store/slices';
 import { DataStatus } from 'common/enums';
 import { useParams } from 'react-router-dom';
+import { ParamTypes } from './common/interfaces';
 import phoneIcon from 'assets/images/phone.svg';
 import checkIcon from 'assets/images/icons/check.svg';
 
 import styles from './styles.module.scss';
-
-interface ParamTypes {
-  id: string;
-}
 
 const DoctorDetails: React.FC = () => {
 
