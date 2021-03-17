@@ -18,7 +18,6 @@ const App: React.FC = () => (
     <AuthorizedRoute exact path={AppRoute.USERS} component={Users}
       permissions={[PermissionName.CREATE_USER, PermissionName.EDIT_USER]}
     />
-    <Route path={AppRoute.NOT_FOUND} exact component={NotFound} />
     <Route path="*" exact component={NotFound} />
   </Switch>
 );

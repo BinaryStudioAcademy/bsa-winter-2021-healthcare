@@ -4,11 +4,11 @@ import { IRegisterPayload, IUser, IUserWithPermissions } from '~/common/interfac
 
 class UserService {
   public getAllUsers(): Promise<IUserWithPermissions[]>{
-    return userRepository.getAll()
+    return userRepository.getAll();
   }
 
   public getUsersByType(type:UserType):Promise<IUserWithPermissions[]>{
-    return userRepository.getByType(type)
+    return userRepository.getByType(type);
   }
 
   public getDoctorDetailsById(id: string): Promise<IUser | null> {

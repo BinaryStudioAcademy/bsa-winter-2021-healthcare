@@ -1,4 +1,4 @@
-import ActionsButton from 'components/users/components/actions-button/actions-button'
+import ActionsButton from 'components/users/components/actions-button/actions-button';
 import { CellValue } from 'react-table';
 import { DeleteUserCb, ShowFormCb } from 'components/users/common/types/prop-function-void.type';
 import { Column } from 'common/interfaces';
