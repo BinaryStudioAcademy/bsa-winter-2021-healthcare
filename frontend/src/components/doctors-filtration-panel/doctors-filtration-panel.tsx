@@ -7,14 +7,8 @@ import clinic from 'assets/images/clinic.svg';
 import { TextInput, Checkbox } from 'components/common';
 import { DoctorType, ClinicType, InputType, InputColor, DoctorFiltration } from 'common/enums';
 import { IDoctorFiltrationPayload } from 'common/interfaces';
+import { DEFAULT_VALUES } from './common/constants/payload-default-values'
 import Details from 'components/common/details/details';
-
-const DEFAULT_VALUES: IDoctorFiltrationPayload = {
-  [DoctorFiltration.DOCTOR_NAME]: '',
-  [DoctorFiltration.CITY]: '',
-  [DoctorFiltration.SPECIALTY]: [],
-  [DoctorFiltration.TYPE_OF_CLINIC]: ClinicType.STATE
-}
 
 const DoctorsFiltration: React.FC = () => {
   const { handleSubmit, control, errors } = useForm<IDoctorFiltrationPayload>({
