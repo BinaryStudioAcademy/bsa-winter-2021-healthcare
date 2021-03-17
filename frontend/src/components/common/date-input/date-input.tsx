@@ -1,15 +1,14 @@
-import React from "react";
-import { useController, Control } from "react-hook-form";
+import React from 'react';
+import { useController, Control } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
-import DatePicker from "react-datepicker";
-import clsx from "clsx";
+import DatePicker from 'react-datepicker';
+import clsx from 'clsx';
 import { InputColor } from 'common/enums';
 import { FormDefaultValue, FormErrors } from 'common/types';
 
-import "react-datepicker/dist/react-datepicker.min.css";
-import "./datepicker-custom-styles.scss";
+import 'react-datepicker/dist/react-datepicker.min.css';
+import './datepicker-custom-styles.scss';
 import styles from './styles.module.scss';
-
 
 interface Props {
   name: string;
@@ -19,17 +18,37 @@ interface Props {
   color: InputColor;
   isDisabled?: boolean;
   control: Control;
-  errors: FormErrors
+  errors: FormErrors;
   defaultValue?: FormDefaultValue;
 }
 
-const DateInput: React.FC<Props> = ({ name, label, hasHiddenLabel, placeholder, color, isDisabled, control, defaultValue, errors }) => {
-  const { field, meta: { invalid } } = useController({ name, control, defaultValue });
+const DateInput: React.FC<Props> = ({
+  name,
+  label,
+  hasHiddenLabel,
+  placeholder,
+  color,
+  isDisabled,
+  control,
+  defaultValue,
+  errors,
+}) => {
+  const {
+    field,
+    meta: { invalid },
+  } = useController({ name, control, defaultValue });
 
   return (
     <span className={styles.inputControl}>
       <label className={styles.label}>
-        <span className={clsx(styles.labelText, hasHiddenLabel && 'visually-hidden')}>{label}</span>
+        <span
+          className={clsx(
+            styles.labelText,
+            hasHiddenLabel && 'visually-hidden',
+          )}
+        >
+          {label}
+        </span>
         <DatePicker
           {...field}
           selected={field.value}
@@ -37,12 +56,16 @@ const DateInput: React.FC<Props> = ({ name, label, hasHiddenLabel, placeholder, 
           placeholderText={placeholder}
           disabled={isDisabled}
           className={styles.select}
-          calendarClassName={clsx(isDisabled && styles.disabled, styles[color], invalid && styles.error)}
+          calendarClassName={clsx(
+            isDisabled && styles.disabled,
+            styles[color],
+            invalid && styles.error,
+          )}
         />
       </label>
-    <ErrorMessage errors={errors} as="span" name={name} />
-  </span>
+      <ErrorMessage errors={errors} as="span" name={name} />
+    </span>
   );
-}
+};
 
 export default DateInput;

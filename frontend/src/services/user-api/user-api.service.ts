@@ -4,7 +4,7 @@ import { IUser, IEditUserPayload, IUserTypeDoctor, IDoctorDetails } from 'common
 
 type Constructor = {
   http: Http;
-  apiPrefix: string
+  apiPrefix: string;
 };
 
 class UserApi {
@@ -51,9 +51,14 @@ class UserApi {
   }
 
   public getDoctors(): Promise<IUserTypeDoctor[]> {
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.TYPE}/${UserType.DOCTOR}`, {
-      method: HttpMethod.GET
-    });
+    return this.#http.load(
+      `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.TYPE}/${
+        UserType.DOCTOR
+      }`,
+      {
+        method: HttpMethod.GET,
+      },
+    );
   }
 
   public getDoctorDetails(id:string): Promise<IDoctorDetails> {

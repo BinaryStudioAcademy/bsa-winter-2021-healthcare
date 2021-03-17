@@ -1,6 +1,6 @@
 enum UserSex {
   MALE = 'male',
-  FEMALE = 'female'
+  FEMALE = 'female',
 }
 
 export { UserSex };

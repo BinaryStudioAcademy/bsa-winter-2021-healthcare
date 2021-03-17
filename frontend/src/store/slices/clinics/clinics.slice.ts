@@ -6,11 +6,11 @@ import { AppThunk } from 'common/types';
 import { HttpError } from 'exceptions';
 
 type ClinicsState = {
-  clinics: IClinic[]
+  clinics: IClinic[];
 };
 
 const initialState: ClinicsState = {
-  clinics: []
+  clinics: [],
 };
 
 const { reducer, actions } = createSlice({
@@ -19,8 +19,8 @@ const { reducer, actions } = createSlice({
   reducers: {
     setClinics: (state, action: PayloadAction<IClinic[]>) => {
       state.clinics = action.payload;
-    }
-  }
+    },
+  },
 });
 
 const getClinics = (): AppThunk => async (dispatch) => {
@@ -33,11 +33,11 @@ const getClinics = (): AppThunk => async (dispatch) => {
     }
     throw error;
   }
-}
+};
 
 const ClinicsActionCreator = {
   ...actions,
-  getClinics
+  getClinics,
 };
 
 export { ClinicsActionCreator, reducer };

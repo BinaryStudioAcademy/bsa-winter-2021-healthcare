@@ -4,7 +4,7 @@ enum ReducerName {
   DOCTORS = 'doctors',
   AUTH = 'auth',
   CLINICS = 'clinics',
-  TOASTR = 'toastr'
+  TOASTR = 'toastr',
 }
 
 export { ReducerName };

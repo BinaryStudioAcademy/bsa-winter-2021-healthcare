@@ -8,7 +8,7 @@ enum RegisterPayloadKey {
   RETYPE_PASSWORD = 'retypePassword',
   PHONE = 'phone',
   TYPE = 'type',
-  IMAGE_PATH = 'imagePath'
+  IMAGE_PATH = 'imagePath',
 }
 
-export { RegisterPayloadKey }
+export { RegisterPayloadKey };

@@ -1,15 +1,24 @@
-import { UserModel, DoctorModel, ClinicModel, PermissionModel, SpecializationModel } from '../models';
-import { IUser, IRegisterPayload, IUserWithPermissions } from '~/common/interfaces';
+import {
+  UserModel,
+  DoctorModel,
+  ClinicModel,
+  PermissionModel,
+  SpecializationModel
+} from '../models';
+import {
+  IUser,
+  IRegisterPayload,
+  IUserWithPermissions,
+} from '~/common/interfaces';
 import { UserType, ModelAlias, DoctorKey, ClinicKey, SpecializationKey } from '~/common/enums';
-
 
 class UserRepository {
   public getAll(): Promise<IUserWithPermissions[]> {
     return UserModel.findAll({
       include: {
         model: PermissionModel,
-        as: ModelAlias.PERMISSIONS
-      }
+        as: ModelAlias.PERMISSIONS,
+      },
     });
   }
 
@@ -17,32 +26,40 @@ class UserRepository {
     if (type === UserType.DOCTOR) {
       return UserModel.findAll({
         where: { type },
-        include: [{
-          model: DoctorModel,
-          as: ModelAlias.DOCTOR,
-          attributes: [DoctorKey.ID, DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
-          include: [
-            {
-              model: ClinicModel,
-              as: ModelAlias.CLINIC,
-              attributes: [ClinicKey.ID, ClinicKey.NAME, ClinicKey.ADDRESS, ClinicKey.CLINIC_TYPE]
-            }
-          ]
-        }, {
-          model: PermissionModel,
-          as: ModelAlias.PERMISSIONS
-        }]
-      })
+        include: [
+          {
+            model: DoctorModel,
+            as: ModelAlias.DOCTOR,
+            attributes: [DoctorKey.ID, DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
+            include: [
+              {
+                model: ClinicModel,
+                as: ModelAlias.CLINIC,
+                attributes: [
+                  ClinicKey.ID,
+                  ClinicKey.NAME,
+                  ClinicKey.ADDRESS,
+                  ClinicKey.CLINIC_TYPE,
+                ],
+              },
+            ],
+          },
+          {
+            model: PermissionModel,
+            as: ModelAlias.PERMISSIONS,
+          },
+        ],
+      });
     }
-    return UserModel.findAll({ where: { type } })
+    return UserModel.findAll({ where: { type } });
   }
 
   public getById(id: string): Promise<IUser | null> {
     return UserModel.findByPk(id, {
       include: {
         model: PermissionModel,
-        as: ModelAlias.PERMISSIONS
-      }
+        as: ModelAlias.PERMISSIONS,
+      },
     });
   }
   public getDoctorDetailsById(id: string): Promise<IUser | null> {
@@ -83,10 +100,10 @@ class UserRepository {
 
   public async deleteById(id: string): Promise<boolean> {
     const deletedRows = await UserModel.destroy({
-      where: { id }
+      where: { id },
     });
 
-    return Boolean(deletedRows)
+    return Boolean(deletedRows);
   }
 }
 
