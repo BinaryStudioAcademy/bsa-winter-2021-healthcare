@@ -1,5 +1,5 @@
-import { ApiPath } from '~/common/enums';
+import { AuthApiPath } from '~/common/enums';
 
-const routesWhiteList = [ApiPath.AUTH, ApiPath.USERS];
+const routesWhiteList = [AuthApiPath.LOGIN, AuthApiPath.SIGNUP];
 
 export { routesWhiteList };
