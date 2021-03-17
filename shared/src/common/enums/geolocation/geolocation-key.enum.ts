@@ -4,7 +4,7 @@ enum GeolocationKey {
   LNG = 'lng',
   USER_ID = 'userId',
   CREATED_AT = 'createdAt',
-  UPDATED_AT = 'updatedAt'
+  UPDATED_AT = 'updatedAt',
 }
 
 export { GeolocationKey };
