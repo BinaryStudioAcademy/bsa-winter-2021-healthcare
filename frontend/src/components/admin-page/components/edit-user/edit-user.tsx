@@ -1,10 +1,19 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ButtonColor, ButtonStyleType, ButtonType, EditUserPayloadKey, InputColor, InputType, UserSex, UserType } from 'common/enums';
+import {
+  ButtonColor,
+  ButtonStyleType,
+  ButtonType,
+  EditUserPayloadKey,
+  InputColor,
+  InputType,
+  UserSex,
+  UserType,
+} from 'common/enums';
 import styles from './styles.module.scss';
 import { IEditUserPayload, IUser } from 'common/interfaces';
-import { editUser as validationEditUser  } from 'validation-schemas';
+import { editUser as validationEditUser } from 'validation-schemas';
 import { Button, DateInput, Select, TextInput } from 'components/common';
 import { createOptions } from 'helpers';
 import { EditUserCb, HideFormCb } from 'components/admin-page/common/types';
@@ -13,31 +22,40 @@ type Props = {
   user: IUser;
   onEditUser: EditUserCb;
   onFormHide: HideFormCb;
-}
+};
 
-const genderOptions = createOptions<string>(Object.values(UserSex))
-const userTypeOptions = createOptions<string>(Object.values(UserType))
+const genderOptions = createOptions<string>(Object.values(UserSex));
+const userTypeOptions = createOptions<string>(Object.values(UserType));
 
 const EditUserPopup: React.FC<Props> = ({ user, onEditUser, onFormHide }) => {
-  const userWithDate:IEditUserPayload = {...user,birthdate:new Date(user.birthdate)};
-
+  const userWithDate: IEditUserPayload = {
+    ...user,
+    birthdate: new Date(user.birthdate),
+  };
 
   const { handleSubmit, errors, control } = useForm<IEditUserPayload>({
     resolver: yupResolver(validationEditUser),
     defaultValues: userWithDate,
-    mode: "onChange"
+    mode: 'onChange',
   });
 
   const handleFormSubmit = (userData: IEditUserPayload) => onEditUser(userData);
 
   return (
     <div className={styles.editContainer}>
-      <form onSubmit={handleSubmit(handleFormSubmit)} className={styles.editForm}>
+      <form
+        onSubmit={handleSubmit(handleFormSubmit)}
+        className={styles.editForm}
+      >
         <div className={styles.header}>
           <h2 className={styles.title}>Edit user</h2>
-          <button className={styles.closeButton} onClick={onFormHide} type="button">
+          <button
+            className={styles.closeButton}
+            onClick={onFormHide}
+            type="button"
+          >
             &#10060;
-        </button>
+          </button>
         </div>
 
         <div className={styles.inputBlock}>

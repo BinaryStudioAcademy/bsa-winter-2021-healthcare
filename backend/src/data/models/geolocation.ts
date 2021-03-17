@@ -4,21 +4,27 @@ import { IGeolocation } from '~/common/interfaces';
 
 interface GeolocationInstance extends IGeolocation, Model {}
 
-const createGeolocationModel =  (orm: Sequelize): ModelCtor<GeolocationInstance> => {
-  const Geolocation = orm.define<GeolocationInstance>(ModelName.GEOLOCATION, {
-    lat: {
-      allowNull: false,
-      type: DataTypes.STRING
+const createGeolocationModel = (
+  orm: Sequelize,
+): ModelCtor<GeolocationInstance> => {
+  const Geolocation = orm.define<GeolocationInstance>(
+    ModelName.GEOLOCATION,
+    {
+      lat: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      lng: {
+        allowNull: false,
+        type: DataTypes.DOUBLE,
+      },
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
     },
-    lng: {
-      allowNull: false,
-      type: DataTypes.DOUBLE
+    {
+      tableName: TableName.GEOLOCATION,
     },
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
-  }, {
-    tableName: TableName.GEOLOCATION
-  });
+  );
 
   return Geolocation;
 };

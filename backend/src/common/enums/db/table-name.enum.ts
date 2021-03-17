@@ -11,6 +11,8 @@ enum TableName {
   GEOLOCATION = 'geolocation',
   PERMISSIONS = 'permissions',
   USERS_PERMISSIONS = 'users_permissions',
+  SPECIALIZATIONS = 'specializations',
+  USERS_SPECIALIZATIONS  = 'users_specializations',
 }
 
 export { TableName };

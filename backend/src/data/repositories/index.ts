@@ -4,7 +4,4 @@ import { ClinicRepository } from './clinic-repository';
 const userRepository = new UserRepository();
 const clinicRepository = new ClinicRepository();
 
-export {
-  userRepository,
-  clinicRepository
-}
+export { userRepository, clinicRepository };
