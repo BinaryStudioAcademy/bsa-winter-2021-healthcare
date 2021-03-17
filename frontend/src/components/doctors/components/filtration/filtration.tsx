@@ -4,14 +4,14 @@ import styles from './filtration.module.scss';
 import { TextInput, Checkbox, Details } from 'components/common';
 import { DoctorType, ClinicType, InputType, InputColor, DoctorFiltration, Icon } from 'common/enums';
 import { IDoctorFiltrationPayload } from 'common/interfaces';
-import { DEFAULT_VALUES } from './common/constants/payload-default-values'
+import { DEFAULT_FILTER_VALUE } from '../common/constants';
 
 const doctorSpecialties = Object.keys(DoctorType);
 const clinicTypes = Object.keys(ClinicType);
 
 const Filtration: React.FC = () => {
   const { handleSubmit, control, errors } = useForm<IDoctorFiltrationPayload>({
-    defaultValues: DEFAULT_VALUES,
+    defaultValues: DEFAULT_FILTER_VALUE,
     mode: "onChange",
   });
 
@@ -82,4 +82,4 @@ const Filtration: React.FC = () => {
     </form>
   )}
 
-export { Filtration };
+export default Filtration;
