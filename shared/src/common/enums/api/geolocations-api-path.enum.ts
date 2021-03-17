@@ -1,7 +1,8 @@
 enum GeolocationsApiPath {
   ROOT = '/',
   $ID = '/:id',
-  BYUSER = '/byuser',
+  USERS = '/users',
+  USERS_$ID = '/users/:id',
 }
 
 export { GeolocationsApiPath };
