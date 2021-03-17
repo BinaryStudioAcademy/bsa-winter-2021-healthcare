@@ -14,7 +14,7 @@ const App: React.FC = () => (
     <Route path={[AppRoute.SIGN_IN, AppRoute.SIGN_UP]} component={Sign}/>
     <Route path={AppRoute.CLINICS} component={Clinics} />
     <Route path={AppRoute.DOCTORS} component={DoctorsSearch}/>
-    <Route path="/details/:id" component={DoctorDetails} />
+    <Route path={AppRoute.DETAILS_$ID} component={DoctorDetails} />
     <Route path="*" exact component={NotFound} />
 
   </Switch>

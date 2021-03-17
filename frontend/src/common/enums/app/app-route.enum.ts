@@ -10,6 +10,7 @@ enum AppRoute {
   MY_CALENDAR = '/my-calendar',
   MY_CHATS = '/my-chats',
   NOTIFICATIONS = '/notifications',
+  DETAILS_$ID = '/details/:id',
 }
 
 export { AppRoute };
