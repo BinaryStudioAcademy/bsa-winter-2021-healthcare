@@ -14,4 +14,5 @@ export * from './register';
 export * from './form';
 export * from './filtration';
 export * from './exeption-message';
+export * from './geolocation';
 export * from './doctor-details';

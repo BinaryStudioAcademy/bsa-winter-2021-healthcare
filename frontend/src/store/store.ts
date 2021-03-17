@@ -10,6 +10,7 @@ import {
 
 const store = configureStore({
   reducer: {
+    [ReducerName.USERS]: userReducer,
     [ReducerName.AUTH]: authReducer,
     [ReducerName.CLINICS]: clinicsReducer,
     [ReducerName.TOASTR]: toastrReducer,
