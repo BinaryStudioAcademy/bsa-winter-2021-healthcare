@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { AppRoute } from 'common/enums';
 import AdminPage from 'components/admin-page/admin-page';
-import Clinic from 'components/clinic/clinic';
 import Sign from 'components/sign/sign'
 import NotFound from 'components/not-found/not-found';
 import Clinics from 'components/clinics/clinics';
