@@ -7,6 +7,7 @@ import NotFound from 'components/not-found/not-found';
 import Clinics from 'components/clinics/clinics';
 import DoctorsSearch from 'components/doctors-search/doctors-search';
 import DoctorsFiltration from 'components/doctors-filtration-panel/doctors-filtration-panel';
+import DoctorDetails from 'components/doctor-details/doctor-details';
 
 const App: React.FC = () => (
   <Switch>
@@ -15,7 +16,9 @@ const App: React.FC = () => (
     <Route path={AppRoute.CLINICS} component={Clinics} />
     <Route path={AppRoute.DOCTORS} component={DoctorsSearch}/>
     <Route path={AppRoute.ROOT} component={DoctorsFiltration}/>
+    <Route path={AppRoute.DOCTOR_DETAILS_$ID} component={DoctorDetails} />
     <Route path="*" exact component={NotFound} />
+
   </Switch>
 );
 

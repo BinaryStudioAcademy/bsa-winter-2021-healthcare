@@ -12,6 +12,8 @@ import createPermissionModel from './permission';
 import createUserPermissionModel from './user-permission';
 import createCityModel from './city';
 import associate from '../db/associations';
+import createSpecializationModel from './specializations';
+import createUserSpecializationModel from './user-specialization';
 
 const AppointmentModel = createAppointmentModel(sequelize);
 const CityModel = createCityModel(sequelize);
@@ -25,6 +27,8 @@ const UserModel = createUserModel(sequelize);
 const GeolocationModel = createGeolocationModel(sequelize);
 const PermissionModel = createPermissionModel(sequelize);
 const UserPermissionModel = createUserPermissionModel(sequelize);
+const SpecializationModel = createSpecializationModel(sequelize);
+const UserSpecializationModel = createUserSpecializationModel(sequelize);
 
 associate({
   Appointment: AppointmentModel,
@@ -39,6 +43,8 @@ associate({
   Geolocation: GeolocationModel,
   Permission: PermissionModel,
   UserPermission: UserPermissionModel,
+  Specialization: SpecializationModel,
+  UserSpecialization: UserSpecializationModel,
 });
 
 export {
@@ -54,4 +60,6 @@ export {
   GeolocationModel,
   PermissionModel,
   UserPermissionModel,
+  SpecializationModel,
+  UserSpecializationModel,
 };
