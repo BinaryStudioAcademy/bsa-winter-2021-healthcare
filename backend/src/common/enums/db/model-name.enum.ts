@@ -10,7 +10,9 @@ enum ModelName {
   USER = 'User',
   GEOLOCATION = 'Geolocation',
   PERMISSION = 'Permission',
-  USER_PERMISSION = 'UserPermission'
+  USER_PERMISSION = 'UserPermission',
+  SPECIALIZATION = 'Specialization',
+  USER_SPECIALIZATION = 'UserSpecialization',
 }
 
 export { ModelName };

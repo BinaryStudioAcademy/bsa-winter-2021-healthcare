@@ -1,6 +1,6 @@
 enum UserType {
   PATIENT = 'patient',
-  DOCTOR = 'doctor'
+  DOCTOR = 'doctor',
 }
 
 export { UserType };
