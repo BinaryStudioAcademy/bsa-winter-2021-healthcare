@@ -3,7 +3,7 @@ enum DoctorType {
   ENDOCRINOLOGIST = 'endocrinologist',
   DENTIST = 'dentist',
   SURGEON = 'surgeon',
-  DERMATOLOGIST = 'dermatologist'
+  DERMATOLOGIST = 'dermatologist',
 }
 
 export { DoctorType };
