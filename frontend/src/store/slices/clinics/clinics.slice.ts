@@ -38,10 +38,6 @@ const getClinics = (): AppThunk => async (dispatch) => {
   }
 };
 
-const deleteClinic = (id: string): AppThunk => async () => {
-  await clinicApi.deleteClinic(id);
-};
-
 const addClinic = (clinicInfo: IClinic): AppThunk => async (dispatch) => {
   try {
     const response = await clinicApi.addClinic(clinicInfo);
@@ -58,7 +54,6 @@ const ClinicsActionCreator = {
   ...actions,
   getClinics,
   addClinic,
-  deleteClinic,
 };
 
 export { ClinicsActionCreator, reducer };

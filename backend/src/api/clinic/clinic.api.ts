@@ -18,28 +18,10 @@ const initClinicApi = (apiRouter: Router): Router => {
     }
   });
 
-  clinicRouter.get(ClinicsApiPath.$ID, async (req, res, next) => {
-    try {
-      const clinic = await clinicService.getClinicById(req.params.id);
-      res.status(HttpCode.OK).json(clinic);
-    } catch(error) {
-      next(error);
-    }
-  });
-
   clinicRouter.post(ClinicsApiPath.ROOT, validateSchema(validationClinicSchema), async (req, res, next) => {
     try {
       const clinic = await clinicService.createNewClinic(req.body);
-      res.status(HttpCode.OK).json(clinic);
-    } catch(error) {
-      next(error);
-    }
-  });
-
-  clinicRouter.delete(ClinicsApiPath.$ID, async (req, res, next) => {
-    try {
-      const isDeleted = await clinicService.deleteClinic(req.params.id);
-      res.status(HttpCode.OK).json(isDeleted);
+      res.status(HttpCode.CREATED).json(clinic);
     } catch(error) {
       next(error);
     }

@@ -24,12 +24,6 @@ class ClinicApi {
     });
   }
 
-  public deleteClinic(id:string): Promise<IClinic[]> {
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.CLINICS}/${id}`, {
-      method: HttpMethod.DELETE,
-    });
-  }
-
   public getClinics(): Promise<IClinic[]> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.CLINICS}${ClinicsApiPath.ROOT}`,
