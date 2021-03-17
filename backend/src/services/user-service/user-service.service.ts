@@ -9,9 +9,6 @@ class UserService {
   public getUsersByType(type:UserType):Promise<IUser[]>{
     return userRepository.getByType(type)
   }
-  public getUserById(id:string):Promise<IUser | null>{
-    return userRepository.getById(id)
-  }
 
   public getDoctorDetailsById(id:string):Promise<IUser | null>{
     return userRepository.getDoctorDetailsById(id)
