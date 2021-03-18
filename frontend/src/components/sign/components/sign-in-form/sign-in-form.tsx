@@ -19,9 +19,14 @@ import { AuthActionCreator } from 'store/slices';
 import styles from './signin.module.scss';
 
 const SignInForm: React.FC = () => {
+  const preloadedValues = {
+    [LoginPayloadKey.EMAIL]: 'user@gmail.com',
+    [LoginPayloadKey.PASSWORD]: 'password',
+  };
   const { control, handleSubmit, errors } = useForm<IUserLoginPayload>({
     resolver: yupResolver(loginSchema),
     mode: 'onChange',
+    defaultValues: preloadedValues,
   });
   const dispatch = useDispatch();
 
