@@ -2,8 +2,8 @@ import * as React from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import styles from './map.module.scss';
-import SelectMapArea from './select-map-area';
 import { MapOptions, TileOptions } from 'common/enums';
+import { SelectMapArea } from './components';
 
 const Map: React.FC = () => (
   <div className={styles.mapWrapper}>
@@ -15,7 +15,7 @@ const Map: React.FC = () => (
         attribution={TileOptions.ATTRIBUTION}
         url={TileOptions.URL}
       />
-      <SelectMapArea />
+      <SelectMapArea/>
     </MapContainer>
   </div>
 );

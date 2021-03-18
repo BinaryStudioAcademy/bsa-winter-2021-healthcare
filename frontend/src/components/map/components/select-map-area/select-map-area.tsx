@@ -9,33 +9,26 @@ import { MapCoordsDefault } from 'common/enums';
 const SelectMapArea: React.FC = () => {
   const map = useMap();
   const control = L.control.lasso({ position: 'topright' });
-
   let minLat = MapCoordsDefault.MIN_LAT;
   let minLng = MapCoordsDefault.MIN_LNG;
   let maxLat = MapCoordsDefault.MAX_LAT;
   let maxLng = MapCoordsDefault.MAX_LNG;
-
   let selectedAreaPolygon = L.polygon([]);
 
-  useEffect(addLassoControl);
+  const handleLassoAddition = (): void => {
+    control.addTo(map);
+  };
 
-  map.on(ENABLED_EVENT, clearSelectionData);
-  map.on(FINISHED_EVENT, handleSelection);
-
-  function clearSelectionData(): void {
+  const handleLassoActivacion = (): void => {
     minLat = MapCoordsDefault.MIN_LAT;
     minLng = MapCoordsDefault.MIN_LNG;
     maxLat = MapCoordsDefault.MAX_LAT;
     maxLng = MapCoordsDefault.MAX_LNG;
     selectedAreaPolygon.remove();
-  }
+  };
 
-  function addLassoControl(): void {
-    control.addTo(map);
-  }
-
-  function handleSelection(event: any): void {
-    event.latLngs.forEach((coords: LatLng) => {
+  const handleAreaSelection = (evt: any): void => {
+    evt.latLngs.forEach((coords: LatLng) => {
       if (coords.lat < minLat) minLat = coords.lat;
       if (coords.lat > maxLat) maxLat = coords.lat;
       if (coords.lng < minLng) minLng = coords.lng;
@@ -50,7 +43,11 @@ const SelectMapArea: React.FC = () => {
     ]);
 
     selectedAreaPolygon.addTo(map);
-  }
+  };
+
+  useEffect(handleLassoAddition);
+  map.on(ENABLED_EVENT, handleLassoActivacion);
+  map.on(FINISHED_EVENT, handleAreaSelection);
 
   return null;
 };
