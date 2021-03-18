@@ -15,18 +15,15 @@ import {
 } from 'common/enums';
 import { AppRoute } from 'common/enums';
 import { AuthActionCreator } from 'store/slices';
+import { SIGN_IN_DEFAULT_VALUES } from '../common/constants';
 
 import styles from './signin.module.scss';
 
 const SignInForm: React.FC = () => {
-  const preloadedValues = {
-    [LoginPayloadKey.EMAIL]: 'user@gmail.com',
-    [LoginPayloadKey.PASSWORD]: 'password',
-  };
   const { control, handleSubmit, errors } = useForm<IUserLoginPayload>({
     resolver: yupResolver(loginSchema),
     mode: 'onChange',
-    defaultValues: preloadedValues,
+    defaultValues: SIGN_IN_DEFAULT_VALUES,
   });
   const dispatch = useDispatch();
 
