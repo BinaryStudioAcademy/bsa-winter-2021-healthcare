@@ -1,6 +1,9 @@
 .mapWrapper {
   height: 100vh;
   padding: 3%;
+  flex-grow: 1;
+  width: 95%;
+  margin: 0 auto;
 }
 
 .map {
