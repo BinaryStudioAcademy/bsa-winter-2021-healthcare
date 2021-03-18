@@ -14,7 +14,7 @@ import EditUserPopup from './edit-user/edit-user';
 import Details from './details/details';
 import AuthorizedRoute from './authorized-route/authorized-route';
 
-export { 
+export {
   Link,
   Checkbox,
   TextInput,
@@ -28,6 +28,6 @@ export {
   Toaster,
   Card,
   EditUserPopup,
-  Details, 
+  Details,
   AuthorizedRoute,
 };

@@ -19,7 +19,7 @@ const UserInfo: React.FC<Props> = ({ user, isCurrentUser, onEdit }) => {
   return (
     <div className={styles.mainInfo}>
       <div className={styles.infoHeader}>
-        <span className={styles.title}>My Profile</span>        
+        <span className={styles.title}>My Profile</span>
         {isCurrentUser && <Button
           label={''}
           icon={ButtonIcon.EDIT}

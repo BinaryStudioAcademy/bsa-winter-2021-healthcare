@@ -11,7 +11,7 @@ import DoctorDetails from 'components/doctor-details/doctor-details';
 import { AuthorizedRoute } from 'components/common';
 
 const App: React.FC = () => (
-  <Switch>    
+  <Switch>
     <Route path={[AppRoute.SIGN_IN, AppRoute.SIGN_UP]} component={Sign} />
     <Route path={AppRoute.USER_PROFILE_$ID} component={Profile} />
     <AuthorizedRoute path={AppRoute.CLINICS} component={Clinics} />

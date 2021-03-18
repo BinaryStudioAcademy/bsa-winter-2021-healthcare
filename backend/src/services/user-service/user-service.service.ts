@@ -10,13 +10,13 @@ class UserService {
   public getUsersByType(type:UserType):Promise<IUserWithPermissions[]>{
     return userRepository.getByType(type);
   }
-  
-  public async getUserById(id:string):Promise<IUser | null>{      
+
+  public async getUserById(id:string):Promise<IUser | null>{
     const user = await userRepository.getById(id);
     if (user && user.type === UserType.DOCTOR){
-      return userRepository.getDoctorDetailsById((user.id as string))
+      return userRepository.getDoctorDetailsById((user.id as string));
     }
-    return user
+    return user;
   }
 
   public getDoctorDetailsById(id: string): Promise<IUser | null> {
@@ -28,7 +28,7 @@ class UserService {
   }
 
   public async updateUser(id: string, data: IUser): Promise<IUser>{
-    return userRepository.updateById(id, data)
+    return userRepository.updateById(id, data);
   }
   public deleteUser(id: string): Promise<boolean> {
     return userRepository.deleteById(id);

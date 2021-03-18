@@ -4,7 +4,7 @@ import { Http } from 'services/http/http.service';
 import {
   HttpMethod,
   ApiPath,
-  
+
 } from 'common/enums';
 
 type Constructor = {

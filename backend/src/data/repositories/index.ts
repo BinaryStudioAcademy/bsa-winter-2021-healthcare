@@ -12,5 +12,5 @@ export {
   userRepository,
   clinicRepository,
   documentRepository,
-  geolocationRepository
+  geolocationRepository,
 };

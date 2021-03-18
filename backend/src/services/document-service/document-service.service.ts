@@ -3,7 +3,7 @@ import { IDocument } from '~/common/interfaces';
 
 class DocumentService {
   public async updateDocument(id: string, data: IDocument): Promise<IDocument>{
-    return documentRepository.updateById(id, data)
+    return documentRepository.updateById(id, data);
   }
 }
 

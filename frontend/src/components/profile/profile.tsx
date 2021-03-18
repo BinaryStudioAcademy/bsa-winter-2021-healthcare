@@ -29,17 +29,17 @@ const Profile: React.FC = () => {
   const { id } = useParams<RouteParam>();
   const isCurrentUser = currentUser?.id === id;
   const isDoctor = user?.type === UserType.DOCTOR;
-  React.useEffect(()=>{       
+  React.useEffect(()=>{
     if (isCurrentUser) {
       setUser(currentUser);
-    } else {      
-      dispatch(UsersActionCreator.getUser(id));    
-    }   
+    } else {
+      dispatch(UsersActionCreator.getUser(id));
+    }
   },[]);
   React.useEffect(()=>{
     setUser(fetchedUser);
   },[fetchedUser]);
-  
+
   const handleOpenPopUp = () => {
     setIsEditMode(true);
   };
@@ -55,12 +55,12 @@ const Profile: React.FC = () => {
         <div className={styles.infoContainer}>
           <UserInfo user ={user} onEdit={handleOpenPopUp} isCurrentUser={isCurrentUser}/>
           {isDoctor && <Documents document={(user as IUserTypeDoctor).doctor.document}/>}
-        </div>        
+        </div>
         {isEditeMode && <EditUserPopup
           user={user}
           onEditUser={handleUserInfoEdit}
           onFormHide={() => setIsEditMode(false)}
-        />}        
+        />}
       </div> : <div>Loading</div>}
     </>
   );

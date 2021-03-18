@@ -28,5 +28,5 @@ export {
   userService,
   clinicService,
   geolocationService,
-  documentService
+  documentService,
 };

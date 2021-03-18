@@ -77,9 +77,9 @@ class UserRepository {
           include:[
             {
               model:DocumentModel,
-              as:ModelAlias.DOCUMENT
-            }
-          ]
+              as:ModelAlias.DOCUMENT,
+            },
+          ],
         },
         {
           model: SpecializationModel,
@@ -105,10 +105,10 @@ class UserRepository {
   }
 
   public async updateById(id: string, data: IUser): Promise<IUser> {
-    const [rows, [user]] = await UserModel.update(data, {
+    const [ , [user]] = await UserModel.update(data, {
       where: { id },
-      returning: true           
-    });    
+      returning: true,
+    });
     return user;
   }
 

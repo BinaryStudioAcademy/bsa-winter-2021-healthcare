@@ -1,6 +1,6 @@
 enum DocumentsApiPath {
   ROOT = '/',
-  $ID = '/:id'  
+  $ID = '/:id',
 }
 
 export { DocumentsApiPath };

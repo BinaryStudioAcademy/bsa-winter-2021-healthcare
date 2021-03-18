@@ -21,7 +21,7 @@ const { reducer, actions } = createSlice({
   reducers: {
     addUsers: (state, action: PayloadAction<IUser[]>) => {
       state.users = [...state.users, ...action.payload];
-    },    
+    },
     editUser: (
       state,
       action: PayloadAction<{ id: string | undefined; data: IUser }>,
@@ -40,7 +40,7 @@ const { reducer, actions } = createSlice({
       state.userInProfile = action.payload;
     },
     editeDocumentStatus:(state, action: PayloadAction<IDocument>) => {
-      (state.userInProfile as IUserTypeDoctor).doctor.document = action.payload; 
+      (state.userInProfile as IUserTypeDoctor).doctor.document = action.payload;
     },
   },
 });

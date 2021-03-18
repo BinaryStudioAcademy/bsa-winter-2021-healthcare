@@ -21,7 +21,7 @@ const Documents: React.FC<Props> = ({ document }) => {
   const handleSubmit = () => {
     const update:IDocument = { ...document, status: radioValue };
     dispatch(UsersActionCreator.editUserDocument(document.id, update));
-    setIsModalOpen(false);    
+    setIsModalOpen(false);
   };
   return (
     <div className={styles.documentContainer}>
@@ -34,7 +34,7 @@ const Documents: React.FC<Props> = ({ document }) => {
           hasHiddenLabel={false}
           onClick={()=>setIsModalOpen(true)}
         />
-      </div>     
+      </div>
       <Modal isShow={isModalOpen}>
         <div className={styles.formContainer}>
           <button className={styles.closeButton} onClick={()=>setIsModalOpen(false)} type="button">
@@ -57,21 +57,21 @@ const Documents: React.FC<Props> = ({ document }) => {
                 name="document status"
                 onChange={handleChangeRadio}
               />
-            </div>          
+            </div>
             <div className={styles.confirmButton}>
               <Button
                 label="Confirm"
                 color={ButtonColor.PRIMARY_DARK}
                 styleType={ButtonStyleType.WITHOUT_BORDER}
                 type={ButtonType.SUBMIT}
-                hasHiddenLabel={false}                
+                hasHiddenLabel={false}
               />
-            </div>          
+            </div>
           </form>
           <div className={styles.imgContainer}>
             <img src={document.imagePath}/>
-          </div>        
-        </div>     
+          </div>
+        </div>
       </Modal>
     </div>
   );

@@ -8,4 +8,4 @@ interface IDoctorExtended extends IDoctor {
   [DoctorExtendedKey.DOCUMENT]: IDocument
 }
 
-export type { IDoctorExtended }
+export type { IDoctorExtended };

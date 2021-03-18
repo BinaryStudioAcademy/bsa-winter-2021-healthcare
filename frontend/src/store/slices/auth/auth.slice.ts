@@ -55,7 +55,7 @@ const editCurrentUser = createAsyncThunk(
   'user/:id',
   async (userData: IEditUserPayload) => {
     try {
-      const user = await userApi.editUser((userData.id as string), userData);      
+      const user = await userApi.editUser((userData.id as string), userData);
       return user;
     } catch(error) {
       if (error instanceof HttpError) {

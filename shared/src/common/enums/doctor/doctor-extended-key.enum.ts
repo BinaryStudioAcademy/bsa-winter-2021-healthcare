@@ -1,6 +1,6 @@
 enum  DoctorExtendedKey {
   CLINIC = 'clinic',
-  DOCUMENT = 'document'
+  DOCUMENT = 'document',
 }
 
-export { DoctorExtendedKey }
+export { DoctorExtendedKey };
