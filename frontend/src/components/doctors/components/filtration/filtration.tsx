@@ -4,21 +4,30 @@ import styles from './filtration.module.scss';
 import { TextInput, Checkbox, Details } from 'components/common';
 import { DoctorType, ClinicType, InputType, InputColor, DoctorFiltration, Icon } from 'common/enums';
 import { IDoctorFiltrationPayload } from 'common/interfaces';
+import { getTruthyEntities } from 'helpers';
 import { DEFAULT_FILTER_VALUE } from '../common/constants';
 
-const doctorSpecialties = Object.keys(DoctorType);
-const clinicTypes = Object.keys(ClinicType);
+const doctorSpecialties = Object.keys(DoctorType).map((key) => key.toLocaleLowerCase());
+const clinicTypes = Object.keys(ClinicType).map((key) => key.toLocaleLowerCase());
 
 const Filtration: React.FC = () => {
   const { handleSubmit, control, errors } = useForm<IDoctorFiltrationPayload>({
     defaultValues: DEFAULT_FILTER_VALUE,
-    mode: "onChange",
+    mode: "onBlur",
   });
 
-  const handleSubmitForm = (formData: IDoctorFiltrationPayload) => formData;
+  const handleSubmitForm = (formData: IDoctorFiltrationPayload) => {
+    const filterPayload: IDoctorFiltrationPayload = {
+      ...formData,
+      specialty: getTruthyEntities(...formData.specialty),
+      typeOfClinic: getTruthyEntities(...formData.typeOfClinic),
+    };
+
+    return filterPayload;
+  };
 
   return (
-    <form onSubmit={handleSubmit(handleSubmitForm)}>
+    <form onBlur={handleSubmit(handleSubmitForm)}>
       <div className={styles.panel}>
         <div className={styles.filters}>
           <div className={styles.filterHeader}>Filter by</div>
@@ -39,7 +48,7 @@ const Filtration: React.FC = () => {
             title="Location"
           >
             <TextInput
-              name={DoctorFiltration.CITY}
+              name={DoctorFiltration.CITY.toLocaleLowerCase()}
               label={DoctorFiltration.CITY}
               hasHiddenLabel
               placeholder="City..."
@@ -53,10 +62,10 @@ const Filtration: React.FC = () => {
             icon={Icon.SPECIALTY}
             title="Specialty"
           >
-            {doctorSpecialties.map((doctorSpecialty) => (
+            {doctorSpecialties.map((doctorSpecialty, index) => (
               <div className={styles.filterCheckbox} key={doctorSpecialty}>
                 <Checkbox
-                  name={doctorSpecialty}
+                  name={DoctorFiltration.SPECIALTY + `[${index}]`}
                   label={doctorSpecialty}
                   control={control}
                 />
@@ -67,10 +76,10 @@ const Filtration: React.FC = () => {
             icon={Icon.CLINIC}
             title="Type of clinic"
           >
-            {clinicTypes.map((clinicType) => (
+            {clinicTypes.map((clinicType, index) => (
               <div className={styles.filterCheckbox} key={clinicType}>
                 <Checkbox
-                  name={clinicType}
+                  name={DoctorFiltration.TYPE_OF_CLINIC + `[${index}]`}
                   label={clinicType}
                   control={control}
                 />

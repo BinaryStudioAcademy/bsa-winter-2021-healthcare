@@ -14,16 +14,17 @@ interface Props {
 }
 
 const Checkbox: React.FC<Props> = ({ name, label, isDisabled, control, defaultValue }) => {
-  const { field, meta: { invalid } } = useController({ name, control, defaultValue });
+  const { field, meta: { invalid }} = useController({ name, control, defaultValue });
 
   return (
     <label className={clsx(styles.checkboxRow, invalid && styles.error)}>
       <input
-        {...field}
         disabled={isDisabled}
         name={name}
+        value={field.value}
         className={styles.checkboxInput}
         type="checkbox"
+        onChange={() => field.onChange(field.value ? false : label)}
       />
       <span className={styles.checkboxLabel}>
         {label}
