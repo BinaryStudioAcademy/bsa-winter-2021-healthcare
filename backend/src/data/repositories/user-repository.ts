@@ -1,4 +1,4 @@
-import { UserModel, DoctorModel, ClinicModel, PermissionModel } from '../models';
+import { UserModel, DoctorModel, ClinicModel, PermissionModel, DocumentModel } from '../models';
 import { IUser, IRegisterPayload, IUserWithPermissions } from '~/common/interfaces';
 import { UserType, ModelAlias, DoctorKey, ClinicKey } from '~/common/enums';
 
@@ -38,11 +38,23 @@ class UserRepository {
   }
 
   public getById(id: string): Promise<IUser | null> {
+
     return UserModel.findByPk(id, {
-      include: {
+      include:{
+        model:DoctorModel, 
+        as: ModelAlias.DOCTOR,
+        attributes: [DoctorKey.ID, DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
+        include:[
+          {
+            model:DocumentModel,
+            as:ModelAlias.DOCUMENT
+          }
+        ]
+      }
+      /*include: {
         model: PermissionModel,
         as: ModelAlias.PERMISSIONS
-      }
+      }*/
     });
   }
 
@@ -56,13 +68,12 @@ class UserRepository {
     });
   }
 
-  public async updateById(id: string, data: IUser): Promise<IUser[]> {
-    const result = await UserModel.update(data, {
+  public async updateById(id: string, data: IUser): Promise<IUser> {
+    const [rows, [user]] = await UserModel.update(data, {
       where: { id },
-      returning: true,
-    });
-
-    return result[1];
+      returning: true           
+    });    
+    return user;
   }
 
   public async deleteById(id: string): Promise<boolean> {

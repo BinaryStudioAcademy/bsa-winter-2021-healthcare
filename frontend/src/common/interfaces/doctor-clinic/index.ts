@@ -1,1 +1,1 @@
-export type { IDoctorWithClinic } from 'healthcare-shared/common/interfaces';
+export type { IDoctorExtended } from 'healthcare-shared/common/interfaces';

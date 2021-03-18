@@ -4,6 +4,7 @@ import { AuthApi } from './auth-api/auth-api.service';
 import { UserApi } from './user-api/user-api.service';
 import { Storage } from './storage/storage.service';
 import { ClinicApi } from './clinic-api/clinic-api.service';
+import { DocumentApi } from './document-api/document-api.service';
 import NotificationService from './notification/notification.service';
 
 const http = new Http();
@@ -23,10 +24,15 @@ const clinicApi = new ClinicApi({
   apiPrefix: ENV.API_PATH
 })
 
+const documentApi = new DocumentApi({
+  http,
+  apiPrefix: ENV.API_PATH
+})
+
 const storage = new Storage({
   storage: localStorage
 });
 
 const notificationService = new NotificationService();
 
-export { http, authApi, userApi, storage, notificationService, clinicApi };
+export { http, authApi, userApi, storage, notificationService, clinicApi, documentApi };

@@ -24,7 +24,7 @@ class UserApi {
       },
     );
   }
-  public editUser(id: string, payload: IEditUserPayload): Promise<IUser[]> {
+  public editUser(id: string, payload: IEditUserPayload): Promise<IUser> {
     return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}/${id}`, {
       method: HttpMethod.PUT,
       contentType: ContentType.JSON,

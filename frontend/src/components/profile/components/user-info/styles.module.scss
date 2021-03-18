@@ -5,21 +5,13 @@
   align-items: center;
 }
 
-.editButton {
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f2f2f5;
-  border-radius: 50%;
-  margin-left: 35px;
-  cursor: pointer;
-}
-
 .infoBloks {
   display: flex;
   margin-top: 32px;
+}
+
+.title {
+  margin-right: 20px;
 }
 
 .photo {
@@ -110,12 +102,6 @@
 
 .email {
   background-image: url('../../../../assets/images/mail.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.pen {
-  background-image: url('../../../../assets/images/pen.svg');
   background-repeat: no-repeat;
   background-position: center;
 }

@@ -2,7 +2,7 @@ import React from "react";
 import styles from './styles.module.scss';
 import clsx from "clsx";
 
-const ProfileMenu: React.FC = () => {
+const SideMenu: React.FC = () => {
   return (
     <div className={styles.menuContainer}>
       <span className={styles.infoHeader}>My Profile</span>
@@ -14,5 +14,5 @@ const ProfileMenu: React.FC = () => {
   );
 };
 
-export default ProfileMenu;
+export default SideMenu;
 

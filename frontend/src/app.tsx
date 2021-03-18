@@ -12,7 +12,7 @@ const App: React.FC = () => (
   <Switch>
     <Route path={AppRoute.ADMIN_PAGE} exact component={AdminPage}/>
     <Route path={[AppRoute.SIGN_IN, AppRoute.SIGN_UP]} component={Sign}/>
-    <Route path={AppRoute.MY_PROFILE} component={Profile} />
+    <Route path={AppRoute.USER_PROFILE_$ID} component={Profile} />
     <Route path={AppRoute.CLINICS} component={Clinics} />
     <Route path={AppRoute.DOCTORS} component={DoctorsSearch}/>
     <Route path="*" exact component={NotFound} />

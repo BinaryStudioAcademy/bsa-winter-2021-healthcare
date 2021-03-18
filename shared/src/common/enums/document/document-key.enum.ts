@@ -1,7 +1,7 @@
 enum DocumentKey {
   ID = 'id',
   IMAGE_PATH = 'imagePath',
-  DOCUMENT_STATUS = 'DocumentStatus',
+  DOCUMENT_STATUS = 'status',
   CREATED_AT = 'createdAt',
   UPDATED_AT = 'updatedAt'
 }

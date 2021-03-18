@@ -3,8 +3,9 @@ import { AppConfig } from '~/common/enums';
 import { initUserApi } from './user/user.api';
 import { initAuthApi } from './auth/auth.api';
 import { initClinicApi } from './clinic/clinic.api';
+import { initDocumentApi } from './document/document.api';
 
-const apis = [initUserApi, initAuthApi, initClinicApi];
+const apis = [initUserApi, initAuthApi, initClinicApi, initDocumentApi];
 
 const initApi = (app: Router): Router => {
   const apiRouter = Router();

@@ -4,7 +4,7 @@ enum ButtonIcon {
   CHAT = 'chat',
   BELL = 'bell',
   EDIT = 'edit',
-  DELETE = 'delete',
+  DELETE = 'delete'  
 }
 
 export { ButtonIcon };

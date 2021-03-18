@@ -1,41 +1,68 @@
-import React, { useState } from "react";
-import ProfileMenu from "./components/profile-menu/profile-menu";
-import ProfileInfo from "./components/profile-info/profile-info";
-import { EditUserPopup } from 'components/admin-page/components';
-import { IUser, IEditUserPayload } from 'common/interfaces';
+import * as React from "react";
+import { SideMenu, UserInfo, Documents } from './components';
+import { EditUserPopup } from 'components/common';
+import { IUser, IEditUserPayload, IUserTypeDoctor } from 'common/interfaces';
+import { UserType } from 'common/enums';
 import { AuthActionCreator } from 'store/slices';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { RootState } from 'common/types';
+import { useParams } from 'react-router';
+import { UsersActionCreator } from 'store/slices';
 
 import styles from './styles.module.scss';
 
+type RouteParam = {
+  id:string
+}
+
 const Profile: React.FC = () => {
-  const [edite, setEdit] = useState(false);
-  const { user } = useSelector(({ auth }: RootState) => ({
-  user: auth.user as IUser
+  const [isEditeMode, setIsEditMode] = React.useState<boolean>(false);
+  const [user, setUser] = React.useState<IUserTypeDoctor>();
+  const { currentUser } = useSelector(({ auth }: RootState) => ({
+    currentUser: auth.user as IUserTypeDoctor
+  }));
+  const { fetchedUser } = useSelector(({ users }: RootState) => ({
+    fetchedUser: users.userInProfile as IUserTypeDoctor
   }));
   const dispatch = useDispatch();
-  const openEditPopUp = () => {
-    setEdit(true)
+  const {id} = useParams<RouteParam>();
+  const isCurrentUser = currentUser.id === id
+  const isDoctor = user?.type === UserType.DOCTOR
+  React.useEffect(()=>{ 
+    if (isCurrentUser) {
+      setUser(currentUser)
+    } else {      
+      dispatch(UsersActionCreator.getUser(id))      
+    }   
+  },[])
+  React.useEffect(()=>{
+    setUser(fetchedUser)
+  },[fetchedUser])
+  
+  const handleOpenPopUp = () => {
+    setIsEditMode(true)
   }
   const handleUserInfoEdit = (userData:IEditUserPayload) => {
-    userData.id = user.id
+    userData.id = user?.id
     dispatch(AuthActionCreator.editCurrentUser(userData));
-    setEdit(false);
+    setIsEditMode(false);
   }
   return (
-    <div className={styles.profileContainer}>
-      <ProfileMenu />
-      <div className={styles.infoContainer}>
-        <ProfileInfo user ={user} edit={openEditPopUp}/>
-      </div>
-      {edite && <EditUserPopup
-        user={user}
-        onEditUser={handleUserInfoEdit}
-        onFormHide={() => setEdit(false)}
-      />}
-    </div>
+    <>
+      {user ? <div className={styles.profileContainer}>
+        <SideMenu />
+        <div className={styles.infoContainer}>
+          <UserInfo user ={user} onEdit={handleOpenPopUp}/>
+          {isDoctor && <Documents document={user.doctor.document}/>}
+        </div>        
+        {isEditeMode && <EditUserPopup
+          user={user}
+          onEditUser={handleUserInfoEdit}
+          onFormHide={() => setIsEditMode(false)}
+        />}        
+      </div> : <div>Loading</div>}
+    </>
   );
 };
 

@@ -20,7 +20,7 @@ const initUserApi = (apiRouter: Router): Router => {
 
   userRouter.get(UsersApiPath.TYPE_$TYPE, async (req, res, next) => {
     try {
-      const users = await userService.getUsersByType(req.params.type as UserType);
+      const users = await userService.getUsersByType(req.params.type as UserType);      
       res.status(HttpCode.OK).json(users);
     } catch(error) {
       next(error);
@@ -28,8 +28,8 @@ const initUserApi = (apiRouter: Router): Router => {
   });
 
   userRouter.get(UsersApiPath.$ID, async (req, res, next) => {
-    try {
-      const user = await userService.getUserById(req.params.id);
+    try {       
+      const user = await userService.getUserById(req.params.id);          
       res.status(HttpCode.OK).json(user);
     } catch(error) {
       next(error);

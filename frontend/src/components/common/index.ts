@@ -10,5 +10,20 @@ import Toaster from './toaster/toaster';
 import Header from './header/header';
 import Card from './card/card';
 import Modal from './modal/modal';
+import EditUserPopup from './edit-user/edit-user';
 
-export { Link, Checkbox, TextInput, DateInput, Radio, Select, Button, Header, Table, Modal, Toaster, Card };
+export { 
+    Link,
+    Checkbox,
+    TextInput,
+    DateInput,
+    Radio,
+    Select,
+    Button,
+    Header,
+    Table,
+    Modal,
+    Toaster,
+    Card,
+    EditUserPopup
+};
