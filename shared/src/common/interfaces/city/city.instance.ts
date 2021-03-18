@@ -1,7 +1,7 @@
-import { CityKey } from '~/common/enums'
+import { CityKey } from '~/common/enums';
 
 interface ICity {
-  [CityKey.ID]:string;
+  [CityKey.ID]: string;
   [CityKey.NAME]: string;
   [CityKey.CREATED_AT]: string;
   [CityKey.UPDATED_AT]: string;

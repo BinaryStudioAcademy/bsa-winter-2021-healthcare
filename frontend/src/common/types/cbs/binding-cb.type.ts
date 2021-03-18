@@ -1,3 +1,3 @@
 type BindingCb = () => void;
 
-export type {BindingCb};
+export type { BindingCb };

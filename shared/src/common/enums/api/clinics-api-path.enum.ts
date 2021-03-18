@@ -1,5 +1,6 @@
 enum ClinicsApiPath {
-  ROOT = '/'
+  ROOT = '/',
+  $ID = '/:id',
 }
 
 export { ClinicsApiPath };

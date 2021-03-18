@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 import { SideMenu, UserInfo, Documents } from './components';
 import { EditUserPopup } from 'components/common';
-import { IUser, IEditUserPayload, IUserTypeDoctor } from 'common/interfaces';
+import { IEditUserPayload, IUserTypeDoctor } from 'common/interfaces';
 import { UserType } from 'common/enums';
 import { AuthActionCreator } from 'store/slices';
 import { useSelector } from 'react-redux';
@@ -14,40 +14,40 @@ import styles from './styles.module.scss';
 
 type RouteParam = {
   id:string
-}
+};
 
 const Profile: React.FC = () => {
   const [isEditeMode, setIsEditMode] = React.useState<boolean>(false);
   const [user, setUser] = React.useState<IUserTypeDoctor>();
   const { currentUser } = useSelector(({ auth }: RootState) => ({
-    currentUser: auth.user as IUserTypeDoctor
+    currentUser: auth.user as IUserTypeDoctor,
   }));
   const { fetchedUser } = useSelector(({ users }: RootState) => ({
-    fetchedUser: users.userInProfile as IUserTypeDoctor
+    fetchedUser: users.userInProfile as IUserTypeDoctor,
   }));
   const dispatch = useDispatch();
-  const {id} = useParams<RouteParam>();
-  const isCurrentUser = currentUser.id === id
-  const isDoctor = user?.type === UserType.DOCTOR
+  const { id } = useParams<RouteParam>();
+  const isCurrentUser = currentUser.id === id;
+  const isDoctor = user?.type === UserType.DOCTOR;
   React.useEffect(()=>{ 
     if (isCurrentUser) {
-      setUser(currentUser)
+      setUser(currentUser);
     } else {      
-      dispatch(UsersActionCreator.getUser(id))      
+      dispatch(UsersActionCreator.getUser(id));    
     }   
-  },[])
+  },[]);
   React.useEffect(()=>{
-    setUser(fetchedUser)
-  },[fetchedUser])
+    setUser(fetchedUser);
+  },[fetchedUser]);
   
   const handleOpenPopUp = () => {
-    setIsEditMode(true)
-  }
+    setIsEditMode(true);
+  };
   const handleUserInfoEdit = (userData:IEditUserPayload) => {
-    userData.id = user?.id
+    userData.id = user?.id;
     dispatch(AuthActionCreator.editCurrentUser(userData));
     setIsEditMode(false);
-  }
+  };
   return (
     <>
       {user ? <div className={styles.profileContainer}>

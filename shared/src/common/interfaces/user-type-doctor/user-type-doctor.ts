@@ -6,4 +6,4 @@ interface IUserTypeDoctor extends IUser {
   [UserTypeDoctorKey.DOCTOR]: IDoctorExtended
 }
 
-export type { IUserTypeDoctor }
+export type { IUserTypeDoctor };

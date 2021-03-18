@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 import styles from './styles.module.scss';
-import clsx from "clsx";
+import clsx from 'clsx';
 
 const SideMenu: React.FC = () => {
   return (

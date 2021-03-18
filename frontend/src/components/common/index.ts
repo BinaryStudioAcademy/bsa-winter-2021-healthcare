@@ -11,19 +11,23 @@ import Header from './header/header';
 import Card from './card/card';
 import Modal from './modal/modal';
 import EditUserPopup from './edit-user/edit-user';
+import Details from './details/details';
+import AuthorizedRoute from './authorized-route/authorized-route';
 
 export { 
-    Link,
-    Checkbox,
-    TextInput,
-    DateInput,
-    Radio,
-    Select,
-    Button,
-    Header,
-    Table,
-    Modal,
-    Toaster,
-    Card,
-    EditUserPopup
+  Link,
+  Checkbox,
+  TextInput,
+  DateInput,
+  Radio,
+  Select,
+  Button,
+  Header,
+  Table,
+  Modal,
+  Toaster,
+  Card,
+  EditUserPopup,
+  Details, 
+  AuthorizedRoute,
 };

@@ -1,26 +1,26 @@
-import React from "react";
+import React from 'react';
 import { IUser } from 'common/interfaces/user';
 import { DateFormat } from 'common/enums';
 import { BindingCb } from 'common/types';
 import { getFormattedDate } from 'helpers';
 import { Button } from 'components/common';
-import { ButtonColor, ButtonStyleType, ButtonIcon } from "common/enums";
-import clsx from "clsx";
+import { ButtonColor, ButtonStyleType, ButtonIcon } from 'common/enums';
+import clsx from 'clsx';
 import styles from './styles.module.scss';
 
 type Props = {
   user: IUser
   onEdit: BindingCb
-}
+};
 
-const UserInfo: React.FC<Props> = ({user, onEdit}) => {
+const UserInfo: React.FC<Props> = ({ user, onEdit }) => {
   const birthdate = getFormattedDate( user.birthdate, DateFormat.D_MMMM_YYYY);
   return (
     <div className={styles.mainInfo}>
       <div className={styles.infoHeader}>
         <span className={styles.title}>My Profile</span>        
         <Button
-          label=''
+          label={''}
           icon={ButtonIcon.EDIT}
           hasHiddenLabel={false}
           color={ButtonColor.GRAY_LIGHT}

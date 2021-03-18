@@ -1,6 +1,6 @@
 enum AppointmentType {
   ONLINE = 'online',
-  OFFLINE = 'offline'
+  OFFLINE = 'offline',
 }
 
 export { AppointmentType };

@@ -1,28 +1,28 @@
-import * as React from "react";
+import * as React from 'react';
 import { IDocument } from 'common/interfaces';
 import { Modal, Button, Radio } from 'components/common';
 import { ButtonColor, ButtonStyleType, DocumentStatus, ButtonType } from 'common/enums';
-import { InputChangeEvent } from 'common/types'
+import { InputChangeEvent } from 'common/types';
 import styles from './styles.module.scss';
 import { UsersActionCreator } from 'store/slices';
 import { useDispatch } from 'react-redux';
 
 type Props = {
   document: IDocument
-}
+};
 
-const Documents: React.FC<Props> = ({document}) => {
+const Documents: React.FC<Props> = ({ document }) => {
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
   const [radioValue, setRadioValue] = React.useState<DocumentStatus>(document.status);
   const dispatch = useDispatch();
   const handleChangeRadio = (event:InputChangeEvent) => {
-    setRadioValue(event.target.value as DocumentStatus)
-  }
+    setRadioValue(event.target.value as DocumentStatus);
+  };
   const handleSubmit = () => {
-    const update:IDocument = {...document, status: radioValue}        
-    dispatch(UsersActionCreator.editUserDocument(document.id, update))
-    setIsModalOpen(false)    
-  }
+    const update:IDocument = { ...document, status: radioValue };
+    dispatch(UsersActionCreator.editUserDocument(document.id, update));
+    setIsModalOpen(false);    
+  };
   return (
     <div className={styles.documentContainer}>
       <span>Document status: </span><span>{document.status}</span>
@@ -46,12 +46,12 @@ const Documents: React.FC<Props> = ({document}) => {
                 options={[
                   {
                     label:'verified',
-                    value: DocumentStatus.VERIFIED
+                    value: DocumentStatus.VERIFIED,
                   },
                   {
                     label:'in rewiew',
-                    value: DocumentStatus.IN_REVIEW
-                  }
+                    value: DocumentStatus.IN_REVIEW,
+                  },
                 ]}
                 value={radioValue}
                 name="document status"

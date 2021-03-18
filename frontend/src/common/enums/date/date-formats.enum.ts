@@ -1,5 +1,5 @@
 enum DateFormat {
-  D_MMMM_YYYY = 'D MMMM YYYY'
+  D_MMMM_YYYY = 'D MMMM YYYY',
 }
 
-export { DateFormat }
+export { DateFormat };

@@ -12,37 +12,43 @@ interface IState {
 
 const initialState: IState = {
   users: [],
-  userInProfile: null
+  userInProfile: null,
 };
 
 const { reducer, actions } = createSlice({
   name: ReducerName.USERS,
   initialState,
   reducers: {
-    addUsers:(state, action: PayloadAction<IUser[]>) => {
-
+    addUsers: (state, action: PayloadAction<IUser[]>) => {
       state.users = [...state.users, ...action.payload];
-    },
-    editUser:(state, action: PayloadAction<{id:string|undefined,data:IUser}>) => {
+    },    
+    editUser: (
+      state,
+      action: PayloadAction<{ id: string | undefined; data: IUser[] }>,
+    ) => {
       const id = action.payload.id;
-      state.users = state.users.map((user:IUser)=> user.id === id ? action.payload.data : user);
+      state.users = state.users.map((user: IUser) =>
+        user.id === id ? action.payload.data[0] : user,
+      );
     },
-    deleteUser:(state, action: PayloadAction<string>) => {
-      state.users = state.users.filter((user:IUser)=> user.id !== action.payload);
+    deleteUser: (state, action: PayloadAction<string>) => {
+      state.users = state.users.filter(
+        (user: IUser) => user.id !== action.payload,
+      );
     },
     setUserToProfile:(state, action: PayloadAction<IUserTypeDoctor>) => {
-      state.userInProfile = action.payload
+      state.userInProfile = action.payload;
     },
     editeDocumentStatus:(state, action: PayloadAction<IDocument>) => {
-      (state.userInProfile as IUserTypeDoctor).doctor.document = action.payload      
-    }
+      (state.userInProfile as IUserTypeDoctor).doctor.document = action.payload; 
+    },
   },
 });
 
 const getUsers = (): AppThunk => async (dispatch) => {
-  try{
+  try {
     const response = await userApi.getUsers();
-    dispatch(actions.addUsers(response))
+    dispatch(actions.addUsers(response));
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
@@ -50,10 +56,11 @@ const getUsers = (): AppThunk => async (dispatch) => {
     throw error;
   }
 };
+
 const getUser = (id:string): AppThunk => async (dispatch) => {
   try{
     const user = await userApi.getUser(id);
-    dispatch(actions.setUserToProfile(user as IUserTypeDoctor))
+    dispatch(actions.setUserToProfile(user as IUserTypeDoctor));
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
@@ -61,10 +68,16 @@ const getUser = (id:string): AppThunk => async (dispatch) => {
     throw error;
   }
 };
+
 const editUser = (userInfo: IEditUserPayload): AppThunk => async (dispatch) => {
-  try{
-    const response:IUser = await userApi.editUser(userInfo.id as string, userInfo);
-    response ? dispatch(actions.editUser({id:userInfo.id, data: response})) : null;
+  try {
+    const response: IUser[] = await userApi.editUser(
+      userInfo.id as string,
+      userInfo,
+    );
+    response
+      ? dispatch(actions.editUser({ id: userInfo.id, data: response }))
+      : null;
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
@@ -73,7 +86,7 @@ const editUser = (userInfo: IEditUserPayload): AppThunk => async (dispatch) => {
   }
 };
 const addUser = (userInfo: IUser): AppThunk => async (dispatch) => {
-  try{
+  try {
     const response = await userApi.registerUser(userInfo);
     dispatch(actions.addUsers([response]));
   } catch (error) {
@@ -84,7 +97,7 @@ const addUser = (userInfo: IUser): AppThunk => async (dispatch) => {
   }
 };
 const deleteUser = (id: string): AppThunk => async (dispatch) => {
-  try{
+  try {
     dispatch(actions.deleteUser(id));
     await userApi.deleteUser(id);
   } catch (error) {
@@ -105,16 +118,16 @@ const editUserDocument = (documentId:string, payload:IDocument):AppThunk => asyn
     }
     throw error;
   }
-}
+};
 
 const UsersActionCreator = {
   ...actions,
   getUsers,
-  getUser,
   addUser,
   editUser,
   deleteUser,
-  editUserDocument
+  getUser,
+  editUserDocument,
 };
 
 export { UsersActionCreator, reducer };

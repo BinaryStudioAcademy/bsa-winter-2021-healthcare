@@ -1,5 +1,5 @@
 enum UserWithPermissionsKey {
-  PERMISSIONS = 'permissions'
+  PERMISSIONS = 'permissions',
 }
 
 export { UserWithPermissionsKey };

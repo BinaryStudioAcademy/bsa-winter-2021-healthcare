@@ -1,10 +1,10 @@
 import { Http } from '../http/http.service';
 import { HttpMethod, ContentType, UsersApiPath, UserType, ApiPath } from 'common/enums';
-import { IUser, IEditUserPayload, IUserTypeDoctor } from 'common/interfaces';
+import { IUser, IEditUserPayload, IUserTypeDoctor, IDoctorDetails } from 'common/interfaces';
 
 type Constructor = {
   http: Http;
-  apiPrefix: string
+  apiPrefix: string;
 };
 
 class UserApi {
@@ -31,16 +31,13 @@ class UserApi {
       payload,
     });
   }
-  public getUser(id: string): Promise<IUser> {
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}/${id}`, {
-      method: HttpMethod.GET,
-    });
-  }
+
   public deleteUser(id: string): Promise<boolean> {
     return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}/${id}`, {
       method: HttpMethod.DELETE,
     });
   }
+
   public getUsers(): Promise<IUser[]> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.ROOT}`,
@@ -50,9 +47,29 @@ class UserApi {
     );
   }
 
+  public getUser(id:string): Promise<IUser> {
+    return this.#http.load(
+      `${this.#apiPrefix}${ApiPath.USERS}/${id}`,
+      {
+        method: HttpMethod.GET,
+      },
+    );
+  }
+
   public getDoctors(): Promise<IUserTypeDoctor[]> {
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.TYPE}/${UserType.DOCTOR}`, {
-      method: HttpMethod.GET
+    return this.#http.load(
+      `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.TYPE}/${
+        UserType.DOCTOR
+      }`,
+      {
+        method: HttpMethod.GET,
+      },
+    );
+  }
+
+  public getDoctorDetails(id:string): Promise<IDoctorDetails> {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.DOCTOR_DETAILS}/${id}`, {
+      method: HttpMethod.GET,
     });
   }
 }

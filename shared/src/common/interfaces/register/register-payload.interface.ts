@@ -1,4 +1,4 @@
-import { RegisterPayloadKey, UserType, UserSex } from '../../enums'
+import { RegisterPayloadKey, UserType, UserSex } from '~/common/enums';
 
 interface IRegisterPayload {
   [RegisterPayloadKey.NAME]: string;

@@ -1,0 +1,82 @@
+.editContainer {
+  position: absolute;
+  top: -19px;
+  width: 100%;
+  min-height: 1000px;
+  background-color: rgba(242, 242, 245, 0.7);
+  backdrop-filter: blur(7px);
+  z-index: 3;
+  padding-bottom: 38px;
+}
+
+.inputBlock {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  width: 100%;
+}
+.editForm {
+  margin-top: 116px;
+  margin-left: calc(50vw - 350px);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  width: 535px;
+  min-height: 700px;
+  padding: 38px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  z-index: 2;
+  background-color: white;
+}
+.header {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  color: black;
+  align-self: flex-start;
+}
+
+.errorSpan {
+  color: #e71616;
+}
+
+.inputElements {
+  width: 100%;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-bottom: 30px;
+}
+
+.submit {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.closeButton {
+  font-size: 18px;
+  background: none;
+  border: none;
+  color: transparent;
+  text-shadow: 0 0 0 gray;
+  cursor: pointer;
+}

@@ -2,7 +2,7 @@ enum CityKey {
   ID = 'id',
   NAME = 'name',
   CREATED_AT = 'createdAt',
-  UPDATED_AT = 'updatedAt'
+  UPDATED_AT = 'updatedAt',
 }
 
 export { CityKey };
