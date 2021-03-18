@@ -1,1 +1,1 @@
-export type { IUserLoginPayload, IRegisterPayload, IUser, IUserWithPermissions } from 'healthcare-shared/common/interfaces';
+export type { IUserLoginPayload, IUser, IUserWithPermissions } from 'healthcare-shared/common/interfaces';
