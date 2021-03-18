@@ -1,22 +1,14 @@
 import { CellValue } from 'react-table';
+import { Control, FieldValues } from 'react-hook-form';
 import { Column } from 'common/interfaces';
-import { PermissionName } from 'common/enums';
-import { Checkbox } from 'components/common';
-import { IPermission } from 'common/interfaces/permission';
+import { ButtonColor, ButtonStyleType, ButtonType, PermissionName } from 'common/enums';
+import { Button, Checkbox } from 'components/common';
 
 interface IProps {
-  handleChangePermission: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  control: Control<FieldValues>
 }
 
-const checkPermission = (row: CellValue, name: string) => {
-  const permissions = row.original.permissions.map(
-    (permission: IPermission) => permission.name,
-  );
-
-  return permissions.includes(name) ? true : false;
-};
-
-const getRows = ({ handleChangePermission }: IProps): Column[] => {
+const getRows = ({ control }: IProps): Column[] => {
   return [
     {
       Header: 'Applicant',
@@ -27,11 +19,9 @@ const getRows = ({ handleChangePermission }: IProps): Column[] => {
     {
       Header: PermissionName.CREATE_CLINIC,
       accessor: PermissionName.CREATE_CLINIC,
-      Cell: ({ row }: CellValue): CellValue =>
+      Cell: (): CellValue =>
         Checkbox({
-          isChecked: checkPermission(row, PermissionName.CREATE_CLINIC),
-          onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-            handleChangePermission(e),
+          control,
           name: PermissionName.CREATE_CLINIC,
           label: '',
         }),
@@ -39,11 +29,9 @@ const getRows = ({ handleChangePermission }: IProps): Column[] => {
     {
       Header: PermissionName.CREATE_USER,
       accessor: PermissionName.CREATE_USER,
-      Cell: ({ row }: CellValue): CellValue =>
+      Cell: (): CellValue =>
         Checkbox({
-          isChecked: checkPermission(row, PermissionName.CREATE_USER),
-          onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-            handleChangePermission(e),
+          control,
           name: PermissionName.CREATE_USER,
           label: '',
         }),
@@ -51,11 +39,9 @@ const getRows = ({ handleChangePermission }: IProps): Column[] => {
     {
       Header: PermissionName.EDIT_USER,
       accessor: PermissionName.EDIT_USER,
-      Cell: ({ row }: CellValue): CellValue =>
+      Cell: (): CellValue =>
         Checkbox({
-          isChecked: checkPermission(row, PermissionName.EDIT_USER),
-          onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-            handleChangePermission(e),
+          control,
           name: PermissionName.EDIT_USER,
           label: '',
         }),
@@ -63,13 +49,24 @@ const getRows = ({ handleChangePermission }: IProps): Column[] => {
     {
       Header: PermissionName.EDIT_PERMISSIONS,
       accessor: PermissionName.EDIT_PERMISSIONS,
-      Cell: ({ row }: CellValue): CellValue =>
+      Cell: (): CellValue =>
         Checkbox({
-          isChecked: checkPermission(row, PermissionName.EDIT_PERMISSIONS),
-          onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-            handleChangePermission(e),
+          control,
           name: PermissionName.EDIT_PERMISSIONS,
           label: '',
+        }),
+    },
+    {
+      Header: 'Actions',
+      accessor: 'Actions',
+      Cell: () =>
+        Button({
+          label: 'Save',
+          hasHiddenLabel: false,
+          type: ButtonType.BUTTON,
+          onClick: ()=>null,
+          color: ButtonColor.PRIMARY_DARK,
+          styleType: ButtonStyleType.WITHOUT_BORDER,
         }),
     },
   ];

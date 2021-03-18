@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 import { RootState } from 'common/types';
 import styles from './styles.module.scss';
 import { Table } from 'components/common';
@@ -13,12 +14,16 @@ const PermissionPage: React.FC = () => {
   }));
   const dispatch = useDispatch();
 
+  const { control } = useForm({
+    
+  });
+
   /* eslint-disable no-console */
-  const handleChangePermission = (e: React.ChangeEvent<HTMLInputElement>) =>
-    console.log(e.target.checked);
+  // const handleChangePermission = (e: React.ChangeEvent<HTMLInputElement>) =>
+  //   console.log(e.target.checked);
   /* eslint-enable no-console */
 
-  const columns: Column[] = getRows({ handleChangePermission });
+  const columns: Column[] = getRows({ control });
 
   React.useEffect(() => {
     dispatch(UsersActionCreator.getUsers());
@@ -28,7 +33,6 @@ const PermissionPage: React.FC = () => {
     <>
       <div className={styles.tablePosition}>
         <Table columns={columns} data={users} />
-        <input name="name" type="checkbox" onChange={handleChangePermission} />
       </div>
     </>
   );
