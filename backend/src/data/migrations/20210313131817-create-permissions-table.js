@@ -16,7 +16,7 @@ module.exports = {
             },
             name: {
               allowNull: false,
-              type: Sequelize.ENUM('create-user', 'edit-user', 'create-clinic'),
+              type: Sequelize.ENUM('create-user', 'edit-user', 'create-clinic', 'edit-permissions'),
               unique: true,
             },
             createdAt: Sequelize.DATE,
@@ -28,6 +28,8 @@ module.exports = {
     ),
   down: async (queryInterface) =>
     queryInterface.sequelize.transaction((transaction) =>
-      Promise.all([queryInterface.dropTable('permissions', { transaction })]),
+      Promise.all([queryInterface.dropTable('permissions', { transaction }),
+      queryInterface.sequelize.query('DROP TYPE IF EXISTS "enum_permissions_name";',{ transaction })
+    ]),
     ),
 };

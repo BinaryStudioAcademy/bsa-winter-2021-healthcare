@@ -22,6 +22,11 @@ module.exports = {
               createdAt: new Date(),
               updatedAt: new Date(),
             },
+            {
+              name: 'edit-permissions',
+              createdAt: new Date(),
+              updatedAt: new Date(),
+            },
           ],
           { transaction },
         ),
