@@ -7,7 +7,7 @@ import { logger } from '~/services/services';
 import { setTraceId, logRequest, handleError } from '~/middlewares';
 import { DbConnectionError } from '~/exceptions';
 import { sequelize } from '~/data/db/connection';
-import { authorizationMiddleware } from './middlewares';
+import { authorization as authorizationMiddleware } from './middlewares';
 import { routesWhiteList } from './configs';
 
 const app = express();

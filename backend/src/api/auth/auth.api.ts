@@ -5,8 +5,8 @@ import {
 } from '~/validation-schemas';
 import { ApiPath, AuthApiPath, HttpCode } from '~/common/enums';
 import {
-  authenticationMiddleware,
-  registrationMiddleware,
+  authentication as authenticationMiddleware,
+  registration as registrationMiddleware,
   validateSchema,
 } from '~/middlewares';
 import { authService } from '~/services/services';
