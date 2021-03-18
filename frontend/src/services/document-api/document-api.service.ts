@@ -21,11 +21,11 @@ class DocumentApi {
     this.#apiPrefix = apiPrefix;
   }
 
-  public editDocument(id: string, document: any): Promise<IDocument> {
+  public editDocument(id: string, payload:any): Promise<IDocument> { //fix any latter
     return this.#http.load(`${this.#apiPrefix}${ApiPath.DOCUMENTS}/${id}`, {
       method: HttpMethod.PUT,
       contentType: ContentType.JSON,
-      payload:document,
+      payload,
     });
   }
 }

@@ -11,8 +11,12 @@ class UserService {
     return userRepository.getByType(type);
   }
   
-  public getUserById(id:string):Promise<IUser | null>{      
-    return userRepository.getById(id)
+  public async getUserById(id:string):Promise<IUser | null>{      
+    const user = await userRepository.getById(id);
+    if (user && user.type === UserType.DOCTOR){
+      return userRepository.getDoctorDetailsById((user.id as string))
+    }
+    return user
   }
 
   public getDoctorDetailsById(id: string): Promise<IUser | null> {

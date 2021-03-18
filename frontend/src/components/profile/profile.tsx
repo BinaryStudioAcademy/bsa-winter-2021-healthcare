@@ -6,7 +6,7 @@ import { UserType } from 'common/enums';
 import { AuthActionCreator } from 'store/slices';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { RootState } from 'common/types';
+import { RootState, UserGeneric } from 'common/types';
 import { useParams } from 'react-router';
 import { UsersActionCreator } from 'store/slices';
 
@@ -18,18 +18,18 @@ type RouteParam = {
 
 const Profile: React.FC = () => {
   const [isEditeMode, setIsEditMode] = React.useState<boolean>(false);
-  const [user, setUser] = React.useState<IUserTypeDoctor>();
+  const [user, setUser] = React.useState<UserGeneric>();
   const { currentUser } = useSelector(({ auth }: RootState) => ({
-    currentUser: auth.user as IUserTypeDoctor,
+    currentUser: auth.user,
   }));
   const { fetchedUser } = useSelector(({ users }: RootState) => ({
-    fetchedUser: users.userInProfile as IUserTypeDoctor,
+    fetchedUser: users.userInProfile,
   }));
   const dispatch = useDispatch();
   const { id } = useParams<RouteParam>();
-  const isCurrentUser = currentUser.id === id;
+  const isCurrentUser = currentUser?.id === id;
   const isDoctor = user?.type === UserType.DOCTOR;
-  React.useEffect(()=>{ 
+  React.useEffect(()=>{       
     if (isCurrentUser) {
       setUser(currentUser);
     } else {      
@@ -53,8 +53,8 @@ const Profile: React.FC = () => {
       {user ? <div className={styles.profileContainer}>
         <SideMenu />
         <div className={styles.infoContainer}>
-          <UserInfo user ={user} onEdit={handleOpenPopUp}/>
-          {isDoctor && <Documents document={user.doctor.document}/>}
+          <UserInfo user ={user} onEdit={handleOpenPopUp} isCurrentUser={isCurrentUser}/>
+          {isDoctor && <Documents document={(user as IUserTypeDoctor).doctor.document}/>}
         </div>        
         {isEditeMode && <EditUserPopup
           user={user}

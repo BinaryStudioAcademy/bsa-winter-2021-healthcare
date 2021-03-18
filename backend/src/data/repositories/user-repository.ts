@@ -4,6 +4,7 @@ import {
   ClinicModel,
   PermissionModel,
   SpecializationModel,
+  DocumentModel,
 } from '../models';
 import {
   IUser,
@@ -65,21 +66,6 @@ class UserRepository {
     return UserModel.findAll({ where: { type } });
   }
 
-  /*public getById(id: string): Promise<IUser | null> {
-    return UserModel.findByPk(id, {
-      include:{
-        model:DoctorModel, 
-        as: ModelAlias.DOCTOR,
-        attributes: [DoctorKey.ID, DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
-        include:[
-          {
-            model:DocumentModel,
-            as:ModelAlias.DOCUMENT
-          }
-        ]
-      }     
-    })  
-  }*/    
   public getDoctorDetailsById(id: string): Promise<IUser | null> {
     return UserModel.findOne({
       where: { id },
@@ -88,6 +74,12 @@ class UserRepository {
           model: DoctorModel,
           as: ModelAlias.DOCTOR,
           attributes: [DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
+          include:[
+            {
+              model:DocumentModel,
+              as:ModelAlias.DOCUMENT
+            }
+          ]
         },
         {
           model: SpecializationModel,

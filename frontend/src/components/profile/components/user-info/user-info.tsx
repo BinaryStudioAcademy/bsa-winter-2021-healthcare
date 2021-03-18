@@ -10,23 +10,24 @@ import styles from './styles.module.scss';
 
 type Props = {
   user: IUser
+  isCurrentUser:boolean | undefined
   onEdit: BindingCb
 };
 
-const UserInfo: React.FC<Props> = ({ user, onEdit }) => {
+const UserInfo: React.FC<Props> = ({ user, isCurrentUser, onEdit }) => {
   const birthdate = getFormattedDate( user.birthdate, DateFormat.D_MMMM_YYYY);
   return (
     <div className={styles.mainInfo}>
       <div className={styles.infoHeader}>
         <span className={styles.title}>My Profile</span>        
-        <Button
+        {isCurrentUser && <Button
           label={''}
           icon={ButtonIcon.EDIT}
           hasHiddenLabel={false}
           color={ButtonColor.GRAY_LIGHT}
           styleType={ButtonStyleType.MEDIUM_ROUND}
           onClick={onEdit}
-        />
+        />}
       </div>
       <div className={styles.infoBloks}>
         <div className={styles.photo}>

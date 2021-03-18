@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { notificationService, userApi, documentApi } from 'services';
 import { ReducerName } from 'common/enums';
-import { AppThunk } from 'common/types';
+import { AppThunk, UserGeneric } from 'common/types';
 import { IDocument, IEditUserPayload, IUser, IUserTypeDoctor } from 'common/interfaces';
 import { HttpError } from 'exceptions';
 
 interface IState {
   users: IUser[];
-  userInProfile: IUserTypeDoctor | null;
+  userInProfile: UserGeneric;
 }
 
 const initialState: IState = {
@@ -24,11 +24,11 @@ const { reducer, actions } = createSlice({
     },    
     editUser: (
       state,
-      action: PayloadAction<{ id: string | undefined; data: IUser[] }>,
+      action: PayloadAction<{ id: string | undefined; data: IUser }>,
     ) => {
       const id = action.payload.id;
       state.users = state.users.map((user: IUser) =>
-        user.id === id ? action.payload.data[0] : user,
+        user.id === id ? action.payload.data : user,
       );
     },
     deleteUser: (state, action: PayloadAction<string>) => {
@@ -36,7 +36,7 @@ const { reducer, actions } = createSlice({
         (user: IUser) => user.id !== action.payload,
       );
     },
-    setUserToProfile:(state, action: PayloadAction<IUserTypeDoctor>) => {
+    setUserToProfile:(state, action: PayloadAction<UserGeneric>) => {
       state.userInProfile = action.payload;
     },
     editeDocumentStatus:(state, action: PayloadAction<IDocument>) => {
@@ -60,7 +60,7 @@ const getUsers = (): AppThunk => async (dispatch) => {
 const getUser = (id:string): AppThunk => async (dispatch) => {
   try{
     const user = await userApi.getUser(id);
-    dispatch(actions.setUserToProfile(user as IUserTypeDoctor));
+    dispatch(actions.setUserToProfile(user));
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
@@ -71,7 +71,7 @@ const getUser = (id:string): AppThunk => async (dispatch) => {
 
 const editUser = (userInfo: IEditUserPayload): AppThunk => async (dispatch) => {
   try {
-    const response: IUser[] = await userApi.editUser(
+    const response: IUser = await userApi.editUser(
       userInfo.id as string,
       userInfo,
     );
@@ -85,6 +85,7 @@ const editUser = (userInfo: IEditUserPayload): AppThunk => async (dispatch) => {
     throw error;
   }
 };
+
 const addUser = (userInfo: IUser): AppThunk => async (dispatch) => {
   try {
     const response = await userApi.registerUser(userInfo);
