@@ -5,59 +5,50 @@ import {
   ButtonColor,
   ButtonStyleType,
   ButtonType,
+  EditUserPayloadKey,
   InputColor,
   InputType,
-  RegisterPayloadKey,
   UserSex,
   UserType,
 } from 'common/enums';
-import { IRegisterPayload } from 'common/interfaces';
-import { userRegister as validationUserSchema } from 'validation-schemas';
 import styles from './styles.module.scss';
+import { IEditUserPayload, IUser } from 'common/interfaces';
+import { editUser as validationEditUser } from 'validation-schemas';
 import { Button, DateInput, Select, TextInput } from 'components/common';
 import { createOptions } from 'helpers';
-import { CreateUserCb, HideFormCb } from 'components/admin-page/common/types';
+import { EditUserCb, HideFormCb } from 'components/users/common/types';
 
 type Props = {
-  onCreateUser: CreateUserCb;
+  user: IUser;
+  onEditUser: EditUserCb;
   onFormHide: HideFormCb;
-};
-
-const DEFAULT_VALUES: IRegisterPayload = {
-  [RegisterPayloadKey.NAME]: '',
-  [RegisterPayloadKey.SURNAME]: '',
-  [RegisterPayloadKey.SEX]: UserSex.MALE,
-  [RegisterPayloadKey.BIRTH_DATE]: '',
-  [RegisterPayloadKey.EMAIL]: '',
-  [RegisterPayloadKey.PASSWORD]: '',
-  [RegisterPayloadKey.RETYPE_PASSWORD]: '',
-  [RegisterPayloadKey.PHONE]: '',
-  [RegisterPayloadKey.TYPE]: UserType.PATIENT,
-  [RegisterPayloadKey.IMAGE_PATH]:
-    'https://www.pikpng.com/pngl/b/80-805523_default-avatar-svg-png-icon-free-download-264157.png',
 };
 
 const genderOptions = createOptions<string>(Object.values(UserSex));
 const userTypeOptions = createOptions<string>(Object.values(UserType));
 
-const CreateUserPopup: React.FC<Props> = ({ onCreateUser, onFormHide }) => {
-  const { handleSubmit, errors, control } = useForm<IRegisterPayload>({
-    resolver: yupResolver(validationUserSchema),
-    defaultValues: DEFAULT_VALUES,
+const EditUserPopup: React.FC<Props> = ({ user, onEditUser, onFormHide }) => {
+  const userWithDate: IEditUserPayload = {
+    ...user,
+    birthdate: new Date(user.birthdate),
+  };
+
+  const { handleSubmit, errors, control } = useForm<IEditUserPayload>({
+    resolver: yupResolver(validationEditUser),
+    defaultValues: userWithDate,
     mode: 'onChange',
   });
 
-  const handleFormSubmit = (userData: IRegisterPayload) =>
-    onCreateUser(userData);
+  const handleFormSubmit = (userData: IEditUserPayload) => onEditUser(userData);
 
   return (
     <div className={styles.editContainer}>
       <form
         onSubmit={handleSubmit(handleFormSubmit)}
-        className={styles.createForm}
+        className={styles.editForm}
       >
         <div className={styles.header}>
-          <h2 className={styles.title}>Add user</h2>
+          <h2 className={styles.title}>Edit user</h2>
           <button
             className={styles.closeButton}
             onClick={onFormHide}
@@ -69,7 +60,7 @@ const CreateUserPopup: React.FC<Props> = ({ onCreateUser, onFormHide }) => {
 
         <div className={styles.inputBlock}>
           <TextInput
-            name={RegisterPayloadKey.NAME}
+            name={EditUserPayloadKey.NAME}
             label="Name"
             hasHiddenLabel={false}
             placeholder="Name"
@@ -82,7 +73,7 @@ const CreateUserPopup: React.FC<Props> = ({ onCreateUser, onFormHide }) => {
 
         <div className={styles.inputBlock}>
           <TextInput
-            name={RegisterPayloadKey.SURNAME}
+            name={EditUserPayloadKey.SURNAME}
             label="Surname"
             hasHiddenLabel={false}
             placeholder="Surname"
@@ -95,7 +86,7 @@ const CreateUserPopup: React.FC<Props> = ({ onCreateUser, onFormHide }) => {
 
         <div className={styles.inputBlock}>
           <Select
-            name={RegisterPayloadKey.SEX}
+            name={EditUserPayloadKey.SEX}
             label="Gender"
             hasHiddenLabel={false}
             placeholder="Gender"
@@ -108,7 +99,7 @@ const CreateUserPopup: React.FC<Props> = ({ onCreateUser, onFormHide }) => {
 
         <div className={styles.inputBlock}>
           <DateInput
-            name={RegisterPayloadKey.BIRTH_DATE}
+            name={EditUserPayloadKey.BIRTHDATE}
             label="Birthday"
             hasHiddenLabel={false}
             placeholder="Birthday"
@@ -120,7 +111,7 @@ const CreateUserPopup: React.FC<Props> = ({ onCreateUser, onFormHide }) => {
 
         <div className={styles.inputBlock}>
           <TextInput
-            name={RegisterPayloadKey.EMAIL}
+            name={EditUserPayloadKey.EMAIL}
             label="Email"
             hasHiddenLabel={false}
             placeholder="Email"
@@ -133,33 +124,7 @@ const CreateUserPopup: React.FC<Props> = ({ onCreateUser, onFormHide }) => {
 
         <div className={styles.inputBlock}>
           <TextInput
-            name={RegisterPayloadKey.PASSWORD}
-            label="Password"
-            hasHiddenLabel={false}
-            placeholder="Password"
-            type={InputType.PASSWORD}
-            color={InputColor.GRAY_LIGHT}
-            control={control}
-            errors={errors}
-          />
-        </div>
-
-        <div className={styles.inputBlock}>
-          <TextInput
-            name={RegisterPayloadKey.RETYPE_PASSWORD}
-            label="Retype password"
-            hasHiddenLabel={false}
-            placeholder="Retype password"
-            type={InputType.PASSWORD}
-            color={InputColor.GRAY_LIGHT}
-            control={control}
-            errors={errors}
-          />
-        </div>
-
-        <div className={styles.inputBlock}>
-          <TextInput
-            name={RegisterPayloadKey.PHONE}
+            name={EditUserPayloadKey.PHONE}
             label="Phone"
             hasHiddenLabel={false}
             placeholder="Phone"
@@ -172,7 +137,7 @@ const CreateUserPopup: React.FC<Props> = ({ onCreateUser, onFormHide }) => {
 
         <div className={styles.inputBlock}>
           <Select
-            name={RegisterPayloadKey.TYPE}
+            name={EditUserPayloadKey.TYPE}
             label="Status"
             hasHiddenLabel={false}
             placeholder="Status"
@@ -185,7 +150,7 @@ const CreateUserPopup: React.FC<Props> = ({ onCreateUser, onFormHide }) => {
 
         <div className={styles.inputBlock} style={{ display: 'none' }}>
           <TextInput
-            name={RegisterPayloadKey.IMAGE_PATH}
+            name={EditUserPayloadKey.IMAGE_PATH}
             label="Avatar"
             hasHiddenLabel={true}
             type={InputType.HIDDEN}
@@ -197,7 +162,7 @@ const CreateUserPopup: React.FC<Props> = ({ onCreateUser, onFormHide }) => {
 
         <div className={styles.submitBtn}>
           <Button
-            label="Add"
+            label="Edit"
             hasHiddenLabel={false}
             type={ButtonType.SUBMIT}
             color={ButtonColor.PRIMARY_DARK}
@@ -209,4 +174,4 @@ const CreateUserPopup: React.FC<Props> = ({ onCreateUser, onFormHide }) => {
   );
 };
 
-export default CreateUserPopup;
+export default EditUserPopup;

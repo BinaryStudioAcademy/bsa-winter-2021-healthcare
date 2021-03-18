@@ -1,1 +1,1 @@
-export { DoctorFiltration } from 'healthcare-shared/common/enums'
+export { DoctorFiltration } from 'healthcare-shared/common/enums';

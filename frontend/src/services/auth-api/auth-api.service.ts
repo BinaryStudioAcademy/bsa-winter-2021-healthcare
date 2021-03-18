@@ -19,20 +19,29 @@ class AuthApi {
     this.#apiPrefix = apiPrefix;
   }
 
-  // TODO: change promise type to IUser, when add needed repositories.
-  public loginUser(payload: IUserLoginPayload): Promise<LoginResponse> {
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.AUTH}${AuthApiPath.LOGIN}`, {
-      method: HttpMethod.POST,
-      contentType: ContentType.JSON,
-      payload,
-    });
+  public loginUser(
+    payload: Partial<IUserLoginPayload>,
+  ): Promise<LoginResponse> {
+    return this.#http.load(
+      `${this.#apiPrefix}${ApiPath.AUTH}${AuthApiPath.LOGIN}`,
+      {
+        method: HttpMethod.POST,
+        contentType: ContentType.JSON,
+        payload,
+      },
+    );
   }
-  public registrationUser(payload: Partial<IRegisterPayload>): Promise<LoginResponse> {
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.AUTH}${AuthApiPath.SIGNUP}`, {
-      method: HttpMethod.POST,
-      contentType: ContentType.JSON,
-      payload,
-    });
+  public registrationUser(
+    payload: Partial<IRegisterPayload>,
+  ): Promise<LoginResponse> {
+    return this.#http.load(
+      `${this.#apiPrefix}${ApiPath.AUTH}${AuthApiPath.SIGNUP}`,
+      {
+        method: HttpMethod.POST,
+        contentType: ContentType.JSON,
+        payload,
+      },
+    );
   }
 }
 

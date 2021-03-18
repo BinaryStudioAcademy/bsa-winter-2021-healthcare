@@ -1,4 +1,4 @@
-import { ButtonClickEvent } from "./button-click-event.type";
+import { ButtonClickEvent } from './button-click-event.type';
 
 type ButtonClickCallback = (evt: ButtonClickEvent) => void;
 

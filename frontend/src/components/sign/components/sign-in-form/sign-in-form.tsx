@@ -5,16 +5,25 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { login as loginSchema } from 'validation-schemas';
 import { IUserLoginPayload } from 'common/interfaces';
 import { TextInput, Link, Button } from 'components/common';
-import { LoginPayloadKey, InputType, InputColor, ButtonType, ButtonColor, ButtonStyleType } from 'common/enums';
+import {
+  LoginPayloadKey,
+  InputType,
+  InputColor,
+  ButtonType,
+  ButtonColor,
+  ButtonStyleType,
+} from 'common/enums';
 import { AppRoute } from 'common/enums';
 import { AuthActionCreator } from 'store/slices';
+import { SIGN_IN_DEFAULT_VALUES } from '../common/constants';
 
 import styles from './signin.module.scss';
 
 const SignInForm: React.FC = () => {
   const { control, handleSubmit, errors } = useForm<IUserLoginPayload>({
     resolver: yupResolver(loginSchema),
-    mode: "onChange",
+    mode: 'onChange',
+    defaultValues: SIGN_IN_DEFAULT_VALUES,
   });
   const dispatch = useDispatch();
 
@@ -23,8 +32,10 @@ const SignInForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className={styles.formSignIn}>
-
+    <form
+      onSubmit={handleSubmit(handleFormSubmit)}
+      className={styles.formSignIn}
+    >
       <h2 className={styles.title}>Sign In</h2>
 
       <div className={styles.textBlock}>

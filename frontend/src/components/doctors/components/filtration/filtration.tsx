@@ -2,7 +2,14 @@ import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './filtration.module.scss';
 import { TextInput, Checkbox, Details } from 'components/common';
-import { DoctorType, ClinicType, InputType, InputColor, DoctorFiltration, Icon } from 'common/enums';
+import {
+  DoctorType,
+  ClinicType,
+  InputType,
+  InputColor,
+  DoctorFiltration,
+  Icon,
+} from 'common/enums';
 import { IDoctorFiltrationPayload } from 'common/interfaces';
 import { getTruthyEntities } from 'helpers';
 import { DEFAULT_FILTER_VALUE } from '../common/constants';
@@ -13,7 +20,7 @@ const clinicTypes = Object.keys(ClinicType).map((key) => key.toLocaleLowerCase()
 const Filtration: React.FC = () => {
   const { handleSubmit, control, errors } = useForm<IDoctorFiltrationPayload>({
     defaultValues: DEFAULT_FILTER_VALUE,
-    mode: "onBlur",
+    mode: 'onBlur',
   });
 
   const handleSubmitForm = (formData: IDoctorFiltrationPayload) => {
@@ -43,10 +50,7 @@ const Filtration: React.FC = () => {
               errors={errors}
             />
           </div>
-          <Details
-            icon={Icon.LOCATION}
-            title="Location"
-          >
+          <Details icon={Icon.LOCATION} title="Location">
             <TextInput
               name={DoctorFiltration.CITY.toLocaleLowerCase()}
               label={DoctorFiltration.CITY}
@@ -89,6 +93,7 @@ const Filtration: React.FC = () => {
         </div>
       </div>
     </form>
-  )}
+  );
+};
 
 export default Filtration;
