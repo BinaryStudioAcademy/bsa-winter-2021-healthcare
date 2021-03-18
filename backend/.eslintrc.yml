@@ -11,7 +11,3 @@ overrides:
     rules:
       '@typescript-eslint/no-var-requires':
         - off
-rules:
-  '@typescript-eslint/no-empty-interface':
-    - error
-    - allowSingleExtends: true
