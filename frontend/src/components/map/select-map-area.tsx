@@ -4,15 +4,16 @@ import { useMap } from 'react-leaflet';
 import L, { LatLng } from 'leaflet';
 import 'leaflet-lasso';
 import { FINISHED_EVENT, ENABLED_EVENT } from 'leaflet-lasso';
+import { MapCoordsDefault } from 'common/enums';
 
 const SelectMapArea: React.FC = () => {
   const map = useMap();
   const control = L.control.lasso({ position: 'topright' });
 
-  let minLat = 90;
-  let minLng = 180;
-  let maxLat = -90;
-  let maxLng = -180;
+  let minLat = MapCoordsDefault.MIN_LAT;
+  let minLng = MapCoordsDefault.MIN_LNG;
+  let maxLat = MapCoordsDefault.MAX_LAT;
+  let maxLng = MapCoordsDefault.MAX_LNG;
 
   let selectedAreaPolygon = L.polygon([]);
 
@@ -22,10 +23,10 @@ const SelectMapArea: React.FC = () => {
   map.on(FINISHED_EVENT, handleSelection);
 
   function clearSelectionData(): void {
-    minLat = 90;
-    minLng = 180;
-    maxLat = -90;
-    maxLng = -180;
+    minLat = MapCoordsDefault.MIN_LAT;
+    minLng = MapCoordsDefault.MIN_LNG;
+    maxLat = MapCoordsDefault.MAX_LAT;
+    maxLng = MapCoordsDefault.MAX_LNG;
     selectedAreaPolygon.remove();
   }
 

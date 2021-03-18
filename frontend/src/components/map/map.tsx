@@ -3,13 +3,17 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import styles from './map.module.scss';
 import SelectMapArea from './select-map-area';
+import { MapOptions, TileOptions } from 'common/enums';
 
 const Map: React.FC = () => (
   <div className={styles.mapWrapper}>
-    <MapContainer className={styles.map} center={[50.4536, 30.5164]} zoom={13} scrollWheelZoom={true}>
+    <MapContainer
+      className={styles.map}
+      center={[MapOptions.INITIAL_POSOTION_LAT, MapOptions.INITIAL_POSOTION_LNG]}
+      zoom={MapOptions.ZOOM}>
       <TileLayer
-        attribution={'&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}
-        url={'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}
+        attribution={TileOptions.ATTRIBUTION}
+        url={TileOptions.URL}
       />
       <SelectMapArea />
     </MapContainer>
