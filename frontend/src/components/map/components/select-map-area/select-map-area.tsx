@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useMap } from 'react-leaflet';
-import L, { LatLng } from 'leaflet';
+import L, { LatLng, LeafletEvent } from 'leaflet';
 import 'leaflet-lasso';
-import { FINISHED_EVENT, ENABLED_EVENT } from 'leaflet-lasso';
+import { FINISHED_EVENT, ENABLED_EVENT, LassoHandlerFinishedEvent } from 'leaflet-lasso';
 import { MapCoordsDefault } from 'common/enums';
 
 const SelectMapArea: React.FC = () => {
@@ -27,8 +27,9 @@ const SelectMapArea: React.FC = () => {
     selectedAreaPolygon.remove();
   };
 
-  const handleAreaSelection = (evt: any): void => {
-    evt.latLngs.forEach((coords: LatLng) => {
+  const handleAreaSelection = (evt: LeafletEvent): void => {
+    const lassoEvent = evt as LassoHandlerFinishedEvent;
+    lassoEvent.latLngs.forEach((coords: LatLng) => {
       if (coords.lat < minLat) minLat = coords.lat;
       if (coords.lat > maxLat) maxLat = coords.lat;
       if (coords.lng < minLng) minLng = coords.lng;
