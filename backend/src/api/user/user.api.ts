@@ -21,7 +21,7 @@ const initUserApi = (apiRouter: Router): Router => {
 
   userRouter.get(UsersApiPath.TYPE_$TYPE, async (req, res, next) => {
     try {
-      const users = await userService.getUsersByType(req.params.type as UserType);
+      const users = await userService.getUsersByType(req.params.type as UserType, req.body);
       res.status(HttpCode.OK).json(users);
     } catch(error) {
       next(error);

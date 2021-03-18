@@ -11,3 +11,4 @@ export * from './doctor';
 export * from './geolocation';
 export * from './permission';
 export * from './specialization';
+export * from './city';

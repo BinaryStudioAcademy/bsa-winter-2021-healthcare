@@ -1,14 +1,14 @@
 import { userRepository } from '~/data/repositories';
 import { UserType } from '~/common/enums';
-import { IRegisterPayload, IUser, IUserWithPermissions } from '~/common/interfaces';
+import { IRegisterPayload, IUser, IUserWithPermissions, IDoctorFiltrationPayload } from '~/common/interfaces';
 
 class UserService {
   public getAllUsers(): Promise<IUserWithPermissions[]>{
     return userRepository.getAll();
   }
 
-  public getUsersByType(type:UserType):Promise<IUserWithPermissions[]>{
-    return userRepository.getByType(type);
+  public getUsersByType(type:UserType, filter: IDoctorFiltrationPayload):Promise<IUserWithPermissions[]>{
+    return userRepository.getByType(type, filter);
   }
 
   public getDoctorDetailsById(id: string): Promise<IUser | null> {

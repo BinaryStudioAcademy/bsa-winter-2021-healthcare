@@ -4,11 +4,13 @@ import {
   ClinicModel,
   PermissionModel,
   SpecializationModel,
+  CityModel,
 } from '../models';
 import {
   IUser,
   IRegisterPayload,
   IUserWithPermissions,
+  IDoctorFiltrationPayload,
 } from '~/common/interfaces';
 import {
   UserType,
@@ -16,6 +18,7 @@ import {
   DoctorKey,
   ClinicKey,
   SpecializationKey,
+  CityKey,
 } from '~/common/enums';
 
 class UserRepository {
@@ -28,10 +31,21 @@ class UserRepository {
     });
   }
 
-  public getByType(type: UserType): Promise<IUserWithPermissions[]> {
+  public getByType(type: UserType, filter: IDoctorFiltrationPayload): Promise<IUserWithPermissions[]> {
     if (type === UserType.DOCTOR) {
+      const where = { type };
+
+      if (filter.doctorName)
+        Object.assign(where, { name: filter.doctorName });
+      if (filter.typeOfClinic)
+        Object.assign(where, { '$doctor.clinic.clinicType$': filter.typeOfClinic });
+      if (filter.city)
+        Object.assign(where, { '$doctor.clinic.city.name$': filter.city });
+      if (filter.specialty)
+        Object.assign(where, { '$specializations.text$': filter.specialty });
+
       return UserModel.findAll({
-        where: { type },
+        where,
         include: [
           {
             model: DoctorModel,
@@ -47,12 +61,26 @@ class UserRepository {
                   ClinicKey.ADDRESS,
                   ClinicKey.CLINIC_TYPE,
                 ],
+                include: [
+                  {
+                    model: CityModel,
+                    as: ModelAlias.CITY,
+                    attributes: [CityKey.NAME],
+                  },
+                ],
               },
             ],
           },
           {
             model: PermissionModel,
             as: ModelAlias.PERMISSIONS,
+          },
+          {
+            model: SpecializationModel,
+            as: ModelAlias.SPECIALIZATIONS,
+            attributes: [
+              SpecializationKey.TEXT,
+            ],
           },
         ],
       });
