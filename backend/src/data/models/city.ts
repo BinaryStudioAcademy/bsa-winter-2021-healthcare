@@ -11,6 +11,7 @@ const createCityModel = (orm: Sequelize): ModelCtor<CityInstance> => {
       name: {
         allowNull: false,
         type: DataTypes.STRING,
+        unique: true,
       },
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
