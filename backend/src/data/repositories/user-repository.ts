@@ -19,6 +19,10 @@ import {
 } from '~/common/enums';
 
 class UserRepository {
+  public getById(id: string): Promise<IUser | null> {
+    return UserModel.findByPk(id);
+  }
+
   public getAll(): Promise<IUserWithPermissions[]> {
     return UserModel.findAll({
       include: {
