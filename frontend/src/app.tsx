@@ -7,8 +7,8 @@ import NotFound from 'components/not-found/not-found';
 import Clinics from 'components/clinics/clinics';
 import Doctors from 'components/doctors/doctors';
 import DoctorDetails from 'components/doctor-details/doctor-details';
-import { AuthorizedRoute } from 'components/common';
 import Map from 'components/map/map';
+import { AuthorizedRoute } from 'components/common';
 
 const App: React.FC = () => (
   <Switch>
@@ -19,7 +19,9 @@ const App: React.FC = () => (
     <AuthorizedRoute exact path={AppRoute.USERS} component={Users}
       permissions={[PermissionName.CREATE_USER, PermissionName.EDIT_USER]}
     />
-    <AuthorizedRoute path={AppRoute.MAP} component={Map} permissions={[PermissionName.MAP_MANIPULATION]}/>
+    <AuthorizedRoute exact path={AppRoute.MAP} component={Map}
+      permissions={[PermissionName.MAP_MANIPULATION]}
+    />
     <Route path="*" exact component={NotFound} />
   </Switch>
 );
