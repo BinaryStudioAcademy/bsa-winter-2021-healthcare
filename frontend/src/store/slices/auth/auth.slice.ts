@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName, DataStatus, StorageKey } from 'common/enums';
 import { IUserWithPermissions, IUserLoginPayload, IRegisterPayload } from 'common/interfaces';
-import { authApi, notificationService, storage, geolocationService } from 'services';
+import { authApi, notification as notificationService, storage, geolocation as geolocationService } from 'services';
 import { LoginResponse } from 'common/types/responses';
 import { HttpError } from 'exceptions';
 

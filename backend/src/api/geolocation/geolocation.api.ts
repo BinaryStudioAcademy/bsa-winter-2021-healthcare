@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { ApiPath, HttpCode, GeolocationsApiPath } from '~/common/enums';
-import { geolocationService } from '~/services/services';
+import { geolocation as geolocationService } from '~/services/services';
 
 const initGeolocationApi = (apiRouter: Router): Router => {
   const geolocationRouter = Router();
