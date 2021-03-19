@@ -7,7 +7,9 @@ import {
   ButtonColor,
   ButtonStyleType,
 } from 'common/enums';
-import  { Button } from 'components/common';
+import { Button } from 'components/common';
+
+import  { HorizontalLine } from './components';
 
 import styles from './styles.module.scss';
 import avatar from 'assets/images/phone.svg';
@@ -91,9 +93,7 @@ const Chats: React.FC = () => {
             <span>9:52</span>
           </div>
 
-          <div className={styles.hr}>
-            <span>Today</span>
-          </div>
+          <HorizontalLine label="Today" />
 
           <div className={clsx(styles.message, styles.out)}>
             <img src={avatar} />
@@ -111,9 +111,7 @@ const Chats: React.FC = () => {
             <span>08:28</span>
           </div>
 
-          <div className={styles.hr}>
-            <span>09 Mar</span>
-          </div>
+          <HorizontalLine label="09 Mar" />
 
           <div className={clsx(styles.message, styles.in)}>
             <img src={avatar} />
