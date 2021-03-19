@@ -16,7 +16,6 @@ const createPermissionModel = (
           PermissionName.CREATE_USER,
           PermissionName.EDIT_USER,
           PermissionName.CREATE_CLINIC,
-          PermissionName.MAP_MANIPULATION,
         ),
         unique: true,
       },
