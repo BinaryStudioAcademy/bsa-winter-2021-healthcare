@@ -10,7 +10,7 @@ import {
 } from 'common/enums';
 import { IDoctorFiltrationPayload } from 'common/interfaces';
 import { DEFAULT_FILTER_VALUE } from '../common/constants';
-import { doctorSpecialtiesToReadable, clinicTypesToReadable } from '../common/maps';
+import { doctorSpecialtiesToReadable, clinicTypesToReadable } from '../../common';
 
 const doctorSpecialties = Object.values(doctorSpecialtiesToReadable);
 const clinicTypes = Object.values(clinicTypesToReadable);
@@ -22,8 +22,7 @@ const Filtration: React.FC = () => {
   });
 
   const handleChange = () => {
-    const formData = getValues();
-    return formData;
+    getValues();
   };
 
   return (
@@ -63,9 +62,10 @@ const Filtration: React.FC = () => {
               <div className={styles.filterCheckbox} key={doctorSpecialty}>
                 <Checkbox
                   name={DoctorFiltration.SPECIALTY}
-                  value={doctorSpecialty}
+                  value={doctorSpecialty.toLocaleLowerCase()}
                   label={doctorSpecialty}
                   register={register}
+                  errors={errors}
                 />
               </div>
             ))}
@@ -78,9 +78,10 @@ const Filtration: React.FC = () => {
               <div className={styles.filterCheckbox} key={clinicType}>
                 <Checkbox
                   name={DoctorFiltration.TYPE_OF_CLINIC}
-                  value={clinicType}
+                  value={clinicType.toLocaleLowerCase()}
                   label={clinicType}
                   register={register}
+                  errors={errors}
                 />
               </div>
             ))}
