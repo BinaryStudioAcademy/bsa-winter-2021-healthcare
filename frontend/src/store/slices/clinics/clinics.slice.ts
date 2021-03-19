@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName } from 'common/enums';
 import { IClinic } from 'common/interfaces';
-import { clinicApi, notificationService } from 'services';
+import { clinicApi, notification as notificationService } from 'services';
 import { AppThunk } from 'common/types';
 import { HttpError } from 'exceptions';
 

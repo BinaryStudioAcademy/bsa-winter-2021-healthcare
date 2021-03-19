@@ -8,6 +8,7 @@
     "heroku-postbuild": "npm run migrate",
     "migrate": "sequelize-cli db:migrate",
     "migrate:undo": "sequelize-cli db:migrate:undo",
+    "migrate:undo:all": "sequelize-cli db:migrate:undo:all",
     "start:dev": "nodemon --exec ts-node --files -r dotenv/config -r tsconfig-paths/register ./src/server.ts",
     "start": "node -r dotenv/config ./src/server.js",
     "build:ts": "tsc && tscpaths -p tsconfig.json --src . --out build",
