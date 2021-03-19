@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-import  { HorizontalLine, Message, Member, InputMessageForm } from './components';
+import  { HorizontalLine, Message, MemberList, InputMessageForm } from './components';
 
 import styles from './styles.module.scss';
 
@@ -12,17 +12,7 @@ const Chats: React.FC = () => {
   return (
     <div className={styles.container}>
 
-      <div className={styles.memberList}>
-
-        <Member label="Giana Levin" info="00:00" avatar={avatar} isSelected={true} />
-        <Member label="Jakob Rosser" avatar={avatar}/>
-        <Member label="Jaylon Curtis" avatar={avatar} />
-        <Member label="Dulce Mango" avatar={avatar}/>
-        <Member label="Erin Dorwart" avatar={avatar} />
-        <Member label="Jakob Rosser" avatar={avatar}/>
-        <Member label="Leo Torff" avatar={avatar} />
-
-      </div>
+      <MemberList />
 
       <div className={styles.chat}>
 
