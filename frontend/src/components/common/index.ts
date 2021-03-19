@@ -28,7 +28,7 @@ export {
   Modal,
   Toaster,
   Card,
-  EditUserPopup, 
+  EditUserPopup,
   Details,
   AuthorizedRoute,
   AuthorizedWrapper,

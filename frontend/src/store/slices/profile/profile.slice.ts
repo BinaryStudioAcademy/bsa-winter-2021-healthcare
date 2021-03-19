@@ -6,21 +6,21 @@ import { IDocument, IUser, IUserTypeDoctor, IEditUserPayload } from 'common/inte
 import { AuthActionCreator } from 'store/slices';
 import { HttpError } from 'exceptions';
 
-interface IState {  
+interface IState {
   user: IUser | null;
 }
 
-const initialState: IState = {  
+const initialState: IState = {
   user: null,
 };
 
 const { reducer, actions } = createSlice({
   name: ReducerName.PROFILE,
   initialState,
-  reducers: {    
+  reducers: {
     setUser:(state, action: PayloadAction<IUser>) => {
       state.user = action.payload;
-    },    
+    },
     editeDocumentStatus:(state, action: PayloadAction<IDocument>) => {
       (state.user as IUserTypeDoctor).doctor.document = action.payload;
     },
@@ -68,7 +68,7 @@ const editUserDocument = (payload:IDocument):AppThunk => async (dispatch) => {
 };
 
 const ProfileActionCreator = {
-  ...actions,  
+  ...actions,
   getUser,
   editeUserInProfile,
   editUserDocument,

@@ -68,7 +68,7 @@ const { reducer, actions } = createSlice({
     };
     builder
       .addCase(login.fulfilled, sharedReducer)
-      .addCase(registration.fulfilled, sharedReducer);      
+      .addCase(registration.fulfilled, sharedReducer);
   },
 });
 

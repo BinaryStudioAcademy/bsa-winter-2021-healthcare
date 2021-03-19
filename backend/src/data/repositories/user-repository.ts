@@ -26,7 +26,7 @@ class UserRepository {
       include:{
         model: PermissionModel,
         as: ModelAlias.PERMISSIONS,
-      }
+      },
     });
   }
 
@@ -116,7 +116,7 @@ class UserRepository {
   public async updateById(id: string, data: IUser): Promise<IUser> {
     const [ , [user]] = await UserModel.update(data, {
       where: { id },
-      returning: true,      
+      returning: true,
     });
     return user;
   }

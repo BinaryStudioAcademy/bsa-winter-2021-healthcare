@@ -6,11 +6,11 @@ import { IEditUserPayload, IUser } from 'common/interfaces';
 import { HttpError } from 'exceptions';
 
 interface IState {
-  users: IUser[];  
+  users: IUser[];
 }
 
 const initialState: IState = {
-  users: [],  
+  users: [],
 };
 
 const { reducer, actions } = createSlice({
@@ -33,7 +33,7 @@ const { reducer, actions } = createSlice({
       state.users = state.users.filter(
         (user: IUser) => user.id !== action.payload,
       );
-    },  
+    },
   },
 });
 
@@ -94,7 +94,7 @@ const UsersActionCreator = {
   getUsers,
   addUser,
   editUser,
-  deleteUser,  
+  deleteUser,
 };
 
 export { UsersActionCreator, reducer };

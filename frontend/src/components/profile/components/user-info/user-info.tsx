@@ -9,7 +9,7 @@ import clsx from 'clsx';
 import styles from './styles.module.scss';
 
 type Props = {
-  user: IUser  
+  user: IUser
   onEdit: BindingCb
 };
 

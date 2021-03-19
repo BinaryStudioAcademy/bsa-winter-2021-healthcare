@@ -32,7 +32,7 @@ class User {
     if (user?.type === UserType.DOCTOR){
       return userRepository.getDoctorDetailsById((user.id as string));
     }
-    return userRepository.getById((user.id as string)); 
+    return userRepository.getById((user.id as string));
   }
 
   public deleteUser(id: string): Promise<boolean> {

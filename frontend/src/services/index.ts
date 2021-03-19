@@ -47,7 +47,7 @@ export {
   userApi,
   storage,
   notification,
-  clinicApi,  
+  clinicApi,
   documentApi,
   geolocation,
 };

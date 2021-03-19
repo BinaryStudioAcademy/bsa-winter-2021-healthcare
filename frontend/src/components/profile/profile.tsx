@@ -16,17 +16,17 @@ type RouteParam = {
 };
 
 const Profile: React.FC = () => {
-  const [isEditeMode, setIsEditMode] = React.useState<boolean>(false); 
+  const [isEditeMode, setIsEditMode] = React.useState<boolean>(false);
   const { user } = useSelector(({ profile }: RootState) => ({
     user: profile.user,
   }));
   const dispatch = useDispatch();
-  const { id } = useParams<RouteParam>();  
+  const { id } = useParams<RouteParam>();
   const isDoctor = user?.type === UserType.DOCTOR;
   React.useEffect(()=>{
-    dispatch(ProfileActionCreator.getUser(id));    
+    dispatch(ProfileActionCreator.getUser(id));
   },[]);
-  
+
   const handleTogglePopUp = () => {
     setIsEditMode(!isEditeMode);
   };
@@ -35,7 +35,7 @@ const Profile: React.FC = () => {
     dispatch(ProfileActionCreator.editeUserInProfile(userData));
     setIsEditMode(false);
   };
-  return (    
+  return (
     <div className={styles.profileContainer}>
       <SideMenu />
       { user &&
@@ -46,14 +46,14 @@ const Profile: React.FC = () => {
           </div>
           <Modal isShow={isEditeMode}>
             <EditUserPopup
-              user={user}          
+              user={user}
               onEditUser={handleUserInfoEdit}
               onFormHide={handleTogglePopUp}
             />
-          </Modal> 
+          </Modal>
         </>
-      }               
-    </div>    
+      }
+    </div>
   );
 };
 
