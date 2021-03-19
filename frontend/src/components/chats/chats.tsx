@@ -9,7 +9,7 @@ import {
 } from 'common/enums';
 import { Button } from 'components/common';
 
-import  { HorizontalLine, Message } from './components';
+import  { HorizontalLine, Message, Member } from './components';
 
 import styles from './styles.module.scss';
 import avatar from 'assets/images/phone.svg';
@@ -21,51 +21,13 @@ const Chats: React.FC = () => {
 
       <div className={styles.memberList}>
 
-        <div className={clsx(styles.member, styles.selected)}>
-          <img src={avatar} />
-          <span>Giana Levin</span>
-          00:00
-        </div>
-
-        <div className={styles.member}>
-          <img src={avatar} />
-          <span>Jakob Rosser</span>
-        </div>
-
-        <div className={styles.member}>
-          <img src={avatar} />
-          <span>Jaylon Curtis</span>
-        </div>
-
-        <div className={styles.member}>
-          <img src={avatar} />
-          <span>Jakob Rosser</span>
-        </div>
-
-        <div className={styles.member}>
-          <img src={avatar} />
-          <span>Jaylon Curtis</span>
-        </div>
-
-        <div className={styles.member}>
-          <img src={avatar} />
-          <span>Jakob Rosser</span>
-        </div>
-
-        <div className={styles.member}>
-          <img src={avatar} />
-          <span>Jakob Rosser</span>
-        </div>
-
-        <div className={styles.member}>
-          <img src={avatar} />
-          <span>Jaylon Curtis</span>
-        </div>
-
-        <div className={styles.member}>
-          <img src={avatar} />
-          <span>Last Jaylon Curtis</span>
-        </div>
+        <Member label="Giana Levin" info="00:00" avatar={avatar} isSelected={true} />
+        <Member label="Jakob Rosser" avatar={avatar}/>
+        <Member label="Jaylon Curtis" avatar={avatar} />
+        <Member label="Dulce Mango" avatar={avatar}/>
+        <Member label="Erin Dorwart" avatar={avatar} />
+        <Member label="Jakob Rosser" avatar={avatar}/>
+        <Member label="Leo Torff" avatar={avatar} />
 
       </div>
 
@@ -77,21 +39,18 @@ const Chats: React.FC = () => {
 
         <div className={styles.messageList}>
 
-          <Message avatar={avatar} message={{ text: 'Ut nunc aliquam, amet, aliquet adipiscing mi gravida.', createAt: '2021-03-19T13:43:38.447Z' }} />
-
-          <Message avatar={avatar} isOutcoming={true} message={{ text: 'Lorem ipsum dolor sit amet, adipiscing elit. Dictum?', createAt: '2021-03-19T10:33:38.447Z' }} />
+          <Message avatar={avatar} message="Ut nunc aliquam, amet, aliquet adipiscing mi gravida." time="13:33" />
+          <Message avatar={avatar} isOutcoming={true} message="Lorem ipsum dolor sit amet, adipiscing elit. Dictum?" time="10:33" />
 
           <HorizontalLine label="Today" />
 
-          <Message avatar={avatar} isOutcoming={true} message={{ text: 'Lorem ipsum dolor sit amet, adipiscing elit. Dictum?', createAt: '2021-03-19T10:33:38.447Z' }} />
-
-          <Message avatar={avatar} message={{ text: 'Ut nunc aliquam, amet, aliquet adipiscing mi gravida.', createAt: '2021-03-19T13:43:38.447Z' }} />
+          <Message avatar={avatar} isOutcoming={true} message="Lorem ipsum dolor sit amet, adipiscing elit. Dictum?" time="10:33" />
+          <Message avatar={avatar} message="Ut nunc aliquam, amet, aliquet adipiscing mi gravida." time="13:43" />
 
           <HorizontalLine label="09 Mar" />
 
-          <Message avatar={avatar} message={{ text: 'Ut nunc aliquam, amet, aliquet adipiscing mi gravida.', createAt: '2021-03-19T13:43:38.447Z' }} />
-
-          <Message avatar={avatar} isOutcoming={true} message={{ text: 'Lorem ipsum dolor sit amet, adipiscing elit. Dictum?', createAt: '2021-03-19T10:33:38.447Z' }} />
+          <Message avatar={avatar} message="Ut nunc aliquam, amet, aliquet adipiscing mi gravida." time="13:43" />
+          <Message avatar={avatar} isOutcoming={true} message="Lorem ipsum dolor sit amet, adipiscing elit. Dictum?" time="10:33" />
 
         </div>
 
