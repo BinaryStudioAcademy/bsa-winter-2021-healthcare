@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ReducerName, DataStatus, StorageKey } from 'common/enums';
+import { ReducerName, DataStatus, StorageKey, AppRoute } from 'common/enums';
 import { IUserWithPermissions, IUserLoginPayload, IRegisterPayload } from 'common/interfaces';
-import { authApi, notificationService, storage, geolocationService } from 'services';
+import { authApi, notificationService, storage, geolocationService, historyService } from 'services';
 import { LoginResponse } from 'common/types/responses';
 import { HttpError } from 'exceptions';
 
@@ -25,6 +25,9 @@ const login = createAsyncThunk(
       const geolocation = await geolocationService.getByUserId(user.id);
       geolocation ? geolocationService.updateGeolocation(geolocation.id) : geolocationService.addGeolocation(user.id);
 
+      historyService.push(AppRoute.DOCTORS);
+      location.reload();
+
       return user;
     } catch (error) {
       if (error instanceof HttpError) {
@@ -41,6 +44,10 @@ const registration = createAsyncThunk(
     try {
       const { token, user } = await authApi.registrationUser(userData);
       storage.setItem(StorageKey.TOKEN, token);
+
+      historyService.push(AppRoute.DOCTORS);
+      location.reload();
+
       return user;
     } catch (error) {
       if (error instanceof HttpError) {
