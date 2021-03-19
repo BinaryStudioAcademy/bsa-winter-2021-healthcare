@@ -8,27 +8,27 @@ module.exports = {
           'professions',
           [
             {
-              name: 'Pediatrician',
+              name: 'pediatrician',
               createdAt: new Date(),
               updatedAt: new Date(),
             },
             {
-              name: 'Endocrinologist',
+              name: 'endocrinologist',
               createdAt: new Date(),
               updatedAt: new Date(),
             },
             {
-              name: 'Dentist',
+              name: 'dentist',
               createdAt: new Date(),
               updatedAt: new Date(),
             },
             {
-              name: 'Surgeon',
+              name: 'surgeon',
               createdAt: new Date(),
               updatedAt: new Date(),
             },
             {
-              name: 'Dermatologist',
+              name: 'dermatologist',
               createdAt: new Date(),
               updatedAt: new Date(),
             },
