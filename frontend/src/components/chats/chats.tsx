@@ -9,7 +9,7 @@ import {
 } from 'common/enums';
 import { Button } from 'components/common';
 
-import  { HorizontalLine } from './components';
+import  { HorizontalLine, Message } from './components';
 
 import styles from './styles.module.scss';
 import avatar from 'assets/images/phone.svg';
@@ -77,57 +77,21 @@ const Chats: React.FC = () => {
 
         <div className={styles.messageList}>
 
-          <div className={clsx(styles.message, styles.in)}>
-            <img src={avatar} />
-            <div>
-              Ut nunc aliquam, amet, aliquet adipiscing mi gravida.
-            </div>
-            <span>10:08</span>
-          </div>
+          <Message avatar={avatar} message={{ text: 'Ut nunc aliquam, amet, aliquet adipiscing mi gravida.', createAt: '2021-03-19T13:43:38.447Z' }} />
 
-          <div className={clsx(styles.message, styles.out)}>
-            <img src={avatar} />
-            <div>
-              Lorem ipsum dolor sit amet, adipiscing elit. Dictum?
-            </div>
-            <span>9:52</span>
-          </div>
+          <Message avatar={avatar} isOutcoming={true} message={{ text: 'Lorem ipsum dolor sit amet, adipiscing elit. Dictum?', createAt: '2021-03-19T10:33:38.447Z' }} />
 
           <HorizontalLine label="Today" />
 
-          <div className={clsx(styles.message, styles.out)}>
-            <img src={avatar} />
-            <div>
-              Ut nunc aliquam, amet, aliquet adipiscing mi gravida.
-            </div>
-            <span>08:32</span>
-          </div>
+          <Message avatar={avatar} isOutcoming={true} message={{ text: 'Lorem ipsum dolor sit amet, adipiscing elit. Dictum?', createAt: '2021-03-19T10:33:38.447Z' }} />
 
-          <div className={clsx(styles.message, styles.in)}>
-            <img src={avatar} />
-            <div>
-              Lorem ipsum dolor sit amet, adipiscing elit. Dictum?
-            </div>
-            <span>08:28</span>
-          </div>
+          <Message avatar={avatar} message={{ text: 'Ut nunc aliquam, amet, aliquet adipiscing mi gravida.', createAt: '2021-03-19T13:43:38.447Z' }} />
 
           <HorizontalLine label="09 Mar" />
 
-          <div className={clsx(styles.message, styles.in)}>
-            <img src={avatar} />
-            <div>
-              Ut nunc aliquam, amet, aliquet adipiscing mi gravida.
-            </div>
-            <span>10:08</span>
-          </div>
+          <Message avatar={avatar} message={{ text: 'Ut nunc aliquam, amet, aliquet adipiscing mi gravida.', createAt: '2021-03-19T13:43:38.447Z' }} />
 
-          <div className={clsx(styles.message, styles.out)}>
-            <img src={avatar} />
-            <div>
-              Lorem ipsum dolor sit amet, adipiscing elit. Dictum?
-            </div>
-            <span>9:52</span>
-          </div>
+          <Message avatar={avatar} isOutcoming={true} message={{ text: 'Lorem ipsum dolor sit amet, adipiscing elit. Dictum?', createAt: '2021-03-19T10:33:38.447Z' }} />
 
         </div>
 
