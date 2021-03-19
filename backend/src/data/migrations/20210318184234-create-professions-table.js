@@ -5,7 +5,7 @@ module.exports = {
     queryInterface.sequelize.transaction((transaction) =>
       Promise.all([
         queryInterface.createTable(
-          'documents',
+          'professions',
           {
             id: {
               allowNull: false,
@@ -14,13 +14,10 @@ module.exports = {
               type: Sequelize.UUID,
               defaultValue: Sequelize.literal('gen_random_uuid()'),
             },
-            imagePath: {
+            name: {
               allowNull: false,
-              type: Sequelize.STRING,
-            },
-            status: {
-              allowNull: false,
-              type: Sequelize.ENUM('verified', 'in_review'),
+              type: Sequelize.ENUM('pediatrician', 'endocrinologist', 'dentist', 'surgeon', 'dermatologist'),
+              unique: true,
             },
             createdAt: Sequelize.DATE,
             updatedAt: Sequelize.DATE,
@@ -32,8 +29,8 @@ module.exports = {
   down: async (queryInterface) =>
     queryInterface.sequelize.transaction((transaction) =>
       Promise.all([
-        queryInterface.dropTable('documents', { transaction }),
-        queryInterface.sequelize.query('DROP TYPE "enum_documents_status"', { transaction }),
+        queryInterface.dropTable('professions', { transaction }),
+        queryInterface.sequelize.query('DROP TYPE "enum_professions_name"', { transaction }),
       ]),
     ),
 };

@@ -13,6 +13,7 @@ import Modal from './modal/modal';
 import EditUserPopup from './edit-user-popup/edit-user-popup';
 import Details from './details/details';
 import AuthorizedRoute from './authorized-route/authorized-route';
+import AuthorizedWrapper from './authorized-wrapper/authorized-wrapper';
 
 export {
   Link,
@@ -27,7 +28,8 @@ export {
   Modal,
   Toaster,
   Card,
-  EditUserPopup,
+  EditUserPopup, 
   Details,
   AuthorizedRoute,
+  AuthorizedWrapper,
 };

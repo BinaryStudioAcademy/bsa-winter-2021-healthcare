@@ -1,7 +1,7 @@
 import { clinicRepository } from '~/data/repositories';
 import { IClinic } from '~/common/interfaces';
 
-class ClinicService {
+class Clinic {
   public getAllClinics(): Promise<IClinic[]> {
     return clinicRepository.getAll();
   }
@@ -11,4 +11,4 @@ class ClinicService {
   }
 }
 
-export { ClinicService };
+export { Clinic };

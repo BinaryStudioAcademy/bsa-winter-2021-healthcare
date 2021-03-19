@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { ApiPath, HttpCode, UsersApiPath, UserType } from '~/common/enums';
 import { validateSchema } from '~/middlewares';
 import { userRegister as userRegisterSchema, editUser as validationEditUser } from '~/validation-schemas';
-import { userService } from '~/services/services';
+import { user as userService } from '~/services/services';
 import { checkIsOneOf } from '~/helpers';
 
 const initUserApi = (apiRouter: Router): Router => {

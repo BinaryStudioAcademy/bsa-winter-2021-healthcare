@@ -12,3 +12,4 @@ export * from './geolocation';
 export * from './permission';
 export * from './strategy';
 export * from './specialization';
+export * from './profession';
