@@ -2,7 +2,7 @@ import { userRepository } from '~/data/repositories';
 import { UserType } from '~/common/enums';
 import { IRegisterPayload, IUser, IUserWithPermissions } from '~/common/interfaces';
 
-class UserService {
+class User {
   public getAllUsers(): Promise<IUserWithPermissions[]>{
     return userRepository.getAll();
   }
@@ -27,4 +27,4 @@ class UserService {
   }
 }
 
-export { UserService };
+export { User };

@@ -12,5 +12,22 @@ import Card from './card/card';
 import Modal from './modal/modal';
 import Details from './details/details';
 import AuthorizedRoute from './authorized-route/authorized-route';
+import AuthorizedWrapper from './authorized-wrapper/authorized-wrapper';
 
-export { Link, Checkbox, TextInput, DateInput, Radio, Select, Button, Header, Table, Modal, Toaster, Card, Details, AuthorizedRoute };
+export {
+  Link,
+  Checkbox,
+  TextInput,
+  DateInput,
+  Radio,
+  Select,
+  Button,
+  Header,
+  Table,
+  Modal,
+  Toaster,
+  Card,
+  Details,
+  AuthorizedRoute,
+  AuthorizedWrapper,
+};

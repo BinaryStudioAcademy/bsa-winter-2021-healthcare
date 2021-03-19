@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { notificationService, userApi } from 'services';
+import { notification as notificationService, userApi } from 'services';
 import { ReducerName } from 'common/enums';
 import { AppThunk } from 'common/types';
 import { IEditUserPayload, IUser } from 'common/interfaces';

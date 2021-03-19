@@ -13,6 +13,7 @@ enum ModelName {
   USER_PERMISSION = 'UserPermission',
   SPECIALIZATION = 'Specialization',
   USER_SPECIALIZATION = 'UserSpecialization',
+  PROFESSION = 'Profession',
 }
 
 export { ModelName };

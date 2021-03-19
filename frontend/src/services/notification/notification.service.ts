@@ -1,6 +1,6 @@
 import { BasicToastrOptions, toastr, ToastrEmitter } from 'react-redux-toastr';
 
-class NotificationService {
+class Notification {
   #instance: ToastrEmitter;
 
   constructor() {
@@ -24,4 +24,4 @@ class NotificationService {
   }
 }
 
-export default NotificationService;
+export { Notification };
