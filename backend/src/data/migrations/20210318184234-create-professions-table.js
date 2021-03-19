@@ -16,7 +16,8 @@ module.exports = {
             },
             name: {
               allowNull: false,
-              type: Sequelize.STRING,
+              type: Sequelize.ENUM('Pediatrician', 'Endocrinologist', 'Dentist', 'Surgeon', 'Dermatologist'),
+              unique: true,
             },
             createdAt: Sequelize.DATE,
             updatedAt: Sequelize.DATE,
