@@ -3,38 +3,31 @@ import { useForm } from 'react-hook-form';
 import styles from './filtration.module.scss';
 import { TextInput, Checkbox, Details } from 'components/common';
 import {
-  DoctorType,
-  ClinicType,
   InputType,
   InputColor,
   DoctorFiltration,
   Icon,
 } from 'common/enums';
 import { IDoctorFiltrationPayload } from 'common/interfaces';
-import { getTruthyEntities } from 'helpers';
 import { DEFAULT_FILTER_VALUE } from '../common/constants';
+import { doctorSpecialtiesToReadable, clinicTypesToReadable } from '../common/maps';
 
-const doctorSpecialties = Object.keys(DoctorType).map((key) => key.toLocaleLowerCase());
-const clinicTypes = Object.keys(ClinicType).map((key) => key.toLocaleLowerCase());
+const doctorSpecialties = Object.values(doctorSpecialtiesToReadable);
+const clinicTypes = Object.values(clinicTypesToReadable);
 
 const Filtration: React.FC = () => {
-  const { handleSubmit, control, errors } = useForm<IDoctorFiltrationPayload>({
+  const { control, errors, register, getValues } = useForm<IDoctorFiltrationPayload>({
     defaultValues: DEFAULT_FILTER_VALUE,
-    mode: 'onBlur',
+    mode: 'onChange',
   });
 
-  const handleSubmitForm = (formData: IDoctorFiltrationPayload) => {
-    const filterPayload: IDoctorFiltrationPayload = {
-      ...formData,
-      specialty: getTruthyEntities(...formData.specialty),
-      typeOfClinic: getTruthyEntities(...formData.typeOfClinic),
-    };
-
-    return filterPayload;
+  const handleChange = () => {
+    const formData = getValues();
+    return formData;
   };
 
   return (
-    <form onBlur={handleSubmit(handleSubmitForm)}>
+    <form onChange={handleChange}>
       <div className={styles.panel}>
         <div className={styles.filters}>
           <div className={styles.filterHeader}>Filter by</div>
@@ -52,7 +45,7 @@ const Filtration: React.FC = () => {
           </div>
           <Details icon={Icon.LOCATION} title="Location">
             <TextInput
-              name={DoctorFiltration.CITY.toLocaleLowerCase()}
+              name={DoctorFiltration.CITY}
               label={DoctorFiltration.CITY}
               hasHiddenLabel
               placeholder="City..."
@@ -66,12 +59,13 @@ const Filtration: React.FC = () => {
             icon={Icon.SPECIALTY}
             title="Specialty"
           >
-            {doctorSpecialties.map((doctorSpecialty, index) => (
+            {doctorSpecialties.map((doctorSpecialty) => (
               <div className={styles.filterCheckbox} key={doctorSpecialty}>
                 <Checkbox
-                  name={DoctorFiltration.SPECIALTY + `[${index}]`}
+                  name={DoctorFiltration.SPECIALTY}
+                  value={doctorSpecialty}
                   label={doctorSpecialty}
-                  control={control}
+                  register={register}
                 />
               </div>
             ))}
@@ -80,12 +74,13 @@ const Filtration: React.FC = () => {
             icon={Icon.CLINIC}
             title="Type of clinic"
           >
-            {clinicTypes.map((clinicType, index) => (
+            {clinicTypes.map((clinicType) => (
               <div className={styles.filterCheckbox} key={clinicType}>
                 <Checkbox
-                  name={DoctorFiltration.TYPE_OF_CLINIC + `[${index}]`}
+                  name={DoctorFiltration.TYPE_OF_CLINIC}
+                  value={clinicType}
                   label={clinicType}
-                  control={control}
+                  register={register}
                 />
               </div>
             ))}
