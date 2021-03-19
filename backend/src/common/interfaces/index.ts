@@ -14,3 +14,4 @@ export * from './user-with-permissions';
 export * from './city';
 export * from './specialization';
 export * from './user-specialization';
+export * from './profession';
