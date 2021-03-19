@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { AppRoute, PermissionName } from 'common/enums';
+import { AuthorizedRoute } from 'components/common';
 import Users from 'components/users/users';
 import Sign from 'components/sign/sign';
 import NotFound from 'components/not-found/not-found';
@@ -12,6 +13,7 @@ import Notifications from 'components/notifications/notifications';
 import Map from 'components/map/map';
 import Permissions from 'components/permissions/permissions-page';
 import { AuthorizedRoute } from 'components/common';
+import Chats from 'components/chats/chats';
 
 const App: React.FC = () => (
   <Switch>
@@ -42,6 +44,7 @@ const App: React.FC = () => (
       permissions={[PermissionName.MAP_MANIPULATION]}
     />
     <AuthorizedRoute path={AppRoute.PERMISSIONS} component={Permissions} permissions={[PermissionName.EDIT_PERMISSIONS]} />
+    <Route path={AppRoute.MY_CHATS} component={Chats} />
     <Route path="*" exact component={NotFound} />
   </Switch>
 );
