@@ -8,17 +8,7 @@ module.exports = {
           'permissions',
           [
             {
-              name: 'create-user',
-              createdAt: new Date(),
-              updatedAt: new Date(),
-            },
-            {
-              name: 'edit-user',
-              createdAt: new Date(),
-              updatedAt: new Date(),
-            },
-            {
-              name: 'create-clinic',
+              name: 'edit-permissions',
               createdAt: new Date(),
               updatedAt: new Date(),
             },
@@ -27,10 +17,12 @@ module.exports = {
         ),
       ]),
     ),
-  down: async (queryInterface) =>
+  down: async (queryInterface, Sequelize) =>{
+    const Op = Sequelize.Op;
     queryInterface.sequelize.transaction((transaction) =>
       Promise.all([
-        queryInterface.bulkDelete('permissions', null, { transaction }),
+        queryInterface.bulkDelete('permissions', {[Op.or]: [{name: 'edit-permissions'}, {name: 'edit-permissions'}]}, { transaction }),
       ]),
-    ),
+    )
+  }
 };
