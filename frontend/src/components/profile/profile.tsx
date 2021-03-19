@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { SideMenu, UserInfo, Documents } from './components';
-import { EditUserPopup } from 'components/common';
+import { EditUserPopup, Modal } from 'components/common';
 import { IEditUserPayload, IUserTypeDoctor } from 'common/interfaces';
 import { UserType } from 'common/enums';
-import { AuthActionCreator } from 'store/slices';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { RootState, UserGeneric } from 'common/types';
+import { RootState } from 'common/types';
 import { useParams } from 'react-router';
-import { UsersActionCreator } from 'store/slices';
+import { ProfileActionCreator } from 'store/slices';
 
 import styles from './styles.module.scss';
 
@@ -17,52 +16,44 @@ type RouteParam = {
 };
 
 const Profile: React.FC = () => {
-  const [isEditeMode, setIsEditMode] = React.useState<boolean>(false);
-  const [user, setUser] = React.useState<UserGeneric>();
-  const { currentUser } = useSelector(({ auth }: RootState) => ({
-    currentUser: auth.user,
-  }));
-  const { fetchedUser } = useSelector(({ users }: RootState) => ({
-    fetchedUser: users.userInProfile,
+  const [isEditeMode, setIsEditMode] = React.useState<boolean>(false); 
+  const { user } = useSelector(({ profile }: RootState) => ({
+    user: profile.user,
   }));
   const dispatch = useDispatch();
-  const { id } = useParams<RouteParam>();
-  const isCurrentUser = currentUser?.id === id;
+  const { id } = useParams<RouteParam>();  
   const isDoctor = user?.type === UserType.DOCTOR;
   React.useEffect(()=>{
-    if (isCurrentUser) {
-      setUser(currentUser);
-    } else {
-      dispatch(UsersActionCreator.getUser(id));
-    }
+    dispatch(ProfileActionCreator.getUser(id));    
   },[]);
-  React.useEffect(()=>{
-    setUser(fetchedUser);
-  },[fetchedUser]);
-
-  const handleOpenPopUp = () => {
-    setIsEditMode(true);
+  
+  const handleTogglePopUp = () => {
+    setIsEditMode(!isEditeMode);
   };
   const handleUserInfoEdit = (userData:IEditUserPayload) => {
     userData.id = user?.id;
-    dispatch(AuthActionCreator.editCurrentUser(userData));
+    dispatch(ProfileActionCreator.editeUserInProfile(userData));
     setIsEditMode(false);
   };
-  return (
-    <>
-      {user ? <div className={styles.profileContainer}>
-        <SideMenu />
-        <div className={styles.infoContainer}>
-          <UserInfo user ={user} onEdit={handleOpenPopUp} isCurrentUser={isCurrentUser}/>
-          {isDoctor && <Documents document={(user as IUserTypeDoctor).doctor.document}/>}
-        </div>
-        {isEditeMode && <EditUserPopup
-          user={user}
-          onEditUser={handleUserInfoEdit}
-          onFormHide={() => setIsEditMode(false)}
-        />}
-      </div> : <div>Loading</div>}
-    </>
+  return (    
+    <div className={styles.profileContainer}>
+      <SideMenu />
+      { user &&
+        <>
+          <div className={styles.infoContainer}>
+            <UserInfo user ={user} onEdit={handleTogglePopUp} />
+            {isDoctor && <Documents document={(user as IUserTypeDoctor).doctor.document}/>}
+          </div>
+          <Modal isShow={isEditeMode}>
+            <EditUserPopup
+              user={user}          
+              onEditUser={handleUserInfoEdit}
+              onFormHide={handleTogglePopUp}
+            />
+          </Modal> 
+        </>
+      }               
+    </div>    
   );
 };
 

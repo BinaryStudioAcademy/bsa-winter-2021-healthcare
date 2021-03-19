@@ -22,7 +22,12 @@ import {
 class UserRepository {
 
   public getById(id: string): Promise<IUser | null> {
-    return UserModel.findByPk(id);
+    return UserModel.findByPk(id, {
+      include:{
+        model: PermissionModel,
+        as: ModelAlias.PERMISSIONS,
+      }
+    });
   }
 
   public getAll(): Promise<IUserWithPermissions[]> {
@@ -86,6 +91,10 @@ class UserRepository {
           as: ModelAlias.SPECIALIZATIONS,
           attributes: [SpecializationKey.ID, SpecializationKey.TEXT],
         },
+        {
+          model: PermissionModel,
+          as: ModelAlias.PERMISSIONS,
+        },
       ],
     });
   }
@@ -107,7 +116,7 @@ class UserRepository {
   public async updateById(id: string, data: IUser): Promise<IUser> {
     const [ , [user]] = await UserModel.update(data, {
       where: { id },
-      returning: true,
+      returning: true,      
     });
     return user;
   }

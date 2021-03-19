@@ -1,4 +1,4 @@
-import { IDocument } from 'common/interfaces';
+import { IDocument, IEditDocumentPayload } from 'common/interfaces';
 import { ContentType } from 'common/enums';
 import { Http } from 'services/http/http.service';
 import {
@@ -21,7 +21,7 @@ class DocumentApi {
     this.#apiPrefix = apiPrefix;
   }
 
-  public editDocument(id: string, payload:any): Promise<IDocument> { //fix any latter
+  public editDocument(id: string, payload:IEditDocumentPayload): Promise<IDocument> {
     return this.#http.load(`${this.#apiPrefix}${ApiPath.DOCUMENTS}/${id}`, {
       method: HttpMethod.PUT,
       contentType: ContentType.JSON,

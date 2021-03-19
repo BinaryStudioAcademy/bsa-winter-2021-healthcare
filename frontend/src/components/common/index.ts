@@ -10,7 +10,7 @@ import Toaster from './toaster/toaster';
 import Header from './header/header';
 import Card from './card/card';
 import Modal from './modal/modal';
-import EditUserPopup from './edit-user/edit-user';
+import EditUserPopup from './edit-user-popup/edit-user-popup';
 import Details from './details/details';
 import AuthorizedRoute from './authorized-route/authorized-route';
 

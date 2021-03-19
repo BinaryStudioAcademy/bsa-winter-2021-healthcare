@@ -3,12 +3,18 @@ import { IDocument } from 'common/interfaces';
 import { Modal, Button, Radio } from 'components/common';
 import { ButtonColor, ButtonStyleType, DocumentStatus, ButtonType } from 'common/enums';
 import { InputChangeEvent } from 'common/types';
-import styles from './styles.module.scss';
-import { UsersActionCreator } from 'store/slices';
+import { ProfileActionCreator } from 'store/slices';
 import { useDispatch } from 'react-redux';
+import clsx from 'clsx';
+import styles from './styles.module.scss';
 
 type Props = {
   document: IDocument
+};
+
+const Status = {
+  [DocumentStatus.VERIFIED]: 'verified',
+  [DocumentStatus.IN_REVIEW]: 'in review',
 };
 
 const Documents: React.FC<Props> = ({ document }) => {
@@ -20,24 +26,30 @@ const Documents: React.FC<Props> = ({ document }) => {
   };
   const handleSubmit = () => {
     const update:IDocument = { ...document, status: radioValue };
-    dispatch(UsersActionCreator.editUserDocument(document.id, update));
+    dispatch(ProfileActionCreator.editUserDocument(update));
     setIsModalOpen(false);
+  };
+  const handleModalOpen = () => {
+    setIsModalOpen(!isModalOpen);
   };
   return (
     <div className={styles.documentContainer}>
-      <span>Document status: </span><span>{document.status}</span>
+      <span>Document status: </span>
+      <span className={clsx(styles[document.status], styles.label)}>
+        {Status[document.status]}
+      </span>
       <div className={styles.checkButton}>
         <Button
           label="Check document"
           color={ButtonColor.GRAY_LIGHT}
           styleType={ButtonStyleType.WITHOUT_BORDER}
           hasHiddenLabel={false}
-          onClick={()=>setIsModalOpen(true)}
+          onClick={handleModalOpen}
         />
       </div>
       <Modal isShow={isModalOpen}>
         <div className={styles.formContainer}>
-          <button className={styles.closeButton} onClick={()=>setIsModalOpen(false)} type="button">
+          <button className={styles.closeButton} onClick={handleModalOpen} type="button">
               &#10060;
           </button>
           <form className={styles.form} onSubmit={handleSubmit}>
@@ -45,11 +57,11 @@ const Documents: React.FC<Props> = ({ document }) => {
               <Radio
                 options={[
                   {
-                    label:'verified',
+                    label: Status[DocumentStatus.VERIFIED],
                     value: DocumentStatus.VERIFIED,
                   },
                   {
-                    label:'in rewiew',
+                    label: Status[DocumentStatus.IN_REVIEW],
                     value: DocumentStatus.IN_REVIEW,
                   },
                 ]}
@@ -78,4 +90,3 @@ const Documents: React.FC<Props> = ({ document }) => {
 };
 
 export default Documents;
-

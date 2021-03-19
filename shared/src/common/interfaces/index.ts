@@ -19,3 +19,4 @@ export * from './filtration';
 export * from './city';
 export * from './specialization';
 export * from './user-specialization';
+export * from './edite-document';

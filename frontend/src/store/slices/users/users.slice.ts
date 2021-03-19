@@ -1,18 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { notificationService, userApi, documentApi } from 'services';
+import { notificationService, userApi } from 'services';
 import { ReducerName } from 'common/enums';
-import { AppThunk, UserGeneric } from 'common/types';
-import { IDocument, IEditUserPayload, IUser, IUserTypeDoctor } from 'common/interfaces';
+import { AppThunk } from 'common/types';
+import { IEditUserPayload, IUser } from 'common/interfaces';
 import { HttpError } from 'exceptions';
 
 interface IState {
-  users: IUser[];
-  userInProfile: UserGeneric;
+  users: IUser[];  
 }
 
 const initialState: IState = {
-  users: [],
-  userInProfile: null,
+  users: [],  
 };
 
 const { reducer, actions } = createSlice({
@@ -35,13 +33,7 @@ const { reducer, actions } = createSlice({
       state.users = state.users.filter(
         (user: IUser) => user.id !== action.payload,
       );
-    },
-    setUserToProfile:(state, action: PayloadAction<UserGeneric>) => {
-      state.userInProfile = action.payload;
-    },
-    editeDocumentStatus:(state, action: PayloadAction<IDocument>) => {
-      (state.userInProfile as IUserTypeDoctor).doctor.document = action.payload;
-    },
+    },  
   },
 });
 
@@ -49,18 +41,6 @@ const getUsers = (): AppThunk => async (dispatch) => {
   try {
     const response = await userApi.getUsers();
     dispatch(actions.addUsers(response));
-  } catch (error) {
-    if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
-    }
-    throw error;
-  }
-};
-
-const getUser = (id:string): AppThunk => async (dispatch) => {
-  try{
-    const user = await userApi.getUser(id);
-    dispatch(actions.setUserToProfile(user));
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
@@ -109,26 +89,12 @@ const deleteUser = (id: string): AppThunk => async (dispatch) => {
   }
 };
 
-const editUserDocument = (documentId:string, payload:IDocument):AppThunk => async (dispatch) => {
-  try{
-    const document = await documentApi.editDocument(documentId, payload);
-    dispatch(actions.editeDocumentStatus(document));
-  } catch (error) {
-    if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
-    }
-    throw error;
-  }
-};
-
 const UsersActionCreator = {
   ...actions,
   getUsers,
   addUser,
   editUser,
-  deleteUser,
-  getUser,
-  editUserDocument,
+  deleteUser,  
 };
 
 export { UsersActionCreator, reducer };

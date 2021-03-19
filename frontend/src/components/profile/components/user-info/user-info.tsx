@@ -9,25 +9,24 @@ import clsx from 'clsx';
 import styles from './styles.module.scss';
 
 type Props = {
-  user: IUser
-  isCurrentUser:boolean | undefined
+  user: IUser  
   onEdit: BindingCb
 };
 
-const UserInfo: React.FC<Props> = ({ user, isCurrentUser, onEdit }) => {
+const UserInfo: React.FC<Props> = ({ user, onEdit }) => {
   const birthdate = getFormattedDate( user.birthdate, DateFormat.D_MMMM_YYYY);
   return (
     <div className={styles.mainInfo}>
       <div className={styles.infoHeader}>
         <span className={styles.title}>My Profile</span>
-        {isCurrentUser && <Button
-          label={''}
+        <Button
+          label={'Edite'}
           icon={ButtonIcon.EDIT}
-          hasHiddenLabel={false}
+          hasHiddenLabel={true}
           color={ButtonColor.GRAY_LIGHT}
           styleType={ButtonStyleType.MEDIUM_ROUND}
           onClick={onEdit}
-        />}
+        />
       </div>
       <div className={styles.infoBloks}>
         <div className={styles.photo}>
