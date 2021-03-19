@@ -1,0 +1,14 @@
+.inputMessageForm {
+  // width: 100%;
+  min-height: 70px;
+  background: #FFFFFF;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: center;
+
+  .submitBtn {
+    width: 115px;
+    height: 40px;
+  }
+}

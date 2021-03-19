@@ -1,17 +1,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import {
-  // InputType,
-  // InputColor,
-  ButtonType,
-  ButtonColor,
-  ButtonStyleType,
-} from 'common/enums';
-import { Button } from 'components/common';
 
-import  { HorizontalLine, Message, Member } from './components';
+import  { HorizontalLine, Message, Member, InputMessageForm } from './components';
 
 import styles from './styles.module.scss';
+
 import avatar from 'assets/images/phone.svg';
 
 const Chats: React.FC = () => {
@@ -54,18 +47,7 @@ const Chats: React.FC = () => {
 
         </div>
 
-        <div className={clsx(styles.inputMessageForm)}>
-          <div>Ut nunc aliquam, amet, aliquet adipiscing mi gravida.</div>
-          <div className={styles.submitBtn}>
-            <Button
-              label="Send"
-              hasHiddenLabel={false}
-              type={ButtonType.SUBMIT}
-              color={ButtonColor.PRIMARY_DARK}
-              styleType={ButtonStyleType.WITHOUT_BORDER}
-            />
-          </div>
-        </div>
+        <InputMessageForm />
 
       </div>
     </div>
