@@ -1,42 +1,35 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { useController, Control } from 'react-hook-form';
-import { FormDefaultValue } from 'common/types';
+import { useForm } from 'react-hook-form';
 
 import styles from './styles.module.scss';
 
 interface Props {
   name: string;
+  value: string;
   label: string;
   isDisabled?: boolean;
-  control: Control;
-  defaultValue?: FormDefaultValue;
+  register: ReturnType<typeof useForm>['register'];
 }
 
 const Checkbox: React.FC<Props> = ({
   name,
+  value,
   label,
   isDisabled,
-  control,
-  defaultValue,
-}) => {
-  const {
-    field,
-    meta: { invalid },
-  } = useController({ name, control, defaultValue });
-  return (
-    <label className={clsx(styles.checkboxRow, invalid && styles.error)}>
-      <input
-        disabled={isDisabled}
-        name={name}
-        value={field.value}
-        className={styles.checkboxInput}
-        type="checkbox"
-        onChange={() => field.onChange(field.value ? false : label)}
-      />
-      <span className={styles.checkboxLabel}>{label}</span>
-    </label>
-  );
-};
+  register,
+}) =>(
+  <label className={clsx(styles.checkboxRow)}>
+    <input
+      disabled={isDisabled}
+      name={name}
+      value={value}
+      className={styles.checkboxInput}
+      type="checkbox"
+      ref={register}
+    />
+    <span className={styles.checkboxLabel}>{label}</span>
+  </label>
+);
 
 export default Checkbox;
