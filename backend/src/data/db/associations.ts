@@ -16,6 +16,7 @@ const associate = ({
   Specialization,
   UserSpecialization,
   Profession,
+  Geolocation,
 }: DbModels): void => {
   User.hasOne(Doctor, {
     foreignKey: ForeingKey.USER_ID,
@@ -103,6 +104,11 @@ const associate = ({
   });
 
   Notification.belongsTo(User, {
+    foreignKey: ForeingKey.USER_ID,
+    as: ModelAlias.USER,
+  });
+
+  Geolocation.belongsTo(User, {
     foreignKey: ForeingKey.USER_ID,
     as: ModelAlias.USER,
   });
