@@ -25,15 +25,6 @@ const initDiagnosisApi = (apiRouter: Router): Router => {
     }
   });
 
-  diagnosisRouter.put(DiagnosesApiPath.$ID, async (req, res, next) => {
-    try {
-      const diagnosis = await diagnosisService.update(req.params.id, req.body);
-      res.status(HttpCode.OK).json(diagnosis);
-    } catch (error) {
-      next(error);
-    }
-  });
-
   return diagnosisRouter;
 };
 

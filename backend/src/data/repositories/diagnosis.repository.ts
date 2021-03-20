@@ -9,15 +9,6 @@ class Diagnosis {
   public getAllByUserId(userId: string): Promise<IDiagnosis[]> {
     return DiagnosisModel.findAll({ where: { userId } });
   }
-
-  public async updateById(id: string, data: IDiagnosis): Promise<IDiagnosis> {
-    const [, [updatedDiagnosis]] = await DiagnosisModel.update(data, {
-      where: { id },
-      returning: true,
-    });
-
-    return updatedDiagnosis;
-  }
 }
 
 export { Diagnosis };
