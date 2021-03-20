@@ -1,0 +1,7 @@
+const { CLOUDINARY_URL } = process.env;
+
+const CLOUDINARY_CONFIG = {
+  CLOUDINARY_URL: CLOUDINARY_URL,
+};
+
+export { CLOUDINARY_CONFIG };
