@@ -6,7 +6,6 @@ import { Storage } from './storage/storage.service';
 import { ClinicApi } from './clinic-api/clinic-api.service';
 import NotificationService from './notification/notification.service';
 import { GeolocationService } from './geolocation/geolocation.service';
-import { HistoryService } from './history/history.service';
 
 const http = new Http();
 
@@ -36,8 +35,6 @@ const geolocationService = new GeolocationService({
 
 const notificationService = new NotificationService();
 
-const historyService = new HistoryService();
-
 export {
   http,
   authApi,
@@ -46,5 +43,4 @@ export {
   notificationService,
   clinicApi,
   geolocationService,
-  historyService,
 };
