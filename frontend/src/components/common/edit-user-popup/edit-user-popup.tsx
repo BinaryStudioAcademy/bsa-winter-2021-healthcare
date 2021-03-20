@@ -44,7 +44,7 @@ const EditUserPopup: React.FC<Props> = ({ user, isShow, onEditUser, onFormHide }
 
   return (
     <Modal isShow={isShow}>
-      <div className={styles.visualyHidden}>
+      <div className={styles.editContainer}>
         <form
           onSubmit={handleSubmit(handleFormSubmit)}
           className={styles.editForm}
@@ -57,6 +57,7 @@ const EditUserPopup: React.FC<Props> = ({ user, isShow, onEditUser, onFormHide }
               type="button"
             >
               &#10060;
+              <span className="visually-hidden">Close edit user popup</span>
             </button>
           </div>
 

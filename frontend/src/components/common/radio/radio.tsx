@@ -2,6 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { IOption } from 'common/interfaces';
 import { FormRegisterCb, FormErrors } from 'common/types';
+import { ErrorMessage } from '@hookform/error-message';
 
 import styles from './styles.module.scss';
 
@@ -36,6 +37,7 @@ const Radio: React.FC<Props> = ({ options, register, value, isDisabled, errors, 
               className={styles.radioInput}
               type="radio"
             />
+            <ErrorMessage errors={errors} as="span" name={name} />
           </label>
         ))
       }

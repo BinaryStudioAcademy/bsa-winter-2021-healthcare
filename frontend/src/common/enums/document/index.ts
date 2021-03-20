@@ -1,1 +1,1 @@
-export { DocumentStatus } from 'healthcare-shared/common/enums';
+export { DocumentStatus, DocumentKey } from 'healthcare-shared/common/enums';
