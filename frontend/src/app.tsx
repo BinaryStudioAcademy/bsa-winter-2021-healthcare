@@ -7,11 +7,14 @@ import NotFound from 'components/not-found/not-found';
 import Clinics from 'components/clinics/clinics';
 import Doctors from 'components/doctors/doctors';
 import DoctorDetails from 'components/doctor-details/doctor-details';
+import Notifications from 'components/notifications/notifications';
 import { AuthorizedRoute } from 'components/common';
 
 const App: React.FC = () => (
   <Switch>
     <Route path={[AppRoute.SIGN_IN, AppRoute.SIGN_UP]} component={Sign} />
+    {/* //@todo make authorized route */}
+    <Route path={AppRoute.NOTIFICATIONS} component={Notifications} />
     <AuthorizedRoute path={AppRoute.CLINICS} component={Clinics} />
     <AuthorizedRoute path={AppRoute.DOCTORS} component={Doctors} />
     <AuthorizedRoute path={AppRoute.DOCTOR_DETAILS_$ID} component={DoctorDetails} />
