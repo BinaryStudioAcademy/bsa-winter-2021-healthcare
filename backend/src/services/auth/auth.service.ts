@@ -3,7 +3,7 @@ import { userRepository } from '~/data/repositories';
 import { getPasswordHash, createToken } from '~/helpers';
 import { LoginResponse } from '~/common/types';
 
-class AuthService {
+class Auth {
   public async signUp(
     registerPayload: IRegisterPayload,
   ): Promise<LoginResponse> {
@@ -24,4 +24,4 @@ class AuthService {
   }
 }
 
-export { AuthService };
+export { Auth };

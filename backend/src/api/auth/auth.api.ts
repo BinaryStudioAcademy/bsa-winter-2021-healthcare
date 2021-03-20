@@ -9,7 +9,7 @@ import {
   registration as registrationMiddleware,
   validateSchema,
 } from '~/middlewares';
-import { authService } from '~/services/services';
+import { auth as authService } from '~/services/services';
 import { IUser } from '~/common/interfaces';
 
 const initAuthApi = (apiRouter: Router): Router => {

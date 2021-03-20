@@ -12,7 +12,7 @@ type Constructor = {
   apiPrefix: string;
 };
 
-class GeolocationService {
+class Geolocation {
   #http: Http;
   #apiPrefix: string;
 
@@ -71,4 +71,4 @@ class GeolocationService {
   }
 }
 
-export { GeolocationService };
+export { Geolocation };
