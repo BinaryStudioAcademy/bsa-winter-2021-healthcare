@@ -6,6 +6,7 @@ import { UserService } from './user-service/user-service.service';
 import { ClinicService } from './clinic-service/clinic-service.service';
 import { GeolocationService } from './geolocation/geolocation.service';
 import { Logger } from './logger/logger.service';
+import { UploadFileService } from './upload-file/upload-file.service';
 
 const appAsyncStorage = new AsyncLocalStorage<AppAsyncStorage>();
 
@@ -18,6 +19,7 @@ const authService = new AuthService();
 const userService = new UserService();
 const clinicService = new ClinicService();
 const geolocationService = new GeolocationService();
+const uploadFileService = new UploadFileService();
 
 export {
   appAsyncStorage,
@@ -26,4 +28,5 @@ export {
   userService,
   clinicService,
   geolocationService,
+  uploadFileService,
 };
