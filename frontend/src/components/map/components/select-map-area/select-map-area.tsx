@@ -1,12 +1,15 @@
 import * as React from 'react';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useMap } from 'react-leaflet';
 import L, { LatLng, LeafletEvent } from 'leaflet';
 import 'leaflet-lasso';
 import { FINISHED_EVENT, ENABLED_EVENT, LassoHandlerFinishedEvent } from 'leaflet-lasso';
 import { MapCoordsDefault } from 'common/enums';
+import { MapActionCreator } from 'store/slices';
 
 const SelectMapArea: React.FC = () => {
+  const dispatch = useDispatch();
   const map = useMap();
   const control = L.control.lasso({ position: 'topright' });
   let minLat = MapCoordsDefault.MIN_LAT;
@@ -44,6 +47,13 @@ const SelectMapArea: React.FC = () => {
     ]);
 
     selectedAreaPolygon.addTo(map);
+
+    dispatch(MapActionCreator.selectArea({
+      minLat,
+      minLng,
+      maxLat,
+      maxLng,
+    }));
   };
 
   useEffect(handleLassoAddition);
