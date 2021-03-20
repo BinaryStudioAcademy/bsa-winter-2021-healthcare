@@ -12,20 +12,23 @@ import {
 } from 'common/enums';
 import { IDoctorFiltrationPayload } from 'common/interfaces';
 import { DEFAULT_FILTER_VALUE } from '../common/constants';
+import { doctorSpecialtiesToReadable, clinicTypesToReadable } from '../../common';
 
-const doctorSpecialties = Object.keys(DoctorType);
-const clinicTypes = Object.keys(ClinicType);
+const doctorSpecialties = Object.values(DoctorType);
+const clinicTypes = Object.values(ClinicType);
 
 const Filtration: React.FC = () => {
-  const { handleSubmit, control, errors } = useForm<IDoctorFiltrationPayload>({
+  const { control, errors, register, getValues } = useForm<IDoctorFiltrationPayload>({
     defaultValues: DEFAULT_FILTER_VALUE,
     mode: 'onChange',
   });
 
-  const handleSubmitForm = (formData: IDoctorFiltrationPayload) => formData;
+  const handleChange = () => {
+    getValues();
+  };
 
   return (
-    <form onSubmit={handleSubmit(handleSubmitForm)}>
+    <form onChange={handleChange}>
       <div className={styles.panel}>
         <div className={styles.filters}>
           <div className={styles.filterHeader}>Filter by</div>
@@ -53,24 +56,34 @@ const Filtration: React.FC = () => {
               errors={errors}
             />
           </Details>
-          <Details icon={Icon.SPECIALTY} title="Specialty">
+          <Details
+            icon={Icon.SPECIALTY}
+            title="Specialty"
+          >
             {doctorSpecialties.map((doctorSpecialty) => (
               <div className={styles.filterCheckbox} key={doctorSpecialty}>
                 <Checkbox
-                  name={doctorSpecialty}
-                  label={doctorSpecialty}
-                  control={control}
+                  name={DoctorFiltration.SPECIALTY}
+                  value={doctorSpecialty}
+                  label={doctorSpecialtiesToReadable[doctorSpecialty]}
+                  register={register}
+                  errors={errors}
                 />
               </div>
             ))}
           </Details>
-          <Details icon={Icon.CLINIC} title="Type of clinic">
+          <Details
+            icon={Icon.CLINIC}
+            title="Type of clinic"
+          >
             {clinicTypes.map((clinicType) => (
               <div className={styles.filterCheckbox} key={clinicType}>
                 <Checkbox
-                  name={clinicType}
-                  label={clinicType}
-                  control={control}
+                  name={DoctorFiltration.TYPE_OF_CLINIC}
+                  value={clinicType}
+                  label={clinicTypesToReadable[clinicType]}
+                  register={register}
+                  errors={errors}
                 />
               </div>
             ))}

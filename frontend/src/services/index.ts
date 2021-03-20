@@ -4,8 +4,8 @@ import { AuthApi } from './auth-api/auth-api.service';
 import { UserApi } from './user-api/user-api.service';
 import { Storage } from './storage/storage.service';
 import { ClinicApi } from './clinic-api/clinic-api.service';
-import NotificationService from './notification/notification.service';
-import { GeolocationService } from './geolocation/geolocation.service';
+import { Notification } from './notification/notification.service';
+import { Geolocation } from './geolocation/geolocation.service';
 
 const http = new Http();
 
@@ -28,19 +28,19 @@ const storage = new Storage({
   storage: localStorage,
 });
 
-const geolocationService = new GeolocationService({
+const geolocation = new Geolocation({
   http,
   apiPrefix: ENV.API_PATH,
 });
 
-const notificationService = new NotificationService();
+const notification = new Notification();
 
 export {
   http,
   authApi,
   userApi,
   storage,
-  notificationService,
+  notification,
   clinicApi,
-  geolocationService,
+  geolocation,
 };

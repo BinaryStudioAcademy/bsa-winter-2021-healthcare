@@ -13,6 +13,7 @@ enum TableName {
   USERS_PERMISSIONS = 'users_permissions',
   SPECIALIZATIONS = 'specializations',
   USERS_SPECIALIZATIONS  = 'users_specializations',
+  PROFESSIONS = 'professions',
 }
 
 export { TableName };
