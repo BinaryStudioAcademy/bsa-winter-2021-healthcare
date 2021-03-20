@@ -16,38 +16,46 @@ module.exports = {
           },
         ).then((permission) => {
           queryInterface.sequelize
-            .query('SELECT * FROM users')
-            .then((users) => {
-              const adminData = users[0].filter((user) => user.email === 'admin@admin.com');
-              return queryInterface.bulkInsert(
-                'users_permissions', 
+            .query(`SELECT * FROM users WHERE email = 'admin@admin.com'`)
+            .then(admin =>
+              queryInterface.bulkInsert(
+                'users_permissions',
                 [{
-                  userId: adminData[0].id,
+                  userId: admin[0][0].id,
                   permissionId: permission[0].id,
                   createdAt: new Date(),
                   updatedAt: new Date(),
-                }]
+                }, ], 
+                {
+                  transaction
+                },
               )
-            }).catch((e) => {
-              console.log(e)
-            });
+            )
         })
       ]),
     ),
-  down: async (queryInterface, Sequelize) => {
-    const Op = Sequelize.Op;
-    queryInterface.sequelize.transaction((transaction) =>
+    down: async (queryInterface, Sequelize, transaction) =>
+    queryInterface.sequelize.transaction(() =>
       Promise.all([
-        queryInterface.bulkDelete('permissions', {
-          [Op.or]: [{
-            name: 'edit-permissions'
-          }, {
-            name: 'edit-permissions'
-          }]
-        }, {
-          transaction
-        }),
+        queryInterface.sequelize
+        .query(`SELECT * FROM users WHERE email = 'admin@admin.com'`)
+          .then(userData => adminId = userData[0][0].id)
+          .then(() =>
+            queryInterface.sequelize.query(`SELECT * FROM permissions WHERE name = 'edit-permissions'`),
+          )
+          .then(
+            permissions => {
+              permissionId = permissions[0][0].id;
+              const Op = Sequelize.Op;
+              queryInterface.bulkDelete(
+                'users_permissions',
+                {
+                  [Op.and]: [{ userId: adminId }, { permissionId: permissionId }],
+                },
+                { transaction },
+              );
+            },
+          ),
       ]),
-    )
-  }
+    ),
 };
