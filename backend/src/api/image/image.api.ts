@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { ApiPath, ImagesApiPath, HttpCode } from '~/common/enums';
-import { uploadFileService } from '~/services/services';
+import { uploadFile as uploadFileService } from '~/services/services';
 import multer from 'multer';
 
 const initImageApi = (apiRouter: Router): Router => {

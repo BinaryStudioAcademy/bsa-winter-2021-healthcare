@@ -2,7 +2,7 @@ import cloudinary from 'cloudinary';
 import DatauriParser from 'datauri/parser';
 import { CLOUDINARY_CONFIG } from '~/configs';
 
-class UploadFileService {
+class UploadFile {
   constructor() {
     cloudinary.v2.config(CLOUDINARY_CONFIG);
   }
@@ -16,4 +16,4 @@ class UploadFileService {
   }
 }
 
-export { UploadFileService };
+export { UploadFile };

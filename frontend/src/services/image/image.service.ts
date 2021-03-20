@@ -6,7 +6,7 @@ type Constructor = {
   apiPrefix: string;
 };
 
-class ImageService {
+class Image {
   #http: Http;
   #apiPrefix: string;
 
@@ -27,4 +27,4 @@ class ImageService {
   }
 }
 
-export { ImageService };
+export { Image };
