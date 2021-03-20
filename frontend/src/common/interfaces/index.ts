@@ -17,3 +17,4 @@ export * from './exeption-message';
 export * from './geolocation';
 export * from './doctor-details';
 export * from './permission';
+export * from './map';
