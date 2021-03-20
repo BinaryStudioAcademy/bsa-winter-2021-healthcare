@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { ApiPath, MapApiPath, HttpCode } from '~/common/enums';
-import { clinic as clinicService, notification } from '~/services/services';
+import { notification as notificationService } from '~/services/services';
 
 const initMapApi = (apiRouter: Router): Router => {
   const mapRouter = Router();
@@ -9,7 +9,7 @@ const initMapApi = (apiRouter: Router): Router => {
 
   mapRouter.post(MapApiPath.SELECT_AREA, async (req, res, next) => {
     try {
-      notification.sendNotifications();
+      notificationService.sendNotifications();
       res.status(HttpCode.OK).json(req.body);
     } catch(error) {
       next(error);
