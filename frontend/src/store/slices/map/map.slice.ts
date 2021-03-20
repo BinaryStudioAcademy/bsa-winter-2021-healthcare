@@ -1,27 +1,16 @@
 import { AppThunk } from 'common/types';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ReducerName, MapKey } from 'common/enums';
-import { IMap } from 'common/interfaces';
+import { createSlice } from '@reduxjs/toolkit';
+import { ReducerName } from 'common/enums';
+import { ICoordsSet } from 'common/interfaces';
 import { notification as notificationService, mapApi } from 'services';
 import { HttpError } from 'exceptions';
 
-type MapState = {
-  selectedCoords: IMap;
-};
+const initialState = {};
 
-const initialState: MapState = {
-  selectedCoords: {
-    [MapKey.MAX_LAT]: 0,
-    [MapKey.MAX_LNG]: 0,
-    [MapKey.MIN_LNG]: 0,
-    [MapKey.MIN_LAT]: 0,
-  },
-};
-
-const selectArea = (coords: IMap): AppThunk => async (dispatch) => {
+const selectArea = (coords: ICoordsSet): AppThunk => async () => {
   try {
     const response = await mapApi.sendSelectedCoords(coords);
-    dispatch(actions.selectArea(response));
+    return response;
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
@@ -33,11 +22,7 @@ const selectArea = (coords: IMap): AppThunk => async (dispatch) => {
 const { reducer, actions } = createSlice({
   name: ReducerName.MAP,
   initialState,
-  reducers: {
-    selectArea: (state, action: PayloadAction<IMap>) => {
-      state.selectedCoords = action.payload;
-    },
-  },
+  reducers: {},
 });
 
 const MapActionCreator = {
