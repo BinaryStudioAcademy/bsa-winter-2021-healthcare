@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { notificationService, userApi, documentApi } from 'services';
+import { notification, userApi, documentApi } from 'services';
 import { ReducerName } from 'common/enums';
 import { AppThunk } from 'common/types';
 import { IDocument, IUser, IUserTypeDoctor, IEditUserPayload } from 'common/interfaces';
@@ -33,7 +33,7 @@ const getUser = (id:string): AppThunk => async (dispatch) => {
     dispatch(actions.setUser(user));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      notification.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -49,7 +49,7 @@ const editeUserInProfile = (userData: IEditUserPayload): AppThunk => async (disp
     }
   } catch(error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      notification.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -61,7 +61,7 @@ const editUserDocument = (payload:IDocument):AppThunk => async (dispatch) => {
     dispatch(actions.editeDocumentStatus(document));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      notification.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
