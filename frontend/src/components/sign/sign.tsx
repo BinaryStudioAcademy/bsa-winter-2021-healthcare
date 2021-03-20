@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { useLocation } from 'react-router-dom';
+import { Redirect, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { AppRoute } from 'common/enums';
+import { RootState } from 'common/types';
 import { SignUpForm, SignInForm } from './components';
 
 import styles from './styles.module.scss';
@@ -21,6 +23,14 @@ const Sign: React.FC = () => {
 
     return null;
   };
+
+  const { user } = useSelector(({ auth }: RootState) => ({
+    user: auth.user,
+  }));
+  const hasUser = Boolean(user);
+  if (hasUser) {
+    return <Redirect to={AppRoute.DOCTORS} />;
+  }
 
   return (
     <div className={styles.container}>
