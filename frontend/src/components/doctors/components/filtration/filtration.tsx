@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import styles from './filtration.module.scss';
 import { TextInput, Checkbox, Details } from 'components/common';
 import {
+  DoctorType,
+  ClinicType,
   InputType,
   InputColor,
   DoctorFiltration,
@@ -12,8 +14,8 @@ import { IDoctorFiltrationPayload } from 'common/interfaces';
 import { DEFAULT_FILTER_VALUE } from '../common/constants';
 import { doctorSpecialtiesToReadable, clinicTypesToReadable } from '../../common';
 
-const doctorSpecialties = Object.values(doctorSpecialtiesToReadable);
-const clinicTypes = Object.values(clinicTypesToReadable);
+const doctorSpecialties = Object.values(DoctorType);
+const clinicTypes = Object.values(ClinicType);
 
 const Filtration: React.FC = () => {
   const { control, errors, register, getValues } = useForm<IDoctorFiltrationPayload>({
@@ -62,8 +64,8 @@ const Filtration: React.FC = () => {
               <div className={styles.filterCheckbox} key={doctorSpecialty}>
                 <Checkbox
                   name={DoctorFiltration.SPECIALTY}
-                  value={doctorSpecialty.toLocaleLowerCase()}
-                  label={doctorSpecialty}
+                  value={doctorSpecialty}
+                  label={doctorSpecialtiesToReadable[doctorSpecialty]}
                   register={register}
                   errors={errors}
                 />
@@ -78,8 +80,8 @@ const Filtration: React.FC = () => {
               <div className={styles.filterCheckbox} key={clinicType}>
                 <Checkbox
                   name={DoctorFiltration.TYPE_OF_CLINIC}
-                  value={clinicType.toLocaleLowerCase()}
-                  label={clinicType}
+                  value={clinicType}
+                  label={clinicTypesToReadable[clinicType]}
                   register={register}
                   errors={errors}
                 />
