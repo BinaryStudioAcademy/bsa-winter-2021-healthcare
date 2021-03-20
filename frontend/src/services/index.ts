@@ -6,6 +6,7 @@ import { Storage } from './storage/storage.service';
 import { ClinicApi } from './clinic-api/clinic-api.service';
 import NotificationService from './notification/notification.service';
 import { GeolocationService } from './geolocation/geolocation.service';
+import { ImageService } from './image/image.service';
 
 const http = new Http();
 
@@ -33,6 +34,11 @@ const geolocationService = new GeolocationService({
   apiPrefix: ENV.API_PATH,
 });
 
+const imageService = new ImageService({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
 const notificationService = new NotificationService();
 
 export {
@@ -43,4 +49,5 @@ export {
   notificationService,
   clinicApi,
   geolocationService,
+  imageService,
 };
