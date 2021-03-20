@@ -1,4 +1,4 @@
-import { userRepository } from '~/data/repositories';
+import { user as userRepository } from '~/data/repositories';
 import { UserType } from '~/common/enums';
 import { IRegisterPayload, IUser, IUserWithPermissions } from '~/common/interfaces';
 

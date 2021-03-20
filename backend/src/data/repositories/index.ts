@@ -1,11 +1,11 @@
-import { UserRepository } from './user-repository';
-import { ClinicRepository } from './clinic-repository';
-import { GeolocationRepository } from './geolocation-repository';
+import { User } from './user-repository';
+import { Clinic } from './clinic-repository';
+import { Geolocation } from './geolocation-repository';
 import { Diagnosis } from './diagnosis.repository';
 
-const userRepository = new UserRepository();
-const clinicRepository = new ClinicRepository();
-const geolocationRepository = new GeolocationRepository();
+const user = new User();
+const clinic = new Clinic();
+const geolocation = new Geolocation();
 const diagnosis = new Diagnosis();
 
-export { userRepository, clinicRepository, geolocationRepository, diagnosis };
+export { user, clinic, geolocation, diagnosis };
