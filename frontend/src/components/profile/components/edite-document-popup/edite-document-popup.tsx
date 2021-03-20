@@ -25,10 +25,10 @@ const verifyDocumentOptions = [
   },
 ];
 
-const EditeDocumentPopup: React.FC<Props> = ({ document, isShow, onToggleModal, onEditeDocument }) => {  
-  const [radioValue, setRadioValue] = React.useState<DocumentStatus>(document.status); 
+const EditeDocumentPopup: React.FC<Props> = ({ document, isShow, onToggleModal, onEditeDocument }) => {
+  const [radioValue, setRadioValue] = React.useState<DocumentStatus>(document.status);
   const { register, handleSubmit, watch } = useForm<DocumentFormData>();
-  
+
   const handleChangeRadio = () => {
     const { status } = watch();
     setRadioValue(status);
@@ -67,7 +67,7 @@ const EditeDocumentPopup: React.FC<Props> = ({ document, isShow, onToggleModal, 
           <img src={document.imagePath}/>
         </div>
       </div>
-    </Modal>    
+    </Modal>
   );
 };
 
