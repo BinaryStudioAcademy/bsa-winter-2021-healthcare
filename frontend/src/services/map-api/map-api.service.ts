@@ -1,5 +1,5 @@
 import { Http } from 'services/http/http.service';
-import { IMap } from 'common/interfaces';
+import { ICoordsSet } from 'common/interfaces';
 import { MapApiPath } from 'common/enums/api';
 import { ContentType, HttpMethod } from 'common/enums';
 import { ApiPath } from 'common/enums/api';
@@ -19,8 +19,8 @@ class MapApi {
   }
 
   public sendSelectedCoords(
-    payload: Partial<IMap>,
-  ): Promise<IMap> {
+    payload: Partial<ICoordsSet>,
+  ): Promise<ICoordsSet> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.MAP}${MapApiPath.SELECT_AREA}`,
       {

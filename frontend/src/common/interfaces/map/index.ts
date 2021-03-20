@@ -1,1 +1,1 @@
-export type { IMap } from 'healthcare-shared/common/interfaces';
+export type { ICoordsSet } from 'healthcare-shared/common/interfaces';
