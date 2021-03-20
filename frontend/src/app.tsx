@@ -44,7 +44,7 @@ const App: React.FC = () => (
       permissions={[PermissionName.MAP_MANIPULATION]}
     />
     <AuthorizedRoute path={AppRoute.PERMISSIONS} component={Permissions} permissions={[PermissionName.EDIT_PERMISSIONS]} />
-    <Route path={AppRoute.MY_CHATS} component={Chats} />
+    <AuthorizedRoute path={AppRoute.MY_CHATS} component={Chats} />
     <Route path="*" exact component={NotFound} />
   </Switch>
 );

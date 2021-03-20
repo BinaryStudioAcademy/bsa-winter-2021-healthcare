@@ -7,3 +7,4 @@ export { reducer as mapReducer, MapActionCreator } from './map/map.slice';
 export { reducer as profileReducer, ProfileActionCreator } from './profile/profile.slice';
 export { reducer as doctorDetailsReducer, DoctorDetailsActionCreator } from './doctor-details/doctor-details.slice';
 export { reducer as permissionsReducer, PermissionsActionCreator } from './permissions/permissions.slice';
+export { reducer as chatsReducer, ChatsActionCreator } from './chats/chats.slice';

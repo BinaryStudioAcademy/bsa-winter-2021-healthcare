@@ -1,53 +1,44 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 import clsx from 'clsx';
+import { RootState } from 'common/types';
 import { Message, HorizontalLine } from '../../components';
 
 import styles from './styles.module.scss';
-
-import avatar from 'assets/images/phone.svg';
-
-const messages = [  // stor -> chats -> messages
-  {
-
-    id: '1122334455',
-    to: '12345',
-    text: 'Lorem ipsum dolor sit amet, adipiscing elit. Dictum?',
-    createdAt: '10:33',
-    updatedAt: '',
-
-  }, {
-
-    id: '5544332211',
-    to: '54321',
-    text: 'Ut nunc aliquam, amet, aliquet adipiscing mi gravida.',
-    createdAt: '13:43',
-    updatedAt: '',
-
-  },
-];
-
-const selectedMemberAvatar = avatar;  // stor -> chats -> selectedMemberAvatar
-
-const userId = '12345';  // stor -> auth -> user -> id
-const userAvatar = avatar;  // stor -> auth -> user -> avatar
 
 interface Props {
   className?: string;
 }
 
-const MessageList: React.FC<Props> = ({ className }) => (
-  <div className={clsx(styles.messageList, className)}>
-    {messages.map((message) => (
-      <Message
-        key={message.id}
-        message={message.text}
-        time={message.createdAt}
-        avatar={message.to === userId ? selectedMemberAvatar : userAvatar}
-        isOutcoming={message.to !== userId}
-      />
-    ))}
-    <HorizontalLine label="Today" />  {/* need add moments and logic */}
-  </div>
-);
+const MessageList: React.FC<Props> = ({ className }) => {
+  const { userId, userAvatarPath = '', messages, memberAvatarPath = '' } = useSelector(({ auth: { user }, chats: { messages, selectedMember } }: RootState) => ({
+    userId: user?.id,
+    userAvatarPath: user?.imagePath,
+    messages,
+    memberAvatarPath: selectedMember?.avatarPath,
+  }));
+
+  return (
+    <div className={clsx(styles.messageList, className)}>
+      {messages.map(({ id, to, text, createdAt }, index, array) => {
+        const curFromNow = moment.utc(createdAt).local().fromNow();
+        const nextFromNow = moment.utc(array[index - 1]?.createdAt).local().fromNow();
+
+        return (
+          <div key={id} className={styles.messageContainer}>
+            {curFromNow !== nextFromNow && true &&<HorizontalLine label={curFromNow} />}
+            <Message
+              message={text}
+              time={moment.utc(createdAt).local().format('LT')}
+              avatar={to === userId ? memberAvatarPath : userAvatarPath}
+              isOutcoming={to !== userId}
+            />
+          </div>
+        );
+      }).reverse()}
+    </div>
+  );
+};
 
 export default MessageList;

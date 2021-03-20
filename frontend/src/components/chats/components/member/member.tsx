@@ -9,15 +9,19 @@ interface Props {
   avatar: string;
   isSelected?: boolean;
   className?: string;
+  onClick?: (id: string) => void;
 }
 
-const Member: React.FC<Props> = ({ label, info, avatar, isSelected, className }) => {
-  const handlerSelectMember = () => {
-    // !isSelected && action -> selectMember(id)
+const Member: React.FC<Props> = ({ id, label, info, avatar, isSelected, className, onClick }) => {
+  const handlerOnClick = () => {
+    !isSelected && onClick && onClick(id);
   };
 
   return (
-    <div className={clsx(styles.member, { [styles.selected]: isSelected }, className)} onClick={handlerSelectMember}>
+    <div
+      className={clsx(styles.member, { [styles.selected]: isSelected }, className)}
+      onClick={handlerOnClick}
+    >
       <img src={avatar} />
       <span>{label}</span>
       {info}

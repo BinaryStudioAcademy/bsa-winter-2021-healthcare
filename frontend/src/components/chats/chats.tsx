@@ -1,12 +1,15 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import clsx from 'clsx';
-
+import { RootState } from 'common/types';
 import  { MessageList, MemberList, InputMessageForm } from './components';
 
 import styles from './styles.module.scss';
 
 const Chats: React.FC = () => {
-  const userName = 'Giana Levin';  // stor -> auth -> user -> name
+  const { selectedMemberName } = useSelector(({ chats: { selectedMember } }: RootState) => ({
+    selectedMemberName: selectedMember?.name,
+  }));
 
   return (
     <div className={styles.container}>
@@ -16,11 +19,10 @@ const Chats: React.FC = () => {
       <div className={styles.chat}>
 
         <div className={clsx(styles.headMessageList)}>
-          <span>{userName}</span>
+          <span>{selectedMemberName}</span>
         </div>
 
         <MessageList />
-
         <InputMessageForm />
 
       </div>

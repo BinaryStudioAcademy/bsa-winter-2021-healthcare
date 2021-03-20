@@ -11,6 +11,7 @@ import {
   profileReducer,
   doctorDetailsReducer,
   permissionsReducer,
+  chatsReducer,
 } from './slices';
 
 const store = configureStore({
@@ -26,6 +27,7 @@ const store = configureStore({
     [ReducerName.PROFILE]: profileReducer,
     [ReducerName.DOCTOR_DETAILS]: doctorDetailsReducer,
     [ReducerName.PERMISSIONS]: permissionsReducer,
+    [ReducerName.CHATS]: chatsReducer,
   },
 });
 
