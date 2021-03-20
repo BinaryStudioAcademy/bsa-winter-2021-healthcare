@@ -19,10 +19,18 @@ class Http {
     const headers = this._getHeaders(hasAuth, contentType);
     const isJSON = checkIsOneOf(contentType, ContentType.JSON);
 
+    let body;
+    if (isJSON)
+      body = JSON.stringify(payload);
+    else if (payload instanceof FormData)
+      body = payload;
+    else
+      body = (payload as string);
+
     return fetch(url, {
       method,
       headers,
-      body: isJSON ? JSON.stringify(payload) : (payload as string),
+      body: body,
     })
       .then(this._checkStatus)
       .then((res) => this._parseJSON<T>(res))
