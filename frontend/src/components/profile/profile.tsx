@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SideMenu, UserInfo, Documents } from './components';
-import { EditUserPopup, Modal } from 'components/common';
+import { EditUserPopup } from 'components/common';
 import { IEditUserPayload, IUserTypeDoctor } from 'common/interfaces';
 import { UserType } from 'common/enums';
 import { useSelector } from 'react-redux';
@@ -44,13 +44,12 @@ const Profile: React.FC = () => {
             <UserInfo user ={user} onEdit={handleTogglePopUp} />
             {isDoctor && <Documents document={(user as IUserTypeDoctor).doctor.document}/>}
           </div>
-          <Modal isShow={isEditeMode}>
-            <EditUserPopup
-              user={user}
-              onEditUser={handleUserInfoEdit}
-              onFormHide={handleTogglePopUp}
-            />
-          </Modal>
+          <EditUserPopup
+            isShow={isEditeMode}
+            user={user}
+            onEditUser={handleUserInfoEdit}
+            onFormHide={handleTogglePopUp}
+          />
         </>
       }
     </div>

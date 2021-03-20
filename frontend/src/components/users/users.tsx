@@ -6,7 +6,6 @@ import { AdminTable, CreateUserPopup } from './components';
 import { EditUserPopup } from 'components/common';
 import { IEditUserPayload, IRegisterPayload, IUser } from 'common/interfaces';
 import { DEFAULT_USER_INSTANCE } from 'components/users/constants';
-import { Modal } from 'components/common';
 import {
   CreateUserCb,
   DeleteUserCb,
@@ -46,20 +45,20 @@ const Users: React.FC = () => {
     <div className={styles.container}>
       {/* <button onClick={()=>showFormHandler()}>asd</button> */}
       <AdminTable onFormShow={handleShowForm} onUserDelete={handleDeleteUser} />
-      <Modal isShow={isShowPopUp}>
-        {user.id ? (
-          <EditUserPopup
-            user={user}
-            onEditUser={handleEditUser}
-            onFormHide={handleHideForm}
-          />
-        ) : (
-          <CreateUserPopup
-            onCreateUser={handleAddUser}
-            onFormHide={handleHideForm}
-          />
-        )}
-      </Modal>
+      {user.id ? (
+        <EditUserPopup
+          isShow={isShowPopUp}
+          user={user}
+          onEditUser={handleEditUser}
+          onFormHide={handleHideForm}
+        />
+      ) : (
+        <CreateUserPopup
+          isShow={isShowPopUp}
+          onCreateUser={handleAddUser}
+          onFormHide={handleHideForm}
+        />
+      )}
     </div>
   );
 };
