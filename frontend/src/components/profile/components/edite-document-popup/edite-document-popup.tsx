@@ -4,7 +4,13 @@ import { Modal, Button, Radio } from 'components/common';
 import { ButtonColor, ButtonStyleType, DocumentStatus, ButtonType } from 'common/enums';
 import { BindingCb } from 'common/types';
 import { useForm } from 'react-hook-form';
-import { documentStatusToReadable, EditeDocumentCb, DocumentFormData } from '../../common';
+import {
+  documentStatusToReadable,
+  EditeDocumentCb,
+  DocumentFormData,
+  DocumentFormKey,
+} from '../../common';
+import { createOptions } from 'helpers';
 import styles from './styles.module.scss';
 
 type Props = {
@@ -14,32 +20,25 @@ type Props = {
   onEditeDocument:EditeDocumentCb;
 };
 
-const verifyDocumentOptions = [
-  {
-    label: documentStatusToReadable[DocumentStatus.VERIFIED],
-    value: DocumentStatus.VERIFIED,
-  },
-  {
-    label: documentStatusToReadable[DocumentStatus.IN_REVIEW],
-    value: DocumentStatus.IN_REVIEW,
-  },
-];
+const verifyDocumentOptions = createOptions<string>(Object.values(DocumentStatus), (documentStatus) => ({
+  value: documentStatus,
+  label: documentStatusToReadable[(documentStatus as DocumentStatus)],
+}));
 
 const EditeDocumentPopup: React.FC<Props> = ({ document, isShow, onToggleModal, onEditeDocument }) => {
-  const [radioValue, setRadioValue] = React.useState<DocumentStatus>(document.status);
-  const { register, handleSubmit, watch } = useForm<DocumentFormData>();
+  const defaultValues = { [DocumentFormKey.STATUS]: document.status };
+  const { register, handleSubmit, watch, errors } = useForm<DocumentFormData>({
+    defaultValues: defaultValues,
+  });
+  const status = watch(DocumentFormKey.STATUS, document.status);
 
-  const handleChangeRadio = () => {
-    const { status } = watch();
-    setRadioValue(status);
-  };
   const handleSubmitForm = (formData:DocumentFormData) => {
-    const update:IDocument = { ...document, status: formData.status };
+    const update = { ...document, status: formData.status };
     onEditeDocument(update);
   };
   return (
     <Modal isShow={isShow}>
-      <div className={styles.formContainer}>
+      <div className={styles.visualyHidden}>
         <button className={styles.closeButton} onClick={onToggleModal} type="button">
           &#10060;
         </button>
@@ -48,9 +47,9 @@ const EditeDocumentPopup: React.FC<Props> = ({ document, isShow, onToggleModal, 
             <Radio
               options={verifyDocumentOptions}
               register={register}
-              value={radioValue}
-              name="status"
-              onChange={handleChangeRadio}
+              value={status}
+              name={DocumentFormKey.STATUS}
+              errors={errors}
             />
           </div>
           <div className={styles.confirmButton}>

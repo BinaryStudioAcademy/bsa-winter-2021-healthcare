@@ -1,21 +1,21 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { IOption } from 'common/interfaces';
-import { InputChangeCallback } from 'common/types';
-import { UseFormMethods } from 'react-hook-form';
+import { FormRegisterCb, FormErrors } from 'common/types';
 
 import styles from './styles.module.scss';
 
-interface Props extends Partial<Pick<UseFormMethods, 'register'>>{
+interface Props {
   options: IOption<string>[];
-  value: string;
+  value?: string;
   isDisabled?: boolean;
-  hasError?: boolean;
   name: string;
-  onChange: InputChangeCallback;
+  register: FormRegisterCb;
+  errors: FormErrors;
 }
 
-const Radio: React.FC<Props> = ({ options, register, value, isDisabled, hasError, name, onChange }) => {
+const Radio: React.FC<Props> = ({ options, register, value, isDisabled, errors, name }) => {
+  const hasError = Boolean(errors[name]);
   return (
     <div className={styles.radioContainer}>
       {
@@ -29,8 +29,6 @@ const Radio: React.FC<Props> = ({ options, register, value, isDisabled, hasError
           >
             {option.label}
             <input
-              onChange={onChange}
-              checked={option.value === value}
               disabled={isDisabled}
               name={name}
               ref={register}

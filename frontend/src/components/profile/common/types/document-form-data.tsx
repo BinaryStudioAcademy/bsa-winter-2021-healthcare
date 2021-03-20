@@ -1,7 +1,8 @@
 import { DocumentStatus } from 'common/enums';
+import { DocumentFormKey } from '../enums';
 
 type DocumentFormData = {
-  status: DocumentStatus,
+  [DocumentFormKey.STATUS]: DocumentStatus,
 };
 
 export type { DocumentFormData };
