@@ -41,6 +41,7 @@ const registration = createAsyncThunk(
     try {
       const { token, user } = await authApi.registrationUser(userData);
       storage.setItem(StorageKey.TOKEN, token);
+
       return user;
     } catch (error) {
       if (error instanceof HttpError) {
