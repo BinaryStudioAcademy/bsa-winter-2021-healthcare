@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { ApiPath, HttpCode, DocumentsApiPath } from '~/common/enums';
-import { documentService } from '~/services/services';
+import { document } from '~/services/services';
 
 const initDocumentApi = (apiRouter: Router): Router => {
   const documentRouter = Router();
@@ -9,8 +9,8 @@ const initDocumentApi = (apiRouter: Router): Router => {
 
   documentRouter.put(DocumentsApiPath.$ID, async (req, res, next) => {
     try {
-      const document = await documentService.updateDocument(req.params.id, req.body);
-      res.status(HttpCode.OK).json(document);
+      const update = await document.updateDocument(req.params.id, req.body);
+      res.status(HttpCode.OK).json(update);
     } catch(error) {
       next(error);
     }
