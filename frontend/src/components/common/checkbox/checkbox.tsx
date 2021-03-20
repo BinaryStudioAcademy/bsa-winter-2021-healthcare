@@ -1,5 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
+import { ErrorMessage } from '@hookform/error-message';
 import { FormRegisterCb, FormErrors } from 'common/types';
 
 import styles from './styles.module.scss';
@@ -21,8 +22,10 @@ const Checkbox: React.FC<Props> = ({
   errors,
   register,
 }) =>{
+  const hasError = Boolean(errors[name]);
+
   return (
-    <label className={clsx(styles.checkboxRow, errors[name] && styles.error)}>
+    <label className={clsx(styles.checkboxRow, hasError && styles.error)}>
       <input
         disabled={isDisabled}
         name={name}
@@ -32,6 +35,7 @@ const Checkbox: React.FC<Props> = ({
         ref={register}
       />
       <span className={styles.checkboxLabel}>{label}</span>
+      <ErrorMessage errors={errors} as="span" name={name} />
     </label>
   );
 };
