@@ -4,6 +4,6 @@ export {
   AuthApiPath,
   ClinicsApiPath,
   GeolocationsApiPath,
-  ImagesApiPath,
+  UploadFileApiPath,
 } from 'healthcare-shared/common/enums';
 export * from 'healthcare-shared/common/enums/api';

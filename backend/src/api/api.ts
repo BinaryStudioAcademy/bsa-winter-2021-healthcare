@@ -5,9 +5,9 @@ import { initAuthApi } from './auth/auth.api';
 import { initClinicApi } from './clinic/clinic.api';
 import { initDocumentApi } from './document/document.api';
 import { initGeolocationApi } from './geolocation/geolocation.api';
-import { initImageApi } from './image/image.api';
+import { initUploadFileApi } from './upload-file/upload-file.api';
 
-const apis = [initUserApi, initAuthApi, initClinicApi, initGeolocationApi, initImageApi, initDocumentApi];
+const apis = [initUserApi, initAuthApi, initClinicApi, initGeolocationApi, initUploadFileApi, initDocumentApi];
 
 const initApi = (app: Router): Router => {
   const apiRouter = Router();
