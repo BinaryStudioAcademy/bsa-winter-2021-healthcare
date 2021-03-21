@@ -6,6 +6,8 @@ enum ReducerName {
   CLINICS = 'clinics',
   TOASTR = 'toastr',
   NOTIFICATIONS = 'notifications',
+  MAP = 'map',
+  PROFILE = 'profile',
 }
 
 export { ReducerName };

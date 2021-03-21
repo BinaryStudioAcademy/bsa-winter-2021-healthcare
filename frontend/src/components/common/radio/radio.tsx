@@ -1,43 +1,48 @@
+import * as React from 'react';
 import clsx from 'clsx';
 import { IOption } from 'common/interfaces';
-import { InputChangeCallback } from 'common/types';
-import * as React from 'react';
+import { FormRegisterCb, FormErrors } from 'common/types';
+import { ErrorMessage } from '@hookform/error-message';
+
 import styles from './styles.module.scss';
 
 interface Props {
   options: IOption<string>[];
-  value: string;
+  value?: string;
   isDisabled?: boolean;
-  hasError?: boolean;
   name: string;
-  onChange: InputChangeCallback;
+  register: FormRegisterCb;
+  errors: FormErrors;
 }
 
-const Radio: React.FC<Props> = ({ options, value, isDisabled, hasError, name, onChange }) => (
-  <div className={styles.radioContainer}>
-    {
-      options.map(option => (
-        <label
-          key={option.value}
-          className={clsx(styles.radioLabel,
-            hasError && styles.error,
-            option.value === value && styles.isChecked)
-          }
-        >
-          {option.label}
-          <input
-            onChange={onChange}
-            checked={option.value === value}
-            disabled={isDisabled}
-            name={name}
-            value={option.value}
-            className={styles.radioInput}
-            type="radio"
-          />
-        </label>
-      ))
-    }
-  </div>
-);
+const Radio: React.FC<Props> = ({ options, register, value, isDisabled, errors, name }) => {
+  const hasError = Boolean(errors[name]);
+  return (
+    <div className={styles.radioContainer}>
+      {
+        options.map(option => (
+          <label
+            key={option.value}
+            className={clsx(styles.radioLabel,
+              hasError && styles.error,
+              option.value === value && styles.isChecked)
+            }
+          >
+            {option.label}
+            <input
+              disabled={isDisabled}
+              name={name}
+              ref={register}
+              value={option.value}
+              className={styles.radioInput}
+              type="radio"
+            />
+            <ErrorMessage errors={errors} as="span" name={name} />
+          </label>
+        ))
+      }
+    </div>
+  );
+};
 
 export default Radio;
