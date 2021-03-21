@@ -40,7 +40,7 @@ class UserRepository {
           {
             model: DoctorModel,
             as: ModelAlias.DOCTOR,
-            attributes: [DoctorKey.ID, DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
+            attributes: [DoctorKey.ID, DoctorKey.ABOUT],
             include: [
               {
                 model: ClinicModel,
@@ -71,7 +71,7 @@ class UserRepository {
         {
           model: DoctorModel,
           as: ModelAlias.DOCTOR,
-          attributes: [DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
+          attributes: [DoctorKey.ABOUT],
         },
         {
           model: SpecializationModel,
