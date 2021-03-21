@@ -30,7 +30,7 @@ const Header: React.FC<Props> = ({ user }) => {
       <div className={styles.pagesSection}>
         <Link to={AppRoute.DOCTORS}>Doctor</Link>
         <Link to={AppRoute.CLINIC}>Clinic</Link>
-        <Link to={AppRoute.MY_PROFILE}>My Profile</Link>
+        <Link to={`${AppRoute.USER_PROFILE}/${user.id}`}>My Profile</Link>
         <Link to={AppRoute.MY_CALENDAR}>My Calendar</Link>
         <Link to={AppRoute.MY_CHATS}>My Chats</Link>
       </div>

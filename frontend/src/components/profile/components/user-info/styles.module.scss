@@ -1,0 +1,107 @@
+.infoHeader {
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.infoBloks {
+  display: flex;
+  margin-top: 32px;
+}
+
+.title {
+  margin-right: 20px;
+}
+
+.photo {
+  width: 157px;
+  height: 157px;
+  overflow: hidden;
+}
+
+.image{
+  width:100%;
+  border-radius: 15px;
+}
+
+.mainUserInfo {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 25px;
+  border-right: 1px solid grey;
+}
+
+.card {
+  background-color: #ac5dd9;
+  padding: 5px 10px;
+  border-radius: 50px;
+  color: #f2f2f5;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.sex {
+  color: #787878;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+.dateLabel {
+  color: #787878;
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.date {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.secUserInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 60px;
+  width: 200px;
+}
+
+.item {
+  display: flex;
+  margin-top: 10px;
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 22px;
+  text-align: left;
+}
+
+.icon{
+  width: 22px;
+  height: 22px;
+}
+
+.phone {
+  background-image: url('../../../../assets/images/phone.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.email {
+  background-image: url('../../../../assets/images/mail.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
