@@ -1,12 +1,18 @@
 import * as React from 'react';
 import { IDocument } from 'common/interfaces';
 import { Modal, Button, Radio } from 'components/common';
-import { ButtonColor, ButtonStyleType, DocumentStatus, ButtonType, DocumentKey } from 'common/enums';
+import {
+  ButtonColor,
+  ButtonStyleType,
+  DocumentStatus,
+  ButtonType,
+  DocumentKey,
+} from 'common/enums';
 import { BindingCb } from 'common/types';
 import { useForm } from 'react-hook-form';
 import {
   documentStatusToReadable,
-  EditeDocumentCb,
+  EditDocumentCb,
   DocumentFormData,
 } from '../../common';
 import { createOptions } from 'helpers';
@@ -14,33 +20,48 @@ import styles from './styles.module.scss';
 
 type Props = {
   document: IDocument;
-  isShow:boolean;
-  onToggleModal:BindingCb;
-  onEditeDocument:EditeDocumentCb;
+  isShow: boolean;
+  onToggleModal: BindingCb;
+  onEditDocument: EditDocumentCb;
 };
 
-const verifyDocumentOptions = createOptions<string>(Object.values(DocumentStatus), (documentStatus) => ({
-  value: documentStatus,
-  label: documentStatusToReadable[(documentStatus as DocumentStatus)],
-}));
+const verifyDocumentOptions = createOptions<string>(
+  Object.values(DocumentStatus),
+  (documentStatus) => ({
+    value: documentStatus,
+    label: documentStatusToReadable[documentStatus as DocumentStatus],
+  }),
+);
 
-const EditeDocumentPopup: React.FC<Props> = ({ document, isShow, onToggleModal, onEditeDocument }) => {
+const EditDocumentPopup: React.FC<Props> = ({
+  document,
+  isShow,
+  onToggleModal,
+  onEditDocument,
+}) => {
   const { register, handleSubmit, watch, errors } = useForm<DocumentFormData>({
-    defaultValues: { [DocumentKey.STATUS]: document.status },
+    defaultValues: {
+      [DocumentKey.STATUS]: document.status,
+    },
   });
   const status = watch(DocumentKey.STATUS, document.status);
 
-  const handleSubmitForm = (formData:DocumentFormData) => {
+  const handleSubmitForm = (formData: DocumentFormData) => {
     const updatedDocument: IDocument = {
       ...document,
       status: formData.status,
     };
-    onEditeDocument(updatedDocument);
+
+    onEditDocument(updatedDocument);
   };
   return (
     <Modal isShow={isShow}>
       <div className={styles.formContainer}>
-        <button className={styles.closeButton} onClick={onToggleModal} type="button">
+        <button
+          className={styles.closeButton}
+          onClick={onToggleModal}
+          type="button"
+        >
           &#10060;
           <span className="visually-hidden">Close edit document popup</span>
         </button>
@@ -65,11 +86,11 @@ const EditeDocumentPopup: React.FC<Props> = ({ document, isShow, onToggleModal, 
           </div>
         </form>
         <div className={styles.imgContainer}>
-          <img src={document.imagePath}/>
+          <img src={document.imagePath} />
         </div>
       </div>
     </Modal>
   );
 };
 
-export default EditeDocumentPopup;
+export default EditDocumentPopup;

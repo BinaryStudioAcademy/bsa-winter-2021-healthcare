@@ -1,12 +1,12 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import clsx from 'clsx';
 import { IDocument } from 'common/interfaces';
 import { Button } from 'components/common';
 import { ButtonColor, ButtonStyleType } from 'common/enums';
 import { ProfileActionCreator } from 'store/slices';
-import { useDispatch } from 'react-redux';
 import { documentStatusToReadable } from '../../common';
-import EditeDocumentPopup from '../edite-document-popup/edite-document-popup';
-import clsx from 'clsx';
+import EditDocumentPopup from '../edit-document-popup/edit-document-popup';
 import styles from './styles.module.scss';
 
 type Props = {
@@ -17,7 +17,7 @@ const Documents: React.FC<Props> = ({ document }) => {
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
   const dispatch = useDispatch();
 
-  const handleEditeDocument = (update:IDocument) => {
+  const handleEditDocument = (update: IDocument) => {
     dispatch(ProfileActionCreator.editUserDocument(update));
     handleToggleModal();
   };
@@ -39,11 +39,11 @@ const Documents: React.FC<Props> = ({ document }) => {
           hasHiddenLabel={false}
           onClick={handleToggleModal}
         />
-        <EditeDocumentPopup
+        <EditDocumentPopup
           document={document}
           isShow={isModalOpen}
           onToggleModal={handleToggleModal}
-          onEditeDocument={handleEditeDocument}
+          onEditDocument={handleEditDocument}
         />
       </div>
     </div>

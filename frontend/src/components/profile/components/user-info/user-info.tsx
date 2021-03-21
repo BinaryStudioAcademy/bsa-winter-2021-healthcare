@@ -9,18 +9,18 @@ import clsx from 'clsx';
 import styles from './styles.module.scss';
 
 type Props = {
-  user: IUser
-  onEdit: BindingCb
+  user: IUser;
+  onEdit: BindingCb;
 };
 
 const UserInfo: React.FC<Props> = ({ user, onEdit }) => {
-  const birthdate = getFormattedDate( user.birthdate, DateFormat.D_MMMM_YYYY);
+  const birthdate = getFormattedDate(user.birthdate, DateFormat.D_MMMM_YYYY);
   return (
     <div className={styles.mainInfo}>
       <div className={styles.infoHeader}>
         <span className={styles.title}>My Profile</span>
         <Button
-          label={'Edite'}
+          label="Edit"
           icon={ButtonIcon.EDIT}
           hasHiddenLabel={true}
           color={ButtonColor.GRAY_LIGHT}
@@ -30,11 +30,13 @@ const UserInfo: React.FC<Props> = ({ user, onEdit }) => {
       </div>
       <div className={styles.infoBloks}>
         <div className={styles.photo}>
-          <img className={styles.image} src={user.imagePath} alt={user.name}/>
+          <img className={styles.image} src={user.imagePath} alt={user.name} />
         </div>
         <div className={styles.mainUserInfo}>
           <div className={styles.card}>{user.type}</div>
-          <span className={styles.name}>{user.name} {user.surname}</span>
+          <span className={styles.name}>
+            {user.name} {user.surname}
+          </span>
           <span className={styles.sex}>{user.sex}</span>
           <span className={styles.dateLabel}>Date of Birth</span>
           <span className={styles.date}>{birthdate}</span>
@@ -55,4 +57,3 @@ const UserInfo: React.FC<Props> = ({ user, onEdit }) => {
 };
 
 export default UserInfo;
-
