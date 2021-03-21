@@ -1,1 +1,1 @@
-export type { IDocument, IEditDocumentPayload } from 'healthcare-shared/common/interfaces';
+export type { IDocument } from 'healthcare-shared/common/interfaces';
