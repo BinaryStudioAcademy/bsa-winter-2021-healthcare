@@ -3,3 +3,4 @@ export { reducer as doctorsReducer, DoctorsActionCreator } from './doctors/docto
 export { reducer as authReducer, AuthActionCreator } from './auth/auth.slice';
 export { reducer as clinicsReducer, ClinicsActionCreator } from './clinics/clinics.slice';
 export { reducer as mapReducer, MapActionCreator } from './map/map.slice';
+export { reducer as profileReducer, ProfileActionCreator } from './profile/profile.slice';
