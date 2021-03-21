@@ -5,8 +5,9 @@ import { initAuthApi } from './auth/auth.api';
 import { initClinicApi } from './clinic/clinic.api';
 import { initDocumentApi } from './document/document.api';
 import { initGeolocationApi } from './geolocation/geolocation.api';
+import { initMapApi } from './map/map.api';
 
-const apis = [initUserApi, initAuthApi, initClinicApi, initGeolocationApi, initDocumentApi];
+const apis = [initUserApi, initAuthApi, initClinicApi, initGeolocationApi, initDocumentApi, initMapApi];
 
 const initApi = (app: Router): Router => {
   const apiRouter = Router();

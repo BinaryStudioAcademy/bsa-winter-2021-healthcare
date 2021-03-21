@@ -7,6 +7,7 @@ import { ClinicApi } from './clinic-api/clinic-api.service';
 import { DocumentApi } from './document-api/document-api.service';
 import { Notification } from './notification/notification.service';
 import { Geolocation } from './geolocation/geolocation.service';
+import { MapApi } from './map-api/map-api.service';
 
 const http = new Http();
 
@@ -39,6 +40,11 @@ const geolocation = new Geolocation({
   apiPrefix: ENV.API_PATH,
 });
 
+const mapApi = new MapApi({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
 const notification = new Notification();
 
 export {
@@ -50,4 +56,5 @@ export {
   clinicApi,
   documentApi,
   geolocation,
+  mapApi,
 };
