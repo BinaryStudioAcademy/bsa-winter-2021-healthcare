@@ -7,7 +7,7 @@ import { ClinicApi } from './clinic-api/clinic-api.service';
 import { DocumentApi } from './document-api/document-api.service';
 import { Notification } from './notification/notification.service';
 import { Geolocation } from './geolocation/geolocation.service';
-import { Image } from './image/image.service';
+import { UploadFile } from './upload-file/upload-file.service';
 
 const http = new Http();
 
@@ -40,7 +40,7 @@ const geolocation = new Geolocation({
   apiPrefix: ENV.API_PATH,
 });
 
-const image = new Image({
+const uploadFile = new UploadFile({
   http,
   apiPrefix: ENV.API_PATH,
 });
@@ -55,5 +55,5 @@ export {
   clinicApi,
   documentApi,
   geolocation,
-  image,
+  uploadFile,
 };

@@ -6,7 +6,7 @@ type Constructor = {
   apiPrefix: string;
 };
 
-class Image {
+class UploadFile {
   #http: Http;
   #apiPrefix: string;
 
@@ -20,11 +20,11 @@ class Image {
     formData.append(UploadFileType.IMAGE, image);
     const payload = formData;
 
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.IMAGES}`, {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.FILES}`, {
       method: HttpMethod.POST,
       payload,
     });
   }
 }
 
-export { Image };
+export { UploadFile };
