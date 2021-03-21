@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { ApiPath, ImagesApiPath, HttpCode } from '~/common/enums';
+import { ApiPath, ImagesApiPath, HttpCode, UploadFileType } from '~/common/enums';
 import { uploadFile as uploadFileService } from '~/services/services';
 import multer from 'multer';
 
@@ -12,9 +12,9 @@ const initImageApi = (apiRouter: Router): Router => {
 
   apiRouter.use(ApiPath.IMAGES, imageRouter);
 
-  imageRouter.post(ImagesApiPath.ROOT, upload.single('image'), async (req, res, next) => {
+  imageRouter.post(ImagesApiPath.ROOT, upload.single(UploadFileType.IMAGE), async (req, res, next) => {
     try {
-      const result = await uploadFileService.uploadImage(req.file);
+      const result = (await uploadFileService.uploadImage(req.file)).secure_url;
       res.status(HttpCode.OK).json(result);
     } catch (error) {
       next(error);

@@ -10,9 +10,8 @@ class UploadFile {
   async uploadImage(file: Express.Multer.File): Promise<cloudinary.UploadApiResponse> {
     const parser = new DatauriParser();
     const dataUri = parser.format(file.originalname, file.buffer);
-    const content = <string>dataUri.content;
-    const res = await cloudinary.v2.uploader.upload(content);
-    return res;
+    const content = dataUri.content as string;
+    return cloudinary.v2.uploader.upload(content);
   }
 }
 
