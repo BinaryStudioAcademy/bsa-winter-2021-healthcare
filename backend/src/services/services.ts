@@ -5,6 +5,7 @@ import { Auth } from './auth/auth.service';
 import { User } from './user-service/user-service.service';
 import { Clinic } from './clinic-service/clinic-service.service';
 import { Geolocation } from './geolocation/geolocation.service';
+import { Notification } from './notification/notification.service';
 import { Logger } from './logger/logger.service';
 
 const appAsyncStorage = new AsyncLocalStorage<AppAsyncStorage>();
@@ -18,6 +19,7 @@ const auth = new Auth();
 const user = new User();
 const clinic = new Clinic();
 const geolocation = new Geolocation();
+const notification = new Notification();
 
 export {
   appAsyncStorage,
@@ -26,4 +28,5 @@ export {
   user,
   clinic,
   geolocation,
+  notification,
 };
