@@ -3,14 +3,18 @@ import {
   userRegister as userRegisterSchema,
   login as loginSchema,
 } from '~/validation-schemas';
-import { ApiPath, AuthApiPath, HttpCode } from '~/common/enums';
+import { ApiPath, AuthApiPath, HttpCode, UserType } from '~/common/enums';
 import {
   authentication as authenticationMiddleware,
   registration as registrationMiddleware,
   validateSchema,
 } from '~/middlewares';
-import { auth as authService } from '~/services/services';
+import {
+  auth as authService,
+  doctor as doctorService,
+} from '~/services/services';
 import { IUser } from '~/common/interfaces';
+import { checkIsOneOf } from '~/helpers';
 
 const initAuthApi = (apiRouter: Router): Router => {
   const authRouter = Router();
@@ -21,12 +25,21 @@ const initAuthApi = (apiRouter: Router): Router => {
     AuthApiPath.SIGNUP,
     validateSchema(userRegisterSchema),
     registrationMiddleware,
-    (req, res, next) => {
-      const user = req.user as IUser;
-      return authService
-        .signUp(user)
-        .then((data) => res.status(HttpCode.CREATED).json(data))
-        .catch(next);
+    async (req, res, next) => {
+      try {
+        const user = req.user as IUser;
+        const data = await authService.signUp(user);
+        const isDoctorType = checkIsOneOf(user?.type, UserType.DOCTOR);
+        if (isDoctorType && data.user.id) {
+          await doctorService.createNewDoctor({
+            about: '',
+            userId: data.user.id,
+          });
+        }
+        res.status(HttpCode.CREATED).json(data);
+      } catch (error) {
+        next(error);
+      }
     },
   );
 
