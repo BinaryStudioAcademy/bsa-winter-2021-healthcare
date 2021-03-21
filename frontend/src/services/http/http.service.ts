@@ -18,7 +18,6 @@ class Http {
     } = options;
     const headers = this._getHeaders(hasAuth, contentType);
     const isJSON = checkIsOneOf(contentType, ContentType.JSON);
-
     return fetch(url, {
       method,
       headers,

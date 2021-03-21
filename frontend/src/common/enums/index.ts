@@ -8,6 +8,8 @@ export * from './api';
 export * from './auth';
 export * from './user';
 export * from './form';
+export * from './date';
+export * from './document';
 export * from './doctor';
 export * from './clinic';
 export * from './appointment';

@@ -4,6 +4,7 @@ import { AuthApi } from './auth-api/auth-api.service';
 import { UserApi } from './user-api/user-api.service';
 import { Storage } from './storage/storage.service';
 import { ClinicApi } from './clinic-api/clinic-api.service';
+import { DocumentApi } from './document-api/document-api.service';
 import { Notification } from './notification/notification.service';
 import { Geolocation } from './geolocation/geolocation.service';
 
@@ -20,6 +21,11 @@ const userApi = new UserApi({
 });
 
 const clinicApi = new ClinicApi({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
+const documentApi = new DocumentApi({
   http,
   apiPrefix: ENV.API_PATH,
 });
@@ -42,5 +48,6 @@ export {
   storage,
   notification,
   clinicApi,
+  documentApi,
   geolocation,
 };

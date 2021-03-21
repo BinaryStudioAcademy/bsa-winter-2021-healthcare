@@ -55,7 +55,11 @@ const registration = createAsyncThunk(
 const { reducer, actions } = createSlice({
   name: ReducerName.AUTH,
   initialState,
-  reducers: {},
+  reducers: {
+    setUser:(state, action: PayloadAction<IUserWithPermissions>) => {
+      state.user = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     const sharedReducer = (
       state: AuthState,
