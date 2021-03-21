@@ -13,8 +13,7 @@ import { AuthorizedRoute } from 'components/common';
 const App: React.FC = () => (
   <Switch>
     <Route path={[AppRoute.SIGN_IN, AppRoute.SIGN_UP]} component={Sign} />
-    {/* //@todo make authorized route */}
-    <Route path={AppRoute.NOTIFICATIONS} component={Notifications} />
+    <AuthorizedRoute path={AppRoute.NOTIFICATIONS} component={Notifications} />
     <AuthorizedRoute path={AppRoute.CLINICS} component={Clinics} />
     <AuthorizedRoute path={AppRoute.DOCTORS} component={Doctors} />
     <AuthorizedRoute path={AppRoute.DOCTOR_DETAILS_$ID} component={DoctorDetails} />
