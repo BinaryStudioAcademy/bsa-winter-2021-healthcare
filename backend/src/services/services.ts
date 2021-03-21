@@ -8,6 +8,7 @@ import { Clinic } from './clinic-service/clinic-service.service';
 import { Geolocation } from './geolocation/geolocation.service';
 import { Logger } from './logger/logger.service';
 import { UploadFile } from './upload-file/upload-file.service';
+import { Notification } from './notification/notification.service';
 
 const appAsyncStorage = new AsyncLocalStorage<AppAsyncStorage>();
 
@@ -22,6 +23,7 @@ const user = new User();
 const clinic = new Clinic();
 const geolocation = new Geolocation();
 const uploadFile = new UploadFile();
+const notification = new Notification();
 
 export {
   appAsyncStorage,
@@ -32,4 +34,5 @@ export {
   clinic,
   geolocation,
   uploadFile,
+  notification,
 };

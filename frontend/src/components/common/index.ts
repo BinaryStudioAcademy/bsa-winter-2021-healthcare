@@ -14,6 +14,7 @@ import EditUserPopup from './edit-user-popup/edit-user-popup';
 import Details from './details/details';
 import AuthorizedRoute from './authorized-route/authorized-route';
 import AuthorizedWrapper from './authorized-wrapper/authorized-wrapper';
+import CovidButton from './covid-button/covid-button';
 
 export {
   Link,
@@ -32,4 +33,5 @@ export {
   Details,
   AuthorizedRoute,
   AuthorizedWrapper,
+  CovidButton,
 };
