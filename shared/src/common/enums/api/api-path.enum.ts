@@ -4,6 +4,7 @@ enum ApiPath {
   CLINICS = '/clinics',
   DOCUMENTS = '/documents',
   GEOLOCATIONS = '/geolocations',
+  APPOINTMENTS = '/appointments',
 }
 
 export { ApiPath };
