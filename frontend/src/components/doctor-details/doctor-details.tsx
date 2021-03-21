@@ -40,9 +40,6 @@ const DoctorDetails: React.FC = () => {
           alt={doctorDetails.name}
         />
         <div className={styles.personalDataBody}>
-          <span className={styles.department}>
-            {doctorDetails.doctor.department}
-          </span>
           <div className={styles.phone}>
             <img
               src={phoneIcon}
