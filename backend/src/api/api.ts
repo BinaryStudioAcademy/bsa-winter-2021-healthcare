@@ -6,6 +6,8 @@ import { initClinicApi } from './clinic/clinic.api';
 import { initDocumentApi } from './document/document.api';
 import { initGeolocationApi } from './geolocation/geolocation.api';
 import { initAppointmentApi } from './appointment/appointment.api';
+import { initUploadFileApi } from './upload-file/upload-file.api';
+import { initMapApi } from './map/map.api';
 
 const apis = [
   initUserApi,
@@ -14,6 +16,8 @@ const apis = [
   initGeolocationApi,
   initDocumentApi,
   initAppointmentApi,
+  initUploadFileApi,
+  initMapApi,
 ];
 
 const initApi = (app: Router): Router => {

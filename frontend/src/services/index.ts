@@ -8,6 +8,8 @@ import { DocumentApi } from './document-api/document-api.service';
 import { Notification } from './notification/notification.service';
 import { Geolocation } from './geolocation/geolocation.service';
 import { AppointmentApi } from './appointment-api/appointment-api.service';
+import { UploadFile } from './upload-file/upload-file.service';
+import { MapApi } from './map-api/map-api.service';
 
 const http = new Http();
 
@@ -40,6 +42,16 @@ const geolocation = new Geolocation({
   apiPrefix: ENV.API_PATH,
 });
 
+const uploadFile = new UploadFile({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
+const mapApi = new MapApi({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
 const notification = new Notification();
 
 const appointment = new AppointmentApi({
@@ -57,4 +69,6 @@ export {
   documentApi,
   geolocation,
   appointment,
+  uploadFile,
+  mapApi,
 };

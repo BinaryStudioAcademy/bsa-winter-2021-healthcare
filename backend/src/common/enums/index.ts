@@ -13,3 +13,4 @@ export * from './permission';
 export * from './strategy';
 export * from './specialization';
 export * from './profession';
+export * from './upload-file';
