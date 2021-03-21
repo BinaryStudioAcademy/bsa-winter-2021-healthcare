@@ -17,7 +17,7 @@ class AppointmentApi {
     this.#apiPrefix = apiPrefix;
   }
 
-  public createAppointment(    
+  public createAppointment(
     appointment: Partial<ICreateAppointment>,
   ): Promise<IAppointment> {
     return this.#http.load(`${this.#apiPrefix}${ApiPath.APPOINTMENTS}`, {

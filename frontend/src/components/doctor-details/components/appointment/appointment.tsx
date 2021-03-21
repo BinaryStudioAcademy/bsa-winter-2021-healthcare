@@ -28,8 +28,8 @@ type Props = {
 
 const Appointment: React.FC<Props> = ({ onCreate }) => {
   const { handleSubmit, register, watch, errors, control } = useForm<AppointmentFormPaiload>();
-  const time = watch( AppointmentFormKey.TIME, undefined); 
- 
+  const time = watch( AppointmentFormKey.TIME, undefined);
+
   const handleFormSubmit = (formData:AppointmentFormPaiload) => {
     const appointmentDate = setTimeToDate(formData.date, formData.time);
     onCreate(appointmentDate);
@@ -79,14 +79,14 @@ const Appointment: React.FC<Props> = ({ onCreate }) => {
         </div>
         <div className={styles.button}>
           <Button
-            label={'Make an appointment'}            
+            label={'Make an appointment'}
             hasHiddenLabel={false}
             color={ButtonColor.PRIMARY_DARK}
             styleType={ButtonStyleType.WITHOUT_BORDER}
             type={ButtonType.SUBMIT}
           />
         </div>
-      </form>      
+      </form>
     </div>
   );
 };

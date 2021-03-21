@@ -17,7 +17,7 @@ const initialState: IState = {
 const { reducer, actions } = createSlice({
   name: ReducerName.APPOINTMENTS,
   initialState,
-  reducers: {    
+  reducers: {
   },
 });
 
@@ -27,7 +27,7 @@ const createAppointment = (payload:ICreateAppointment): AppThunk => async (_, ge
     payload.userId = auth.user?.id;
     const data = await appointment.createAppointment(payload);
     // eslint-disable-next-line no-console
-    console.log(data);    
+    console.log(data);
   } catch (error) {
     if (error instanceof HttpError) {
       notification.error(`Error ${error.status}`, error.messages);

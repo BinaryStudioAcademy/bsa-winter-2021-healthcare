@@ -9,7 +9,7 @@ type Props = {
 };
 
 const Doctor: React.FC<Props> = ({ doctorDetails }) => {
-  return (   
+  return (
     <div className={styles.doctorsContainer}>
       <div className={styles.personalDataContainer}>
         <img
