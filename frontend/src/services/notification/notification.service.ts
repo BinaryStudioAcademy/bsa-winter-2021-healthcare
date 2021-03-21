@@ -1,10 +1,22 @@
 import { BasicToastrOptions, toastr, ToastrEmitter } from 'react-redux-toastr';
+import { Http } from 'services/http/http.service';
+import { INotification } from 'common/interfaces';
+import { HttpMethod, ApiPath, NotificationsApiPath } from 'common/enums';
+
+type Constructor = {
+  http: Http;
+  apiPrefix: string;
+};
 
 class Notification {
   #instance: ToastrEmitter;
+  #http: Http;
+  #apiPrefix: string;
 
-  constructor() {
+  constructor({ http, apiPrefix }: Constructor) {
     this.#instance = toastr;
+    this.#http = http;
+    this.#apiPrefix = apiPrefix;
   }
 
   _getFullMessage(messages: string[]): string {
@@ -21,6 +33,15 @@ class Notification {
 
   info(title: string, messages: string[], options?: BasicToastrOptions): void {
     this.#instance.info(title, this._getFullMessage(messages), options);
+  }
+
+  public getNotifications(): Promise<INotification[]> {
+    return this.#http.load(
+      `${this.#apiPrefix}${ApiPath.NOTIFICATIONS}${NotificationsApiPath.ROOT}`,
+      {
+        method: HttpMethod.GET,
+      },
+    );
   }
 }
 

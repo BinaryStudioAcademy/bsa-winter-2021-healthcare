@@ -33,7 +33,10 @@ const geolocation = new Geolocation({
   apiPrefix: ENV.API_PATH,
 });
 
-const notification = new Notification();
+const notification = new Notification({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
 
 export {
   http,
