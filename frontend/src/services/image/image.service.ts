@@ -1,5 +1,5 @@
 import { Http } from 'services/http/http.service';
-import { HttpMethod, ApiPath } from 'common/enums';
+import { HttpMethod, ApiPath, UploadFileType } from 'common/enums';
 
 type Constructor = {
   http: Http;
@@ -15,9 +15,9 @@ class Image {
     this.#apiPrefix = apiPrefix;
   }
 
-  public addImage(image: File) {
+  public addImage(image: File): Promise<string> {
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append(UploadFileType.IMAGE, image);
     const payload = formData;
 
     return this.#http.load(`${this.#apiPrefix}${ApiPath.IMAGES}`, {

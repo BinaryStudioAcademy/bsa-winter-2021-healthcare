@@ -14,3 +14,4 @@ export * from './appointment';
 export * from './filtration';
 export * from './icons';
 export * from './permission';
+export * from './upload-file';
