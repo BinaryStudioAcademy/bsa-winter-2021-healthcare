@@ -1,17 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from 'common/types';
 import { PermissionName } from 'common/enums';
-import { Header } from 'components/common';
-import CovidButton from 'components/covid-button/covid-button';
+import { Header, CovidButton } from 'components/common';
 import { IUserWithPermissions } from 'common/interfaces';
 import { checkHasPermission } from '../authorized-route/helpers';
+import { getUserFromState } from 'helpers';
 
 const AuthorizedWrapper: React.FC = ({ children }) => {
-  const { user } = useSelector(({ auth }: RootState) => ({
-    user: auth.user,
-  }));
-
+  const user = getUserFromState();
   const hasMapPermission = checkHasPermission([PermissionName.MAP_MANIPULATION], user?.permissions ?? []);
 
   return (
