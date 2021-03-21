@@ -58,7 +58,7 @@ const InputMessageForm: React.FC<Props> = ({ className }) => {
           name={MessagePayloadKey.TEXT}
           label="Name"
           hasHiddenLabel={true}
-          placeholder="Input Message"
+          placeholder="Type a message"
           type={InputType.TEXT}
           color={InputColor.WHITE}
           control={control}

@@ -19,3 +19,4 @@ export * from './profession';
 export * from './map';
 export * from './doctor-register-payload';
 export * from './doctor-extended';
+export * from './chat';

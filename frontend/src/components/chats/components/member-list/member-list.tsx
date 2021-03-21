@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { RootState } from 'common/types';
 import { ChatsActionCreator } from 'store/slices';
-import { Member } from '../../components';
+import { Member, AddMemeberForm, HorizontalLine  } from '../../components';
 
 import styles from './styles.module.scss';
 
@@ -26,6 +26,8 @@ const MemberList: React.FC<Props> = ({ className }) => {
 
   return (
     <div className={clsx(styles.memberList, className)}>
+      <AddMemeberForm />
+      <HorizontalLine />
       {members.map((member) => (
         <Member
           key={member.id}

@@ -10,3 +10,5 @@ export * from './upload-file-api-path.enum';
 export * from './permission-api-path';
 export * from './notification-api-path.enum';
 export * from './doctor-api-path.enum';
+export * from './chats-api-path.enum';
+

@@ -25,3 +25,4 @@ export * from './profession';
 export * from './upload-file';
 export * from './map';
 export * from './date';
+export * from './chat';
