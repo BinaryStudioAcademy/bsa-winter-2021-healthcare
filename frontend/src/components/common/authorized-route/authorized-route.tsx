@@ -3,7 +3,7 @@ import { Route, Redirect, RouteProps, RouteComponentProps } from 'react-router-d
 import { useSelector } from 'react-redux';
 import { RootState, CustomRecord } from 'common/types';
 import { AppRoute, PermissionName } from 'common/enums';
-import { checkHasPermission } from './helpers';
+import { checkHasPermission } from 'helpers';
 import AuthorizedWrapper from '../authorized-wrapper/authorized-wrapper';
 
 interface IRouteProps extends RouteProps {
