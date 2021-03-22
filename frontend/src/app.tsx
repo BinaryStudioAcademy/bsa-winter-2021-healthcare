@@ -38,7 +38,7 @@ const App: React.FC = () => (
       component={Map}
       permissions={[PermissionName.MAP_MANIPULATION]}
     />
-    <Route path={AppRoute.PERMISSIONS} component={Permissions} />
+    <Route path={AppRoute.EDIT_PERMISSIONS} component={Permissions} />
     <Route path="*" exact component={NotFound} />
   </Switch>
 );
