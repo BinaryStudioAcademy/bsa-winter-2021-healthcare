@@ -2,19 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { notification as notificationService, chatApi } from 'services';
 import { ReducerName } from 'common/enums';
 import { AppThunk } from 'common/types';
-import { IMember } from 'common/interfaces';
+import { IMember, IMessage, IMessagePayload } from 'common/interfaces';
 import { HttpError } from 'exceptions';
 
-type Message = {
-  id: string;
-  to: string;
-  text: string;
-  createdAt: string,
-  updatedAt: string,
-};
-
 interface IChats {
-  messages: Message[];
+  messages: IMessage[];
   members: IMember[];
   selectedMember?: IMember;
 }
@@ -23,14 +15,14 @@ const initialState: IChats = {
   messages: [
     {
       id: '1122334455',
-      to: '4d2c19a7-f15c-4fed-aed7-52072b3bd091',
+      userId: '4d2c19a7-f15c-4fed-aed7-52072b3bd091',
       text: 'Lorem ipsum dolor sit amet, adipiscing elit. Dictum?',
       createdAt: '2021-03-20T15:52:12.866Z',
       updatedAt: '',
     },
     {
       id: '5544332211',
-      to: '54321',
+      userId: '54321',
       text: 'Ut nunc aliquam, amet, aliquet adipiscing mi gravida.',
       createdAt: '2021-03-20T15:54:12.866Z',
       updatedAt: '',
@@ -80,31 +72,58 @@ const { reducer, actions } = createSlice({
   name: ReducerName.CHATS,
   initialState,
   reducers: {
-    addMessage: (state, action: PayloadAction<any>) => {
-      state.messages.push({ ...action.payload, id: Date.now().toString(), createdAt: new Date().toISOString(), updatedAt: '' });
+    addMessage: (state, action: PayloadAction<IMessage>) => {
+      state.messages.push(action.payload);
     },
+
+    setMessages: (state, action: PayloadAction<IMessage[]>) => {
+      state.messages = action.payload;
+    },
+
     addMember: (state, action: PayloadAction<IMember>) => {
       !state.members.some(member => member.id === action.payload.id) && state.members.unshift(action.payload);
-      state.selectedMember = action.payload;
     },
+
     selectMember: (state, action: PayloadAction<string>) => {
       state.selectedMember = state.members.find(
         (member: IMember) => member.id === action.payload,
       );
     },
+
   },
 });
 
-const sendMessage = (formData: any): AppThunk => dispatch => {
-  dispatch(actions.addMessage(formData));
+const sendMessage = (formData: IMessagePayload): AppThunk => async dispatch => {
+  try {
+    const response = await chatApi.sendMessage(formData);
+    dispatch(actions.addMessage(response));
+
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
 };
 
 const addMember = (member: IMember): AppThunk => dispatch => {
   dispatch(actions.addMember(member));
+  dispatch(selectMember(member.id));
 };
 
-const selectMember = (id: string): AppThunk => dispatch => {
-  dispatch(actions.selectMember(id));
+const selectMember = (id: string): AppThunk => async dispatch => {
+  try {
+    dispatch(actions.selectMember(id));
+
+    const response = await chatApi.loadMemberMessages(id);
+    dispatch(actions.setMessages(response));
+
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
 };
 
 const loadFilteredMembersAsOptions = (name: string, callback: any): AppThunk => async () => {

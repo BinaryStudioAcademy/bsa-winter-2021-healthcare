@@ -21,7 +21,7 @@ const MessageList: React.FC<Props> = ({ className }) => {
 
   return (
     <div className={clsx(styles.messageList, className)}>
-      {messages.map(({ id, to, text, createdAt }, index, array) => {
+      {messages.map(({ id, userId: memberId, text, createdAt }, index, array) => {
         const curFromNow = moment.utc(createdAt).local().fromNow();
         const nextFromNow = moment.utc(array[index - 1]?.createdAt).local().fromNow();
 
@@ -31,8 +31,8 @@ const MessageList: React.FC<Props> = ({ className }) => {
             <Message
               message={text}
               time={moment.utc(createdAt).local().format('LT')}
-              avatar={to === userId ? memberAvatarPath : userAvatarPath}
-              isOutcoming={to !== userId}
+              avatar={memberId === userId ? userAvatarPath : memberAvatarPath}
+              isOutcoming={memberId === userId}
             />
           </div>
         );

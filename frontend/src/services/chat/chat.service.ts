@@ -1,9 +1,10 @@
-import { IMember } from 'common/interfaces';
+import { IMember, IMessage, IMessagePayload } from 'common/interfaces';
 import { Http } from '../http/http.service';
 import {
   ApiPath,
   ChatsApiPath,
   HttpMethod,
+  ContentType,
 } from 'common/enums';
 
 type Constructor = {
@@ -29,23 +30,22 @@ class Chat {
     );
   }
 
-  // public addChat(
-  //   userId: string | undefined,
-  // ): Promise<IChat> | void {
-  //   navigator.chat?.getCurrentPosition((position) => {
-  //     const payload: Partial<IChat> = {
-  //       lat: position.coords.latitude,
-  //       lng: position.coords.longitude,
-  //       userId: userId,
-  //     };
+  public loadMemberMessages(memberId: string | undefined): Promise<IMessage[]> {
+    return this.#http.load(
+      `${this.#apiPrefix}${ApiPath.CHATS}${ChatsApiPath.MESSAGES}/${memberId}`,
+      {
+        method: HttpMethod.GET,
+      },
+    );
+  }
 
-  //     return this.#http.load(`${this.#apiPrefix}${ApiPath.CHATS}`, {
-  //       method: HttpMethod.POST,
-  //       contentType: ContentType.JSON,
-  //       payload,
-  //     });
-  //   });
-  // }
+  public sendMessage(payload: Partial<IMessagePayload>): Promise<IMessage> {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.CHATS}${ChatsApiPath.MESSAGES}`, {
+      method: HttpMethod.POST,
+      contentType: ContentType.JSON,
+      payload,
+    });
+  }
 }
 
 export { Chat };

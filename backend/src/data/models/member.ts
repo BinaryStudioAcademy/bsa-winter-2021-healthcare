@@ -8,21 +8,10 @@ const createMemberModel = (orm: Sequelize): ModelCtor<MemberInstance> => {
   const MemberModel = orm.define<MemberInstance>(
     ModelName.MEMBER,
     {
-      id: {
-        allowNull: false,
-        autoIncrement: false,
-        primaryKey: true,
-        type: DataTypes.UUID,
-        defaultValue: Sequelize.literal('gen_random_uuid()'),
-      },
       name: {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      // type: {
-      //   allowNull: false,
-      //   type: DataTypes.ENUM(UserType.DOCTOR, UserType.PATIENT),
-      // },
       avatarPath: {
         allowNull: false,
         type: DataTypes.STRING,

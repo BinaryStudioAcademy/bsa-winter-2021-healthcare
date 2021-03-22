@@ -8,22 +8,13 @@ import {
   ButtonType,
   ButtonColor,
   ButtonStyleType,
+  MessageKey,
 } from 'common/enums';
+import { IMessagePayload } from 'common/interfaces';
 import { RootState } from 'common/types';
 import { TextInput, Button } from 'components/common';
 import { ChatsActionCreator } from 'store/slices';
-
 import styles from './styles.module.scss';
-
-enum MessagePayloadKey {
-  TO = 'to',
-  TEXT = 'text',
-}
-
-interface IMessagePayload {
-  [MessagePayloadKey.TO]: string;
-  [MessagePayloadKey.TEXT]: string;
-}
 
 interface Props {
   className?: string;
@@ -47,7 +38,7 @@ const InputMessageForm: React.FC<Props> = ({ className }) => {
   const dispatch = useDispatch();
 
   const onSubmit = (formData: IMessagePayload) => {
-    dispatch(ChatsActionCreator.sendMessage(formData));
+    dispatch(ChatsActionCreator.sendMessage({ ...formData, to: selectedMemberId }));
     reset();
   };
 
@@ -55,7 +46,7 @@ const InputMessageForm: React.FC<Props> = ({ className }) => {
     <form onSubmit={handleSubmit(onSubmit)} className={clsx(styles.inputMessageForm, className)}>
       <div className={styles.inputText}>
         <TextInput
-          name={MessagePayloadKey.TEXT}
+          name={MessageKey.TEXT}
           label="Name"
           hasHiddenLabel={true}
           placeholder="Type a message"

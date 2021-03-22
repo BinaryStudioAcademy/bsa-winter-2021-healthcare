@@ -1,1 +1,1 @@
-export type { IMessage } from 'healthcare-shared/common/interfaces';
+export type { IMessage, IMessagePayload } from 'healthcare-shared/common/interfaces';
