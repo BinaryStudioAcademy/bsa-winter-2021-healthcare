@@ -1,18 +1,36 @@
 import React from 'react';
 import styles from './styles.module.scss';
-import clsx from 'clsx';
+import { ProfileTab } from 'components/profile/common';
+import { SideMenuItem } from 'components/profile/components';
 
-const SideMenu: React.FC = () => {
+type Props = {
+  onChangeProfileTab: React.Dispatch<React.SetStateAction<ProfileTab>>;
+};
+
+const SideMenu: React.FC<Props> = ({ onChangeProfileTab }) => {
+  const handleChangeTabToPersonalInfo = () => {
+    onChangeProfileTab(ProfileTab.PERSONAL_INFO);
+  };
+
+  const handleChangeTabToDiagnoses = () => {
+    onChangeProfileTab(ProfileTab.DIAGNOSES);
+  };
+
   return (
     <div className={styles.menuContainer}>
       <span className={styles.infoHeader}>My Profile</span>
-      <div className={styles.menuItem}>
-        <span className={clsx(styles.icon, styles.person)}></span>
-        <span className={styles.menuText}>Personal information</span>
-      </div>
+      <SideMenuItem
+        iconStyle={styles.person}
+        title="Personal Information"
+        onChangeProfileTab={handleChangeTabToPersonalInfo}
+      />
+      <SideMenuItem
+        iconStyle={styles.clinic}
+        title="Diagnoses"
+        onChangeProfileTab={handleChangeTabToDiagnoses}
+      />
     </div>
   );
 };
 
 export default SideMenu;
-
