@@ -4,6 +4,7 @@ import {
   ClinicModel,
   PermissionModel,
   SpecializationModel,
+  DocumentModel,
 } from '../models';
 import {
   IUser,
@@ -18,9 +19,14 @@ import {
   SpecializationKey,
 } from '~/common/enums';
 
-class UserRepository {
+class User {
   public getById(id: string): Promise<IUser | null> {
-    return UserModel.findByPk(id);
+    return UserModel.findByPk(id, {
+      include:{
+        model: PermissionModel,
+        as: ModelAlias.PERMISSIONS,
+      },
+    });
   }
 
   public getAll(): Promise<IUserWithPermissions[]> {
@@ -40,7 +46,7 @@ class UserRepository {
           {
             model: DoctorModel,
             as: ModelAlias.DOCTOR,
-            attributes: [DoctorKey.ID, DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
+            attributes: [DoctorKey.ID, DoctorKey.ABOUT],
             include: [
               {
                 model: ClinicModel,
@@ -71,12 +77,22 @@ class UserRepository {
         {
           model: DoctorModel,
           as: ModelAlias.DOCTOR,
-          attributes: [DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
+          attributes: [DoctorKey.ABOUT],
+          include:[
+            {
+              model:DocumentModel,
+              as:ModelAlias.DOCUMENT,
+            },
+          ],
         },
         {
           model: SpecializationModel,
           as: ModelAlias.SPECIALIZATIONS,
           attributes: [SpecializationKey.ID, SpecializationKey.TEXT],
+        },
+        {
+          model: PermissionModel,
+          as: ModelAlias.PERMISSIONS,
         },
       ],
     });
@@ -96,13 +112,12 @@ class UserRepository {
     });
   }
 
-  public async updateById(id: string, data: IUser): Promise<IUser[]> {
-    const result = await UserModel.update(data, {
+  public async updateById(id: string, data: IUser): Promise<IUser> {
+    const [ , [user]] = await UserModel.update(data, {
       where: { id },
       returning: true,
     });
-
-    return result[1];
+    return user;
   }
 
   public async deleteById(id: string): Promise<boolean> {
@@ -114,4 +129,4 @@ class UserRepository {
   }
 }
 
-export { UserRepository };
+export { User };

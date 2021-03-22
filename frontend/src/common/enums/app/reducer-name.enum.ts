@@ -5,6 +5,8 @@ enum ReducerName {
   AUTH = 'auth',
   CLINICS = 'clinics',
   TOASTR = 'toastr',
+  MAP = 'map',
+  PROFILE = 'profile',
   PERMISSIONS = 'permissions',
 }
 

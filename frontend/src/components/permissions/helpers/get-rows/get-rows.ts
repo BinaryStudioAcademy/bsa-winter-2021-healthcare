@@ -47,6 +47,15 @@ const getRows = (): Column[] => {
           nameOfPermission: PermissionName.EDIT_PERMISSIONS,
         }),
     },
+    {
+      Header: PermissionName.MAP_MANIPULATION,
+      accessor: PermissionName.MAP_MANIPULATION,
+      Cell: ({ row }: CellValue): CellValue =>
+        EditPermissionElement({
+          user: row.original,
+          nameOfPermission: PermissionName.MAP_MANIPULATION,
+        }),
+    },
   ];
 };
 

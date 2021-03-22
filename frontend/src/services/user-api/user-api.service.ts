@@ -24,21 +24,32 @@ class UserApi {
       },
     );
   }
-  public editUser(id: string, payload: IEditUserPayload): Promise<IUser[]> {
+  public editUser(id: string, payload: IEditUserPayload): Promise<IUser> {
     return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}/${id}`, {
       method: HttpMethod.PUT,
       contentType: ContentType.JSON,
       payload,
     });
   }
+
   public deleteUser(id: string): Promise<boolean> {
     return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}/${id}`, {
       method: HttpMethod.DELETE,
     });
   }
+
   public getUsers(): Promise<IUser[]> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.ROOT}`,
+      {
+        method: HttpMethod.GET,
+      },
+    );
+  }
+
+  public getUser(id:string): Promise<IUser> {
+    return this.#http.load(
+      `${this.#apiPrefix}${ApiPath.USERS}/${id}`,
       {
         method: HttpMethod.GET,
       },

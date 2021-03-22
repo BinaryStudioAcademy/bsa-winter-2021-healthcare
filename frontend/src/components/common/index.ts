@@ -10,9 +10,11 @@ import Toaster from './toaster/toaster';
 import Header from './header/header';
 import Card from './card/card';
 import Modal from './modal/modal';
+import EditUserPopup from './edit-user-popup/edit-user-popup';
 import Details from './details/details';
 import AuthorizedRoute from './authorized-route/authorized-route';
 import AuthorizedWrapper from './authorized-wrapper/authorized-wrapper';
+import CovidButton from './covid-button/covid-button';
 
 export {
   Link,
@@ -27,7 +29,9 @@ export {
   Modal,
   Toaster,
   Card,
+  EditUserPopup,
   Details,
   AuthorizedRoute,
   AuthorizedWrapper,
+  CovidButton,
 };

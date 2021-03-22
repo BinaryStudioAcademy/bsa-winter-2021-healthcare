@@ -6,6 +6,8 @@ import {
   authReducer,
   doctorsReducer,
   clinicsReducer,
+  mapReducer,
+  profileReducer,
   permissionsReducer,
 } from './slices';
 
@@ -16,7 +18,8 @@ const store = configureStore({
     [ReducerName.CLINICS]: clinicsReducer,
     [ReducerName.TOASTR]: toastrReducer,
     [ReducerName.DOCTORS]: doctorsReducer,
-    [ReducerName.USERS]: userReducer,
+    [ReducerName.MAP]: mapReducer,
+    [ReducerName.PROFILE]: profileReducer,
     [ReducerName.PERMISSIONS]: permissionsReducer,
   },
 });

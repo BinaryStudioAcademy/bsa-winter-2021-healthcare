@@ -22,7 +22,7 @@ const createGeolocationModel = (
       updatedAt: DataTypes.DATE,
     },
     {
-      tableName: TableName.GEOLOCATION,
+      tableName: TableName.GEOLOCATIONS,
     },
   );
 

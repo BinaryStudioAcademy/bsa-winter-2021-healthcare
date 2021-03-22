@@ -28,6 +28,15 @@ const initUserApi = (apiRouter: Router): Router => {
     }
   });
 
+  userRouter.get(UsersApiPath.$ID, async (req, res, next) => {
+    try {
+      const user = await userService.getUserById(req.params.id);
+      res.status(HttpCode.OK).json(user);
+    } catch(error) {
+      next(error);
+    }
+  });
+
   userRouter.get(UsersApiPath.DOCTOR_DETAILS_$ID, async (req, res, next) => {
     try {
       const doctorDetails = await userService.getDoctorDetailsById(req.params.id);
