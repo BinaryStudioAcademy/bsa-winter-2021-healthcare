@@ -3,6 +3,7 @@ enum ApiPath {
   AUTH = '/auth',
   CLINICS = '/clinics',
   GEOLOCATIONS = '/geolocations',
+  PERMISSIONS = '/permissions'
 }
 
 export { ApiPath };
