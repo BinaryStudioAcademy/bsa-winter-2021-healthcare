@@ -1,1 +1,1 @@
-export { NotificationKey,  } from 'healthcare-shared/common/enums';
+export { NotificationKey } from 'healthcare-shared/common/enums';
