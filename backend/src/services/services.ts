@@ -1,9 +1,16 @@
 import { LogLevel } from '~/common/enums';
 import { AppAsyncStorage } from '~/common/types';
 import { AsyncLocalStorage } from './async-storage/async-storage.service';
-import { AuthService } from './auth/auth.service';
-import { UserService } from './user-service/user-service.service';
+import { Document } from './document-service/document-service.service';
+import { Auth } from './auth/auth.service';
+import { User } from './user-service/user-service.service';
+import { Clinic } from './clinic-service/clinic-service.service';
+import { Geolocation } from './geolocation/geolocation.service';
+import { Doctor } from './doctor-service/doctor-service.service';
 import { Logger } from './logger/logger.service';
+import { Diagnosis } from './diagnosis/diagnosis.service';
+import { UploadFile } from './upload-file/upload-file.service';
+import { Notification } from './notification/notification.service';
 
 const appAsyncStorage = new AsyncLocalStorage<AppAsyncStorage>();
 
@@ -12,7 +19,26 @@ const logger = new Logger({
   asyncStorage: appAsyncStorage,
 });
 
-const authService = new AuthService();
-const userService = new UserService();
+const document = new Document();
+const auth = new Auth();
+const user = new User();
+const clinic = new Clinic();
+const geolocation = new Geolocation();
+const diagnosis = new Diagnosis();
+const uploadFile = new UploadFile();
+const notification = new Notification();
+const doctor = new Doctor();
 
-export { appAsyncStorage, logger, authService, userService };
+export {
+  appAsyncStorage,
+  logger,
+  auth,
+  user,
+  clinic,
+  geolocation,
+  diagnosis,
+  document,
+  uploadFile,
+  notification,
+  doctor,
+};

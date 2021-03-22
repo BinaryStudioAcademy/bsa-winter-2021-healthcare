@@ -20,6 +20,12 @@
   }
 }
 
+.btnLink {
+  display: block;
+  text-align: center;
+  line-height: 40px;
+}
+
 // Background color
 .white {
   background-color: #fff;
@@ -36,6 +42,11 @@
 
 .transparent {
   background-color: transparent;
+}
+
+.red {
+  background-color: #cc0049;
+  color: #fff;
 }
 
 // ButtonStyleType
@@ -68,6 +79,18 @@
   border-radius: 50%;
 }
 
+.extra-large-round {
+  width: 96px;
+  height: 96px;
+  padding: 5px;
+  border-radius: 50%;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -2px 1px 8px 1px #cc004940, 0px 2px 9px 2px #cc004940;
+}
+
 // Icons
 .buttonIcon {
   display: block;
@@ -98,3 +121,16 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.edit {
+  background-image: url('../../../assets/images/edit-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.delete {
+  background-image: url('../../../assets/images/trash-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+

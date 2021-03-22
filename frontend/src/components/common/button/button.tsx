@@ -40,6 +40,7 @@ const Button: React.FC<Props> = ({
       to={href}
       className={clsx(
         styles.btn,
+        styles.btnLink,
         styles[styleType],
         styles[color],
         icon && styles[icon],

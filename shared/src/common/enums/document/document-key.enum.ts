@@ -1,9 +1,9 @@
 enum DocumentKey {
   ID = 'id',
   IMAGE_PATH = 'imagePath',
-  DOCUMENT_STATUS = 'DocumentStatus',
+  STATUS = 'status',
   CREATED_AT = 'createdAt',
-  UPDATED_AT = 'updatedAt'
+  UPDATED_AT = 'updatedAt',
 }
 
 export { DocumentKey };

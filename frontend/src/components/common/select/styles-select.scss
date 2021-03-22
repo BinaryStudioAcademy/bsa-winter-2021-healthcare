@@ -1,0 +1,42 @@
+.selectStyles {
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  text-transform: capitalize;
+
+  &__control {
+    width: 100%;
+    height: 40px;
+    padding: 0 7px 0 11px;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    text-transform: capitalize;
+    color: #424242;
+    border-radius: 7px !important;
+    border: 1px solid transparent !important;
+    cursor: pointer !important;
+  }
+
+  &__control--is-focused {
+    border: 1px solid var(--color-primary-light) !important;
+    box-shadow: unset !important;
+  }
+
+  &__control--is-disabled {
+    cursor: not-allowed !important;
+    opacity: 0.5;
+  }
+
+  &__option {
+    text-transform: capitalize;
+    color: #424242 !important;
+    background-color: #fff !important;
+  }
+
+  &__option--is-focused {
+    background-color: var(--color-gray-light) !important;
+  }
+
+  &__indicator-separator {
+    display: none;
+  }
+}

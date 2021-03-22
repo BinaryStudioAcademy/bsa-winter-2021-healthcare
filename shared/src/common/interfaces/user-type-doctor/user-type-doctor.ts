@@ -1,9 +1,9 @@
 import { IUser } from '../user';
-import { IDoctorWithClinic } from '../doctor-clinic';
+import { IDoctorExtended } from '../doctor-extended';
 import { UserTypeDoctorKey } from '~/common/enums';
 
 interface IUserTypeDoctor extends IUser {
-  [UserTypeDoctorKey.DOCTOR]: IDoctorWithClinic
+  [UserTypeDoctorKey.DOCTOR]: IDoctorExtended
 }
 
-export type { IUserTypeDoctor }
+export type { IUserTypeDoctor };

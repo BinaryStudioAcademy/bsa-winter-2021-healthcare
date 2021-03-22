@@ -1,7 +1,8 @@
 .link {
   color: #000;
+  text-decoration: none;
 
-  &.active {
-    color: #6600CC;
+  & .active {
+    color: var(--color-primary-dark);
   }
 }

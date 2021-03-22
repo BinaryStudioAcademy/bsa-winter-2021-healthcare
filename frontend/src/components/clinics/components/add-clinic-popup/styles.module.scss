@@ -1,0 +1,88 @@
+.container {
+  width: 600px;
+  height: 570px;
+  background-color: white;
+  padding: 38px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.createForm {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.inputImage {
+  padding: 0;
+  margin: 0;
+  width: 157px;
+  height: 151px;
+  border-radius: 15px;
+  cursor: pointer;
+  background-color: rgb(224, 224, 224);
+  background-image: url('../../../../assets/images/camera.svg');
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center 10px;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: flex-end;
+}
+
+.blurBottom {
+  width: 157px;
+  height: 31px;
+  background: rgba(242, 242, 245, 0.8);
+  backdrop-filter: blur(4px);
+  border-radius: 0px 0px 15px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cameraIcon {
+  width: 20px;
+  height: 20px;
+  background-image: url('../../../../assets/images/camera.svg');
+}
+
+.inputImageBtn {
+  opacity: 0;
+  position: absolute;
+  z-index: -99;
+}
+
+.closeButton {
+  font-size: 18px;
+  background: none;
+  border: none;
+  color: transparent;
+  text-shadow: 0 0 0 gray;
+  cursor: pointer;
+}
+
+.header {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.submitBtn {
+  width: 25%;
+}

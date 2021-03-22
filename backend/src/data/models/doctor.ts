@@ -4,24 +4,20 @@ import { IDoctor } from '~/common/interfaces';
 
 interface DoctorInstance extends IDoctor, Model {}
 
-const createDoctorModel =  (orm: Sequelize): ModelCtor<DoctorInstance> => {
-  const Doctor = orm.define<DoctorInstance>(ModelName.DOCTOR, {
-    department: {
-      allowNull: false,
-      type: DataTypes.STRING
+const createDoctorModel = (orm: Sequelize): ModelCtor<DoctorInstance> => {
+  const Doctor = orm.define<DoctorInstance>(
+    ModelName.DOCTOR,
+    {
+      about: {
+        type: DataTypes.TEXT,
+      },
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
     },
-    roomNumber: {
-      type: DataTypes.INTEGER,
-      unique: true
+    {
+      tableName: TableName.DOCTORS,
     },
-    about: {
-      type: DataTypes.TEXT
-    },
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
-  }, {
-    tableName: TableName.DOCTORS
-  });
+  );
 
   return Doctor;
 };

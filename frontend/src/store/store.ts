@@ -1,12 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { reducer as toastrReducer } from 'react-redux-toastr';
 import { ReducerName } from 'common/enums';
-import { counterReducer, authReducer, doctorsReducer } from './slices';
+import {
+  userReducer,
+  authReducer,
+  doctorsReducer,
+  clinicsReducer,
+  mapReducer,
+  profileReducer,
+} from './slices';
 
 const store = configureStore({
   reducer: {
-    [ReducerName.COUNTER]: counterReducer,
+    [ReducerName.USERS]: userReducer,
+    [ReducerName.AUTH]: authReducer,
+    [ReducerName.CLINICS]: clinicsReducer,
+    [ReducerName.TOASTR]: toastrReducer,
     [ReducerName.DOCTORS]: doctorsReducer,
-    [ReducerName.AUTH]: authReducer
+    [ReducerName.MAP]: mapReducer,
+    [ReducerName.PROFILE]: profileReducer,
   },
 });
 

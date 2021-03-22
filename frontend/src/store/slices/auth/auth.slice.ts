@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName, DataStatus, StorageKey } from 'common/enums';
-import { IUser, IUserLoginPayload, IRegisterPayload } from 'common/interfaces';
-import { authApi, storage } from 'services';
+import { IUserWithPermissions, IUserLoginPayload, IRegisterPayload } from 'common/interfaces';
+import { authApi, notification as notificationService, storage, geolocation as geolocationService } from 'services';
 import { LoginResponse } from 'common/types/responses';
-
+import { HttpError } from 'exceptions';
 
 type AuthState = {
-  user: IUser | null;
+  user: IUserWithPermissions | null;
   dataStatus: DataStatus;
 };
 
@@ -18,29 +18,55 @@ const initialState: AuthState = {
 const login = createAsyncThunk(
   'auth/login',
   async (userData: IUserLoginPayload) => {
-    const { token, user }: LoginResponse = await authApi.loginUser(userData);
-    storage.setItem(StorageKey.TOKEN, token);
-    return user;
+    try {
+      const { token, user }: LoginResponse = await authApi.loginUser(userData);
+      storage.setItem(StorageKey.TOKEN, token);
+
+      const geolocation = await geolocationService.getByUserId(user.id);
+      geolocation ? geolocationService.updateGeolocation(geolocation.id) : geolocationService.addGeolocation(user.id);
+
+      return user;
+    } catch (error) {
+      if (error instanceof HttpError) {
+        notificationService.error(`Error ${error.status}`, error.messages);
+      }
+      throw error;
+    }
   },
 );
 
 const registration = createAsyncThunk(
   'auth/registration',
   async (userData: IRegisterPayload) => {
-    const { token, user } = await authApi.registrationUser(userData);
-    storage.setItem(StorageKey.TOKEN, token);
-    return user;
+    try {
+      const { token, user } = await authApi.registrationUser(userData);
+      storage.setItem(StorageKey.TOKEN, token);
+
+      return user;
+    } catch (error) {
+      if (error instanceof HttpError) {
+        notificationService.error(`Error ${error.status}`, error.messages);
+      }
+      throw error;
+    }
   },
 );
 
 const { reducer, actions } = createSlice({
   name: ReducerName.AUTH,
   initialState,
-  reducers: {},
+  reducers: {
+    setUser:(state, action: PayloadAction<IUserWithPermissions>) => {
+      state.user = action.payload;
+    },
+  },
   extraReducers: (builder) => {
-    const sharedReducer = (state: AuthState, { payload }: PayloadAction<IUser>) => {
+    const sharedReducer = (
+      state: AuthState,
+      { payload }: PayloadAction<IUserWithPermissions>,
+    ) => {
       state.user = payload;
-    }
+    };
     builder
       .addCase(login.fulfilled, sharedReducer)
       .addCase(registration.fulfilled, sharedReducer);

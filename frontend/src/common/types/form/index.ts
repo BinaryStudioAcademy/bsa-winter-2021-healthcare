@@ -7,3 +7,4 @@ export * from './input-change-event.type';
 export * from './select-change-event.type';
 export * from './form-errors.type';
 export * from './form-default-value';
+export * from './checkbox-register.type';

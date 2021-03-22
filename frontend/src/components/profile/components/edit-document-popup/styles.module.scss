@@ -1,0 +1,61 @@
+.documentContainer{
+  margin-top: 20px;
+}
+
+.checkButton{
+  width: fit-content;
+  margin-top: 10px;
+}
+
+.formContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 600px;
+  background-color: white;
+  border-radius: 15px;
+}
+
+.form{
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirmButton{
+  width: 20%;
+  margin-left: 70px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  background: none;
+  border: none;
+  color: transparent;
+  text-shadow: 0 0 0 gray;
+  cursor: pointer;
+}
+
+.label{
+  width: fit-content;
+  padding: 2px 10px;
+  border-radius: 15px;
+  color: black;
+}
+.verified{
+  background-color: lightgreen;
+}
+
+.in_review{
+  background-color: lightsalmon;
+}

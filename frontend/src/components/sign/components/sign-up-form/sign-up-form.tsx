@@ -5,16 +5,22 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { AuthActionCreator } from 'store/slices';
 import {
-  RegisterPayloadKey, UserType, UserSex, AppRoute,
-  InputType, InputColor, ButtonType, ButtonColor, ButtonStyleType
-} from 'common/enums'
-import { IRegisterPayload } from 'common/interfaces'
-import { userRegister as validationUserSchema } from 'validation-schemas'
-import { TextInput, Select, DateInput, Link, Button } from "components/common";
+  RegisterPayloadKey,
+  UserType,
+  UserSex,
+  AppRoute,
+  InputType,
+  InputColor,
+  ButtonType,
+  ButtonColor,
+  ButtonStyleType,
+} from 'common/enums';
+import { IRegisterPayload } from 'common/interfaces';
+import { userRegister as validationUserSchema } from 'validation-schemas';
+import { TextInput, Select, DateInput, Link, Button } from 'components/common';
 import { createOptions } from 'helpers';
 
 import styles from './styles.module.scss';
-
 
 const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.NAME]: '',
@@ -26,31 +32,31 @@ const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.RETYPE_PASSWORD]: '',
   [RegisterPayloadKey.PHONE]: '',
   [RegisterPayloadKey.TYPE]: UserType.PATIENT,
-  [RegisterPayloadKey.IMAGE_PATH]: 'https://www.pikpng.com/pngl/b/80-805523_default-avatar-svg-png-icon-free-download-264157.png'
+  [RegisterPayloadKey.IMAGE_PATH]:
+    'https://www.pikpng.com/pngl/b/80-805523_default-avatar-svg-png-icon-free-download-264157.png',
 };
 
-const genderOptions = createOptions<string>(Object.values(UserSex))
-const userTypeOptions = createOptions<string>(Object.values(UserType))
+const genderOptions = createOptions<string>(Object.values(UserSex));
+const userTypeOptions = createOptions<string>(Object.values(UserType));
 
 const SignUpForm: React.FC = () => {
-
   const { handleSubmit, errors, control } = useForm<IRegisterPayload>({
     resolver: yupResolver(validationUserSchema),
     defaultValues: DEFAULT_VALUES,
-    mode: "onChange"
+    mode: 'onChange',
   });
 
   const dispatch = useDispatch();
 
-  const onSubmit = (formData: IRegisterPayload) => dispatch(AuthActionCreator.registration(formData))
+  const onSubmit = (formData: IRegisterPayload) =>
+    dispatch(AuthActionCreator.registration(formData));
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.formSignUp}>
-
       <h2 className={styles.title}>Sign Up</h2>
 
-      <div className={styles.inputBlock}>
-        Have account? <Link to={AppRoute.SIGN_IN}>Sign in</Link>
+      <div className={styles.textBlock}>
+        Have account? <Link to={AppRoute.SIGN_IN}>Sign In</Link>
       </div>
 
       <div className={styles.inputBlock}>

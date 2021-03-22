@@ -1,0 +1,29 @@
+.menuContainer {
+  box-sizing: border-box;
+  width: 300px;
+  background-color: #f2f2f5;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.infoHeader {
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.person {
+  background-image: url('../../../../assets/images/person.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.clinic {
+  background-image: url('../../../../assets/images/clinic.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
