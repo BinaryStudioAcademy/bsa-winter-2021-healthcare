@@ -31,7 +31,7 @@ const Appointment: React.FC<Props> = ({ onCreate }) => {
   const time = watch( AppointmentFormKey.TIME, undefined);
 
   const handleFormSubmit = (formData:AppointmentFormPaiload) => {
-    const appointmentDate = setTimeToDate(formData.date, formData.time);      
+    const appointmentDate = setTimeToDate(formData.date, formData.time);
     onCreate(appointmentDate);
   };
 
@@ -51,12 +51,12 @@ const Appointment: React.FC<Props> = ({ onCreate }) => {
         <DateInput
           name={AppointmentFormKey.DATE}
           label="Select the day"
-          hasHiddenLabel={true}          
+          hasHiddenLabel={true}
           color={InputColor.GRAY_LIGHT}
           control={control}
           errors={errors}
           isInline={true}
-        />      
+        />
         <div className={styles.headerBlock}>
           <img
             src={clockIcon}
@@ -94,7 +94,7 @@ const Appointment: React.FC<Props> = ({ onCreate }) => {
             icon={ButtonIcon.CHAT}
             type={ButtonType.BUTTON}
           />
-        </div>        
+        </div>
       </form>
     </div>
   );

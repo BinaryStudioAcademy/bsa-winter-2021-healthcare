@@ -7,15 +7,15 @@ import { HttpError } from 'exceptions';
 import { appointment } from 'services';
 
 interface IState {
-  doctorDetails: IDoctorDetails | null;  
+  doctorDetails: IDoctorDetails | null;
   appointments: IAppointment[];
   dataStatus: DataStatus;
 }
 
 const initialState: IState = {
   doctorDetails: null,
-  appointments: [],  
-  dataStatus: DataStatus.PENDING,  
+  appointments: [],
+  dataStatus: DataStatus.PENDING,
 };
 
 const { reducer, actions } = createSlice({

@@ -6,12 +6,12 @@ import { HttpError } from 'exceptions';
 import { ReducerName, DataStatus } from 'common/enums';
 
 type DoctorsState = {
-  doctors: IUserTypeDoctor[];  
+  doctors: IUserTypeDoctor[];
   dataStatus: DataStatus;
 };
 
 const initialState: DoctorsState = {
-  doctors: [],  
+  doctors: [],
   dataStatus: DataStatus.PENDING,
 };
 
@@ -22,7 +22,7 @@ const { reducer, actions } = createSlice({
     setDoctors: (state, action: PayloadAction<IUserTypeDoctor[]>) => {
       state.doctors = action.payload;
       state.dataStatus = DataStatus.SUCCESS;
-    },    
+    },
   },
 });
 
@@ -40,7 +40,7 @@ const getDoctorsAsync = (): AppThunk => async (dispatch) => {
 
 const DoctorsActionCreator = {
   ...actions,
-  getDoctorsAsync,  
+  getDoctorsAsync,
 };
 
 export { DoctorsActionCreator, reducer };
