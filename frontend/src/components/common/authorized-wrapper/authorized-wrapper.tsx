@@ -4,13 +4,15 @@ import { useSelector } from 'react-redux';
 import { Header } from 'components/common';
 import { IUserWithPermissions } from 'common/interfaces';
 
+import styles from './authorized-wrapper.module.scss';
+
 const AuthorizedWrapper: React.FC = ({ children }) => {
   const { user } = useSelector(({ auth }: RootState) => ({
     user: auth.user,
   }));
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <Header user={user as IUserWithPermissions} />
       {children}
     </div>
