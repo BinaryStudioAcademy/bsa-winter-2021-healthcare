@@ -9,7 +9,7 @@ const initMapApi = (apiRouter: Router): Router => {
 
   mapRouter.post(MapApiPath.SELECT_AREA, async (req, res, next) => {
     try {
-      notificationService.sendNotifications();
+      notificationService.sendNotifications(req.body);
       res.status(HttpCode.OK).json(req.body);
     } catch(error) {
       next(error);
