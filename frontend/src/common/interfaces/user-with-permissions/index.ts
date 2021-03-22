@@ -1,1 +1,1 @@
-export * from 'healthcare-shared/common/interfaces/user-with-permissions';
+export type { IUserWithPermissions } from 'healthcare-shared/common/interfaces';

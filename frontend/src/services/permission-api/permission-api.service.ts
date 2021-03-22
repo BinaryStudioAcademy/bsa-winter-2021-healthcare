@@ -1,5 +1,5 @@
 import { Http } from '../http/http.service';
-import { HttpMethod, UsersApiPath, ApiPath, ContentType } from 'common/enums';
+import { HttpMethod, ApiPath, ContentType } from 'common/enums';
 import { IPermission } from 'common/interfaces';
 
 type Constructor = {
@@ -26,7 +26,7 @@ class PermissionApi {
   }
   public getPermissions(): Promise<IPermission[]> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.PERMISSIONS}${UsersApiPath.ROOT}`,
+      `${this.#apiPrefix}${ApiPath.PERMISSIONS}`,
       {
         method: HttpMethod.GET,
       },
@@ -37,7 +37,7 @@ class PermissionApi {
     permissionId: string;
   }): Promise<boolean> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.PERMISSIONS}${UsersApiPath.ROOT}/${
+      `${this.#apiPrefix}${ApiPath.PERMISSIONS}/${
         payload.userId
       }`,
       {
