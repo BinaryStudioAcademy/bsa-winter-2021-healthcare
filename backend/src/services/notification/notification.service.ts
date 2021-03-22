@@ -1,6 +1,6 @@
 import { NotificationKey } from '~/common/enums';
 import { GeolocationKey, MapKey } from '~/common/enums';
-import { geolocationRepository, notificationRepository } from '~/data/repositories';
+import { geolocation as geolocationRepository, notification as notificationRepository } from '~/data/repositories';
 import { IGeolocation, ICoordsSet, INewNotification } from '~/common/interfaces';
 
 class Notification {

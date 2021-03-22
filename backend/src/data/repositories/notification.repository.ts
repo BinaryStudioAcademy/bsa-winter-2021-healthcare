@@ -1,7 +1,7 @@
 import { NotificationModel } from '../models';
 import { INotification, INewNotification } from '~/common/interfaces';
 
-class NotificationRepository {
+class Notification {
 
   public getAll(): Promise<INotification[]> {
     return NotificationModel.findAll();
@@ -12,4 +12,4 @@ class NotificationRepository {
   }
 }
 
-export { NotificationRepository };
+export { Notification };
