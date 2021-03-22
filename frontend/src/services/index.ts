@@ -6,6 +6,7 @@ import { Storage } from './storage/storage.service';
 import { ClinicApi } from './clinic-api/clinic-api.service';
 import { Notification } from './notification/notification.service';
 import { Geolocation } from './geolocation/geolocation.service';
+import { PermissionApi } from './permission-api/permission-api.service';
 
 const http = new Http();
 
@@ -35,6 +36,11 @@ const geolocation = new Geolocation({
 
 const notification = new Notification();
 
+const permissionApi = new PermissionApi({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
 export {
   http,
   authApi,
@@ -43,4 +49,5 @@ export {
   notification,
   clinicApi,
   geolocation,
+  permissionApi,
 };

@@ -1,14 +1,9 @@
 import { CellValue } from 'react-table';
-import { Control, FieldValues } from 'react-hook-form';
 import { Column } from 'common/interfaces';
-import { ButtonColor, ButtonStyleType, ButtonType, PermissionName } from 'common/enums';
-import { Button, Checkbox } from 'components/common';
+import { PermissionName } from 'common/enums';
+import { EditPermissionElement } from 'components/permissions/components';
 
-interface IProps {
-  control: Control<FieldValues>
-}
-
-const getRows = ({ control }: IProps): Column[] => {
+const getRows = (): Column[] => {
   return [
     {
       Header: 'Applicant',
@@ -19,54 +14,37 @@ const getRows = ({ control }: IProps): Column[] => {
     {
       Header: PermissionName.CREATE_CLINIC,
       accessor: PermissionName.CREATE_CLINIC,
-      Cell: (): CellValue =>
-        Checkbox({
-          control,
-          name: PermissionName.CREATE_CLINIC,
-          label: '',
+      Cell: ({ row }: CellValue): CellValue =>
+        EditPermissionElement({
+          user: row.original,
+          nameOfPermission: PermissionName.CREATE_CLINIC,
         }),
     },
     {
       Header: PermissionName.CREATE_USER,
       accessor: PermissionName.CREATE_USER,
-      Cell: (): CellValue =>
-        Checkbox({
-          control,
-          name: PermissionName.CREATE_USER,
-          label: '',
+      Cell: ({ row }: CellValue): CellValue =>
+        EditPermissionElement({
+          user: row.original,
+          nameOfPermission: PermissionName.CREATE_USER,
         }),
     },
     {
       Header: PermissionName.EDIT_USER,
       accessor: PermissionName.EDIT_USER,
-      Cell: (): CellValue =>
-        Checkbox({
-          control,
-          name: PermissionName.EDIT_USER,
-          label: '',
+      Cell: ({ row }: CellValue): CellValue =>
+        EditPermissionElement({
+          user: row.original,
+          nameOfPermission: PermissionName.EDIT_USER,
         }),
     },
     {
       Header: PermissionName.EDIT_PERMISSIONS,
       accessor: PermissionName.EDIT_PERMISSIONS,
-      Cell: (): CellValue =>
-        Checkbox({
-          control,
-          name: PermissionName.EDIT_PERMISSIONS,
-          label: '',
-        }),
-    },
-    {
-      Header: 'Actions',
-      accessor: 'Actions',
-      Cell: () =>
-        Button({
-          label: 'Save',
-          hasHiddenLabel: false,
-          type: ButtonType.BUTTON,
-          onClick: ()=>null,
-          color: ButtonColor.PRIMARY_DARK,
-          styleType: ButtonStyleType.WITHOUT_BORDER,
+      Cell: ({ row }: CellValue): CellValue =>
+        EditPermissionElement({
+          user: row.original,
+          nameOfPermission: PermissionName.EDIT_PERMISSIONS,
         }),
     },
   ];
