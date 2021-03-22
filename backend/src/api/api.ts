@@ -19,7 +19,7 @@ const apis = [
   initDocumentApi,
   initMapApi,
   initUploadFileApi,
-  initPermissionApi
+  initPermissionApi,
 ];
 
 const initApi = (app: Router): Router => {
