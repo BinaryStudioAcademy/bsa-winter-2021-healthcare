@@ -22,4 +22,4 @@ const SideMenuItem: React.FC<Props> = ({
   );
 };
 
-export { SideMenuItem };
+export default SideMenuItem;

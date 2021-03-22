@@ -1,19 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { notification as notificationService, diagnosis as diagnosisService, userApi, documentApi } from 'services';
+import {
+  notification as notificationService,
+  diagnosis as diagnosisService,
+  userApi,
+  documentApi,
+} from 'services';
 import { ReducerName } from 'common/enums';
 import { AppThunk } from 'common/types';
 import {
   IDocument,
-  IUser,
   IUserTypeDoctor,
   IEditUserPayload,
   IDiagnosis,
+  IUserWithPermissions,
 } from 'common/interfaces';
 import { AuthActionCreator } from 'store/slices';
 import { HttpError } from 'exceptions';
 
 interface IState {
-  user: IUser | null;
+  user: IUserWithPermissions | null;
   diagnoses: IDiagnosis[];
 }
 
@@ -26,7 +31,7 @@ const { reducer, actions } = createSlice({
   name: ReducerName.PROFILE,
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<IUser>) => {
+    setUser: (state, action: PayloadAction<IUserWithPermissions>) => {
       state.user = action.payload;
     },
     editDocumentStatus: (state, action: PayloadAction<IDocument>) => {

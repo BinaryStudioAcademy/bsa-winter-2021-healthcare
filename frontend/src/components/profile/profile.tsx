@@ -13,7 +13,7 @@ import { RootState } from 'common/types';
 import { ProfileActionCreator } from 'store/slices';
 
 import styles from './styles.module.scss';
-import { ProfileTab } from 'common/enums/profile';
+import { ProfileTab } from './common/enums';
 
 type RouteParam = {
   id: string;

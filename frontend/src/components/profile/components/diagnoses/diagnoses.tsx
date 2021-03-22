@@ -1,8 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
-
 import {
   ButtonColor,
   ButtonStyleType,
@@ -11,11 +9,14 @@ import {
   InputColor,
   InputType,
   DiagnosisKey,
+  DateFormat,
 } from 'common/enums';
 import { IDiagnosis, IUser } from 'common/interfaces';
 import { RootState } from 'common/types';
 import { Button, Details, TextInput } from 'components/common';
 import { ProfileActionCreator } from 'store/slices';
+import { DEFAULT_DIAGNOSIS_VALUE } from 'components/profile/common';
+import { getFormattedDate } from 'helpers';
 
 import styles from './diagnoses.module.scss';
 
@@ -26,9 +27,7 @@ type Props = {
 const Diagnoses: React.FC<Props> = ({ user }) => {
   const dispatch = useDispatch();
   const { handleSubmit, reset, control, errors } = useForm<IDiagnosis>({
-    defaultValues: {
-      diagnosis: '',
-    },
+    defaultValues: DEFAULT_DIAGNOSIS_VALUE,
     mode: 'onChange',
   });
 
@@ -58,7 +57,10 @@ const Diagnoses: React.FC<Props> = ({ user }) => {
                 <div className={styles.diagnosisInfo}>
                   <div className={styles.name}>{diagnosis.diagnosis}</div>
                   <div className={styles.time}>
-                    {moment(diagnosis.createdAt).format('DD-MM-YYYY hh:mm:ss')}
+                    {getFormattedDate(
+                      diagnosis.createdAt,
+                      DateFormat.D_MMMM_YYYY_H_MM_SS,
+                    )}
                   </div>
                 </div>
               </Details>
@@ -96,4 +98,4 @@ const Diagnoses: React.FC<Props> = ({ user }) => {
   );
 };
 
-export { Diagnoses };
+export default Diagnoses;

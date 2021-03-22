@@ -1,4 +1,4 @@
-import { IDiagnosis } from 'common/interfaces';
+import { IDiagnosis, IDiagnosisPayload } from 'common/interfaces';
 import { Http } from 'services/http/http.service';
 import {
   ApiPath,
@@ -33,7 +33,7 @@ class Diagnosis {
   }
 
   public create(userId: string, diagnosis: string): Promise<IDiagnosis> {
-    const payload = {
+    const payload: Partial<IDiagnosisPayload> = {
       diagnosis,
       userId,
     };
