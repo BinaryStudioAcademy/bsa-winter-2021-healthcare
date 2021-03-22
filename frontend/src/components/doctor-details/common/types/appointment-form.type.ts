@@ -1,9 +1,9 @@
 import { AppointmentFormKey } from '../enums';
-import { AppointmentHours } from 'common/enums';
+import { AppointmentTime } from 'common/enums';
 
 type AppointmentFormPaiload = {
   [AppointmentFormKey.DATE]: Date;
-  [AppointmentFormKey.TIME]: AppointmentHours;
+  [AppointmentFormKey.TIME]: AppointmentTime;
 };
 
 export type { AppointmentFormPaiload };

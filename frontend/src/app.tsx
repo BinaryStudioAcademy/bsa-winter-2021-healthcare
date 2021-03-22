@@ -21,7 +21,7 @@ const App: React.FC = () => (
     />
     <AuthorizedRoute path={AppRoute.CLINICS} component={Clinics} />
     <AuthorizedRoute path={AppRoute.DOCTORS} component={Doctors} />
-    <AuthorizedRoute
+    <Route
       path={AppRoute.DOCTOR_DETAILS_$ID}
       component={DoctorDetails}
     />

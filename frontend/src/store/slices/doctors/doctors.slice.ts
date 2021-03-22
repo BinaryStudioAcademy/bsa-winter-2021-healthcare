@@ -1,19 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from 'common/types';
 import { userApi, notification as notificationService } from 'services';
-import { IDoctorDetails, IUserTypeDoctor } from 'common/interfaces';
+import { IUserTypeDoctor } from 'common/interfaces';
 import { HttpError } from 'exceptions';
 import { ReducerName, DataStatus } from 'common/enums';
 
 type DoctorsState = {
-  doctors: IUserTypeDoctor[];
-  doctorDetails: IDoctorDetails | null;
+  doctors: IUserTypeDoctor[];  
   dataStatus: DataStatus;
 };
 
 const initialState: DoctorsState = {
-  doctors: [],
-  doctorDetails: null,
+  doctors: [],  
   dataStatus: DataStatus.PENDING,
 };
 
@@ -24,11 +22,7 @@ const { reducer, actions } = createSlice({
     setDoctors: (state, action: PayloadAction<IUserTypeDoctor[]>) => {
       state.doctors = action.payload;
       state.dataStatus = DataStatus.SUCCESS;
-    },
-    setDoctorDetail: (state, action: PayloadAction<IDoctorDetails>) => {
-      state.doctorDetails = action.payload;
-      state.dataStatus = DataStatus.SUCCESS;
-    },
+    },    
   },
 });
 
@@ -44,22 +38,9 @@ const getDoctorsAsync = (): AppThunk => async (dispatch) => {
   }
 };
 
-const getDoctorDetailsAsync = (id: string): AppThunk => async (dispatch) => {
-  try {
-    const doctorDetails = await userApi.getDoctorDetails(id);
-    dispatch(actions.setDoctorDetail(doctorDetails));
-  } catch (error) {
-    if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
-    }
-    throw error;
-  }
-};
-
 const DoctorsActionCreator = {
   ...actions,
-  getDoctorsAsync,
-  getDoctorDetailsAsync,
+  getDoctorsAsync,  
 };
 
 export { DoctorsActionCreator, reducer };

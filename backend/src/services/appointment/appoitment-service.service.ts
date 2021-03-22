@@ -1,4 +1,4 @@
-import { appointmentRepository } from '~/data/repositories';
+import { appointment as appointmentRepository } from '~/data/repositories';
 import { IAppointment, ICreateAppointment } from '~/common/interfaces';
 
 class Appointment {

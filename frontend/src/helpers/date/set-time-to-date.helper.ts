@@ -1,9 +1,9 @@
 import dayjs from 'dayjs';
-import { AppointmentHours } from 'common/enums';
+import { AppointmentTime } from 'common/enums';
 
-const setTimeToDate = (date:Date, time:AppointmentHours):string => {
+const setTimeToDate = (date:Date, time:AppointmentTime):string => {
   const [hours, minutes] = time.split(':');
-  return dayjs(date).add(Number(hours), 'h').add(Number(minutes), 'm').toISOString();
+  return dayjs(date).set('h', Number(hours)).set('m', Number(minutes)).toISOString();
 };
 
 export { setTimeToDate };

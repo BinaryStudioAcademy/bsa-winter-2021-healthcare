@@ -6,7 +6,7 @@ interface ICreateAppointment {
   [CreateAppointmentKey.COST]: number;
   [CreateAppointmentKey.SUBJECT]: string;
   [CreateAppointmentKey.DOCTOR_ID]:string;
-  [CreateAppointmentKey.USER_ID]?:string;
+  [CreateAppointmentKey.USER_ID]:string;
 }
 
 export type { ICreateAppointment };

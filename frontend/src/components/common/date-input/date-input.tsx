@@ -20,7 +20,7 @@ interface Props {
   control: Control;
   errors: FormErrors;
   defaultValue?: FormDefaultValue;
-  inline?:boolean;
+  isInline?:boolean;
 }
 
 const DateInput: React.FC<Props> = ({
@@ -33,7 +33,7 @@ const DateInput: React.FC<Props> = ({
   control,
   defaultValue,
   errors,
-  inline = false,
+  isInline = false,
 }) => {
   const {
     field,
@@ -54,7 +54,7 @@ const DateInput: React.FC<Props> = ({
         <DatePicker
           {...field}
           selected={field.value}
-          inline={inline}
+          inline={isInline}
           dropdownMode="select"
           placeholderText={placeholder}
           disabled={isDisabled}

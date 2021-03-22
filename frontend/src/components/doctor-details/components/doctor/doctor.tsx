@@ -5,25 +5,22 @@ import checkIcon from 'assets/images/icons/check.svg';
 import styles from './styles.module.scss';
 
 type Props = {
-  doctorDetails: IDoctorDetails;
+  doctor: IDoctorDetails;
 };
 
-const Doctor: React.FC<Props> = ({ doctorDetails }) => {
+const Doctor: React.FC<Props> = ({ doctor }) => {
   return (
     <div className={styles.doctorsContainer}>
       <div className={styles.personalDataContainer}>
         <img
           className={styles.doctorImage}
-          src={doctorDetails.imagePath}
+          src={doctor.imagePath}
           width="58"
           height="60"
           loading="lazy"
-          alt={doctorDetails.name}
+          alt={doctor.name}
         />
         <div className={styles.personalDataBody}>
-          <span className={styles.department}>
-            {doctorDetails.doctor.department}
-          </span>
           <div className={styles.phone}>
             <img
               src={phoneIcon}
@@ -32,18 +29,18 @@ const Doctor: React.FC<Props> = ({ doctorDetails }) => {
               loading="lazy"
               alt="phone-icon"
             />
-            <span className={styles.phoneNumber}>{doctorDetails.phone}</span>
+            <span className={styles.phoneNumber}>{doctor.phone}</span>
           </div>
           <span className={styles.name}>
-            {doctorDetails.name} {doctorDetails.surname}
+            {doctor.name} {doctor.surname}
           </span>
         </div>
       </div>
       <div className={styles.aboutContainer}>
         <span className={styles.aboutTitle}>
-          About {doctorDetails.name} {doctorDetails.surname}
+          About {doctor.name} {doctor.surname}
         </span>
-        <div className={styles.aboutBody}>{doctorDetails.doctor.about}</div>
+        <div className={styles.aboutBody}>{doctor.doctor.about}</div>
       </div>
 
       <div className={styles.conditionsContainer}>
@@ -58,7 +55,7 @@ const Doctor: React.FC<Props> = ({ doctorDetails }) => {
           <span className={styles.titleText}>Conditions Treated</span>
         </div>
         <ul className={styles.conditionsList}>
-          {doctorDetails.specializations.map((spec) => (
+          {doctor.specializations.map((spec) => (
             <li key={spec.id}>{spec.text}</li>
           ))}
         </ul>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DateInput, Radio, Button } from 'components/common';
-import { InputColor, AppointmentHours } from 'common/enums';
+import { InputColor, AppointmentTime } from 'common/enums';
 import { useForm } from 'react-hook-form';
 import { createOptions } from 'helpers';
 import { ButtonColor, ButtonStyleType, ButtonType } from 'common/enums';
@@ -15,7 +15,7 @@ import clockIcon from 'assets/images/clock.svg';
 import styles from './styles.module.scss';
 
 const timeOptions = createOptions<string>(
-  Object.values(AppointmentHours),
+  Object.values(AppointmentTime),
   (appointmentHours) => ({
     value: appointmentHours,
     label: appointmentHours,
@@ -56,7 +56,7 @@ const Appointment: React.FC<Props> = ({ onCreate }) => {
           color={InputColor.GRAY_LIGHT}
           control={control}
           errors={errors}
-          inline={true}
+          isInline={true}
         />
         <div className={styles.headerBlock}>
           <img
