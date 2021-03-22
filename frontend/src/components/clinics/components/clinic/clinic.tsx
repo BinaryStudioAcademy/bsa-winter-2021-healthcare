@@ -13,7 +13,7 @@ const Clinic: React.FC<Props> = ({ clinic }) => {
   return (
     <Card
       title={clinic.name}
-      label={clinic.clinicType}
+      label={clinic?.clinicType}
       btnLabel="More details"
       btnHref={AppRoute.CLINIC}
       imagePath={clinic.imagePath}

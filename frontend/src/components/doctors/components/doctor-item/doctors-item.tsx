@@ -12,7 +12,7 @@ const DoctorItem: React.FC<Props> = ({ user }) => {
   return (
     <Card
       title={`${user.name} ${user.surname}`}
-      label={user.doctor?.clinic.clinicType}
+      label={user.doctor?.clinic?.clinicType}
       btnLabel="Make an appointment"
       imagePath={user.imagePath}
     >
