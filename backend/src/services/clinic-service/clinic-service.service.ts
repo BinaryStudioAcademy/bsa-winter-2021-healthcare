@@ -1,4 +1,4 @@
-import { clinicRepository } from '~/data/repositories';
+import { clinic as clinicRepository } from '~/data/repositories';
 import { IClinic } from '~/common/interfaces';
 
 class Clinic {

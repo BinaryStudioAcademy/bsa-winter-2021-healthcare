@@ -1,33 +1,47 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { notification, userApi, documentApi } from 'services';
+import {
+  notification as notificationService,
+  diagnosis as diagnosisService,
+  userApi,
+  documentApi,
+} from 'services';
 import { ReducerName } from 'common/enums';
 import { AppThunk } from 'common/types';
 import {
   IDocument,
-  IUser,
   IUserTypeDoctor,
   IEditUserPayload,
+  IDiagnosis,
+  IUserWithPermissions,
 } from 'common/interfaces';
 import { AuthActionCreator } from 'store/slices';
 import { HttpError } from 'exceptions';
 
 interface IState {
-  user: IUser | null;
+  user: IUserWithPermissions | null;
+  diagnoses: IDiagnosis[];
 }
 
 const initialState: IState = {
   user: null,
+  diagnoses: [],
 };
 
 const { reducer, actions } = createSlice({
   name: ReducerName.PROFILE,
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<IUser>) => {
+    setUser: (state, action: PayloadAction<IUserWithPermissions>) => {
       state.user = action.payload;
     },
     editDocumentStatus: (state, action: PayloadAction<IDocument>) => {
       (state.user as IUserTypeDoctor).doctor.document = action.payload;
+    },
+    setDiagnoses: (state, action: PayloadAction<IDiagnosis[]>) => {
+      state.diagnoses = action.payload;
+    },
+    addDiagnosis: (state, action: PayloadAction<IDiagnosis>) => {
+      state.diagnoses = [action.payload, ...state.diagnoses];
     },
   },
 });
@@ -38,7 +52,7 @@ const getUser = (id: string): AppThunk => async (dispatch) => {
     dispatch(actions.setUser(user));
   } catch (error) {
     if (error instanceof HttpError) {
-      notification.error(`Error ${error.status}`, error.messages);
+      notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -59,7 +73,7 @@ const editUserInProfile = (userData: IEditUserPayload): AppThunk => async (
     }
   } catch (error) {
     if (error instanceof HttpError) {
-      notification.error(`Error ${error.status}`, error.messages);
+      notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -72,7 +86,33 @@ const editUserDocument = (payload: IDocument): AppThunk => async (dispatch) => {
     dispatch(actions.editDocumentStatus(document));
   } catch (error) {
     if (error instanceof HttpError) {
-      notification.error(`Error ${error.status}`, error.messages);
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
+const getAllDiagnoses = (userId: string): AppThunk => async (dispatch) => {
+  try {
+    const diagnoses = await diagnosisService.getAllByUserId(userId);
+    dispatch(actions.setDiagnoses(diagnoses));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
+const addDiagnosis = (userId: string, diagnosis: string): AppThunk => async (
+  dispatch,
+) => {
+  try {
+    const response = await diagnosisService.create(userId, diagnosis);
+    dispatch(actions.addDiagnosis(response));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -83,6 +123,8 @@ const ProfileActionCreator = {
   getUser,
   editUserInProfile,
   editUserDocument,
+  getAllDiagnoses,
+  addDiagnosis,
 };
 
 export { ProfileActionCreator, reducer };

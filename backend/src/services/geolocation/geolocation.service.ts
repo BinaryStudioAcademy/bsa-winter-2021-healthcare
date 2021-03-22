@@ -1,4 +1,4 @@
-import { geolocationRepository } from '~/data/repositories';
+import { geolocation as geolocationRepository } from '~/data/repositories';
 import { IGeolocation } from '~/common/interfaces';
 
 class Geolocation {

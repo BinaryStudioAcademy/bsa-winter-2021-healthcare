@@ -19,8 +19,7 @@ import {
   SpecializationKey,
 } from '~/common/enums';
 
-class UserRepository {
-
+class User {
   public getById(id: string): Promise<IUser | null> {
     return UserModel.findByPk(id, {
       include:{
@@ -130,4 +129,4 @@ class UserRepository {
   }
 }
 
-export { UserRepository };
+export { User };
