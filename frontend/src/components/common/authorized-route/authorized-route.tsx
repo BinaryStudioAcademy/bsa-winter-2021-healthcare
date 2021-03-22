@@ -3,7 +3,8 @@ import { Route, Redirect, RouteProps, RouteComponentProps } from 'react-router-d
 import { useSelector } from 'react-redux';
 import { RootState, CustomRecord } from 'common/types';
 import { AppRoute, PermissionName } from 'common/enums';
-import { checkHasPermission } from './helpers';
+import { checkHasPermission } from 'helpers';
+import AuthorizedWrapper from '../authorized-wrapper/authorized-wrapper';
 
 interface IRouteProps extends RouteProps {
   redirectTo?: AppRoute,
@@ -24,7 +25,11 @@ const AuthorizedRoute: React.FC<IRouteProps> = ({ component: Component, redirect
     <Route {...otherProps} render={props => {
       return hasUser
         ? hasPermission
-          ? <Component {...props} />
+          ? (
+            <AuthorizedWrapper>
+              <Component {...props} />
+            </AuthorizedWrapper>
+          )
           : <Redirect to={redirectTo} />
         : <Redirect to={AppRoute.SIGN_IN} />;
     }} />

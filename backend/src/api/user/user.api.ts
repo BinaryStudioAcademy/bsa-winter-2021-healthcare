@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { ApiPath, HttpCode, UsersApiPath, UserType } from '~/common/enums';
 import { validateSchema } from '~/middlewares';
 import { userRegister as userRegisterSchema, editUser as validationEditUser } from '~/validation-schemas';
-import { userService } from '~/services/services';
+import { user as userService } from '~/services/services';
 import { checkIsOneOf } from '~/helpers';
 
 const initUserApi = (apiRouter: Router): Router => {
@@ -23,6 +23,15 @@ const initUserApi = (apiRouter: Router): Router => {
     try {
       const users = await userService.getUsersByType(req.params.type as UserType, req.body);
       res.status(HttpCode.OK).json(users);
+    } catch(error) {
+      next(error);
+    }
+  });
+
+  userRouter.get(UsersApiPath.$ID, async (req, res, next) => {
+    try {
+      const user = await userService.getUserById(req.params.id);
+      res.status(HttpCode.OK).json(user);
     } catch(error) {
       next(error);
     }

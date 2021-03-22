@@ -11,15 +11,14 @@ type Props = {
 const DoctorItem: React.FC<Props> = ({ user }) => {
   return (
     <Card
-      subtitle={user.doctor.department}
       title={`${user.name} ${user.surname}`}
-      label={user.doctor.clinic.clinicType}
+      label={user.doctor?.clinic?.clinicType}
       btnLabel="Make an appointment"
       imagePath={user.imagePath}
     >
       <div className={styles.infoItem}>
         <span className={clsx(styles.icon, styles.location)}></span>
-        <span className={styles.text}>{user.doctor.clinic.address}</span>
+        <span className={styles.text}>{user.doctor?.clinic?.address}</span>
       </div>
       <div className={styles.infoItem}>
         <span className={clsx(styles.icon, styles.phone)}></span>

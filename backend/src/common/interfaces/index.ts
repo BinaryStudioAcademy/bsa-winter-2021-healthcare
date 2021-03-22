@@ -15,3 +15,5 @@ export * from './city';
 export * from './specialization';
 export * from './user-specialization';
 export * from './filtration';
+export * from './profession';
+export * from './doctor-register-payload';

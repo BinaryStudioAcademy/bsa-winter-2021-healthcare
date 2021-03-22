@@ -33,6 +33,9 @@ module.exports = {
     ),
   down: async (queryInterface) =>
     queryInterface.sequelize.transaction((transaction) =>
-      Promise.all([queryInterface.dropTable('appointments', { transaction })]),
+      Promise.all([
+        queryInterface.dropTable('appointments', { transaction }),
+        queryInterface.sequelize.query('DROP TYPE "enum_appointments_type"', { transaction }),
+      ]),
     ),
 };

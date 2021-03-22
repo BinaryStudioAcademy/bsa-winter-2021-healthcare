@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { notificationService, userApi } from 'services';
+import { notification as notificationService, userApi } from 'services';
 import { ReducerName } from 'common/enums';
 import { AppThunk } from 'common/types';
 import { IEditUserPayload, IUser } from 'common/interfaces';
@@ -22,11 +22,11 @@ const { reducer, actions } = createSlice({
     },
     editUser: (
       state,
-      action: PayloadAction<{ id: string | undefined; data: IUser[] }>,
+      action: PayloadAction<{ id: string | undefined; data: IUser }>,
     ) => {
       const id = action.payload.id;
       state.users = state.users.map((user: IUser) =>
-        user.id === id ? action.payload.data[0] : user,
+        user.id === id ? action.payload.data : user,
       );
     },
     deleteUser: (state, action: PayloadAction<string>) => {
@@ -48,9 +48,10 @@ const getUsers = (): AppThunk => async (dispatch) => {
     throw error;
   }
 };
+
 const editUser = (userInfo: IEditUserPayload): AppThunk => async (dispatch) => {
   try {
-    const response: IUser[] = await userApi.editUser(
+    const response: IUser = await userApi.editUser(
       userInfo.id as string,
       userInfo,
     );
@@ -64,6 +65,7 @@ const editUser = (userInfo: IEditUserPayload): AppThunk => async (dispatch) => {
     throw error;
   }
 };
+
 const addUser = (userInfo: IUser): AppThunk => async (dispatch) => {
   try {
     const response = await userApi.registerUser(userInfo);

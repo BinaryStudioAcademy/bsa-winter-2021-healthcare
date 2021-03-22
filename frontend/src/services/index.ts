@@ -4,8 +4,12 @@ import { AuthApi } from './auth-api/auth-api.service';
 import { UserApi } from './user-api/user-api.service';
 import { Storage } from './storage/storage.service';
 import { ClinicApi } from './clinic-api/clinic-api.service';
-import NotificationService from './notification/notification.service';
-import { GeolocationService } from './geolocation/geolocation.service';
+import { DocumentApi } from './document-api/document-api.service';
+import { Notification } from './notification/notification.service';
+import { Geolocation } from './geolocation/geolocation.service';
+import { Diagnosis } from './diagnosis/diagnosis.service';
+import { UploadFile } from './upload-file/upload-file.service';
+import { MapApi } from './map-api/map-api.service';
 
 const http = new Http();
 
@@ -24,23 +28,47 @@ const clinicApi = new ClinicApi({
   apiPrefix: ENV.API_PATH,
 });
 
-const storage = new Storage({
-  storage: localStorage,
-});
-
-const geolocationService = new GeolocationService({
+const documentApi = new DocumentApi({
   http,
   apiPrefix: ENV.API_PATH,
 });
 
-const notificationService = new NotificationService();
+const storage = new Storage({
+  storage: localStorage,
+});
+
+const geolocation = new Geolocation({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
+const diagnosis = new Diagnosis({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
+const uploadFile = new UploadFile({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
+const mapApi = new MapApi({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
+const notification = new Notification();
 
 export {
   http,
   authApi,
   userApi,
   storage,
-  notificationService,
+  notification,
   clinicApi,
-  geolocationService,
+  documentApi,
+  geolocation,
+  diagnosis,
+  uploadFile,
+  mapApi,
 };

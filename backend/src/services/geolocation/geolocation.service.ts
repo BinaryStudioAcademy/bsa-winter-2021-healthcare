@@ -1,7 +1,7 @@
-import { geolocationRepository } from '~/data/repositories';
+import { geolocation as geolocationRepository } from '~/data/repositories';
 import { IGeolocation } from '~/common/interfaces';
 
-class GeolocationService {
+class Geolocation {
   public createGeolocation(geolocation: IGeolocation): Promise<IGeolocation> {
     return geolocationRepository.createGeolocation(geolocation);
   }
@@ -15,4 +15,4 @@ class GeolocationService {
   }
 }
 
-export { GeolocationService };
+export { Geolocation };

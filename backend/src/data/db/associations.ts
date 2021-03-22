@@ -11,19 +11,16 @@ const associate = ({
   Message,
   Notification,
   User,
-  Geolocation,
   Permission,
   UserPermission,
   Specialization,
   UserSpecialization,
+  Profession,
+  Geolocation,
 }: DbModels): void => {
   User.hasOne(Doctor, {
     foreignKey: ForeingKey.USER_ID,
     as: ModelAlias.DOCTOR,
-  });
-  User.hasOne(Geolocation, {
-    foreignKey: ForeingKey.USER_ID,
-    as: ModelAlias.GEOLOCATION,
   });
   User.hasMany(Appointment, {
     foreignKey: ForeingKey.USER_ID,
@@ -68,6 +65,10 @@ const associate = ({
     foreignKey: ForeingKey.USER_ID,
     as: ModelAlias.USER,
   });
+  Doctor.belongsTo(Profession, {
+    foreignKey: ForeingKey.PROFESSION_ID,
+    as: ModelAlias.PROFESSION,
+  });
 
   Appointment.belongsTo(Doctor, {
     foreignKey: ForeingKey.DOCTOR_ID,
@@ -107,12 +108,12 @@ const associate = ({
     as: ModelAlias.USER,
   });
 
-  Diagnosis.belongsTo(User, {
+  Geolocation.belongsTo(User, {
     foreignKey: ForeingKey.USER_ID,
     as: ModelAlias.USER,
   });
 
-  Geolocation.belongsTo(User, {
+  Diagnosis.belongsTo(User, {
     foreignKey: ForeingKey.USER_ID,
     as: ModelAlias.USER,
   });
@@ -122,10 +123,16 @@ const associate = ({
     foreignKey: ForeingKey.PERMISSION_ID,
     as: ModelAlias.USERS,
   });
+
   Specialization.belongsToMany(User, {
     through: UserSpecialization,
     foreignKey: ForeingKey.SPECIALIZATION_ID,
     as: ModelAlias.USERS,
+  });
+
+  Profession.hasMany(Doctor, {
+    foreignKey: ForeingKey.PROFESSION_ID,
+    as: ModelAlias.DOCTORS,
   });
 };
 

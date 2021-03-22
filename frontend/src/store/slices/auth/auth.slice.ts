@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName, DataStatus, StorageKey } from 'common/enums';
 import { IUserWithPermissions, IUserLoginPayload, IRegisterPayload } from 'common/interfaces';
-import { authApi, notificationService, storage, geolocationService } from 'services';
+import { authApi, notification as notificationService, storage, geolocation as geolocationService } from 'services';
 import { LoginResponse } from 'common/types/responses';
 import { HttpError } from 'exceptions';
 
@@ -41,6 +41,7 @@ const registration = createAsyncThunk(
     try {
       const { token, user } = await authApi.registrationUser(userData);
       storage.setItem(StorageKey.TOKEN, token);
+
       return user;
     } catch (error) {
       if (error instanceof HttpError) {
@@ -54,7 +55,11 @@ const registration = createAsyncThunk(
 const { reducer, actions } = createSlice({
   name: ReducerName.AUTH,
   initialState,
-  reducers: {},
+  reducers: {
+    setUser:(state, action: PayloadAction<IUserWithPermissions>) => {
+      state.user = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     const sharedReducer = (
       state: AuthState,
