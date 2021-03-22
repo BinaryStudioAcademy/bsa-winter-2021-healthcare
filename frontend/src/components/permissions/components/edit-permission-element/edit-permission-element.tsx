@@ -2,11 +2,11 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Checkbox } from 'components/common';
-import { IPermission, IUserWithPermissions } from 'common/interfaces';
+import { IUserWithPermissions } from 'common/interfaces';
 import { PermissionsActionCreator } from 'store/slices';
 import { PermissionName } from 'common/enums';
 import { RootState } from 'common/types';
-import { getPermissionsNames } from 'components/permissions/helpers';
+import { getPermissionsNames, getPermissionByName } from 'components/permissions/helpers';
 
 type Props = {
   user: IUserWithPermissions;
@@ -27,7 +27,7 @@ const EditPermissionElement: React.FC<Props> = ({ user, nameOfPermission }) => {
   });
 
   const handleChange = () => {
-    const permission: IPermission | undefined = permissions.find((permission) => permission.name === nameOfPermission);
+    const permission = getPermissionByName(permissions,nameOfPermission);
 
     permission &&
       (getValues()[nameOfPermission] ?
