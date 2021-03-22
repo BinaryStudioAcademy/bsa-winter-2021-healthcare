@@ -1,15 +1,19 @@
 import * as React from 'react';
-import { SideMenu, UserInfo, Documents } from './components';
-import { EditUserPopup } from 'components/common';
-import { IEditUserPayload, IUserTypeDoctor } from 'common/interfaces';
-import { UserType } from 'common/enums';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { RootState } from 'common/types';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
+import { SideMenu, UserInfo, Documents, Diagnoses } from './components';
+import { EditUserPopup } from 'components/common';
+import {
+  IEditUserPayload,
+  IUserTypeDoctor,
+  IUserWithPermissions,
+} from 'common/interfaces';
+import { UserType } from 'common/enums';
+import { RootState } from 'common/types';
 import { ProfileActionCreator } from 'store/slices';
 
 import styles from './styles.module.scss';
+import { ProfileTab } from 'common/enums/profile';
 
 type RouteParam = {
   id: string;
@@ -17,12 +21,33 @@ type RouteParam = {
 
 const Profile: React.FC = () => {
   const [isEditMode, setIsEditMode] = React.useState<boolean>(false);
+  const [profileTab, setProfileTab] = React.useState<ProfileTab>(
+    ProfileTab.PERSONAL_INFO,
+  );
+
   const { user } = useSelector(({ profile }: RootState) => ({
     user: profile.user,
   }));
   const dispatch = useDispatch();
   const { id } = useParams<RouteParam>();
   const isDoctor = user?.type === UserType.DOCTOR;
+
+  const getProfileTab = (tab: ProfileTab) => {
+    switch (tab) {
+      case ProfileTab.DIAGNOSES: {
+        return <Diagnoses user={user as IUserWithPermissions} />;
+      }
+
+      default:
+        return (
+          <UserInfo
+            user={user as IUserWithPermissions}
+            onEdit={handleTogglePopUp}
+          />
+        );
+    }
+  };
+
   React.useEffect(() => {
     dispatch(ProfileActionCreator.getUser(id));
   }, []);
@@ -30,18 +55,20 @@ const Profile: React.FC = () => {
   const handleTogglePopUp = () => {
     setIsEditMode(!isEditMode);
   };
+
   const handleUserInfoEdit = (userData: IEditUserPayload) => {
     userData.id = user?.id;
     dispatch(ProfileActionCreator.editUserInProfile(userData));
     setIsEditMode(false);
   };
+
   return (
     <div className={styles.profileContainer}>
-      <SideMenu />
+      <SideMenu onChangeProfileTab={setProfileTab} />
       {user && (
         <>
           <div className={styles.infoContainer}>
-            <UserInfo user={user} onEdit={handleTogglePopUp} />
+            {getProfileTab(profileTab)}
             {isDoctor && (
               <Documents document={(user as IUserTypeDoctor).doctor.document} />
             )}
