@@ -11,6 +11,7 @@ import { MapCoordsDefault } from 'components/map/enums';
 const SelectMapArea: React.FC = () => {
   const dispatch = useDispatch();
   const map = useMap();
+
   const control = L.control.lasso({ position: 'topright' });
   let minLat = MapCoordsDefault.MIN_LAT;
   let minLng = MapCoordsDefault.MIN_LNG;
@@ -65,10 +66,9 @@ const SelectMapArea: React.FC = () => {
 
   useEffect((): void => {
     control.addTo(map);
+    map.on(ENABLED_EVENT, handleLassoActivacion);
+    map.on(FINISHED_EVENT, handleAreaSelection);
   }, []);
-
-  map.on(ENABLED_EVENT, handleLassoActivacion);
-  map.on(FINISHED_EVENT, handleAreaSelection);
 
   return null;
 };

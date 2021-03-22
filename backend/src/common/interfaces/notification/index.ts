@@ -1,1 +1,1 @@
-export type { INotification } from 'healthcare-shared/common/interfaces';
+export type { INotification, INewNotification } from 'healthcare-shared/common/interfaces';

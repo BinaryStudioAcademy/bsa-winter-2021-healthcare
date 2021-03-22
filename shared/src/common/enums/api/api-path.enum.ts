@@ -7,7 +7,7 @@ enum ApiPath {
   APPOINTMENTS = '/appointments',
   DIAGNOSES = '/diagnoses',
   FILES = '/files',
-  MAP = '/map',
+  NOTIFICATION = '/notification',
 }
 
 export { ApiPath };
