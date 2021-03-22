@@ -15,3 +15,5 @@ export * from './specialization';
 export * from './profession';
 export * from './map';
 export * from './notification';
+export * from './upload-file';
+export * from './sort';

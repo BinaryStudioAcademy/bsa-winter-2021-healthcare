@@ -16,29 +16,14 @@
   margin-bottom: 10px;
 }
 
-.menuItem {
-  display: flex;
-  height: 50px;
-  width: calc(300px - 100px);
-  align-items: center;
-  border-bottom: 1px solid grey;
-  cursor: pointer;
-}
-
-.menuText {
-  font-size: 14px;
-  font-weight: 400;
-  margin-left: 15px;
-  text-align: left;
-}
-
-.icon{
-  width: 22px;
-  height: 22px;
-}
-
 .person {
   background-image: url('../../../../assets/images/person.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.clinic {
+  background-image: url('../../../../assets/images/clinic.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
