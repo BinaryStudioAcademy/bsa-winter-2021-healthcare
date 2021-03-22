@@ -1,8 +1,7 @@
 enum DoctorKey {
   ID = 'id',
-  DEPARTMENT = 'department',
-  ROOM_NUMBER = 'roomNumber',
   ABOUT = 'about',
+  USER_ID = 'userId',
   CREATED_AT = 'createdAt',
   UPDATED_AT = 'updatedAt',
 }
