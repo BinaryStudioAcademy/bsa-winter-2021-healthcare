@@ -13,6 +13,7 @@ enum AppRoute {
   MY_CALENDAR = '/my-calendar',
   MY_CHATS = '/my-chats',
   NOTIFICATIONS = '/notifications',
+  MAP = '/map',
   DOCTOR_DETAILS_$ID = '/doctor-details/:id',
   NOT_FOUND = '/not-found',
 }

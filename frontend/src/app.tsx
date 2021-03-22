@@ -8,6 +8,7 @@ import Profile from 'components/profile/profile';
 import Clinics from 'components/clinics/clinics';
 import Doctors from 'components/doctors/doctors';
 import DoctorDetails from 'components/doctor-details/doctor-details';
+import Map from 'components/map/map';
 import { AuthorizedRoute } from 'components/common';
 
 const App: React.FC = () => (
@@ -29,6 +30,9 @@ const App: React.FC = () => (
       path={AppRoute.USERS}
       component={Users}
       permissions={[PermissionName.CREATE_USER, PermissionName.EDIT_USER]}
+    />
+    <AuthorizedRoute exact path={AppRoute.MAP} component={Map}
+      permissions={[PermissionName.MAP_MANIPULATION]}
     />
     <Route path="*" exact component={NotFound} />
   </Switch>

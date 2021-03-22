@@ -5,4 +5,5 @@ export {
   ClinicsApiPath,
   GeolocationsApiPath,
   DiagnosesApiPath,
+  MapApiPath,
 } from 'healthcare-shared/common/enums/api';

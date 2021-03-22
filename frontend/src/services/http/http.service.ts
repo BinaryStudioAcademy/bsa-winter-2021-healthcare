@@ -21,7 +21,7 @@ class Http {
     return fetch(url, {
       method,
       headers,
-      body: isJSON ? JSON.stringify(payload) : (payload as string),
+      body: isJSON ? JSON.stringify(payload) : payload as string | FormData,
     })
       .then(this._checkStatus)
       .then((res) => this._parseJSON<T>(res))

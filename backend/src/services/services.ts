@@ -6,8 +6,11 @@ import { Auth } from './auth/auth.service';
 import { User } from './user-service/user-service.service';
 import { Clinic } from './clinic-service/clinic-service.service';
 import { Geolocation } from './geolocation/geolocation.service';
+import { Doctor } from './doctor-service/doctor-service.service';
 import { Logger } from './logger/logger.service';
 import { Diagnosis } from './diagnosis/diagnosis.service';
+import { UploadFile } from './upload-file/upload-file.service';
+import { Notification } from './notification/notification.service';
 
 const appAsyncStorage = new AsyncLocalStorage<AppAsyncStorage>();
 
@@ -22,6 +25,9 @@ const user = new User();
 const clinic = new Clinic();
 const geolocation = new Geolocation();
 const diagnosis = new Diagnosis();
+const uploadFile = new UploadFile();
+const notification = new Notification();
+const doctor = new Doctor();
 
 export {
   appAsyncStorage,
@@ -32,4 +38,7 @@ export {
   geolocation,
   diagnosis,
   document,
+  uploadFile,
+  notification,
+  doctor,
 };

@@ -5,3 +5,5 @@ export * from './clinics-api-path.enum';
 export * from './documents-api-path.enum';
 export * from './geolocations-api-path.enum';
 export * from './diagnoses-api-path.enum';
+export * from './upload-file-api-path.enum';
+export * from './map-api-path.enum';
