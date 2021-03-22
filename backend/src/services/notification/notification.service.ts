@@ -1,14 +1,15 @@
 import { NotificationKey } from '~/common/enums';
-import { notification as notificationRepository } from '~/data/repositories';
+import { notification as notificationRepository, geolocation as geolocationRepository } from '~/data/repositories';
 import { ICoordsSet, INewNotification } from '~/common/interfaces';
 import { checkIsRelativeGeolocations, getRelativeUserIds } from './helpers';
 
 class Notification {
-  public async sendNotifications(
+  public async sendCovidNotifications(
     selectedArea: ICoordsSet,
     fromUserId: string | undefined,
   ): Promise<void> {
-    const relativeGeolocations = await checkIsRelativeGeolocations(selectedArea);
+    const geolocations = await geolocationRepository.getAll();
+    const relativeGeolocations = await checkIsRelativeGeolocations(geolocations, selectedArea);
     const relativeUserIds = getRelativeUserIds(relativeGeolocations);
 
     relativeUserIds.forEach(userId => {

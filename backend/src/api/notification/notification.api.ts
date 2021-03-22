@@ -9,7 +9,7 @@ const initNotificationApi = (apiRouter: Router): Router => {
 
   mapRouter.post(NotificationApiPath.COVID, async (req, res, next) => {
     try {
-      notificationService.sendNotifications(req.body, req.user?.id);
+      notificationService.sendCovidNotifications(req.body, req.user?.id);
       res.status(HttpCode.OK).json(req.body);
     } catch(error) {
       next(error);
