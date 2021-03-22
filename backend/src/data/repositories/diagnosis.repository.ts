@@ -1,6 +1,7 @@
 import { DiagnosisModel } from '../models';
 import { IDiagnosis } from '~/common/interfaces';
 import { SortType } from '~/common/enums';
+import { DiagnosisKey } from 'shared/common/enums';
 
 class Diagnosis {
   public create(diagnosis: IDiagnosis): Promise<IDiagnosis> {
@@ -10,7 +11,7 @@ class Diagnosis {
   public getAllByUserId(userId: string): Promise<IDiagnosis[]> {
     return DiagnosisModel.findAll({
       where: { userId },
-      order: [['createdAt', SortType.DESC]],
+      order: [[DiagnosisKey.CREATED_AT, SortType.DESC]],
     });
   }
 }
