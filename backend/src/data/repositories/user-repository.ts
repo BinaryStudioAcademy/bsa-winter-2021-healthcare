@@ -6,6 +6,7 @@ import {
   SpecializationModel,
   CityModel,
   DocumentModel,
+  ProfessionModel,
 } from '../models';
 import {
   IUser,
@@ -20,6 +21,7 @@ import {
   ClinicKey,
   SpecializationKey,
   CityKey,
+  ProfessionKey,
 } from '~/common/enums';
 
 class User {
@@ -52,7 +54,7 @@ class User {
       if (filter.city)
         Object.assign(where, { '$doctor.clinic.city.name$': filter.city });
       if (filter.specialty)
-        Object.assign(where, { '$specializations.text$': filter.specialty });
+        Object.assign(where, { '$doctor.profession.name$': filter.specialty });
 
       return UserModel.findAll({
         where,
@@ -79,18 +81,18 @@ class User {
                   },
                 ],
               },
+              {
+                model: ProfessionModel,
+                as: ModelAlias.PROFESSION,
+                attributes: [
+                  ProfessionKey.NAME,
+                ],
+              },
             ],
           },
           {
             model: PermissionModel,
             as: ModelAlias.PERMISSIONS,
-          },
-          {
-            model: SpecializationModel,
-            as: ModelAlias.SPECIALIZATIONS,
-            attributes: [
-              SpecializationKey.TEXT,
-            ],
           },
         ],
       });
