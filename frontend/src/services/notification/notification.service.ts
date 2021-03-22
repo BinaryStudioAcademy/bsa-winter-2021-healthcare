@@ -35,9 +35,9 @@ class Notification {
     this.#instance.info(title, this._getFullMessage(messages), options);
   }
 
-  public getNotifications(): Promise<INotification[]> {
+  public getNotificationsLoggedUser(userId: string): Promise<INotification[]> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.NOTIFICATIONS}${NotificationsApiPath.ROOT}`,
+      `${this.#apiPrefix}${ApiPath.NOTIFICATIONS}${NotificationsApiPath.ROOT}${userId}`,
       {
         method: HttpMethod.GET,
       },

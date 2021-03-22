@@ -7,17 +7,15 @@ import Notification from './components/notification/notification';
 import styles from './styles.module.scss';
 
 const Notifications: React.FC = () => {
-  const { notifications } = useSelector(({ notifications }: RootState) => ({
+  const { notifications, user } = useSelector(({ notifications, auth }: RootState) => ({
     notifications: notifications.notifications,
+    user: auth.user,
   }));
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(NotificationsActionCreator.getNotifications());
+    dispatch(NotificationsActionCreator.getNotificationsLoggedUser(user?.id as string));
   }, []);
-
-  // eslint-disable-next-line no-console
-  console.log(notifications);
 
   return (
     <div className={styles.wrapper}>

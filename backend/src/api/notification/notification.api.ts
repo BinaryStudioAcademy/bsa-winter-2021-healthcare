@@ -7,9 +7,9 @@ const initNotificationApi = (apiRouter: Router): Router => {
 
   apiRouter.use(ApiPath.NOTIFICATIONS, notificationRouter);
 
-  notificationRouter.get(NotificationsApiPath.ROOT, async (_req, res, next) => {
+  notificationRouter.get(NotificationsApiPath.$USER_ID, async (req, res, next) => {
     try {
-      const notifications = await notificationService.getAllNotifications();
+      const notifications = await notificationService.getAllNotificationsLoggedUser(req.params.userId);
       res.status(HttpCode.OK).json(notifications);
     } catch (error) {
       next(error);

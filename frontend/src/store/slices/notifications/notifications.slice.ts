@@ -23,9 +23,9 @@ const { reducer, actions } = createSlice({
   },
 });
 
-const getNotifications = (): AppThunk => async (dispatch) => {
+const getNotificationsLoggedUser = (userId: string): AppThunk => async (dispatch) => {
   try {
-    const notifications = await notification.getNotifications();
+    const notifications = await notification.getNotificationsLoggedUser(userId);
     dispatch(actions.setNotifications(notifications));
   } catch (error) {
     if (error instanceof HttpError) {
@@ -37,7 +37,7 @@ const getNotifications = (): AppThunk => async (dispatch) => {
 
 const NotificationsActionCreator = {
   ...actions,
-  getNotifications,
+  getNotificationsLoggedUser,
 };
 
 export { NotificationsActionCreator, reducer };

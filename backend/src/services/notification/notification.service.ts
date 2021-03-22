@@ -7,8 +7,8 @@ class Notification {
     logger.log('Coords received');
   }
 
-  public getAllNotifications(): Promise<INotification[]> {
-    return notificationRepository.getAll();
+  public getAllNotificationsLoggedUser(userId: string): Promise<INotification[]> {
+    return notificationRepository.getNotificationsLoggedUser(userId);
   }
 }
 
