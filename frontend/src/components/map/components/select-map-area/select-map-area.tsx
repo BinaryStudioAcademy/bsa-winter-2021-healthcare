@@ -1,21 +1,16 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useMap } from 'react-leaflet';
 import L, { LatLng, LeafletEvent } from 'leaflet';
 import 'leaflet-lasso';
 import { FINISHED_EVENT, ENABLED_EVENT, LassoHandlerFinishedEvent } from 'leaflet-lasso';
 import { MapActionCreator } from 'store/slices';
 import { MapCoordsDefault } from 'components/map/enums';
-import { RootState } from 'common/types';
 
 const SelectMapArea: React.FC = () => {
   const dispatch = useDispatch();
   const map = useMap();
-
-  const { userId } = useSelector(({ auth }: RootState) => ({
-    userId: auth.user?.id,
-  }));
 
   const control = L.control.lasso({ position: 'topright' });
   let minLat = MapCoordsDefault.MIN_LAT;
@@ -66,7 +61,6 @@ const SelectMapArea: React.FC = () => {
       minLng,
       maxLat,
       maxLng,
-      userId,
     }));
   };
 
