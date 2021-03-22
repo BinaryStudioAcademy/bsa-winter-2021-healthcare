@@ -14,5 +14,7 @@ export * from './strategy';
 export * from './specialization';
 export * from './city';
 export * from './profession';
+export * from './map';
+export * from './notification';
 export * from './upload-file';
 export * from './sort';
