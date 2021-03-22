@@ -3,7 +3,7 @@ import { DateInput, Radio, Button } from 'components/common';
 import { InputColor, AppointmentTime } from 'common/enums';
 import { useForm } from 'react-hook-form';
 import { createOptions } from 'helpers';
-import { ButtonColor, ButtonStyleType, ButtonType } from 'common/enums';
+import { ButtonColor, ButtonStyleType, ButtonType, ButtonIcon } from 'common/enums';
 import {
   AppointmentFormPaiload,
   AppointmentFormKey,
@@ -31,7 +31,7 @@ const Appointment: React.FC<Props> = ({ onCreate }) => {
   const time = watch( AppointmentFormKey.TIME, undefined);
 
   const handleFormSubmit = (formData:AppointmentFormPaiload) => {
-    const appointmentDate = setTimeToDate(formData.date, formData.time);
+    const appointmentDate = setTimeToDate(formData.date, formData.time);      
     onCreate(appointmentDate);
   };
 
@@ -76,15 +76,25 @@ const Appointment: React.FC<Props> = ({ onCreate }) => {
             errors={errors}
           />
         </div>
-        <div className={styles.button}>
+        <div className={styles.buttonsContainer}>
+          <div className={styles.button}>
+            <Button
+              label={'Make an appointment'}
+              hasHiddenLabel={false}
+              color={ButtonColor.PRIMARY_DARK}
+              styleType={ButtonStyleType.WITHOUT_BORDER}
+              type={ButtonType.SUBMIT}
+            />
+          </div>
           <Button
-            label={'Make an appointment'}
-            hasHiddenLabel={false}
-            color={ButtonColor.PRIMARY_DARK}
-            styleType={ButtonStyleType.WITHOUT_BORDER}
-            type={ButtonType.SUBMIT}
+            label={'Chat'}
+            hasHiddenLabel={true}
+            color={ButtonColor.GRAY_LIGHT}
+            styleType={ButtonStyleType.LARGE_ROUND}
+            icon={ButtonIcon.CHAT}
+            type={ButtonType.BUTTON}
           />
-        </div>
+        </div>        
       </form>
     </div>
   );
