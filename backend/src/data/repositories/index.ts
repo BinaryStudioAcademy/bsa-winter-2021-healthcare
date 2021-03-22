@@ -24,5 +24,5 @@ export {
   document,
   doctorRepository,
   permissionRepository,
-  notification
+  notification,
 };
