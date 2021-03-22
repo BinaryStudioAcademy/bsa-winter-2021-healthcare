@@ -12,15 +12,15 @@ type Props = {
 const Clinic: React.FC<Props> = ({ clinic }) => {
   return (
     <Card
-      title={clinic.name}
+      title={clinic?.name}
       label={clinic?.clinicType}
       btnLabel="More details"
       btnHref={AppRoute.CLINIC}
-      imagePath={clinic.imagePath}
+      imagePath={clinic?.imagePath}
     >
       <div className={styles.infoItem}>
         <span className={clsx(styles.icon, styles.location)}></span>
-        <span className={styles.text}>{clinic.address}</span>
+        <span className={styles.text}>{clinic?.address}</span>
       </div>
     </Card>
   );
