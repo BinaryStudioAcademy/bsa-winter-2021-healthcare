@@ -33,7 +33,7 @@ class Diagnosis {
   }
 
   public create(userId: string, diagnosis: string): Promise<IDiagnosis> {
-    const payload: Partial<IDiagnosis> = {
+    const payload = {
       diagnosis,
       userId,
     };
