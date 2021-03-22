@@ -3,6 +3,10 @@ import { GeolocationModel } from '../models';
 import { IGeolocation } from '~/common/interfaces';
 
 class GeolocationRepository {
+  public getAll(): Promise<IGeolocation[]> {
+    return GeolocationModel.findAll();
+  }
+
   public createGeolocation(geolocation: IGeolocation): Promise<IGeolocation> {
     return GeolocationModel.create(geolocation);
   }
