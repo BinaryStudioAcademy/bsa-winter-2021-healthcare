@@ -15,6 +15,8 @@ const createNotificationModel = (
         type: DataTypes.STRING,
       },
       topic: DataTypes.STRING,
+      to: DataTypes.STRING,
+      userId: DataTypes.STRING,
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
     },
