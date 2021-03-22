@@ -1,7 +1,6 @@
 enum PermissionsApiPath {
-    ROOT = '/',
-    $ID = '/:id',
-  }
-  
+  ROOT = '/',
+  $ID = '/:id',
+}
+
 export { PermissionsApiPath };
-  

@@ -25,7 +25,7 @@ module.exports = {
                   permissionId: permission[0].id,
                   createdAt: new Date(),
                   updatedAt: new Date(),
-                }, ], 
+                },],
                 {
                   transaction
                 },
