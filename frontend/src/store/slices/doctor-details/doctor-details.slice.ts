@@ -48,6 +48,7 @@ const createAppointmentAsync = (payload:ICreateAppointment): AppThunk => async (
     const data = await appointment.createAppointment(payload);
     // eslint-disable-next-line no-console
     console.log(data);
+    notificationService.success('Appointment was created', []);
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);

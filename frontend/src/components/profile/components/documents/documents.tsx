@@ -25,6 +25,9 @@ const Documents: React.FC<Props> = ({ document }) => {
   const handleToggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+
+  {if (!document ) {return <span>Document was not provided yet</span>;}}
+
   return (
     <div className={styles.documentContainer}>
       <span>Document status: </span>

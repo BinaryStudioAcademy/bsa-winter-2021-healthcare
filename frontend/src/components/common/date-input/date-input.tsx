@@ -42,21 +42,11 @@ const DateInput: React.FC<Props> = ({
 
   return (
     <span className={styles.inputControl}>
-      <label className={styles.label}>
-        <span
-          className={clsx(
-            styles.labelText,
-            hasHiddenLabel && 'visually-hidden',
-          )}
-        >
-          {label}
-        </span>
+      {isInline ?
         <DatePicker
           {...field}
           selected={field.value}
-          inline={isInline}
-          dropdownMode="select"
-          placeholderText={placeholder}
+          inline          
           disabled={isDisabled}
           className={styles.select}
           calendarClassName={clsx(
@@ -64,8 +54,31 @@ const DateInput: React.FC<Props> = ({
             styles[color],
             invalid && styles.error,
           )}
-        />
-      </label>
+        /> 
+        :
+        <label className={styles.label}>
+          <span
+            className={clsx(
+              styles.labelText,
+              hasHiddenLabel && 'visually-hidden',
+            )}
+          >
+            {label}
+          </span>
+          <DatePicker
+            {...field}
+            selected={field.value}            
+            dropdownMode="select"
+            placeholderText={placeholder}
+            disabled={isDisabled}
+            className={styles.select}
+            calendarClassName={clsx(
+              isDisabled && styles.disabled,
+              styles[color],
+              invalid && styles.error,
+            )}
+          />        
+        </label>}
       <ErrorMessage errors={errors} as="span" name={name} />
     </span>
   );

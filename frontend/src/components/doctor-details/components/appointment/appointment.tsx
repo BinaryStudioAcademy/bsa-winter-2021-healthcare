@@ -51,13 +51,12 @@ const Appointment: React.FC<Props> = ({ onCreate }) => {
         <DateInput
           name={AppointmentFormKey.DATE}
           label="Select the day"
-          hasHiddenLabel={true}
-          placeholder="Appointnent day"
+          hasHiddenLabel={true}          
           color={InputColor.GRAY_LIGHT}
           control={control}
           errors={errors}
           isInline={true}
-        />
+        />      
         <div className={styles.headerBlock}>
           <img
             src={clockIcon}
