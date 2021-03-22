@@ -29,11 +29,11 @@ const initAuthApi = (apiRouter: Router): Router => {
       try {
         const user = req.user as IUser;
         const data = await authService.signUp(user);
-        const isDoctorType = checkIsOneOf(user?.type, UserType.DOCTOR);
-        if (isDoctorType && data.user.id) {
-          await doctorService.createNewDoctor({
+        const isDoctorType = checkIsOneOf(user.type, UserType.DOCTOR);
+        if (isDoctorType) {
+          await doctorService.createDoctor({
             about: '',
-            userId: data.user.id,
+            userId: data.user.id as string,
           });
         }
         res.status(HttpCode.CREATED).json(data);
