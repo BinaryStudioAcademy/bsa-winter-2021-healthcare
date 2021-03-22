@@ -6,6 +6,8 @@ import { Header, CovidButton } from 'components/common';
 import { IUserWithPermissions } from 'common/interfaces';
 import { checkHasPermission } from 'helpers';
 
+import styles from './authorized-wrapper.module.scss';
+
 const AuthorizedWrapper: React.FC = ({ children }) => {
   const { user } = useSelector(({ auth }: RootState) => ({
     user: auth.user,
@@ -14,7 +16,7 @@ const AuthorizedWrapper: React.FC = ({ children }) => {
   const hasMapPermission = checkHasPermission([PermissionName.MAP_MANIPULATION], user?.permissions ?? []);
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <Header user={user as IUserWithPermissions} />
       {children}
       {hasMapPermission && <CovidButton/>}

@@ -8,6 +8,7 @@ import { DocumentApi } from './document-api/document-api.service';
 import { Notification } from './notification/notification.service';
 import { Geolocation } from './geolocation/geolocation.service';
 import { AppointmentApi } from './appointment-api/appointment-api.service';
+import { Diagnosis } from './diagnosis/diagnosis.service';
 import { UploadFile } from './upload-file/upload-file.service';
 import { MapApi } from './map-api/map-api.service';
 
@@ -42,6 +43,11 @@ const geolocation = new Geolocation({
   apiPrefix: ENV.API_PATH,
 });
 
+const diagnosis = new Diagnosis({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
 const uploadFile = new UploadFile({
   http,
   apiPrefix: ENV.API_PATH,
@@ -69,6 +75,7 @@ export {
   documentApi,
   geolocation,
   appointment,
+  diagnosis,
   uploadFile,
   mapApi,
 };

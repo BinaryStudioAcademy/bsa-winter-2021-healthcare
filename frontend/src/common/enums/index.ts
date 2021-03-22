@@ -16,5 +16,6 @@ export * from './appointment';
 export * from './filtration';
 export * from './icons';
 export * from './permission';
+export * from './diagnosis';
 export * from './upload-file';
 export * from './map';

@@ -4,7 +4,7 @@ import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 import { JWT_CONFIG } from './jwt.config';
 import { AuthValidationMessage, HttpCode, StrategyName } from '~/common/enums';
 import { checkIsPasswordSame } from '~/helpers';
-import { userRepository } from '~/data/repositories';
+import { user as userRepository } from '~/data/repositories';
 
 const options = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

@@ -19,8 +19,7 @@ import {
   SpecializationKey,
 } from '~/common/enums';
 
-class UserRepository {
-
+class User {
   public getById(id: string): Promise<IUser | null> {
     return UserModel.findByPk(id, {
       include:{
@@ -47,7 +46,7 @@ class UserRepository {
           {
             model: DoctorModel,
             as: ModelAlias.DOCTOR,
-            attributes: [DoctorKey.ID, DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
+            attributes: [DoctorKey.ID, DoctorKey.ABOUT],
             include: [
               {
                 model: ClinicModel,
@@ -78,7 +77,7 @@ class UserRepository {
         {
           model: DoctorModel,
           as: ModelAlias.DOCTOR,
-          attributes: [DoctorKey.DEPARTMENT, DoctorKey.ABOUT],
+          attributes: [DoctorKey.ABOUT],
           include:[
             {
               model:DocumentModel,
@@ -130,4 +129,4 @@ class UserRepository {
   }
 }
 
-export { UserRepository };
+export { User };
