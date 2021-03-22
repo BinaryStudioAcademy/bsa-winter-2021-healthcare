@@ -7,8 +7,8 @@ import { initDocumentApi } from './document/document.api';
 import { initGeolocationApi } from './geolocation/geolocation.api';
 import { initDiagnosisApi } from './diagnosis/diagnosis.api';
 import { initUploadFileApi } from './upload-file/upload-file.api';
-import { initMapApi } from './map/map.api';
 import { initPermissionApi } from './permission/permission.api';
+import { initNotificationApi } from './notification/notification.api';
 
 const apis = [
   initUserApi,
@@ -17,7 +17,7 @@ const apis = [
   initGeolocationApi,
   initDiagnosisApi,
   initDocumentApi,
-  initMapApi,
+  initNotificationApi,
   initUploadFileApi,
   initPermissionApi,
 ];

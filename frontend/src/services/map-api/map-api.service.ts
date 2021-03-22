@@ -1,8 +1,7 @@
 import { Http } from 'services/http/http.service';
 import { ICoordsSet } from 'common/interfaces';
-import { MapApiPath } from 'common/enums/api';
+import { ApiPath, NotificationApiPath } from 'common/enums/api';
 import { ContentType, HttpMethod } from 'common/enums';
-import { ApiPath } from 'common/enums/api';
 
 type Constructor = {
   http: Http;
@@ -22,7 +21,7 @@ class MapApi {
     payload: Partial<ICoordsSet>,
   ): Promise<ICoordsSet> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.MAP}${MapApiPath.SELECT_AREA}`,
+      `${this.#apiPrefix}${ApiPath.NOTIFICATION}${NotificationApiPath.COVID}`,
       {
         method: HttpMethod.POST,
         contentType: ContentType.JSON,
