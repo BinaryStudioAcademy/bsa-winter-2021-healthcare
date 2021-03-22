@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import { ApiPath, HttpCode, UsersApiPath, UserType } from '~/common/enums';
+import { ApiPath, HttpCode, UsersApiPath, UserType, DoctorType, ClinicType } from '~/common/enums';
 import { validateSchema } from '~/middlewares';
 import { userRegister as userRegisterSchema, editUser as validationEditUser } from '~/validation-schemas';
 import { user as userService } from '~/services/services';
 import { checkIsOneOf } from '~/helpers';
+import { IDoctorFiltrationPayload } from '~/common/interfaces';
 
 const initUserApi = (apiRouter: Router): Router => {
   const userRouter = Router();
@@ -14,16 +15,23 @@ const initUserApi = (apiRouter: Router): Router => {
     try {
       const users = await userService.getAllUsers();
       res.status(HttpCode.OK).json(users);
-    } catch(error) {
+    } catch (error) {
       next(error);
     }
   });
 
   userRouter.get(UsersApiPath.TYPE_$TYPE, async (req, res, next) => {
     try {
-      const users = await userService.getUsersByType(req.params.type as UserType, req.body);
+      const filter: IDoctorFiltrationPayload = {
+        doctorName: req.query.doctorName as string,
+        city: req.query.city as string,
+        specialty: req.query.specialty as DoctorType[],
+        typeOfClinic: req.query.typeOfClinic as ClinicType[],
+      };
+
+      const users = await userService.getUsersByType(req.params.type as UserType, filter);
       res.status(HttpCode.OK).json(users);
-    } catch(error) {
+    } catch (error) {
       next(error);
     }
   });
@@ -32,7 +40,7 @@ const initUserApi = (apiRouter: Router): Router => {
     try {
       const user = await userService.getUserById(req.params.id);
       res.status(HttpCode.OK).json(user);
-    } catch(error) {
+    } catch (error) {
       next(error);
     }
   });
@@ -47,7 +55,7 @@ const initUserApi = (apiRouter: Router): Router => {
       }
 
       return res.status(HttpCode.OK).json(doctorDetails);
-    } catch(error) {
+    } catch (error) {
       next(error);
     }
   });
@@ -56,7 +64,7 @@ const initUserApi = (apiRouter: Router): Router => {
     try {
       const user = await userService.createNewUser(req.body);
       res.status(HttpCode.OK).json(user);
-    } catch(error) {
+    } catch (error) {
       next(error);
     }
   });
@@ -65,7 +73,7 @@ const initUserApi = (apiRouter: Router): Router => {
     try {
       const user = await userService.updateUser(req.params.id, req.body);
       res.status(HttpCode.OK).json(user);
-    } catch(error) {
+    } catch (error) {
       next(error);
     }
   });
@@ -74,7 +82,7 @@ const initUserApi = (apiRouter: Router): Router => {
     try {
       const isDeleted = await userService.deleteUser(req.params.id);
       res.status(HttpCode.OK).json(isDeleted);
-    } catch(error) {
+    } catch (error) {
       next(error);
     }
   });
