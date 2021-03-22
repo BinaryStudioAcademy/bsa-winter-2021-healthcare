@@ -7,7 +7,12 @@ class Diagnosis {
   }
 
   public getAllByUserId(userId: string): Promise<IDiagnosis[]> {
-    return DiagnosisModel.findAll({ where: { userId } });
+    return DiagnosisModel.findAll({
+      where: { userId },
+      order: [
+        ['createdAt', 'DESC'],
+      ]
+    });
   }
 }
 
