@@ -10,6 +10,7 @@ interface Props {
   value?: string;
   label: string;
   isDisabled?: boolean;
+  hasHiddenLabel?: boolean;
   errors: FormErrors;
   register: FormRegisterCb;
 }
@@ -19,6 +20,7 @@ const Checkbox: React.FC<Props> = ({
   value,
   label,
   isDisabled,
+  hasHiddenLabel,
   errors,
   register,
 }) =>{
@@ -34,7 +36,14 @@ const Checkbox: React.FC<Props> = ({
         type="checkbox"
         ref={register}
       />
-      <span className={styles.checkboxLabel}>{label}</span>
+      {hasHiddenLabel ? (
+        <>
+          <span className={styles.checkboxLabel}></span>
+          <span className="visually-hidden">{label}</span>
+        </>
+      ) : (
+        <span className={styles.checkboxLabel}>{label}</span>
+      )}
       <ErrorMessage errors={errors} as="span" name={name} />
     </label>
   );

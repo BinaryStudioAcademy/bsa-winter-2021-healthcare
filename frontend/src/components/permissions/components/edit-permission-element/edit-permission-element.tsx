@@ -42,7 +42,8 @@ const EditPermissionElement: React.FC<Props> = ({ user, nameOfPermission }) => {
       <Checkbox
         name={nameOfPermission}
         value={nameOfPermission}
-        label={''}
+        label={'Change permission'}
+        hasHiddenLabel={true}
         register={register}
         errors={errors}
       />
