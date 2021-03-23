@@ -6,6 +6,7 @@ import { Diagnosis } from './diagnosis.repository';
 import { Document } from './document-repository';
 import { Notification } from './notification.repository';
 import { DoctorRepository } from './doctor-repository';
+import { PermissionRepository } from './permission-repository';
 
 const user = new User();
 const clinic = new Clinic();
@@ -15,5 +16,16 @@ const document = new Document();
 const doctorRepository = new DoctorRepository();
 const appointment = new Appointment();
 const notification = new Notification();
+const permissionRepository = new PermissionRepository();
 
-export { user, clinic, geolocation, diagnosis, document, doctorRepository, appointment, notification };
+export {
+  user,
+  clinic,
+  geolocation,
+  diagnosis,
+  document,
+  doctorRepository,
+  notification,
+  permissionRepository,
+  appointment,
+};

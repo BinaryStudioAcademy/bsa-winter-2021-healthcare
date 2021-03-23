@@ -8,12 +8,15 @@ import Profile from 'components/profile/profile';
 import Clinics from 'components/clinics/clinics';
 import Doctors from 'components/doctors/doctors';
 import DoctorDetails from 'components/doctor-details/doctor-details';
+import Notifications from 'components/notifications/notifications';
 import Map from 'components/map/map';
+import Permissions from 'components/permissions/permissions-page';
 import { AuthorizedRoute } from 'components/common';
 
 const App: React.FC = () => (
   <Switch>
     <Route path={[AppRoute.SIGN_IN, AppRoute.SIGN_UP]} component={Sign} />
+    <AuthorizedRoute path={AppRoute.NOTIFICATIONS} component={Notifications} />
     <AuthorizedRoute
       path={AppRoute.USER_PROFILE_$ID}
       exact
@@ -31,9 +34,13 @@ const App: React.FC = () => (
       component={Users}
       permissions={[PermissionName.CREATE_USER, PermissionName.EDIT_USER]}
     />
-    <AuthorizedRoute exact path={AppRoute.MAP} component={Map}
+    <AuthorizedRoute
+      exact
+      path={AppRoute.MAP}
+      component={Map}
       permissions={[PermissionName.MAP_MANIPULATION]}
     />
+    <AuthorizedRoute path={AppRoute.PERMISSIONS} component={Permissions} permissions={[PermissionName.EDIT_PERMISSIONS]} />
     <Route path="*" exact component={NotFound} />
   </Switch>
 );

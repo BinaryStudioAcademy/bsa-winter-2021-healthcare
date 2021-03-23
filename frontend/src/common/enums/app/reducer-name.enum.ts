@@ -5,9 +5,11 @@ enum ReducerName {
   AUTH = 'auth',
   CLINICS = 'clinics',
   TOASTR = 'toastr',
+  NOTIFICATIONS = 'notifications',
   MAP = 'map',
   PROFILE = 'profile',
   DOCTOR_DETAILS = 'doctorDetails',
+  PERMISSIONS = 'permissions',
 }
 
 export { ReducerName };

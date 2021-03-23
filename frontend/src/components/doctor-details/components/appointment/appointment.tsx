@@ -25,8 +25,8 @@ type Props = {
   onCreate: CreateAppointmentCb;
 };
 
-const Appointment: React.FC<Props> = ({ onCreate }) => {  
-  const { 
+const Appointment: React.FC<Props> = ({ onCreate }) => {
+  const {
     handleSubmit,
     register,
     watch,
@@ -34,7 +34,7 @@ const Appointment: React.FC<Props> = ({ onCreate }) => {
     control,
   } = useForm<Partial<ICreateAppointment>>({
     resolver: yupResolver(createAppointmentSchema),
-  });  
+  });
   const time = watch( CreateAppointmentKey.TIME, undefined);
 
   const handleFormSubmit = (formData:Partial<ICreateAppointment>) => {

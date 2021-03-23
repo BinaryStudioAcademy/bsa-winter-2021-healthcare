@@ -7,4 +7,5 @@ export * from './geolocations-api-path.enum';
 export * from './appointments-api-path.enum';
 export * from './diagnoses-api-path.enum';
 export * from './upload-file-api-path.enum';
+export * from './permission-api-path';
 export * from './notification-api-path.enum';

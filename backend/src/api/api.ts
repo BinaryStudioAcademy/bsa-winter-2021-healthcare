@@ -8,6 +8,7 @@ import { initGeolocationApi } from './geolocation/geolocation.api';
 import { initAppointmentApi } from './appointment/appointment.api';
 import { initDiagnosisApi } from './diagnosis/diagnosis.api';
 import { initUploadFileApi } from './upload-file/upload-file.api';
+import { initPermissionApi } from './permission/permission.api';
 import { initNotificationApi } from './notification/notification.api';
 
 const apis = [
@@ -17,11 +18,12 @@ const apis = [
   initGeolocationApi,
   initDocumentApi,
   initAppointmentApi,
-  initUploadFileApi,  
+  initUploadFileApi,
   initDiagnosisApi,
   initDocumentApi,
   initNotificationApi,
   initUploadFileApi,
+  initPermissionApi,
 ];
 
 const initApi = (app: Router): Router => {

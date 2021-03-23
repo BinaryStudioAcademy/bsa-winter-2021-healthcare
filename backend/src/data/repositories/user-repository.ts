@@ -4,12 +4,15 @@ import {
   ClinicModel,
   PermissionModel,
   SpecializationModel,
+  CityModel,
   DocumentModel,
+  ProfessionModel,
 } from '../models';
 import {
   IUser,
   IRegisterPayload,
   IUserWithPermissions,
+  IDoctorFiltrationPayload,
 } from '~/common/interfaces';
 import {
   UserType,
@@ -17,6 +20,8 @@ import {
   DoctorKey,
   ClinicKey,
   SpecializationKey,
+  CityKey,
+  ProfessionKey,
 } from '~/common/enums';
 
 class User {
@@ -38,10 +43,18 @@ class User {
     });
   }
 
-  public getByType(type: UserType): Promise<IUserWithPermissions[]> {
+  public getByType(type: UserType, filter: IDoctorFiltrationPayload): Promise<IUserWithPermissions[]> {
     if (type === UserType.DOCTOR) {
+      const where = {
+        type,
+        ...(filter.doctorName && { name: filter.doctorName }),
+        ...(filter.typeOfClinic && { '$doctor.clinic.clinicType$': filter.typeOfClinic }),
+        ...(filter.city && { '$doctor.clinic.city.name$': filter.city }),
+        ...(filter.specialty && { '$doctor.profession.name$': filter.specialty }),
+      };
+
       return UserModel.findAll({
-        where: { type },
+        where,
         include: [
           {
             model: DoctorModel,
@@ -56,6 +69,20 @@ class User {
                   ClinicKey.NAME,
                   ClinicKey.ADDRESS,
                   ClinicKey.CLINIC_TYPE,
+                ],
+                include: [
+                  {
+                    model: CityModel,
+                    as: ModelAlias.CITY,
+                    attributes: [CityKey.NAME],
+                  },
+                ],
+              },
+              {
+                model: ProfessionModel,
+                as: ModelAlias.PROFESSION,
+                attributes: [
+                  ProfessionKey.NAME,
                 ],
               },
             ],
