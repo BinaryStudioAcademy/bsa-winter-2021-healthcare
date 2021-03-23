@@ -60,8 +60,7 @@ class UserApi {
   public getDoctors(filter?: IDoctorFiltrationPayload): Promise<IUserTypeDoctor[]> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.TYPE}/${
-        UserType.DOCTOR + (filter ? `?${queryString.stringify(filter)}` : '')
-      }`,
+        UserType.DOCTOR}${(filter ? `?${queryString.stringify(filter)}` : '')}`,
       {
         method: HttpMethod.GET,
       },
