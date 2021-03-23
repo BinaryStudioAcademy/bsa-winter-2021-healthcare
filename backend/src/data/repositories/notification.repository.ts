@@ -11,7 +11,7 @@ class Notification {
     return NotificationModel.create(notification);
   }
 
-  public getNotificationsLoggedUser( userId: string ): Promise<INotification[]> {
+  public getNotificationsByUser( userId: string ): Promise<INotification[]> {
     return NotificationModel.findAll({
       where: { to: userId },
     });

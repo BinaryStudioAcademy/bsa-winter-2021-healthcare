@@ -35,7 +35,7 @@ class Notification {
     this.#instance.info(title, this._getFullMessage(messages), options);
   }
 
-  public getNotificationsLoggedUser(userId: string): Promise<INotification[]> {
+  public getNotificationsByUser(userId: string): Promise<INotification[]> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.NOTIFICATIONS}${NotificationApiPath.USERS}/${userId}`,
       {

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { getTimeByDate } from 'helpers';
+import { DateFormat } from 'common/enums';
+import { getFormattedDate } from 'helpers';
 
 import styles from './notification.module.scss';
 
@@ -22,7 +23,7 @@ const Notification: React.FC<Props> = ({ title, text, time }) => {
           <div className={styles.link}>See details</div>
         </div>
       </div>
-      <div className={styles.time}>{getTimeByDate(time)}</div>
+      <div className={styles.time}>{getFormattedDate(time, DateFormat.HH_MM)}</div>
     </div>
   );
 };

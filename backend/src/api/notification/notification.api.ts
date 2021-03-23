@@ -9,7 +9,7 @@ const initNotificationApi = (apiRouter: Router): Router => {
 
   notificationRouter.get(NotificationApiPath.USERS_$ID, async (req, res, next) => {
     try {
-      const notifications = await notificationService.getAllNotificationsLoggedUser(req.params.id);
+      const notifications = await notificationService.getNotificationsByUser(req.params.id);
       res.status(HttpCode.OK).json(notifications);
     } catch (error) {
       next(error);

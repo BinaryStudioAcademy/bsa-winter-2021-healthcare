@@ -16,9 +16,7 @@ import { AuthorizedRoute } from 'components/common';
 const App: React.FC = () => (
   <Switch>
     <Route path={[AppRoute.SIGN_IN, AppRoute.SIGN_UP]} component={Sign} />
-    <AuthorizedRoute path={AppRoute.USER_PROFILE_$ID} component={Profile} />
     <AuthorizedRoute path={AppRoute.NOTIFICATIONS} component={Notifications} />
-    <AuthorizedRoute path={AppRoute.USER_PROFILE_$ID} component={Profile} />
     <AuthorizedRoute
       path={AppRoute.USER_PROFILE_$ID}
       exact

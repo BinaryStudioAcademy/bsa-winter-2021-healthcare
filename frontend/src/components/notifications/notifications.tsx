@@ -14,7 +14,7 @@ const Notifications: React.FC = () => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(NotificationsActionCreator.getNotificationsLoggedUser(user?.id as string));
+    dispatch(NotificationsActionCreator.getNotificationsByUser(user?.id as string));
   }, []);
 
   return (

@@ -25,8 +25,8 @@ class Notification {
     });
   }
 
-  public getAllNotificationsLoggedUser(userId: string): Promise<INotification[]> {
-    return notificationRepository.getNotificationsLoggedUser(userId);
+  public getNotificationsByUser(userId: string): Promise<INotification[]> {
+    return notificationRepository.getNotificationsByUser(userId);
   }
 }
 
