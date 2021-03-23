@@ -26,8 +26,6 @@ const Documents: React.FC<Props> = ({ document }) => {
     setIsModalOpen(!isModalOpen);
   };
 
-  {if (!document ) {return <span>Document was not provided yet</span>;}}
-
   return (
     document && (
       <div className={styles.documentContainer}>

@@ -1,6 +1,16 @@
+.mainContainer{
+  display: flex;
+  flex-direction: column;
+}
+
 .radioContainer {
   display: flex;
   justify-content: space-between;
+}
+
+.errorContainer{
+  margin-top: 10px;
+  color: red;
 }
 
 .radioInput {
