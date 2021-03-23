@@ -1,4 +1,3 @@
-/* eslint-disable */
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './filtration.module.scss';
