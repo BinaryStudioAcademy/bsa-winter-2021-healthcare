@@ -45,16 +45,13 @@ class User {
 
   public getByType(type: UserType, filter: IDoctorFiltrationPayload): Promise<IUserWithPermissions[]> {
     if (type === UserType.DOCTOR) {
-      const where = { type };
-
-      if (filter.doctorName)
-        Object.assign(where, { name: filter.doctorName });
-      if (filter.typeOfClinic)
-        Object.assign(where, { '$doctor.clinic.clinicType$': filter.typeOfClinic });
-      if (filter.city)
-        Object.assign(where, { '$doctor.clinic.city.name$': filter.city });
-      if (filter.specialty)
-        Object.assign(where, { '$doctor.profession.name$': filter.specialty });
+      const where = {
+        type,
+        ...(filter.doctorName && { name: filter.doctorName }),
+        ...(filter.typeOfClinic && { '$doctor.clinic.clinicType$': filter.typeOfClinic }),
+        ...(filter.city && { '$doctor.clinic.city.name$': filter.city }),
+        ...(filter.specialty && { '$doctor.profession.name$': filter.specialty }),
+      };
 
       return UserModel.findAll({
         where,
