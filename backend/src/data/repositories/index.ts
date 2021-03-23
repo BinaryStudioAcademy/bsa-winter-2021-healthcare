@@ -23,6 +23,6 @@ export {
   diagnosis,
   document,
   doctorRepository,
-  permissionRepository,
   notification,
+  permissionRepository,
 };
