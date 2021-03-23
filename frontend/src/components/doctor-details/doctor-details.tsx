@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RootState } from 'common/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { DoctorDetailsActionCreator } from 'store/slices';
-import { DataStatus, AppointmentType } from 'common/enums';
+import { DataStatus } from 'common/enums';
 import { useParams } from 'react-router-dom';
 import { ParamTypes } from './common';
 import { Appointment, Doctor } from './components';
@@ -24,16 +24,9 @@ const DoctorDetails: React.FC = () => {
     dispatch(DoctorDetailsActionCreator.getDoctorDetailsAsync(id));
   }, []);
 
-  const handleCreateAppointment = (date:string) => {
-    const AppointmentData:Partial<ICreateAppointment> = {
-      date,
-      type: AppointmentType.ONLINE,
-      cost: 500,
-      subject: 'Problems with spine',
-      doctorId: (doctor?.id as string),
-    };
+  const handleCreateAppointment = (formData:Partial<ICreateAppointment>) => {
     dispatch(DoctorDetailsActionCreator
-      .createAppointmentAsync(AppointmentData as ICreateAppointment));
+      .createAppointmentAsync(formData));
   };
 
   if (dataStatus === DataStatus.PENDING || !doctor) {

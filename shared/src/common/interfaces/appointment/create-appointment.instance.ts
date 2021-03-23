@@ -1,7 +1,8 @@
-import { CreateAppointmentKey, AppointmentType } from '~/common/enums';
+import { CreateAppointmentKey, AppointmentType, AppointmentTime } from '~/common/enums';
 
 interface ICreateAppointment {
-  [CreateAppointmentKey.DATE]: string;
+  [CreateAppointmentKey.TIME]: AppointmentTime;
+  [CreateAppointmentKey.DATE]: string | Date;
   [CreateAppointmentKey.TYPE]: AppointmentType;
   [CreateAppointmentKey.COST]: number;
   [CreateAppointmentKey.SUBJECT]: string;

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { notification as notificationService, userApi } from 'services';
-import { ReducerName, DataStatus } from 'common/enums';
+import { ReducerName, DataStatus, AppointmentType } from 'common/enums';
 import { AppThunk } from 'common/types';
 import { IAppointment, ICreateAppointment, IDoctorDetails } from 'common/interfaces';
 import { HttpError } from 'exceptions';
@@ -41,10 +41,12 @@ const getDoctorDetailsAsync = (id: string): AppThunk => async (dispatch) => {
   }
 };
 
-const createAppointmentAsync = (payload:ICreateAppointment): AppThunk => async (_, getState) => {
+const createAppointmentAsync = (payload:Partial<ICreateAppointment>): AppThunk => async (_, getState) => {
   try {
-    const { auth } = getState();
+    const { auth, doctorDetails } = getState();    
     payload.userId = auth.user?.id;
+    payload.doctorId = doctorDetails.doctorDetails?.id;
+    payload.type = AppointmentType.OFFLINE;
     const data = await appointment.createAppointment(payload);
     // eslint-disable-next-line no-console
     console.log(data);

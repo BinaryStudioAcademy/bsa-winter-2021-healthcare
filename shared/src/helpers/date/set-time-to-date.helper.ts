@@ -1,5 +1,5 @@
-import dayjs from 'dayjs';
-import { AppointmentTime } from 'common/enums';
+import * as dayjs from 'dayjs';
+import { AppointmentTime } from '~/common/enums';
 
 const setTimeToDate = (date:Date, time:AppointmentTime):string => {
   const [hours, minutes] = time.split(':');

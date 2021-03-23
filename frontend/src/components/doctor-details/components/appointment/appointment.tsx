@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { DateInput, Radio, Button } from 'components/common';
-import { InputColor, AppointmentTime } from 'common/enums';
+import { InputColor, AppointmentTime, CreateAppointmentKey } from 'common/enums';
+import { ICreateAppointment } from 'common/interfaces';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { createAppointment as createAppointmentSchema } from 'validation-schemas';
 import { createOptions } from 'helpers';
 import { ButtonColor, ButtonStyleType, ButtonType, ButtonIcon } from 'common/enums';
-import {
-  AppointmentFormPaiload,
-  AppointmentFormKey,
-  CreateAppointmentCb,
-} from '../../common';
-import { setTimeToDate } from 'helpers';
+import { CreateAppointmentCb } from '../../common';
+import { dateToSring } from 'helpers';
 import calendarIcon from 'assets/images/calendar.svg';
 import clockIcon from 'assets/images/clock.svg';
 import styles from './styles.module.scss';
@@ -26,13 +25,24 @@ type Props = {
   onCreate: CreateAppointmentCb;
 };
 
-const Appointment: React.FC<Props> = ({ onCreate }) => {
-  const { handleSubmit, register, watch, errors, control } = useForm<AppointmentFormPaiload>();
-  const time = watch( AppointmentFormKey.TIME, undefined);
+const Appointment: React.FC<Props> = ({ onCreate }) => {  
+  const { 
+    handleSubmit,
+    register,
+    watch,
+    errors,
+    control,
+  } = useForm<Partial<ICreateAppointment>>({
+    resolver: yupResolver(createAppointmentSchema),
+  });  
+  const time = watch( CreateAppointmentKey.TIME, undefined);
 
-  const handleFormSubmit = (formData:AppointmentFormPaiload) => {
-    const appointmentDate = setTimeToDate(formData.date, formData.time);
-    onCreate(appointmentDate);
+  const handleFormSubmit = (formData:Partial<ICreateAppointment>) => {
+    const appointmentData = {
+      ...formData,
+      date: dateToSring(formData.date as Date),
+    };
+    onCreate(appointmentData as ICreateAppointment);
   };
 
   return (
@@ -49,7 +59,7 @@ const Appointment: React.FC<Props> = ({ onCreate }) => {
           <span className={styles.text}>Select the day</span>
         </div>
         <DateInput
-          name={AppointmentFormKey.DATE}
+          name={CreateAppointmentKey.DATE}
           label="Select the day"
           hasHiddenLabel={true}
           color={InputColor.GRAY_LIGHT}
@@ -72,7 +82,7 @@ const Appointment: React.FC<Props> = ({ onCreate }) => {
             options={timeOptions}
             register={register}
             value={time}
-            name={AppointmentFormKey.TIME}
+            name={CreateAppointmentKey.TIME}
             errors={errors}
           />
         </div>

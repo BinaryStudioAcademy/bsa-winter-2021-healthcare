@@ -1,4 +1,5 @@
+import { ICreateAppointment } from 'common/interfaces';
 
-type CreateAppointmentCb = (date:string) => void;
+type CreateAppointmentCb = (data:ICreateAppointment) => void;
 
 export type { CreateAppointmentCb };

@@ -1,4 +1,5 @@
 enum CreateAppointmentKey {
+  TIME = 'time',
   DATE = 'date',
   TYPE = 'type',
   COST = 'cost',
