@@ -19,6 +19,7 @@
     "bcrypt": "5.0.1",
     "cloudinary": "1.25.0",
     "datauri": "3.0.0",
+    "dayjs": "1.10.4",
     "dotenv": "8.2.0",
     "express": "4.17.1",
     "healthcare-shared": "file:shared",
