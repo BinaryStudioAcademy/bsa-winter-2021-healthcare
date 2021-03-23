@@ -43,6 +43,11 @@ const geolocation = new Geolocation({
   apiPrefix: ENV.API_PATH,
 });
 
+const notification = new Notification({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
 const diagnosis = new Diagnosis({
   http,
   apiPrefix: ENV.API_PATH,
@@ -57,8 +62,6 @@ const mapApi = new MapApi({
   http,
   apiPrefix: ENV.API_PATH,
 });
-
-const notification = new Notification();
 
 const permissionApi = new PermissionApi({
   http,
