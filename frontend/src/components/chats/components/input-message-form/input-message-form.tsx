@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
 import {
   InputType,
@@ -10,6 +11,7 @@ import {
   ButtonStyleType,
   MessageKey,
 } from 'common/enums';
+import { message as messageValidationSchema } from 'validation-schemas';
 import { IMessagePayload } from 'common/interfaces';
 import { RootState } from 'common/types';
 import { TextInput, Button } from 'components/common';
@@ -29,8 +31,8 @@ const InputMessageForm: React.FC<Props> = ({ className }) => {
     to: selectedMemberId,
     text: '',
   };
-  const { handleSubmit, errors, control, reset, formState: { isDirty } } = useForm<IMessagePayload>({
-    // resolver: yupResolver(validationUserSchema),
+  const { handleSubmit, errors, control, register, reset, formState: { isDirty } } = useForm<IMessagePayload>({
+    resolver: yupResolver(messageValidationSchema),
     defaultValues: DEFAULT_VALUES,
     mode: 'onChange',
   });
@@ -38,7 +40,7 @@ const InputMessageForm: React.FC<Props> = ({ className }) => {
   const dispatch = useDispatch();
 
   const onSubmit = (formData: IMessagePayload) => {
-    dispatch(ChatsActionCreator.sendMessage({ ...formData, to: selectedMemberId }));
+    dispatch(ChatsActionCreator.sendMessage(formData));
     reset();
   };
 
@@ -54,6 +56,12 @@ const InputMessageForm: React.FC<Props> = ({ className }) => {
           color={InputColor.WHITE}
           control={control}
           errors={errors}
+        />
+        <input
+          name={MessageKey.TO}
+          type={InputType.HIDDEN}
+          value={selectedMemberId}
+          ref={register}
         />
       </div>
       <div className={styles.submitBtn}>

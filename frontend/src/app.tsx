@@ -12,7 +12,6 @@ import DoctorDetails from 'components/doctor-details/doctor-details';
 import Notifications from 'components/notifications/notifications';
 import Map from 'components/map/map';
 import Permissions from 'components/permissions/permissions-page';
-import { AuthorizedRoute } from 'components/common';
 import Chats from 'components/chats/chats';
 
 const App: React.FC = () => (

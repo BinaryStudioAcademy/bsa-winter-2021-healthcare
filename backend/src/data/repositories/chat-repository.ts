@@ -36,7 +36,7 @@ class ChatRepository {
         [
           {
             id: userId,
-            name: 'Андрій Петринчин',
+            name: 'Andrii Petrynchyn',
             avatarPath: 'https://www.pikpng.com/pngl/b/80-805523_default-avatar-svg-png-icon-free-download-264157.png',
           }, {
             id: '222',

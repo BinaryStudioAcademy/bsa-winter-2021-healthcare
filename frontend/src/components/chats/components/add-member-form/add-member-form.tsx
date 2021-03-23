@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
+// import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
 import {
   InputColor,
@@ -8,6 +9,7 @@ import {
   ButtonColor,
   ButtonStyleType,
 } from 'common/enums';
+// import { message as messageValidationSchema } from 'validation-schemas';
 import { IMember } from 'common/interfaces';
 import { Button } from 'components/common';
 import { SelectAsync } from '../../components';
@@ -34,7 +36,7 @@ const AddMemberForm: React.FC<Props> = ({ className }) => {
   };
 
   const { handleSubmit, errors, control, reset, formState: { isDirty } } = useForm<IMemberPayload>({
-    // resolver: yupResolver(validationUserSchema),
+    // resolver: yupResolver(messageValidationSchema),
     defaultValues: DEFAULT_VALUES,
     mode: 'onChange',
   });

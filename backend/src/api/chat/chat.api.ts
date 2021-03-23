@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import { validateSchema } from '~/middlewares';
+import { message as validationMessageSchema } from '~/validation-schemas';
 import { ApiPath, HttpCode, ChatsApiPath } from '~/common/enums';
 import { chat as chatService } from '~/services/services';
 
@@ -34,7 +36,7 @@ const initChatApi = (apiRouter: Router): Router => {
     }
   });
 
-  chatRouter.post(ChatsApiPath.MESSAGES, async (req, res, next) => {
+  chatRouter.post(ChatsApiPath.MESSAGES, validateSchema(validationMessageSchema), async (req, res, next) => {
     try {
       const result = await chatService.createMessage({ ...req.body, userId: req.user?.id });
       res.status(HttpCode.CREATED).json(result);
