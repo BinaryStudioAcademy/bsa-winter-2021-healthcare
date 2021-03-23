@@ -42,7 +42,7 @@ const Checkbox: React.FC<Props> = ({
           <span className="visually-hidden">{label}</span>
         </>
       ) : (
-        <span className={styles.checkboxLabel}>{label}</span>
+        <span className={clsx(styles.checkboxLabel, hasHiddenLabel && 'visually-hidden')}>{label}</span>
       )}
       <ErrorMessage errors={errors} as="span" name={name} />
     </label>

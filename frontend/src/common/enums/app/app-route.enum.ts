@@ -15,7 +15,7 @@ enum AppRoute {
   NOTIFICATIONS = '/notifications',
   MAP = '/map',
   DOCTOR_DETAILS_$ID = '/doctor-details/:id',
-  EDIT_PERMISSIONS = '/edit-permissions',
+  PERMISSIONS = '/permissions',
   NOT_FOUND = '/not-found',
 }
 
