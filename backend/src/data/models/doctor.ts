@@ -8,14 +8,6 @@ const createDoctorModel = (orm: Sequelize): ModelCtor<DoctorInstance> => {
   const Doctor = orm.define<DoctorInstance>(
     ModelName.DOCTOR,
     {
-      department: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      roomNumber: {
-        type: DataTypes.INTEGER,
-        unique: true,
-      },
       about: {
         type: DataTypes.TEXT,
       },

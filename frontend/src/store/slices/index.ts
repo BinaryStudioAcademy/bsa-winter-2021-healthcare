@@ -5,3 +5,4 @@ export { reducer as clinicsReducer, ClinicsActionCreator } from './clinics/clini
 export { reducer as notificationReducer, NotificationsActionCreator } from './notifications/notifications.slice';
 export { reducer as mapReducer, MapActionCreator } from './map/map.slice';
 export { reducer as profileReducer, ProfileActionCreator } from './profile/profile.slice';
+export { reducer as permissionsReducer, PermissionsActionCreator } from './permissions/permissions.slice';

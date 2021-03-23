@@ -8,6 +8,7 @@ enum ReducerName {
   NOTIFICATIONS = 'notifications',
   MAP = 'map',
   PROFILE = 'profile',
+  PERMISSIONS = 'permissions',
 }
 
 export { ReducerName };

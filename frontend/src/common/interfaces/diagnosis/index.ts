@@ -1,1 +1,4 @@
-export type { IDiagnosis } from 'healthcare-shared/common/interfaces';
+export type {
+  IDiagnosis,
+  IDiagnosisPayload,
+} from 'healthcare-shared/common/interfaces';

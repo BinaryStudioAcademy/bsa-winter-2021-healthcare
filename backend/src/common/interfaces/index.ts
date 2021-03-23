@@ -14,4 +14,7 @@ export * from './user-with-permissions';
 export * from './city';
 export * from './specialization';
 export * from './user-specialization';
+export * from './filtration';
 export * from './profession';
+export * from './map';
+export * from './doctor-register-payload';

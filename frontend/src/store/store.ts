@@ -9,6 +9,7 @@ import {
   notificationReducer,
   mapReducer,
   profileReducer,
+  permissionsReducer,
 } from './slices';
 
 const store = configureStore({
@@ -22,6 +23,7 @@ const store = configureStore({
     [ReducerName.NOTIFICATIONS]: notificationReducer,
     [ReducerName.MAP]: mapReducer,
     [ReducerName.PROFILE]: profileReducer,
+    [ReducerName.PERMISSIONS]: permissionsReducer,
   },
 });
 
