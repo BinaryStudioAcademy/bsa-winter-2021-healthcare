@@ -1,1 +1,1 @@
-export { DoctorKey } from 'healthcare-shared/common/enums';
+export { DoctorKey, DoctorType } from 'healthcare-shared/common/enums';

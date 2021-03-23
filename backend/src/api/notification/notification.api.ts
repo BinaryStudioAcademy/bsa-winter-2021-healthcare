@@ -3,11 +3,20 @@ import { ApiPath, NotificationApiPath, HttpCode } from '~/common/enums';
 import { notification as notificationService } from '~/services/services';
 
 const initNotificationApi = (apiRouter: Router): Router => {
-  const mapRouter = Router();
+  const notificationRouter = Router();
 
-  apiRouter.use(ApiPath.NOTIFICATION, mapRouter);
+  apiRouter.use(ApiPath.NOTIFICATIONS, notificationRouter);
 
-  mapRouter.post(NotificationApiPath.COVID, async (req, res, next) => {
+  notificationRouter.get(NotificationApiPath.USERS_$ID, async (req, res, next) => {
+    try {
+      const notifications = await notificationService.getNotificationsByUser(req.params.id);
+      res.status(HttpCode.OK).json(notifications);
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  notificationRouter.post(NotificationApiPath.COVID, async (req, res, next) => {
     try {
       notificationService.sendCovidNotifications(req.body, req.user?.id);
       res.status(HttpCode.OK).json(req.body);
@@ -16,7 +25,7 @@ const initNotificationApi = (apiRouter: Router): Router => {
     }
   });
 
-  return mapRouter;
+  return notificationRouter;
 };
 
 export { initNotificationApi };

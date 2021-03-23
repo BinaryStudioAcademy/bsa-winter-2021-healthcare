@@ -1,0 +1,48 @@
+.container {
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 20px auto;
+  padding: 20px 10px;
+  max-width: 640px;
+  display: flex;
+  justify-content: space-between;
+
+  .innerContainer {
+    display: flex;
+  }
+
+  .avatar {
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-self: flex-start;
+    border-radius: 50%;
+  }
+
+  .notificationInfo {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      font-size: 13pt;
+      color: #000;
+    }
+
+    .info {
+      margin: 10px 0;
+      font-size: 11pt;
+    }
+
+    .link {
+      color: var(--color-primary-light);
+      cursor: pointer;
+    }
+  }
+
+  .time {
+    display: flex;
+    align-self: flex-end;
+  }
+}
