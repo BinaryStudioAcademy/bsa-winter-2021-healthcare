@@ -6,10 +6,10 @@ import {
 } from '~/common/enums';
 
 const createAppointment = yup.object().shape({
-  [CreateAppointmentKey.TIME]: yup    
+  [CreateAppointmentKey.TIME]: yup
     .mixed<AppointmentTime>()
     .required(AppointmentValidationMessage.TIME_REQUIRED)
-    .oneOf(Object.values(AppointmentTime)),    
+    .oneOf(Object.values(AppointmentTime)),
   [CreateAppointmentKey.DATE]: yup
     .date()
     .required(AppointmentValidationMessage.DATE_REQUIRED),

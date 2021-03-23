@@ -37,7 +37,7 @@ const Radio: React.FC<Props> = ({ options, register, value, isDisabled, errors, 
                 value={option.value}
                 className={styles.radioInput}
                 type="radio"
-              />            
+              />
             </label>
           ))
         }
