@@ -1,59 +1,69 @@
-.container {
-  margin-top: 16px;
-  display: grid;
-  grid-template-columns: 2fr 0.5fr 1fr;
+.tabContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
 
-  .infoHeader {
-    font-size: 18px;
-    font-weight: 600;
+  .container {
+    position: absolute;
     display: flex;
-    align-items: center;
-
-    .title {
-      margin-right: 20px;
-    }
-  }
-
-  .diagnosesContainer {
-    display: flex;
-    flex: 1;
-    grid-column: 1;
     flex-direction: column;
-    margin-top: 28px;
-    overflow-y: scroll;
-    height: 450px;
+    height: 100%;
+    width: 100%;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    .infoHeader {
+      font-size: 18px;
+      grid-row: 1;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
 
-    .item {
-      margin-top: 16px;
-
-      .diagnosisInfo {
+      .title {
         display: flex;
-        flex-direction: row;
-        margin-top: 16px;
-        margin-bottom: 8px;
+        width: 80%;
+        margin-right: 20px;
+      }
 
-        .name {
-          width: 50%;
-        }
+      .addButton {
+        width: 20%;
+        display: flex;
+        justify-content: flex-end;
 
-        .time {
-          display: flex;
+        button {
           width: 50%;
-          justify-content: flex-end;
         }
       }
     }
-  }
 
-  .diagnosisForm {
-    display: flex;
-    grid-column: 3;
-    flex: 1;
-    flex-direction: column;
-    margin-top: 28px;
+    .diagnosesContainer {
+      display: flex;
+      flex-direction: column;
+      margin-top: 28px;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      .item {
+        margin-top: 16px;
+
+        .diagnosisInfo {
+          display: flex;
+          flex-direction: row;
+          margin-top: 16px;
+          margin-bottom: 8px;
+
+          .name {
+            width: 50%;
+          }
+
+          .time {
+            display: flex;
+            width: 50%;
+            justify-content: flex-end;
+          }
+        }
+      }
+    }
   }
 }
