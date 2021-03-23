@@ -1,6 +1,7 @@
 import { Http } from '../http/http.service';
 import { HttpMethod, ContentType, UsersApiPath, UserType, ApiPath } from 'common/enums';
-import { IUser, IEditUserPayload, IUserTypeDoctor, IDoctorDetails } from 'common/interfaces';
+import { IUser, IEditUserPayload, IUserTypeDoctor, IDoctorDetails, IDoctorFiltrationPayload } from 'common/interfaces';
+import * as queryString from 'query-string';
 
 type Constructor = {
   http: Http;
@@ -56,11 +57,10 @@ class UserApi {
     );
   }
 
-  public getDoctors(): Promise<IUserTypeDoctor[]> {
+  public getDoctors(filter?: IDoctorFiltrationPayload): Promise<IUserTypeDoctor[]> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.TYPE}/${
-        UserType.DOCTOR
-      }`,
+        UserType.DOCTOR}${(filter ? `?${queryString.stringify(filter)}` : '')}`,
       {
         method: HttpMethod.GET,
       },

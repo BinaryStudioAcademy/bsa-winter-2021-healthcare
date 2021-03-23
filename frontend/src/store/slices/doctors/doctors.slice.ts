@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from 'common/types';
 import { userApi, notification as notificationService } from 'services';
-import { IDoctorDetails, IUserTypeDoctor } from 'common/interfaces';
+import { IDoctorDetails, IDoctorFiltrationPayload, IUserTypeDoctor } from 'common/interfaces';
 import { HttpError } from 'exceptions';
 import { ReducerName, DataStatus } from 'common/enums';
 
@@ -32,9 +32,9 @@ const { reducer, actions } = createSlice({
   },
 });
 
-const getDoctorsAsync = (): AppThunk => async (dispatch) => {
+const getDoctorsAsync = (filter?: IDoctorFiltrationPayload): AppThunk => async (dispatch) => {
   try {
-    const doctors = await userApi.getDoctors();
+    const doctors = await userApi.getDoctors(filter);
     dispatch(actions.setDoctors(doctors));
   } catch (error) {
     if (error instanceof HttpError) {

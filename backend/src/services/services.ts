@@ -11,6 +11,7 @@ import { Logger } from './logger/logger.service';
 import { Diagnosis } from './diagnosis/diagnosis.service';
 import { UploadFile } from './upload-file/upload-file.service';
 import { Notification } from './notification/notification.service';
+import { Permission } from './permission/permission.service';
 
 const appAsyncStorage = new AsyncLocalStorage<AppAsyncStorage>();
 
@@ -28,6 +29,7 @@ const diagnosis = new Diagnosis();
 const uploadFile = new UploadFile();
 const notification = new Notification();
 const doctor = new Doctor();
+const permission = new Permission();
 
 export {
   appAsyncStorage,
@@ -41,4 +43,5 @@ export {
   uploadFile,
   notification,
   doctor,
+  permission,
 };

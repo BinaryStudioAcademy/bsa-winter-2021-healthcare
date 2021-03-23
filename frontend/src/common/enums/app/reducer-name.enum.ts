@@ -7,6 +7,7 @@ enum ReducerName {
   TOASTR = 'toastr',
   MAP = 'map',
   PROFILE = 'profile',
+  PERMISSIONS = 'permissions',
 }
 
 export { ReducerName };

@@ -49,7 +49,7 @@ const Clinics: React.FC = () => {
         <div className={styles.clinicsWrapper}>
           <div className={styles.clinicsContainer}>
             {clinics.map((clinic) => (
-              <Clinic key={clinic.id} clinic={clinic} />
+              <Clinic key={clinic?.id} clinic={clinic} />
             ))}
           </div>
         </div>
