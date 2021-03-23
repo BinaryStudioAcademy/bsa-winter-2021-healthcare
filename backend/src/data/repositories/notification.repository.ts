@@ -10,6 +10,12 @@ class Notification {
   public createNotification(notification: INewNotification): Promise<INotification> {
     return NotificationModel.create(notification);
   }
+
+  public getNotificationsLoggedUser( userId: string ): Promise<INotification[]> {
+    return NotificationModel.findAll({
+      where: { to: userId },
+    });
+  }
 }
 
 export { Notification };

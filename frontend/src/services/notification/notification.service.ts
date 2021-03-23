@@ -1,7 +1,7 @@
 import { BasicToastrOptions, toastr, ToastrEmitter } from 'react-redux-toastr';
 import { Http } from 'services/http/http.service';
 import { INotification } from 'common/interfaces';
-import { HttpMethod, ApiPath, NotificationsApiPath } from 'common/enums';
+import { HttpMethod, ApiPath, NotificationApiPath } from 'common/enums';
 
 type Constructor = {
   http: Http;
@@ -37,7 +37,7 @@ class Notification {
 
   public getNotificationsLoggedUser(userId: string): Promise<INotification[]> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.NOTIFICATIONS}${NotificationsApiPath.ROOT}${userId}`,
+      `${this.#apiPrefix}${ApiPath.NOTIFICATIONS}${NotificationApiPath.USERS}/${userId}`,
       {
         method: HttpMethod.GET,
       },

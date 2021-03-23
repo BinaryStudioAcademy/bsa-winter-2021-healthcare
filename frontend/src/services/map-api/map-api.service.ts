@@ -21,7 +21,7 @@ class MapApi {
     payload: Partial<ICoordsSet>,
   ): Promise<ICoordsSet> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.NOTIFICATION}${NotificationApiPath.COVID}`,
+      `${this.#apiPrefix}${ApiPath.NOTIFICATIONS}${NotificationApiPath.COVID}`,
       {
         method: HttpMethod.POST,
         contentType: ContentType.JSON,
