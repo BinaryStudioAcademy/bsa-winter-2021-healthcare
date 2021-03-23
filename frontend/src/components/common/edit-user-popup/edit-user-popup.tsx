@@ -17,12 +17,14 @@ import { editUser as validationEditUser } from 'validation-schemas';
 import { Button, DateInput, Select, TextInput, Modal } from 'components/common';
 import { createOptions } from 'helpers';
 import { EditUserCb, HideFormCb } from 'components/users/common/types';
+import { uploadFile as uploadFileService } from 'services';
+import { InputChangeEvent } from 'common/types';
 
 type Props = {
   user: IUser;
   onEditUser: EditUserCb;
   onFormHide: HideFormCb;
-  isShow:boolean;
+  isShow: boolean;
 };
 
 const genderOptions = createOptions<string>(Object.values(UserSex));
@@ -40,7 +42,22 @@ const EditUserPopup: React.FC<Props> = ({ user, isShow, onEditUser, onFormHide }
     mode: 'onChange',
   });
 
-  const handleFormSubmit = (userData: IEditUserPayload) => onEditUser(userData);
+  const [image, setImage] = React.useState<string | undefined>(undefined);
+
+  const handleUploadFile = (event: InputChangeEvent) => {
+    const file = event.target.files![0];
+    if (file) {
+      uploadFileService.addImage(file).then(path => {
+        control.setValue(EditUserPayloadKey.IMAGE_PATH, path);
+        setImage(path);
+      });
+    }
+  };
+
+  const handleFormSubmit = (userData: IEditUserPayload) => {
+    setImage(undefined);
+    onEditUser(userData);
+  };
 
   return (
     <Modal isShow={isShow}>
@@ -151,16 +168,34 @@ const EditUserPopup: React.FC<Props> = ({ user, isShow, onEditUser, onFormHide }
             />
           </div>
 
-          <div className={styles.inputBlock} style={{ display: 'none' }}>
+          <div className={styles.inputBlock}>
             <TextInput
               name={EditUserPayloadKey.IMAGE_PATH}
               label="Avatar"
-              hasHiddenLabel={true}
+              hasHiddenLabel={false}
               type={InputType.HIDDEN}
               color={InputColor.GRAY_LIGHT}
               control={control}
               errors={errors}
             />
+          </div>
+
+          <div className={styles.inputBlock}>
+            {image ? <img src={image}></img> : <>
+              <Button
+                type={ButtonType.BUTTON}
+                label=""
+                hasHiddenLabel={true}
+                styleType={ButtonStyleType.WITHOUT_BORDER}
+                color={ButtonColor.PRIMARY_DARK}
+              >
+                <label htmlFor="uploadFile" className={styles.fileLabel}>
+                  Change avatar
+                </label>
+              </Button>
+
+              <input name="uploadFile" type="file" id="uploadFile" hidden onChange={handleUploadFile} />
+            </>}
           </div>
 
           <div className={styles.submitBtn}>
