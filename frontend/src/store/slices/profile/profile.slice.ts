@@ -13,6 +13,7 @@ import {
   IEditUserPayload,
   IDiagnosis,
   IUserWithPermissions,
+  IDiagnosisPayload,
 } from 'common/interfaces';
 import { AuthActionCreator } from 'store/slices';
 import { HttpError } from 'exceptions';
@@ -40,8 +41,8 @@ const { reducer, actions } = createSlice({
     setDiagnoses: (state, action: PayloadAction<IDiagnosis[]>) => {
       state.diagnoses = action.payload;
     },
-    addDiagnosis: (state, action: PayloadAction<IDiagnosis>) => {
-      state.diagnoses = [action.payload, ...state.diagnoses];
+    addDiagnosis: (state, action: PayloadAction<IDiagnosis[]>) => {
+      state.diagnoses = [...action.payload, ...state.diagnoses];
     },
   },
 });
@@ -92,9 +93,9 @@ const editUserDocument = (payload: IDocument): AppThunk => async (dispatch) => {
   }
 };
 
-const getAllDiagnoses = (userId: string): AppThunk => async (dispatch) => {
+const getAllDiagnoses = (): AppThunk => async (dispatch) => {
   try {
-    const diagnoses = await diagnosisService.getAllByUserId(userId);
+    const diagnoses = await diagnosisService.getAllDiagnoses();
     dispatch(actions.setDiagnoses(diagnoses));
   } catch (error) {
     if (error instanceof HttpError) {
@@ -104,12 +105,18 @@ const getAllDiagnoses = (userId: string): AppThunk => async (dispatch) => {
   }
 };
 
-const addDiagnosis = (userId: string, diagnosis: string): AppThunk => async (
-  dispatch,
-) => {
+const addDiagnosis = ({
+  diagnosis,
+  description,
+  userId,
+}: IDiagnosisPayload): AppThunk => async (dispatch) => {
   try {
-    const response = await diagnosisService.create(userId, diagnosis);
-    dispatch(actions.addDiagnosis(response));
+    const response = await diagnosisService.create(
+      userId,
+      diagnosis,
+      description,
+    );
+    dispatch(actions.addDiagnosis([response]));
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
