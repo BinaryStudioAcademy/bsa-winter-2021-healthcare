@@ -5,6 +5,7 @@ import { BindingCb } from 'common/types';
 import { getFormattedDate } from 'helpers';
 import { Button } from 'components/common';
 import { ButtonColor, ButtonStyleType, ButtonIcon } from 'common/enums';
+import avatar from 'assets/images/avatar.svg';
 import clsx from 'clsx';
 import styles from './styles.module.scss';
 
@@ -30,7 +31,7 @@ const UserInfo: React.FC<Props> = ({ user, onEdit }) => {
       </div>
       <div className={styles.infoBloks}>
         <div className={styles.photo}>
-          <img className={styles.image} src={user.imagePath} alt={user.name} />
+          <img className={styles.image} src={user.imagePath ? user.imagePath : avatar} alt={user.name} />
         </div>
         <div className={styles.mainUserInfo}>
           <div className={styles.card}>{user.type}</div>
