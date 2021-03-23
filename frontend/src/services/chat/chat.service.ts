@@ -30,6 +30,15 @@ class Chat {
     );
   }
 
+  public loadMembersAsChats(): Promise<IMember[]> {
+    return this.#http.load(
+      `${this.#apiPrefix}${ApiPath.CHATS}${ChatsApiPath.MEMBERS}`,
+      {
+        method: HttpMethod.GET,
+      },
+    );
+  }
+
   public loadMemberMessages(memberId: string | undefined): Promise<IMessage[]> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.CHATS}${ChatsApiPath.MESSAGES}/${memberId}`,

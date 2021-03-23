@@ -12,60 +12,9 @@ interface IChats {
 }
 
 const initialState: IChats = {
-  messages: [
-    {
-      id: '1122334455',
-      userId: '4d2c19a7-f15c-4fed-aed7-52072b3bd091',
-      text: 'Lorem ipsum dolor sit amet, adipiscing elit. Dictum?',
-      createdAt: '2021-03-20T15:52:12.866Z',
-      updatedAt: '',
-    },
-    {
-      id: '5544332211',
-      userId: '54321',
-      text: 'Ut nunc aliquam, amet, aliquet adipiscing mi gravida.',
-      createdAt: '2021-03-20T15:54:12.866Z',
-      updatedAt: '',
-    },
-  ],
-
-  members: [
-    {
-      id: '111',
-      name: 'Giana Levin',
-      avatarPath: 'https://www.shareicon.net/data/32x32/2016/01/12/702204_users_512x512.png',
-    }, {
-      id: '222',
-      name: 'Jakob Rosser',
-      avatarPath: 'https://www.shareicon.net/data/32x32/2016/01/12/702204_users_512x512.png',
-    }, {
-      id: '333',
-      name: 'Jaylon Curtis',
-      avatarPath: 'https://www.shareicon.net/data/32x32/2016/01/12/702204_users_512x512.png',
-    }, {
-      id: '444',
-      name: 'Dulce Mango',
-      avatarPath: 'https://www.shareicon.net/data/32x32/2016/01/12/702204_users_512x512.png',
-    }, {
-      id: '555',
-      name: 'Erin Dorwart',
-      avatarPath: 'https://www.shareicon.net/data/32x32/2016/01/12/702204_users_512x512.png',
-    }, {
-      id: '666',
-      name: 'Jakob Rosser',
-      avatarPath: 'https://www.shareicon.net/data/32x32/2016/01/12/702204_users_512x512.png',
-    }, {
-      id: '777',
-      name: 'Leo Torff',
-      avatarPath: 'https://www.shareicon.net/data/32x32/2016/01/12/702204_users_512x512.png',
-    },
-  ],
-
-  selectedMember: {
-    id: '111',
-    name: 'Giana Levin',
-    avatarPath: 'https://www.shareicon.net/data/32x32/2016/01/12/702174_users_512x512.png',
-  },
+  messages: [],
+  members: [],
+  selectedMember: undefined,
 };
 
 const { reducer, actions } = createSlice({
@@ -82,6 +31,10 @@ const { reducer, actions } = createSlice({
 
     addMember: (state, action: PayloadAction<IMember>) => {
       !state.members.some(member => member.id === action.payload.id) && state.members.unshift(action.payload);
+    },
+
+    setMembers: (state, action: PayloadAction<IMember[]>) => {
+      state.members = action.payload;
     },
 
     selectMember: (state, action: PayloadAction<string>) => {
@@ -142,12 +95,27 @@ const loadFilteredMembersAsOptions = (name: string, callback: any): AppThunk => 
   }
 };
 
+const loadMembersAsChats = (): AppThunk => async dispatch => {
+  try {
+    const response = await chatApi.loadMembersAsChats();
+    dispatch(actions.setMembers(response));
+    response?.length && dispatch(selectMember(response[0].id));
+
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
 const ChatsActionCreator = {
   ...actions,
   addMember,
   selectMember,
   sendMessage,
   loadFilteredMembersAsOptions,
+  loadMembersAsChats,
 };
 
 export { ChatsActionCreator, reducer };

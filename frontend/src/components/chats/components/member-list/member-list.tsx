@@ -12,6 +12,10 @@ interface Props {
 }
 
 const MemberList: React.FC<Props> = ({ className }) => {
+  React.useEffect(() => {
+    dispatch(ChatsActionCreator.loadMembersAsChats());
+  }, []);
+
   const { members, selectedMemberId } = useSelector(({ chats: { members, selectedMember } }: RootState) => ({
     members,
     selectedMemberId: selectedMember?.id,

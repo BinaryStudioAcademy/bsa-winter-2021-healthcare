@@ -2,6 +2,9 @@ import { chatRepository } from '~/data/repositories';
 import { IMember, IMessage } from '~/common/interfaces';
 
 class Chat {
+  public getMembersAsChats(userId: string): Promise<IMember[] | null> {
+    return chatRepository.getMembersAsChats(userId);
+  }
   public getMembersByName(name: string): Promise<IMember[] | null> {
     return chatRepository.getMembersByName(name);
   }

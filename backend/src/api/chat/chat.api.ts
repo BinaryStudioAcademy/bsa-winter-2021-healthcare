@@ -7,6 +7,15 @@ const initChatApi = (apiRouter: Router): Router => {
 
   apiRouter.use(ApiPath.CHATS, chatRouter);
 
+  chatRouter.get(ChatsApiPath.MEMBERS, async (req, res, next) => {
+    try {
+      const result = await chatService.getMembersAsChats(req.user?.id ?? '');
+      res.status(HttpCode.OK).json(result);
+    } catch (error) {
+      next(error);
+    }
+  });
+
   chatRouter.get(ChatsApiPath.MEMBERS_$NAME, async (req, res, next) => {
     try {
       const result = await chatService.getMembersByName(req.params.name);
