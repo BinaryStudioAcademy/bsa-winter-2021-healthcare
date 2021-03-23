@@ -13,6 +13,8 @@ import {
 import { IDoctorFiltrationPayload } from 'common/interfaces';
 import { DEFAULT_FILTER_VALUE } from '../common/constants';
 import { doctorSpecialtiesToReadable, clinicTypesToReadable } from '../../common';
+import { useDispatch } from 'react-redux';
+import { DoctorsActionCreator } from 'store/slices';
 
 const doctorSpecialties = Object.values(DoctorType);
 const clinicTypes = Object.values(ClinicType);
@@ -23,8 +25,10 @@ const Filtration: React.FC = () => {
     mode: 'onChange',
   });
 
+  const dispatch = useDispatch();
+
   const handleChange = () => {
-    getValues();
+    dispatch(DoctorsActionCreator.getDoctorsAsync(getValues()));
   };
 
   return (
