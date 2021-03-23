@@ -12,7 +12,7 @@ export * from './edit-user';
 export * from './register';
 export * from './doctor';
 export * from './diagnosis';
-export * from './message';
+export * from './messages';
 export * from './notification';
 export * from './geolocation';
 export * from './permission';

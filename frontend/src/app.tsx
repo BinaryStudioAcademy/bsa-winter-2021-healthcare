@@ -12,7 +12,7 @@ import DoctorDetails from 'components/doctor-details/doctor-details';
 import Notifications from 'components/notifications/notifications';
 import Map from 'components/map/map';
 import Permissions from 'components/permissions/permissions-page';
-import Chats from 'components/chats/chats';
+import Messages from 'components/messages/messages';
 
 const App: React.FC = () => (
   <Switch>
@@ -43,7 +43,7 @@ const App: React.FC = () => (
       permissions={[PermissionName.MAP_MANIPULATION]}
     />
     <AuthorizedRoute path={AppRoute.PERMISSIONS} component={Permissions} permissions={[PermissionName.EDIT_PERMISSIONS]} />
-    <AuthorizedRoute path={AppRoute.MY_CHATS} component={Chats} />
+    <AuthorizedRoute path={AppRoute.MY_CHATS} component={Messages} />
     <Route path="*" exact component={NotFound} />
   </Switch>
 );

@@ -1,0 +1,50 @@
+.message {
+  width: 358px;
+  display: flex;
+  flex-wrap: wrap;
+
+  align-self: flex-start;
+  flex-direction: row;
+
+  img {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    border-radius: 15px;
+    background-color: #C4C4C4;
+  }
+
+  div {
+    width: 300px;
+    font-family: var(--font-family-primary);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 140%;
+    color: #000;
+    background: #FFFFFF;
+    border-radius: 0px 10px 10px 10px;
+    padding: 18px 20px 18px 30px;
+    margin: 0 15px 5px;
+  }
+
+  span {
+    margin: 0px 43px 15px;
+    font-family: var(--font-family-primary);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+  &.outcoming {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+
+    div {
+      background: #E7C1FC;
+      border-radius: 10px 0px 10px 10px;
+      padding: 18px 30px 18px 20px;
+    }
+  }
+}

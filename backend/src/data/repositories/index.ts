@@ -7,7 +7,7 @@ import { Document } from './document-repository';
 import { Notification } from './notification.repository';
 import { DoctorRepository } from './doctor-repository';
 import { PermissionRepository } from './permission-repository';
-import { ChatRepository } from './chat-repository';
+import { MessagesRepository } from './messages-repository';
 
 const user = new User();
 const clinic = new Clinic();
@@ -18,7 +18,7 @@ const doctorRepository = new DoctorRepository();
 const appointment = new Appointment();
 const notification = new Notification();
 const permissionRepository = new PermissionRepository();
-const chatRepository = new ChatRepository();
+const messagesRepository = new MessagesRepository();
 
 export {
   user,
@@ -30,5 +30,5 @@ export {
   notification,
   permissionRepository,
   appointment,
-  chatRepository,
+  messagesRepository,
 };

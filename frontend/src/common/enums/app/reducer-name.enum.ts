@@ -10,7 +10,7 @@ enum ReducerName {
   PROFILE = 'profile',
   DOCTOR_DETAILS = 'doctorDetails',
   PERMISSIONS = 'permissions',
-  CHATS = 'chats',
+  MESSAGES = 'messages',
 }
 
 export { ReducerName };
