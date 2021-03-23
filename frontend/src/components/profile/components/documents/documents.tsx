@@ -26,27 +26,29 @@ const Documents: React.FC<Props> = ({ document }) => {
     setIsModalOpen(!isModalOpen);
   };
   return (
-    <div className={styles.documentContainer}>
-      <span>Document status: </span>
-      <span className={clsx(styles[document.status], styles.label)}>
-        {documentStatusToReadable[document.status]}
-      </span>
-      <div className={styles.checkButton}>
-        <Button
-          label="Check document"
-          color={ButtonColor.GRAY_LIGHT}
-          styleType={ButtonStyleType.WITHOUT_BORDER}
-          hasHiddenLabel={false}
-          onClick={handleToggleModal}
-        />
-        <EditDocumentPopup
-          document={document}
-          isShow={isModalOpen}
-          onToggleModal={handleToggleModal}
-          onEditDocument={handleEditDocument}
-        />
+    document && (
+      <div className={styles.documentContainer}>
+        <span>Document status: </span>
+        <span className={clsx(styles[document.status], styles.label)}>
+          {documentStatusToReadable[document.status]}
+        </span>
+        <div className={styles.checkButton}>
+          <Button
+            label="Check document"
+            color={ButtonColor.GRAY_LIGHT}
+            styleType={ButtonStyleType.WITHOUT_BORDER}
+            hasHiddenLabel={false}
+            onClick={handleToggleModal}
+          />
+          <EditDocumentPopup
+            document={document}
+            isShow={isModalOpen}
+            onToggleModal={handleToggleModal}
+            onEditDocument={handleEditDocument}
+          />
+        </div>
       </div>
-    </div>
+    )
   );
 };
 
