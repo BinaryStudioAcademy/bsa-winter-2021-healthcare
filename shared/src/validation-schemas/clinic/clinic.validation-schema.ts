@@ -16,10 +16,6 @@ const addClinic = yup.object().shape({
     .mixed<ClinicType>()
     .oneOf(Object.values(ClinicType))
     .required(),
-//   [ClinicKey.IMAGE_PATH]: yup
-//     .string()
-//     .required(RegisterValidationMessage.IMAGE_REQUIRED)
-//     .url(RegisterValidationMessage.IMAGE_INCORRECT),
 });
 
 export { addClinic };

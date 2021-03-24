@@ -45,7 +45,7 @@ const Clinics: React.FC = () => {
   return (
     <>
       <div className={styles.clinicsPageWrapper}>
-        {hasPermissionToAddClinic && (
+        {!hasPermissionToAddClinic && (
           <div className={styles.filterWrapper}>
             <Button
               label="Add"
