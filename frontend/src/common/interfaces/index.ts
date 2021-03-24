@@ -18,3 +18,4 @@ export * from './geolocation';
 export * from './doctor-details';
 export * from './permission';
 export * from './map';
+export * from './city';
