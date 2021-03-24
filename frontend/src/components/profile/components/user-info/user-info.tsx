@@ -1,11 +1,15 @@
 import React from 'react';
 import clsx from 'clsx';
 import { IUser } from 'common/interfaces/user';
-import { DateFormat, DocumentStatus } from 'common/enums';
 import { BindingCb } from 'common/types';
 import { getFormattedDate } from 'helpers';
 import { Button } from 'components/common';
-import { ButtonColor, ButtonStyleType, ButtonIcon } from 'common/enums';
+import {
+  ButtonColor,
+  ButtonStyleType,
+  ButtonIcon,
+  DateFormat,
+} from 'common/enums';
 import styles from './styles.module.scss';
 import Documents from '../documents/documents';
 import { IUserTypeDoctor } from 'common/interfaces';
@@ -55,20 +59,8 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
           </div>
         </div>
       </div>
-      {isDoctor && (
-        <Documents
-          document={
-            (user as IUserTypeDoctor).doctor
-              ? (user as IUserTypeDoctor).doctor.document
-              : {
-                id: 'nerwksfd',
-                imagePath: '',
-                status: DocumentStatus.IN_REVIEW,
-                createdAt: '',
-                updatedAt: '',
-              }
-          }
-        />
+      { isDoctor && (user as IUserTypeDoctor).doctor?.document && (
+        <Documents document={(user as IUserTypeDoctor).doctor.document} />
       )}
     </div>
   );
