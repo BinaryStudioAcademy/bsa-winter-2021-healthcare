@@ -1,5 +1,4 @@
 import { RegisterValidationRule } from './register-validation-rule.enum';
-import { ContentType } from '../../file/content-type.enum';
 
 const RegisterValidationMessage = {
   NAME_REQUIRED: 'Name is required',
@@ -13,8 +12,6 @@ const RegisterValidationMessage = {
   PASSWORD_MIN_LENGTH: `Password must have at least ${RegisterValidationRule.PASSWORD_MIN_LENGTH} characters`,
   PASSWORD_REQUIRED: 'Password is required',
   PASSWORD_REPEAT_MATCH: 'Passwords must match',
-  IMAGE_INCORRECT: `User avatar must be ${ContentType.PNG} or ${ContentType.JPG} format`,
-  IMAGE_REQUIRED: 'User avatar is required',
 } as const;
 
 export { RegisterValidationMessage };
