@@ -12,7 +12,7 @@ import {
 } from 'common/enums';
 import { Button, Modal, Select, TextInput } from 'components/common';
 import styles from './styles.module.scss';
-import { IClinic, IOption, IClinicPayload } from 'common/interfaces';
+import { IOption, IClinicPayload } from 'common/interfaces';
 import { createOptions } from 'helpers';
 import { addClinic as validationClinicSchema } from 'validation-schemas';
 import { DEFAULT_CLINIC_VALUE } from 'components/clinics/components/common/constants';

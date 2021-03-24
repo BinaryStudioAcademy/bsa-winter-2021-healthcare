@@ -6,6 +6,7 @@ import styles from './styles.module.scss';
 import { Button } from 'components/common';
 import { Clinic, AddClinicPopup } from './components';
 import { IClinicPayload } from 'common/interfaces';
+import { DEFAULT_CLINIC_VALUE } from './components/common/constants';
 import {
   ButtonColor,
   ButtonStyleType,
@@ -31,14 +32,13 @@ const Clinics: React.FC = () => {
   const [isShowPopUp, setIsShowPopUp] = React.useState<boolean>(false);
   const dispatch = useDispatch();
 
-  const handleCreateClinic = (clinicInfo: IClinicPayload, nameValue:string) => {
+  const handleCreateClinic = (clinicInfo: IClinicPayload, nameValue: string) => {
     dispatch(
       ClinicsActionCreator.addClinic({
         ...DEFAULT_CLINIC_VALUE,
         ...clinicInfo,
       }, nameValue),
     );
-    handleHidePopUp();
   };
 
   const handleTogglePopUp = () => setIsShowPopUp(!isShowPopUp);
