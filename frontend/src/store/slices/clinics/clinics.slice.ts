@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName } from 'common/enums';
-import { IClinic } from 'common/interfaces';
+import { IClinic, IClinicPayload } from 'common/interfaces';
 import { clinicApi, notification as notificationService } from 'services';
 import { AppThunk } from 'common/types';
 import { HttpError } from 'exceptions';
@@ -38,7 +38,7 @@ const getClinics = (): AppThunk => async (dispatch) => {
   }
 };
 
-const addClinic = (clinicInfo: IClinic): AppThunk => async (dispatch) => {
+const addClinic = (clinicInfo: IClinicPayload): AppThunk => async (dispatch) => {
   try {
     const response = await clinicApi.addClinic(clinicInfo);
     dispatch(actions.addClinic([response]));

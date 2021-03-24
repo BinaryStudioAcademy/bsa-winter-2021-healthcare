@@ -5,29 +5,38 @@ import { ClinicsActionCreator } from 'store/slices';
 import styles from './styles.module.scss';
 import { Button } from 'components/common';
 import { Clinic, AddClinicPopup } from './components';
-import { IClinic } from 'common/interfaces';
-import { DEFAULT_CLINIC_VALUE } from './components/common/constants';
-import { ButtonColor, ButtonStyleType, ButtonType } from 'common/enums';
+import { IClinicPayload } from 'common/interfaces';
+import {
+  ButtonColor,
+  ButtonStyleType,
+  ButtonType,
+  PermissionName,
+} from 'common/enums';
+import { checkHasPermission } from 'helpers';
 
 const Clinics: React.FC = () => {
   const { clinics } = useSelector(({ clinics }: RootState) => ({
     clinics: clinics.clinics,
   }));
+
+  const { user } = useSelector(({ auth }: RootState) => ({
+    user: auth.user,
+  }));
+
+  const hasPermissionToAddClinic = checkHasPermission(
+    [PermissionName.CREATE_CLINIC],
+    user?.permissions ?? [],
+  );
+
   const [isShowPopUp, setIsShowPopUp] = React.useState<boolean>(false);
   const dispatch = useDispatch();
 
-  const handleCreateClinic = (clinicInfo: IClinic) => {
-    dispatch(
-      ClinicsActionCreator.addClinic({
-        ...DEFAULT_CLINIC_VALUE,
-        ...clinicInfo,
-      }),
-    );
-    handleHidePopUp();
+  const handleCreateClinic = (clinicInfo: IClinicPayload) => {
+    dispatch(ClinicsActionCreator.addClinic(clinicInfo));
+    handleTogglePopUp();
   };
 
-  const handleShowPopUp = () => setIsShowPopUp(true);
-  const handleHidePopUp = () => setIsShowPopUp(false);
+  const handleTogglePopUp = () => setIsShowPopUp(!isShowPopUp);
 
   React.useEffect(() => {
     dispatch(ClinicsActionCreator.getClinics());
@@ -36,16 +45,18 @@ const Clinics: React.FC = () => {
   return (
     <>
       <div className={styles.clinicsPageWrapper}>
-        <div className={styles.filterWrapper}>
-          <Button
-            label="Add"
-            hasHiddenLabel={false}
-            type={ButtonType.BUTTON}
-            onClick={handleShowPopUp}
-            color={ButtonColor.PRIMARY_DARK}
-            styleType={ButtonStyleType.WITHOUT_BORDER}
-          />
-        </div>
+        {hasPermissionToAddClinic && (
+          <div className={styles.filterWrapper}>
+            <Button
+              label="Add"
+              hasHiddenLabel={false}
+              type={ButtonType.BUTTON}
+              onClick={handleTogglePopUp}
+              color={ButtonColor.PRIMARY_DARK}
+              styleType={ButtonStyleType.WITHOUT_BORDER}
+            />
+          </div>
+        )}
         <div className={styles.clinicsWrapper}>
           <div className={styles.clinicsContainer}>
             {clinics.map((clinic) => (
@@ -56,7 +67,7 @@ const Clinics: React.FC = () => {
       </div>
       <AddClinicPopup
         onCreateClinic={handleCreateClinic}
-        onFormHide={handleHidePopUp}
+        onFormHide={handleTogglePopUp}
         isOpen={isShowPopUp}
       />
     </>

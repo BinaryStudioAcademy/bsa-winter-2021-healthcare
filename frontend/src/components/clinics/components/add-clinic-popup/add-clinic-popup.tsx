@@ -12,14 +12,14 @@ import {
 } from 'common/enums';
 import { Button, Modal, Select, TextInput } from 'components/common';
 import styles from './styles.module.scss';
-import { IClinic } from 'common/interfaces';
+import { IClinicPayload } from 'common/interfaces';
 import { createOptions } from 'helpers';
 import { addClinic as validationClinicSchema } from 'validation-schemas';
 import { DEFAULT_CLINIC_VALUE } from 'components/clinics/components/common/constants';
 
 interface IProps {
   onFormHide: () => void;
-  onCreateClinic: (clinicData: IClinic) => void;
+  onCreateClinic: (clinicData: IClinicPayload) => void;
   isOpen: boolean;
 }
 
@@ -30,12 +30,17 @@ const AddClinicPopup: React.FC<IProps> = ({
   onCreateClinic,
   isOpen,
 }) => {
-  const { handleSubmit, errors, control } = useForm({
+  const { handleSubmit, errors, control } = useForm<IClinicPayload>({
     resolver: yupResolver(validationClinicSchema),
     defaultValues: DEFAULT_CLINIC_VALUE,
     mode: 'onChange',
   });
-  const handleSubmitForm = (clinicData: IClinic) => onCreateClinic(clinicData);
+  const handleSubmitForm = (clinicData: IClinicPayload) => {
+    onCreateClinic({
+      ...clinicData,
+      imagePath: DEFAULT_CLINIC_VALUE.imagePath,
+    });
+  };
 
   return (
     <Modal isShow={isOpen}>
