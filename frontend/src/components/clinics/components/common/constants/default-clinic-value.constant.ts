@@ -9,7 +9,7 @@ const DEFAULT_CLINIC_VALUE: IClinic = {
   [ClinicKey.CLINIC_TYPE]: ClinicType.STATE,
   [ClinicKey.CREATED_AT]: '',
   [ClinicKey.UPDATED_AT]: '',
-  [ClinicKey.CITY_ID]:'',
+  [ClinicKey.CITY_ID]:' ',
 };
 
 export { DEFAULT_CLINIC_VALUE };
