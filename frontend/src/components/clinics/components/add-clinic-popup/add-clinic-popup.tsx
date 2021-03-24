@@ -12,10 +12,13 @@ import {
 } from 'common/enums';
 import { Button, Modal, Select, TextInput } from 'components/common';
 import styles from './styles.module.scss';
-import { IClinic } from 'common/interfaces';
+import { IClinic, IOption } from 'common/interfaces';
 import { createOptions } from 'helpers';
 import { addClinic as validationClinicSchema } from 'validation-schemas';
 import { DEFAULT_CLINIC_VALUE } from 'components/clinics/components/common/constants';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'common/types';
+import { ClinicsActionCreator } from 'store/slices';
 
 interface IProps {
   onFormHide: () => void;
@@ -30,13 +33,42 @@ const AddClinicPopup: React.FC<IProps> = ({
   onCreateClinic,
   isOpen,
 }) => {
-  const { handleSubmit, errors, control } = useForm({
+
+  const { cities, addedCityId } = useSelector(({ clinics }: RootState) => ({
+    cities: clinics.cities,
+    addedCityId: clinics.addedCityId,
+  }));
+
+  const dispatch = useDispatch();
+
+  const [selectInputValue, setSelectInputValue] = React.useState<string>('');
+
+  React.useEffect(() => {
+    dispatch(ClinicsActionCreator.getCities());
+  }, []);
+
+  const cityList: IOption[] = cities.map(city => ({ label: city.name, value: city.id }));
+
+  const { setValue, handleSubmit, errors, control } = useForm({
     resolver: yupResolver(validationClinicSchema),
     defaultValues: DEFAULT_CLINIC_VALUE,
     mode: 'onChange',
   });
-  const handleSubmitForm = (clinicData: IClinic) => onCreateClinic(clinicData);
-
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  const handleSubmitForm = (clinicData: IClinic) => {
+    if (clinicData.cityId === '' && selectInputValue.length > 0) {
+      dispatch(ClinicsActionCreator.addCity({ name: selectInputValue }));
+      console.info('addedCityId', addedCityId); //не заполняется
+      setValue(ClinicKey.CITY_ID, addedCityId); // не передает id в форму даже если Id есть
+    }
+    // console.info(clinicData);
+    onCreateClinic(clinicData);
+  };
+  // ----------------------------------------------------------------------------------------
+  const handleInputChange = (inputValue: string) => {
+    setSelectInputValue(inputValue);
+    // console.info('selectInputValue', selectInputValue);
+  };
   return (
     <Modal isShow={isOpen}>
       <div className={styles.container}>
@@ -104,6 +136,20 @@ const AddClinicPopup: React.FC<IProps> = ({
               color={InputColor.GRAY_LIGHT}
               control={control}
               errors={errors}
+            />
+          </div>
+
+          <div className={styles.inputBlock}>
+            <Select
+              name={ClinicKey.CITY_ID}
+              label="City"
+              hasHiddenLabel={false}
+              placeholder="City"
+              options={cityList}
+              color={InputColor.GRAY_LIGHT}
+              control={control}
+              errors={errors}
+              onInputChange={handleInputChange}
             />
           </div>
 
