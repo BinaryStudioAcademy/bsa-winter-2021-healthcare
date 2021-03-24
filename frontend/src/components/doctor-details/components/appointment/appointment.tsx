@@ -37,7 +37,7 @@ const Appointment: React.FC<Props> = ({ onCreate }) => {
   const time = watch( CreateAppointmentKey.TIME, undefined);
 
   const handleFormSubmit = (formData:Partial<ICreateAppointment>) => {
-    onCreate(formData as ICreateAppointment);
+    onCreate(formData);
   };
 
   return (

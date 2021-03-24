@@ -43,7 +43,7 @@ const getDoctorDetailsAsync = (id: string): AppThunk => async (dispatch) => {
 
 const createAppointmentAsync = (payload:Partial<ICreateAppointment>): AppThunk => async (_, getState) => {
   try {
-    const { auth, doctorDetails } = getState();  
+    const { auth, doctorDetails } = getState();
     const appointmentData:Partial<ICreateAppointment> = {
       ...payload,
       userId: auth.user?.id,
