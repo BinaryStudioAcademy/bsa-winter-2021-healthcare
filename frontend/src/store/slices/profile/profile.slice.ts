@@ -45,6 +45,9 @@ const { reducer, actions } = createSlice({
     addDiagnosis: (state, action: PayloadAction<IDiagnosis[]>) => {
       state.diagnoses = [...action.payload, ...state.diagnoses];
     },
+    editImagePath: (state, action: PayloadAction<string>) => {
+      (state.user as IUserWithPermissions).imagePath = action.payload;
+    },
   },
 });
 
@@ -60,10 +63,10 @@ const getUser = (id: string): AppThunk => async (dispatch) => {
   }
 };
 
-const uploadImage = async (file: File) => {
+const uploadImage = (file: File): AppThunk => async (dispatch) => {
   try {
-    const path = uploadFileService.addImage(file);
-    return path;
+    const path = await uploadFileService.addImage(file);
+    dispatch(actions.editImagePath(path));
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
