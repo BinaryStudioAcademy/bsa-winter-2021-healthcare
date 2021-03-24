@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
 import {
   ButtonColor,
   ButtonStyleType,
@@ -22,6 +23,8 @@ import defaultAvatar from 'assets/images/default-avatar.svg';
 import camera from 'assets/images/camera.svg';
 import { ProfileActionCreator } from 'store/slices';
 
+const DEFAULT_FILE_IDX = 0;
+
 type Props = {
   user: IUser;
   onEditUser: EditUserCb;
@@ -38,27 +41,21 @@ const EditUserPopup: React.FC<Props> = ({ user, isShow, onEditUser, onFormHide }
     birthdate: new Date(user.birthdate),
   };
 
+  const dispatch = useDispatch();
+
   const { handleSubmit, errors, control } = useForm<IEditUserPayload>({
     resolver: yupResolver(validationEditUser),
     defaultValues: userWithDate,
     mode: 'onChange',
   });
 
-  const [image, setImage] = React.useState<string | undefined>(user.imagePath);
-
   const handleUploadFile = (event: InputChangeEvent) => {
-    const DEFAULT_FILE_IDX = 0;
-    const file = event.target.files![DEFAULT_FILE_IDX];
-    if (file) {
-      ProfileActionCreator.uploadImage(file).then(path => {
-        control.setValue(EditUserPayloadKey.IMAGE_PATH, path);
-        setImage(path);
-      });
-    }
+    const file = (event.target.files as FileList)[DEFAULT_FILE_IDX];
+    dispatch(ProfileActionCreator.uploadImage(file));
   };
 
   const handleFormSubmit = (userData: IEditUserPayload) => {
-    onEditUser(userData);
+    onEditUser({ ...userData, imagePath: user.imagePath });
   };
 
   return (
@@ -82,12 +79,12 @@ const EditUserPopup: React.FC<Props> = ({ user, isShow, onEditUser, onFormHide }
 
           <div>
             <label htmlFor="uploadFile">
-              <div className={styles.imageContainer} style={{ backgroundImage: `url(${image ?? defaultAvatar})` }}>
+              <div className={styles.imageContainer} style={{ backgroundImage: `url(${user.imagePath ?? defaultAvatar})` }}>
                 <div className={styles.photoEditContainer}>
-                  <img src={camera} alt="camera" width="20" height="20" loading="lazy"/>
+                  <img src={camera} alt="camera" width="20" height="20" loading="lazy" />
                 </div>
               </div>
-              <input name="uploadFile" type="file" id="uploadFile" hidden onChange={handleUploadFile} />
+              <input className="visually-hidden" name="uploadFile" type="file" id="uploadFile" hidden onChange={handleUploadFile} />
             </label>
           </div>
 
@@ -175,18 +172,6 @@ const EditUserPopup: React.FC<Props> = ({ user, isShow, onEditUser, onFormHide }
               hasHiddenLabel={false}
               placeholder="Status"
               options={userTypeOptions}
-              color={InputColor.GRAY_LIGHT}
-              control={control}
-              errors={errors}
-            />
-          </div>
-
-          <div className={styles.inputBlock}>
-            <TextInput
-              name={EditUserPayloadKey.IMAGE_PATH}
-              label="Avatar"
-              hasHiddenLabel={true}
-              type={InputType.HIDDEN}
               color={InputColor.GRAY_LIGHT}
               control={control}
               errors={errors}
