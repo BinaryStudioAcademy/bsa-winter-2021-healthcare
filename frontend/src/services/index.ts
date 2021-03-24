@@ -9,6 +9,7 @@ import { Notification } from './notification/notification.service';
 import { Geolocation } from './geolocation/geolocation.service';
 import { UploadFile } from './upload-file/upload-file.service';
 import { MapApi } from './map-api/map-api.service';
+import { CityApi } from './city-api/city-api.service';
 
 const http = new Http();
 
@@ -53,6 +54,11 @@ const mapApi = new MapApi({
 
 const notification = new Notification();
 
+const cityApi = new CityApi({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
 export {
   http,
   authApi,
@@ -64,4 +70,5 @@ export {
   geolocation,
   uploadFile,
   mapApi,
+  cityApi,
 };
