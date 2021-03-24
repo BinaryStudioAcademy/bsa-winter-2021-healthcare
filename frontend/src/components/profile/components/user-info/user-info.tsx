@@ -1,20 +1,27 @@
 import React from 'react';
+import clsx from 'clsx';
 import { IUser } from 'common/interfaces/user';
-import { DateFormat } from 'common/enums';
 import { BindingCb } from 'common/types';
 import { getFormattedDate } from 'helpers';
 import { Button } from 'components/common';
-import { ButtonColor, ButtonStyleType, ButtonIcon } from 'common/enums';
-import defaultAvatar from 'assets/images/default-avatar.svg';
-import clsx from 'clsx';
+import {
+  ButtonColor,
+  ButtonStyleType,
+  ButtonIcon,
+  DateFormat,
+} from 'common/enums';
 import styles from './styles.module.scss';
+import Documents from '../documents/documents';
+import { IUserTypeDoctor } from 'common/interfaces';
+import defaultAvatar from 'assets/images/default-avatar.svg';
 
 type Props = {
   user: IUser;
+  isDoctor: boolean;
   onEdit: BindingCb;
 };
 
-const UserInfo: React.FC<Props> = ({ user, onEdit }) => {
+const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
   const birthdate = getFormattedDate(user.birthdate, DateFormat.D_MMMM_YYYY);
   return (
     <div className={styles.mainInfo}>
@@ -53,6 +60,9 @@ const UserInfo: React.FC<Props> = ({ user, onEdit }) => {
           </div>
         </div>
       </div>
+      { isDoctor && (user as IUserTypeDoctor).doctor?.document && (
+        <Documents document={(user as IUserTypeDoctor).doctor.document} />
+      )}
     </div>
   );
 };

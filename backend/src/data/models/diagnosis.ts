@@ -12,6 +12,10 @@ const createDiagnosisModel = (orm: Sequelize): ModelCtor<DiagnosisInstance> => {
         allowNull: false,
         type: DataTypes.STRING,
       },
+      description: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
     },
