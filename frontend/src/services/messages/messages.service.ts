@@ -23,7 +23,7 @@ class Messages {
 
   public getMembersByName(name: string | undefined): Promise<IMember[]> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.CHATS}${MessagesApiPath.MEMBERS}/${name}`,
+      `${this.#apiPrefix}${ApiPath.MESSAGES}${MessagesApiPath.MEMBERS}/${name}`,
       {
         method: HttpMethod.GET,
       },
@@ -32,7 +32,7 @@ class Messages {
 
   public loadMembersAsChats(): Promise<IMember[]> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.CHATS}${MessagesApiPath.MEMBERS}`,
+      `${this.#apiPrefix}${ApiPath.MESSAGES}${MessagesApiPath.MEMBERS}`,
       {
         method: HttpMethod.GET,
       },
@@ -41,7 +41,7 @@ class Messages {
 
   public loadMemberMessages(memberId: string | undefined): Promise<IMessage[]> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.CHATS}${MessagesApiPath.MESSAGES}/${memberId}`,
+      `${this.#apiPrefix}${ApiPath.MESSAGES}${MessagesApiPath.MESSAGES}/${memberId}`,
       {
         method: HttpMethod.GET,
       },
@@ -49,7 +49,7 @@ class Messages {
   }
 
   public sendMessage(payload: Partial<IMessagePayload>): Promise<IMessage> {
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.CHATS}${MessagesApiPath.MESSAGES}`, {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.MESSAGES}${MessagesApiPath.MESSAGES}`, {
       method: HttpMethod.POST,
       contentType: ContentType.JSON,
       payload,

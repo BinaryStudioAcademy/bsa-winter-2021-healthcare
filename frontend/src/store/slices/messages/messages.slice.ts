@@ -22,7 +22,7 @@ const { reducer, actions } = createSlice({
   initialState,
   reducers: {
     addMessage: (state, action: PayloadAction<IMessage>) => {
-      state.messages.push(action.payload);
+      state.messages.unshift(action.payload);
     },
 
     setMessages: (state, action: PayloadAction<IMessage[]>) => {
@@ -79,30 +79,14 @@ const selectMember = (id: string): AppThunk => async dispatch => {
   }
 };
 
-// const loadFilteredMembersAsChats = (name: string, callback: any): AppThunk => async () => {
-//   try {
-//     const response = await messagesApi.getMembersByName(name);
-//     callback(response.map((member: IMember) => ({
-//       label: member.name,
-//       value: member,
-//     })));
-
-//   } catch (error) {
-//     if (error instanceof HttpError) {
-//       notificationService.error(`Error ${error.status}`, error.messages);
-//     }
-//     throw error;
-//   }
-// };
-
 const loadFilteredMembersAsChats = (name: string): AppThunk => async dispatch => {
   try {
-    console.log('loadFilteredMembersAsChats name = ', name); // eslint-disable-line
-
     const response = await messagesApi.getMembersByName(name);
     dispatch(actions.setMembers(response));
-    response?.length
-      ? dispatch(selectMember(response[0].id))
+
+    const firstUserId: string | undefined = response.find(user => user !== undefined)?.id;
+    firstUserId
+      ? dispatch(selectMember(firstUserId))
       : dispatch(actions.setMessages([]));
 
   } catch (error) {

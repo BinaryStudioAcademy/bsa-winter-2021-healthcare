@@ -29,7 +29,7 @@ const Sign: React.FC = () => {
   }));
   const hasUser = Boolean(user);
   if (hasUser) {
-    return <Redirect to={AppRoute.MY_CHATS} />;
+    return <Redirect to={AppRoute.DOCTORS} />;
   }
 
   return (

@@ -38,13 +38,13 @@ const InputMessageForm: React.FC<Props> = ({ className }) => {
 
   const dispatch = useDispatch();
 
-  const onSubmit = (formData: IMessagePayload) => {
+  const handleFormSubmit = (formData: IMessagePayload) => {
     dispatch(MessagesActionCreator.sendMessage(formData));
     reset();
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={clsx(styles.inputMessageForm, className)}>
+    <form onSubmit={handleSubmit(handleFormSubmit)} className={clsx(styles.inputMessageForm, className)}>
       <div className={styles.inputText}>
         <TextInput
           name={MessageKey.TEXT}
