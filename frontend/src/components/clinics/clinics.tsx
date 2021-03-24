@@ -5,8 +5,7 @@ import { ClinicsActionCreator } from 'store/slices';
 import styles from './styles.module.scss';
 import { Button } from 'components/common';
 import { Clinic, AddClinicPopup } from './components';
-import { IClinic } from 'common/interfaces';
-import { DEFAULT_CLINIC_VALUE } from './components/common/constants';
+import { IClinicPayload } from 'common/interfaces';
 import { ButtonColor, ButtonStyleType, ButtonType } from 'common/enums';
 
 const Clinics: React.FC = () => {
@@ -16,18 +15,12 @@ const Clinics: React.FC = () => {
   const [isShowPopUp, setIsShowPopUp] = React.useState<boolean>(false);
   const dispatch = useDispatch();
 
-  const handleCreateClinic = (clinicInfo: IClinic) => {
-    dispatch(
-      ClinicsActionCreator.addClinic({
-        ...DEFAULT_CLINIC_VALUE,
-        ...clinicInfo,
-      }),
-    );
-    handleHidePopUp();
+  const handleCreateClinic = (clinicInfo: IClinicPayload) => {
+    dispatch(ClinicsActionCreator.addClinic(clinicInfo));
+    handleTogglePopUp();
   };
 
-  const handleShowPopUp = () => setIsShowPopUp(true);
-  const handleHidePopUp = () => setIsShowPopUp(false);
+  const handleTogglePopUp = () => setIsShowPopUp(!isShowPopUp);
 
   React.useEffect(() => {
     dispatch(ClinicsActionCreator.getClinics());
@@ -41,7 +34,7 @@ const Clinics: React.FC = () => {
             label="Add"
             hasHiddenLabel={false}
             type={ButtonType.BUTTON}
-            onClick={handleShowPopUp}
+            onClick={handleTogglePopUp}
             color={ButtonColor.PRIMARY_DARK}
             styleType={ButtonStyleType.WITHOUT_BORDER}
           />
@@ -56,7 +49,7 @@ const Clinics: React.FC = () => {
       </div>
       <AddClinicPopup
         onCreateClinic={handleCreateClinic}
-        onFormHide={handleHidePopUp}
+        onFormHide={handleTogglePopUp}
         isOpen={isShowPopUp}
       />
     </>
