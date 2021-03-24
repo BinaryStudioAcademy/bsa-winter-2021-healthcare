@@ -1,16 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName } from 'common/enums';
-import { IClinic } from 'common/interfaces';
-import { clinicApi, notification as notificationService } from 'services';
+import { IClinic, ICity } from 'common/interfaces';
+import {
+  clinicApi,
+  notification as notificationService,
+  cityApi,
+} from 'services';
 import { AppThunk } from 'common/types';
 import { HttpError } from 'exceptions';
 
 type ClinicsState = {
   clinics: IClinic[];
+  cities: ICity[];
+  addedCityId: string;
 };
 
 const initialState: ClinicsState = {
   clinics: [],
+  cities: [],
+  addedCityId: '',
 };
 
 const { reducer, actions } = createSlice({
@@ -22,6 +30,13 @@ const { reducer, actions } = createSlice({
     },
     addClinic: (state, action: PayloadAction<IClinic[]>) => {
       state.clinics = [...state.clinics, ...action.payload];
+    },
+    setCities: (state, action: PayloadAction<ICity[]>) => {
+      state.cities = action.payload;
+    },
+    addCity: (state, action: PayloadAction<ICity>) => {
+      state.cities = [...state.cities, action.payload];
+      state.addedCityId = action.payload.id;
     },
   },
 });
@@ -50,10 +65,36 @@ const addClinic = (clinicInfo: IClinic): AppThunk => async (dispatch) => {
   }
 };
 
+const getCities = (): AppThunk => async (dispatch) => {
+  try {
+    const cities = await cityApi.getCities();
+    dispatch(actions.setCities(cities));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
+const addCity = (cityName: Partial<ICity>): AppThunk => async (dispatch) => {
+  try {
+    const response = await cityApi.addCity(cityName);
+    dispatch(actions.addCity(response));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
 const ClinicsActionCreator = {
   ...actions,
   getClinics,
   addClinic,
+  getCities,
+  addCity,
 };
 
 export { ClinicsActionCreator, reducer };
