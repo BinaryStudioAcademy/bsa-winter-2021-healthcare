@@ -17,10 +17,10 @@ import { editUser as validationEditUser } from 'validation-schemas';
 import { Button, DateInput, Select, TextInput, Modal } from 'components/common';
 import { createOptions } from 'helpers';
 import { EditUserCb, HideFormCb } from 'components/users/common/types';
-import { uploadFile as uploadFileService } from 'services';
 import { InputChangeEvent } from 'common/types';
 import defaultAvatar from 'assets/images/default-avatar.svg';
 import camera from 'assets/images/camera.svg';
+import { ProfileActionCreator } from 'store/slices';
 
 type Props = {
   user: IUser;
@@ -50,7 +50,7 @@ const EditUserPopup: React.FC<Props> = ({ user, isShow, onEditUser, onFormHide }
     const DEFAULT_FILE_IDX = 0;
     const file = event.target.files![DEFAULT_FILE_IDX];
     if (file) {
-      uploadFileService.addImage(file).then(path => {
+      ProfileActionCreator.uploadImage(file).then(path => {
         control.setValue(EditUserPayloadKey.IMAGE_PATH, path);
         setImage(path);
       });
