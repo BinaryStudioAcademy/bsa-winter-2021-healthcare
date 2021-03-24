@@ -1,1 +1,4 @@
-export type { IClinic } from 'healthcare-shared/common/interfaces';
+export type {
+  IClinic,
+  IClinicPayload,
+} from 'healthcare-shared/common/interfaces';
