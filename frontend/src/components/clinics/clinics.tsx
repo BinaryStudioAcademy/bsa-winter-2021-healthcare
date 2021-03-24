@@ -16,12 +16,12 @@ const Clinics: React.FC = () => {
   const [isShowPopUp, setIsShowPopUp] = React.useState<boolean>(false);
   const dispatch = useDispatch();
 
-  const handleCreateClinic = (clinicInfo: IClinic) => {
+  const handleCreateClinic = (clinicInfo: IClinic, nameValue:string) => {
     dispatch(
       ClinicsActionCreator.addClinic({
         ...DEFAULT_CLINIC_VALUE,
         ...clinicInfo,
-      }),
+      }, nameValue),
     );
     handleHidePopUp();
   };

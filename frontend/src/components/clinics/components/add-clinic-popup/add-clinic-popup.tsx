@@ -22,7 +22,7 @@ import { ClinicsActionCreator } from 'store/slices';
 
 interface IProps {
   onFormHide: () => void;
-  onCreateClinic: (clinicData: IClinic) => void;
+  onCreateClinic: (clinicData: IClinic, selectInputValue: string) => void;
   isOpen: boolean;
 }
 
@@ -34,9 +34,8 @@ const AddClinicPopup: React.FC<IProps> = ({
   isOpen,
 }) => {
 
-  const { cities, addedCityId } = useSelector(({ clinics }: RootState) => ({
+  const { cities } = useSelector(({ clinics }: RootState) => ({
     cities: clinics.cities,
-    addedCityId: clinics.addedCityId,
   }));
 
   const dispatch = useDispatch();
@@ -49,26 +48,20 @@ const AddClinicPopup: React.FC<IProps> = ({
 
   const cityList: IOption[] = cities.map(city => ({ label: city.name, value: city.id }));
 
-  const { setValue, handleSubmit, errors, control } = useForm({
+  const { handleSubmit, errors, control } = useForm({
     resolver: yupResolver(validationClinicSchema),
     defaultValues: DEFAULT_CLINIC_VALUE,
     mode: 'onChange',
   });
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
   const handleSubmitForm = (clinicData: IClinic) => {
-    if (clinicData.cityId === '' && selectInputValue.length > 0) {
-      dispatch(ClinicsActionCreator.addCity({ name: selectInputValue }));
-      console.info('addedCityId', addedCityId); //не заполняется
-      setValue(ClinicKey.CITY_ID, addedCityId); // не передает id в форму даже если Id есть
-    }
-    // console.info(clinicData);
-    onCreateClinic(clinicData);
+    onCreateClinic(clinicData, selectInputValue);
   };
-  // ----------------------------------------------------------------------------------------
+
   const handleInputChange = (inputValue: string) => {
     setSelectInputValue(inputValue);
-    // console.info('selectInputValue', selectInputValue);
   };
+
   return (
     <Modal isShow={isOpen}>
       <div className={styles.container}>
@@ -88,16 +81,12 @@ const AddClinicPopup: React.FC<IProps> = ({
           </div>
 
           <div className={styles.inputBlock}>
-            {/* <input type="button" value="Upload documents" /> */}
             <label className={styles.inputImage}>
-              {/* Upload file: */}
               <div className={styles.blurBottom}>
                 <div className={styles.cameraIcon}></div>
               </div>
               <input type="file" className={styles.inputImageBtn} />
             </label>
-            {/* <span>file1.pdf</span>
-            <span>file2.jpg</span> */}
           </div>
 
           <div className={styles.inputBlock}>

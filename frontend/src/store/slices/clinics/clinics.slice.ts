@@ -12,13 +12,11 @@ import { HttpError } from 'exceptions';
 type ClinicsState = {
   clinics: IClinic[];
   cities: ICity[];
-  addedCityId: string;
 };
 
 const initialState: ClinicsState = {
   clinics: [],
   cities: [],
-  addedCityId: '',
 };
 
 const { reducer, actions } = createSlice({
@@ -36,7 +34,6 @@ const { reducer, actions } = createSlice({
     },
     addCity: (state, action: PayloadAction<ICity>) => {
       state.cities = [...state.cities, action.payload];
-      state.addedCityId = action.payload.id;
     },
   },
 });
@@ -53,8 +50,16 @@ const getClinics = (): AppThunk => async (dispatch) => {
   }
 };
 
-const addClinic = (clinicInfo: IClinic): AppThunk => async (dispatch) => {
+const addClinic = (clinicInfo: IClinic, cityValue?: string): AppThunk => async (
+  dispatch,
+) => {
   try {
+    if (clinicInfo.cityId === ' ' && cityValue !== '') {
+      const response = await cityApi.addCity({ name: cityValue });
+      dispatch(actions.addCity(response));
+      clinicInfo.cityId=response.id;
+    }
+
     const response = await clinicApi.addClinic(clinicInfo);
     dispatch(actions.addClinic([response]));
   } catch (error) {
