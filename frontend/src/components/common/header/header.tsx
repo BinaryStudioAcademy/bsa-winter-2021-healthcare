@@ -1,6 +1,6 @@
 import * as React from 'react';
 import iconLogo from 'assets/images/icon-logo.svg';
-import avatar from 'assets/images/avatar.svg';
+import defaultAvatar from 'assets/images/default-avatar.svg';
 import { Button, Link } from '../index';
 import {
   AppRoute,
@@ -49,7 +49,7 @@ const Header: React.FC<Props> = ({ user }) => {
           width={35}
           height={32}
           className={styles.avatar}
-          src={user.imagePath ? user.imagePath : avatar}
+          src={user.imagePath ?? defaultAvatar}
         />
         <div className={styles.userInfo}>{user.name}</div>
         <Button
