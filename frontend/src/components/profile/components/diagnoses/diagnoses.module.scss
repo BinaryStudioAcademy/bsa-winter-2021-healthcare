@@ -1,0 +1,59 @@
+.container {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 2fr 0.5fr 1fr;
+
+  .infoHeader {
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+
+    .title {
+      margin-right: 20px;
+    }
+  }
+
+  .diagnosesContainer {
+    display: flex;
+    flex: 1;
+    grid-column: 1;
+    flex-direction: column;
+    margin-top: 28px;
+    overflow-y: scroll;
+    height: 450px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .item {
+      margin-top: 16px;
+
+      .diagnosisInfo {
+        display: flex;
+        flex-direction: row;
+        margin-top: 16px;
+        margin-bottom: 8px;
+
+        .name {
+          width: 50%;
+        }
+
+        .time {
+          display: flex;
+          width: 50%;
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+
+  .diagnosisForm {
+    display: flex;
+    grid-column: 3;
+    flex: 1;
+    flex-direction: column;
+    margin-top: 28px;
+  }
+}

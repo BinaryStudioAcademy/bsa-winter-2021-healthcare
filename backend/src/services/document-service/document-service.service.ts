@@ -1,4 +1,4 @@
-import { documentRepository } from '~/data/repositories';
+import { document as documentRepository } from '~/data/repositories';
 import { IDocument } from '~/common/interfaces';
 
 class Document {

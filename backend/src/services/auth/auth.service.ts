@@ -1,5 +1,5 @@
 import { IRegisterPayload, IUser } from '~/common/interfaces';
-import { userRepository } from '~/data/repositories';
+import { user as userRepository } from '~/data/repositories';
 import { getPasswordHash, createToken } from '~/helpers';
 import { LoginResponse } from '~/common/types';
 

@@ -5,7 +5,10 @@ import { initAuthApi } from './auth/auth.api';
 import { initClinicApi } from './clinic/clinic.api';
 import { initDocumentApi } from './document/document.api';
 import { initGeolocationApi } from './geolocation/geolocation.api';
-import { initUploadFileApi } from './upload-file/upload-file.api';
+import { initDiagnosisApi } from './diagnosis/diagnosis.api';
+import { initUploadFileApi } from './upload-fi
+import { initPermissionApi } from './permission/permission.api';
+import { initNotificationApi } from './notification/notification.api';
 import { initMapApi } from './map/map.api';
 import { initCityApi } from './city/city.api';
 
@@ -14,9 +17,12 @@ const apis = [
   initAuthApi,
   initClinicApi,
   initGeolocationApi,
+  initDiagnosisApi,
   initDocumentApi,
-  initMapApi,
+  initNotificationApi,
   initUploadFileApi,
+  initPermissionApi,
+  initMapApi,
   initCityApi,
 ];
 

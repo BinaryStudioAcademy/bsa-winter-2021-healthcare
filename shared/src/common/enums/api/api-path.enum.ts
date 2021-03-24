@@ -4,7 +4,10 @@ enum ApiPath {
   CLINICS = '/clinics',
   DOCUMENTS = '/documents',
   GEOLOCATIONS = '/geolocations',
+  NOTIFICATIONS = '/notifications',
+  DIAGNOSES = '/diagnoses',
   FILES = '/files',
+  PERMISSIONS = '/permissions',
   MAP = '/map',
   CITIES = '/cities',
 }
