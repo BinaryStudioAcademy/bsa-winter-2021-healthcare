@@ -34,7 +34,6 @@ const Button: React.FC<Props> = ({
   icon,
   href,
   onClick,
-  children,
 }) => {
   return href ? (
     <Link
@@ -72,7 +71,6 @@ const Button: React.FC<Props> = ({
         label
       )}
       {icon && <span className={clsx(styles.buttonIcon, styles[icon])}></span>}
-      {children}
     </button>
   );
 };
