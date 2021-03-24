@@ -1,13 +1,8 @@
 .filterInfo {
-  outline: none;
   cursor: pointer;
   display: flex;
   margin: 5px 0;
   position: relative;
-
-  &:focus {
-    outline: none;
-  }
 
   .filterName {
     margin: 5px 15px;
