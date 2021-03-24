@@ -36,18 +36,6 @@ const Clinics: React.FC = () => {
 
   const handleShowPopUp = () => setIsShowPopUp(true);
   const handleHidePopUp = () => setIsShowPopUp(false);
-  const clinicCreationSidebar = (
-    <div className={styles.filterWrapper}>
-      <Button
-        label="Add"
-        hasHiddenLabel={false}
-        type={ButtonType.BUTTON}
-        onClick={handleShowPopUp}
-        color={ButtonColor.PRIMARY_DARK}
-        styleType={ButtonStyleType.WITHOUT_BORDER}
-      />
-    </div>
-  );
 
   React.useEffect(() => {
     dispatch(ClinicsActionCreator.getClinics());
@@ -56,7 +44,20 @@ const Clinics: React.FC = () => {
   return (
     <>
       <div className={styles.clinicsPageWrapper}>
-        { hasPermissionToAddCLinic && clinicCreationSidebar }
+        { hasPermissionToAddCLinic &&
+          (
+            <div className={styles.filterWrapper}>
+              <Button
+                label="Add"
+                hasHiddenLabel={false}
+                type={ButtonType.BUTTON}
+                onClick={handleShowPopUp}
+                color={ButtonColor.PRIMARY_DARK}
+                styleType={ButtonStyleType.WITHOUT_BORDER}
+              />
+            </div>
+          )
+        }
         <div className={styles.clinicsWrapper}>
           <div className={styles.clinicsContainer}>
             {clinics.map((clinic) => (
