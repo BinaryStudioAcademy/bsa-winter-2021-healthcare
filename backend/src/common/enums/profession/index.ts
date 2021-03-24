@@ -1,1 +1,1 @@
-export { ProfessionName } from 'healthcare-shared/common/enums';
+export { ProfessionName, ProfessionKey } from 'healthcare-shared/common/enums';

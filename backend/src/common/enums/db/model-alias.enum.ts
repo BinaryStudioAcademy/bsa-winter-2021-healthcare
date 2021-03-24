@@ -15,5 +15,6 @@ enum ModelAlias {
   PERMISSIONS = 'permissions',
   SPECIALIZATIONS = 'specializations',
   PROFESSION = 'profession',
+  PROFESSIONS = 'professions',
 }
 export { ModelAlias };

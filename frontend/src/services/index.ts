@@ -10,6 +10,7 @@ import { Geolocation } from './geolocation/geolocation.service';
 import { Diagnosis } from './diagnosis/diagnosis.service';
 import { UploadFile } from './upload-file/upload-file.service';
 import { MapApi } from './map-api/map-api.service';
+import { PermissionApi } from './permission-api/permission-api.service';
 
 const http = new Http();
 
@@ -42,6 +43,11 @@ const geolocation = new Geolocation({
   apiPrefix: ENV.API_PATH,
 });
 
+const notification = new Notification({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
 const diagnosis = new Diagnosis({
   http,
   apiPrefix: ENV.API_PATH,
@@ -57,7 +63,10 @@ const mapApi = new MapApi({
   apiPrefix: ENV.API_PATH,
 });
 
-const notification = new Notification();
+const permissionApi = new PermissionApi({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
 
 export {
   http,
@@ -71,4 +80,5 @@ export {
   diagnosis,
   uploadFile,
   mapApi,
+  permissionApi,
 };
