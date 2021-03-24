@@ -10,7 +10,6 @@ interface IRegisterPayload {
   [RegisterPayloadKey.RETYPE_PASSWORD]?: string;
   [RegisterPayloadKey.PHONE]: string;
   [RegisterPayloadKey.TYPE]: UserType;
-  [RegisterPayloadKey.IMAGE_PATH]?: string;
 }
 
 export type { IRegisterPayload };
