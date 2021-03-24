@@ -6,6 +6,7 @@ enum ApiPath {
   GEOLOCATIONS = '/geolocations',
   FILES = '/files',
   MAP = '/map',
+  CITIES = '/cities',
 }
 
 export { ApiPath };
