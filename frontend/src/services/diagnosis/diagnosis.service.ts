@@ -22,17 +22,7 @@ class Diagnosis {
     });
   }
 
-  public create(
-    userId: string,
-    diagnosis: string,
-    description: string,
-  ): Promise<IDiagnosis> {
-    const payload: Partial<IDiagnosisPayload> = {
-      diagnosis,
-      description,
-      userId,
-    };
-
+  public create(payload: Partial<IDiagnosisPayload>): Promise<IDiagnosis> {
     return this.#http.load(`${this.#apiPrefix}${ApiPath.DIAGNOSES}`, {
       method: HttpMethod.POST,
       contentType: ContentType.JSON,

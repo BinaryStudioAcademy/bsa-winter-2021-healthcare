@@ -105,17 +105,11 @@ const getAllDiagnoses = (): AppThunk => async (dispatch) => {
   }
 };
 
-const addDiagnosis = ({
-  diagnosis,
-  description,
-  userId,
-}: IDiagnosisPayload): AppThunk => async (dispatch) => {
+const addDiagnosis = (diagnosis: IDiagnosisPayload): AppThunk => async (
+  dispatch,
+) => {
   try {
-    const response = await diagnosisService.create(
-      userId,
-      diagnosis,
-      description,
-    );
+    const response = await diagnosisService.create(diagnosis);
     dispatch(actions.addDiagnosis([response]));
   } catch (error) {
     if (error instanceof HttpError) {

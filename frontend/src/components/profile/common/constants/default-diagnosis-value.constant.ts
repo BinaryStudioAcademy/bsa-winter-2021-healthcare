@@ -1,13 +1,10 @@
 import { DiagnosisKey } from 'common/enums';
-import { IDiagnosis } from 'common/interfaces';
+import { IDiagnosisPayload } from 'common/interfaces';
 
-const DEFAULT_DIAGNOSIS_VALUE: IDiagnosis = {
-  [DiagnosisKey.ID]: '',
+const DEFAULT_DIAGNOSIS_VALUE: IDiagnosisPayload = {
   [DiagnosisKey.DIAGNOSIS]: '',
   [DiagnosisKey.DESCRIPTION]: '',
   [DiagnosisKey.USER_ID]: '',
-  [DiagnosisKey.CREATED_AT]: '',
-  [DiagnosisKey.UPDATED_AT]: '',
 };
 
 export { DEFAULT_DIAGNOSIS_VALUE };

@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
-import { IDiagnosis } from 'common/interfaces';
+import { IDiagnosisPayload } from 'common/interfaces';
 import { DEFAULT_DIAGNOSIS_VALUE } from 'components/profile/common';
 import { ProfileActionCreator } from 'store/slices';
 import { addDiagnosis as addDiagnosisValidationSchema } from 'validation-schemas';
@@ -17,23 +17,27 @@ import {
 } from 'common/enums';
 
 import styles from './add-diagnosis-popup.module.scss';
+import { BindingCb } from 'common/types';
 
 type Props = {
   userId: string;
   isOpen: boolean;
-  onClose: () => void;
+  onClose: BindingCb;
 };
 
 const AddDiagnosisPopup: React.FC<Props> = ({ userId, isOpen, onClose }) => {
   const dispatch = useDispatch();
 
-  const { handleSubmit, reset, control, errors } = useForm<IDiagnosis>({
+  const { handleSubmit, reset, control, errors } = useForm<IDiagnosisPayload>({
     resolver: yupResolver(addDiagnosisValidationSchema),
     defaultValues: DEFAULT_DIAGNOSIS_VALUE,
     mode: 'onChange',
   });
 
-  const handleAddDiagnosis = ({ diagnosis, description }: IDiagnosis) => {
+  const handleAddDiagnosis = ({
+    diagnosis,
+    description,
+  }: IDiagnosisPayload) => {
     dispatch(
       ProfileActionCreator.addDiagnosis({ diagnosis, description, userId }),
     );
