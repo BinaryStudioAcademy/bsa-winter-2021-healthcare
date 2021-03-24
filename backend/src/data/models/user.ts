@@ -43,7 +43,6 @@ const createUserModel = (orm: Sequelize): ModelCtor<UserInstance> => {
         unique: true,
       },
       imagePath: {
-        allowNull: false,
         type: DataTypes.STRING,
       },
       createdAt: DataTypes.DATE,
