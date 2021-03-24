@@ -15,6 +15,7 @@ import { DEFAULT_FILTER_VALUE } from '../common/constants';
 import { doctorSpecialtiesToReadable, clinicTypesToReadable } from '../../common';
 import { useDispatch } from 'react-redux';
 import { DoctorsActionCreator } from 'store/slices';
+import { debounce } from 'common/helpers';
 
 const doctorSpecialties = Object.values(DoctorType);
 const clinicTypes = Object.values(ClinicType);
@@ -24,12 +25,14 @@ const Filtration: React.FC = () => {
     defaultValues: DEFAULT_FILTER_VALUE,
     mode: 'onChange',
   });
-
+  const DELAY_TIMEOUT = 1000;
   const dispatch = useDispatch();
 
-  const handleChange = () => {
+  const dispatchFilterData = () => {
     dispatch(DoctorsActionCreator.getDoctorsAsync(getValues()));
   };
+
+  const handleChange = React.useCallback(debounce(dispatchFilterData, DELAY_TIMEOUT), []);
 
   return (
     <form className={styles.panel} onChange={handleChange}>
