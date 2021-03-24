@@ -8,6 +8,7 @@ import { Clinic } from './clinic-service/clinic-service.service';
 import { Geolocation } from './geolocation/geolocation.service';
 import { Doctor } from './doctor-service/doctor-service.service';
 import { Logger } from './logger/logger.service';
+import { Appointment } from './appointment/appoitment-service.service';
 import { Diagnosis } from './diagnosis/diagnosis.service';
 import { UploadFile } from './upload-file/upload-file.service';
 import { Permission } from './permission/permission.service';
@@ -26,8 +27,9 @@ const auth = new Auth();
 const user = new User();
 const clinic = new Clinic();
 const geolocation = new Geolocation();
-const uploadFile = new UploadFile();
+const appointment = new Appointment();
 const diagnosis = new Diagnosis();
+const uploadFile = new UploadFile();
 const notification = new Notification();
 const doctor = new Doctor();
 const permission = new Permission();
@@ -40,6 +42,7 @@ export {
   user,
   clinic,
   geolocation,
+  appointment,
   uploadFile,
   diagnosis,
   document,

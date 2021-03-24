@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName } from 'common/enums';
-import { IClinic, ICity } from 'common/interfaces';
+import { IClinic, ICity, IClinicPayload } from 'common/interfaces';
 import {
   clinicApi,
   notification as notificationService,
@@ -50,7 +50,7 @@ const getClinics = (): AppThunk => async (dispatch) => {
   }
 };
 
-const addClinic = (clinicInfo: IClinic, cityValue?: string): AppThunk => async (
+const addClinic = (clinicInfo: IClinicPayload, cityValue?: string): AppThunk => async (
   dispatch,
 ) => {
   try {

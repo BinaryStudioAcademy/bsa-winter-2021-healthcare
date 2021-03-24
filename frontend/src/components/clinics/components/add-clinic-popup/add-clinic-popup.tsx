@@ -12,7 +12,7 @@ import {
 } from 'common/enums';
 import { Button, Modal, Select, TextInput } from 'components/common';
 import styles from './styles.module.scss';
-import { IClinic, IOption } from 'common/interfaces';
+import { IClinic, IOption, IClinicPayload } from 'common/interfaces';
 import { createOptions } from 'helpers';
 import { addClinic as validationClinicSchema } from 'validation-schemas';
 import { DEFAULT_CLINIC_VALUE } from 'components/clinics/components/common/constants';
@@ -22,7 +22,7 @@ import { ClinicsActionCreator } from 'store/slices';
 
 interface IProps {
   onFormHide: () => void;
-  onCreateClinic: (clinicData: IClinic, selectInputValue: string) => void;
+  onCreateClinic: (clinicData: IClinicPayload, selectInputValue: string) => void;
   isOpen: boolean;
 }
 
@@ -48,20 +48,21 @@ const AddClinicPopup: React.FC<IProps> = ({
 
   const cityList: IOption[] = cities.map(city => ({ label: city.name, value: city.id }));
 
-  const { handleSubmit, errors, control } = useForm({
+  const { handleSubmit, errors, control } = useForm<IClinicPayload>({
     resolver: yupResolver(validationClinicSchema),
     defaultValues: DEFAULT_CLINIC_VALUE,
     mode: 'onChange',
   });
 
-  const handleSubmitForm = (clinicData: IClinic) => {
-    onCreateClinic(clinicData, selectInputValue);
+  const handleSubmitForm = (clinicData: IClinicPayload) => {
+    onCreateClinic({
+      ...clinicData,
+      imagePath: DEFAULT_CLINIC_VALUE.imagePath,
+    }, selectInputValue);
   };
 
   const handleInputChange = (inputValue: string) => {
-
     setSelectInputValue(inputValue);
-
   };
 
   return (
