@@ -10,6 +10,7 @@ import { Doctor } from './doctor-service/doctor-service.service';
 import { Logger } from './logger/logger.service';
 import { UploadFile } from './upload-file/upload-file.service';
 import { Notification } from './notification/notification.service';
+import { City } from './city-service/city-service.service';
 
 const appAsyncStorage = new AsyncLocalStorage<AppAsyncStorage>();
 
@@ -26,6 +27,7 @@ const geolocation = new Geolocation();
 const uploadFile = new UploadFile();
 const notification = new Notification();
 const doctor = new Doctor();
+const city = new City();
 
 export {
   appAsyncStorage,
@@ -38,4 +40,5 @@ export {
   uploadFile,
   notification,
   doctor,
+  city,
 };
