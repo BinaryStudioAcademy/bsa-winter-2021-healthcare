@@ -6,12 +6,28 @@ import styles from './styles.module.scss';
 import { Button } from 'components/common';
 import { Clinic, AddClinicPopup } from './components';
 import { IClinicPayload } from 'common/interfaces';
-import { ButtonColor, ButtonStyleType, ButtonType } from 'common/enums';
+import {
+  ButtonColor,
+  ButtonStyleType,
+  ButtonType,
+  PermissionName,
+} from 'common/enums';
+import { checkHasPermission } from 'helpers';
 
 const Clinics: React.FC = () => {
   const { clinics } = useSelector(({ clinics }: RootState) => ({
     clinics: clinics.clinics,
   }));
+
+  const { user } = useSelector(({ auth }: RootState) => ({
+    user: auth.user,
+  }));
+
+  const hasPermissionToAddClinic = checkHasPermission(
+    [PermissionName.CREATE_CLINIC],
+    user?.permissions ?? [],
+  );
+
   const [isShowPopUp, setIsShowPopUp] = React.useState<boolean>(false);
   const dispatch = useDispatch();
 
@@ -29,16 +45,18 @@ const Clinics: React.FC = () => {
   return (
     <>
       <div className={styles.clinicsPageWrapper}>
-        <div className={styles.filterWrapper}>
-          <Button
-            label="Add"
-            hasHiddenLabel={false}
-            type={ButtonType.BUTTON}
-            onClick={handleTogglePopUp}
-            color={ButtonColor.PRIMARY_DARK}
-            styleType={ButtonStyleType.WITHOUT_BORDER}
-          />
-        </div>
+        {hasPermissionToAddClinic && (
+          <div className={styles.filterWrapper}>
+            <Button
+              label="Add"
+              hasHiddenLabel={false}
+              type={ButtonType.BUTTON}
+              onClick={handleTogglePopUp}
+              color={ButtonColor.PRIMARY_DARK}
+              styleType={ButtonStyleType.WITHOUT_BORDER}
+            />
+          </div>
+        )}
         <div className={styles.clinicsWrapper}>
           <div className={styles.clinicsContainer}>
             {clinics.map((clinic) => (
