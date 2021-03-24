@@ -32,7 +32,6 @@ const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.RETYPE_PASSWORD]: '',
   [RegisterPayloadKey.PHONE]: '',
   [RegisterPayloadKey.TYPE]: UserType.PATIENT,
-  [RegisterPayloadKey.IMAGE_PATH]: '',
 };
 
 const genderOptions = createOptions<string>(Object.values(UserSex));
