@@ -12,9 +12,6 @@ interface Props {
 }
 
 const MemberList: React.FC<Props> = ({ className }) => {
-  React.useEffect(() => {
-    dispatch(MessagesActionCreator.loadMembersAsChats());
-  }, []);
 
   const { members, selectedMemberId } = useSelector(({ messages: { members, selectedMember } }: RootState) => ({
     members,

@@ -79,27 +79,31 @@ const selectMember = (id: string): AppThunk => async dispatch => {
   }
 };
 
-const loadFilteredMembersAsOptions = (name: string, callback: any): AppThunk => async () => {
+// const loadFilteredMembersAsChats = (name: string, callback: any): AppThunk => async () => {
+//   try {
+//     const response = await messagesApi.getMembersByName(name);
+//     callback(response.map((member: IMember) => ({
+//       label: member.name,
+//       value: member,
+//     })));
+
+//   } catch (error) {
+//     if (error instanceof HttpError) {
+//       notificationService.error(`Error ${error.status}`, error.messages);
+//     }
+//     throw error;
+//   }
+// };
+
+const loadFilteredMembersAsChats = (name: string): AppThunk => async dispatch => {
   try {
+    console.log('loadFilteredMembersAsChats name = ', name); // eslint-disable-line
+
     const response = await messagesApi.getMembersByName(name);
-    callback(response.map((member: IMember) => ({
-      label: member.name,
-      value: member,
-    })));
-
-  } catch (error) {
-    if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
-    }
-    throw error;
-  }
-};
-
-const loadMembersAsChats = (): AppThunk => async dispatch => {
-  try {
-    const response = await messagesApi.loadMembersAsChats();
     dispatch(actions.setMembers(response));
-    response?.length && dispatch(selectMember(response[0].id));
+    response?.length
+      ? dispatch(selectMember(response[0].id))
+      : dispatch(actions.setMessages([]));
 
   } catch (error) {
     if (error instanceof HttpError) {
@@ -114,8 +118,7 @@ const MessagesActionCreator = {
   addMember,
   selectMember,
   sendMessage,
-  loadFilteredMembersAsOptions,
-  loadMembersAsChats,
+  loadFilteredMembersAsChats,
 };
 
 export { MessagesActionCreator, reducer };

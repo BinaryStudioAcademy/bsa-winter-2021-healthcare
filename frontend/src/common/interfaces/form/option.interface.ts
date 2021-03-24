@@ -1,6 +1,6 @@
-interface IOption<T = string, V=any> {
+interface IOption<T = string> {
   label: T;
-  value: V;
+  value: T;
 }
 
 export type { IOption };

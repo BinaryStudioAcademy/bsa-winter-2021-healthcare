@@ -9,14 +9,14 @@ const initMessagesApi = (apiRouter: Router): Router => {
 
   apiRouter.use(ApiPath.CHATS, chatRouter);
 
-  chatRouter.get(MessagesApiPath.MEMBERS, async (req, res, next) => {
-    try {
-      const result = await messagesService.getMembersAsChats(); //  req.user?.id ?? ''
-      res.status(HttpCode.OK).json(result);
-    } catch (error) {
-      next(error);
-    }
-  });
+  // chatRouter.get(MessagesApiPath.MEMBERS, async (req, res, next) => {
+  //   try {
+  //     const result = await messagesService.getMembersAsChats(); //  req.user?.id ?? ''
+  //     res.status(HttpCode.OK).json(result);
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // });
 
   chatRouter.get(MessagesApiPath.MEMBERS_$NAME, async (req, res, next) => {
     try {
