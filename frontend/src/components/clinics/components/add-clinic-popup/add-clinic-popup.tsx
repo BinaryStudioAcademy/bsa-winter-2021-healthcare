@@ -59,7 +59,9 @@ const AddClinicPopup: React.FC<IProps> = ({
   };
 
   const handleInputChange = (inputValue: string) => {
+
     setSelectInputValue(inputValue);
+
   };
 
   return (
