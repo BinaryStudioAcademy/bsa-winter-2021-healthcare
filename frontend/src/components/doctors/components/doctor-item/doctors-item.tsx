@@ -15,6 +15,7 @@ const DoctorItem: React.FC<Props> = ({ user }) => {
       label={user.doctor?.clinic?.clinicType}
       btnLabel="Make an appointment"
       imagePath={user.imagePath}
+      alt={user.name}
     >
       <div className={styles.infoItem}>
         <span className={clsx(styles.icon, styles.location)}></span>

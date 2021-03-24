@@ -11,6 +11,7 @@ type Props = {
   btnLabel?: string;
   btnHref?: AppRoute;
   imagePath: string;
+  alt: string;
 };
 
 const Card: React.FC<Props> = ({
@@ -21,18 +22,19 @@ const Card: React.FC<Props> = ({
   btnHref,
   imagePath,
   children,
+  alt,
 }) => {
   return (
     <div className={styles.cardContainer}>
       <div className={styles.imageContainer}>
-        <img className={styles.image} src={imagePath} />
+        <img className={styles.image} src={imagePath} alt={alt} />
       </div>
       <div className={styles.cardBody}>
         <div className={styles.cardHead}>
           <span className={styles.subtitle}>{subtitle}</span>
           <span className={styles.title}>{title}</span>
           {label && (
-            <span className={clsx(styles.label, styles[label])}>{label}</span>
+            <span className={clsx(styles.label, styles[label.toLocaleLowerCase()])}>{label}</span>
           )}
         </div>
         <div className={styles.cardInfoBlocks}>{children}</div>
