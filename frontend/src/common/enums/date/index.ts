@@ -1,1 +1,1 @@
-export * from './date-formats.enum';
+export { DateFormat } from 'healthcare-shared/common/enums';

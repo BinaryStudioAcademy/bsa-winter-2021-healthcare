@@ -8,7 +8,7 @@ type Props = {
   title: string;
   label?: string;
   btnLabel?: string;
-  btnHref?: AppRoute;
+  btnHref?: AppRoute | string;
   imagePath: string;
 };
 

@@ -21,7 +21,7 @@ interface Props {
   hasHiddenLabel: boolean;
   isDisabled?: boolean;
   icon?: ButtonIcon;
-  href?: AppRoute;
+  href?: AppRoute | string;
 }
 
 const Button: React.FC<Props> = ({
