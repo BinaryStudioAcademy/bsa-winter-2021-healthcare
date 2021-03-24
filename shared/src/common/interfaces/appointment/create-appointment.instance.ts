@@ -2,7 +2,7 @@ import { CreateAppointmentKey, AppointmentType, AppointmentTime } from '~/common
 
 interface ICreateAppointment {
   [CreateAppointmentKey.TIME]: AppointmentTime;
-  [CreateAppointmentKey.DATE]: string | Date;
+  [CreateAppointmentKey.DATE]: Date;
   [CreateAppointmentKey.TYPE]: AppointmentType;
   [CreateAppointmentKey.COST]: number;
   [CreateAppointmentKey.SUBJECT]: string;

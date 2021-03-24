@@ -43,11 +43,14 @@ const getDoctorDetailsAsync = (id: string): AppThunk => async (dispatch) => {
 
 const createAppointmentAsync = (payload:Partial<ICreateAppointment>): AppThunk => async (_, getState) => {
   try {
-    const { auth, doctorDetails } = getState();
-    payload.userId = auth.user?.id;
-    payload.doctorId = doctorDetails.doctorDetails?.id;
-    payload.type = AppointmentType.OFFLINE;
-    await appointment.createAppointment(payload);
+    const { auth, doctorDetails } = getState();  
+    const appointmentData:Partial<ICreateAppointment> = {
+      ...payload,
+      userId: auth.user?.id,
+      doctorId: doctorDetails.doctorDetails?.id,
+      type: AppointmentType.OFFLINE,
+    };
+    await appointment.createAppointment(appointmentData);
     notificationService.success('Appointment was created', []);
   } catch (error) {
     if (error instanceof HttpError) {

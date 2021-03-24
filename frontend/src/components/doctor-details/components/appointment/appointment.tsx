@@ -8,7 +8,6 @@ import { createAppointment as createAppointmentSchema } from 'validation-schemas
 import { createOptions } from 'helpers';
 import { ButtonColor, ButtonStyleType, ButtonType, ButtonIcon } from 'common/enums';
 import { CreateAppointmentCb } from '../../common';
-import { dateToSring } from 'helpers';
 import calendarIcon from 'assets/images/calendar.svg';
 import clockIcon from 'assets/images/clock.svg';
 import styles from './styles.module.scss';
@@ -38,11 +37,7 @@ const Appointment: React.FC<Props> = ({ onCreate }) => {
   const time = watch( CreateAppointmentKey.TIME, undefined);
 
   const handleFormSubmit = (formData:Partial<ICreateAppointment>) => {
-    const appointmentData = {
-      ...formData,
-      date: dateToSring(formData.date as Date),
-    };
-    onCreate(appointmentData as ICreateAppointment);
+    onCreate(formData as ICreateAppointment);
   };
 
   return (
