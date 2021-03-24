@@ -18,7 +18,6 @@ const Clinic: React.FC<Props> = ({ clinic }) => {
       btnLabel="More details"
       btnHref={AppRoute.CLINIC}
       imagePath={clinic?.imagePath}
-      alt={clinic?.name}
     >
       <div className={styles.infoItem}>
         <span className={clsx(styles.icon, styles.location)}></span>
