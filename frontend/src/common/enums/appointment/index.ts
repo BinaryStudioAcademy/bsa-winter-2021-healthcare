@@ -1,1 +1,1 @@
-export { AppointmentType } from 'healthcare-shared/common/enums';
+export { AppointmentType, AppointmentTime, CreateAppointmentKey } from 'healthcare-shared/common/enums';

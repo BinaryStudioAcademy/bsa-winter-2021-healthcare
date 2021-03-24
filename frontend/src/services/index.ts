@@ -7,6 +7,7 @@ import { ClinicApi } from './clinic-api/clinic-api.service';
 import { DocumentApi } from './document-api/document-api.service';
 import { Notification } from './notification/notification.service';
 import { Geolocation } from './geolocation/geolocation.service';
+import { AppointmentApi } from './appointment-api/appointment-api.service';
 import { Diagnosis } from './diagnosis/diagnosis.service';
 import { UploadFile } from './upload-file/upload-file.service';
 import { MapApi } from './map-api/map-api.service';
@@ -68,6 +69,11 @@ const permissionApi = new PermissionApi({
   apiPrefix: ENV.API_PATH,
 });
 
+const appointment = new AppointmentApi({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
 export {
   http,
   authApi,
@@ -77,6 +83,7 @@ export {
   clinicApi,
   documentApi,
   geolocation,
+  appointment,
   diagnosis,
   uploadFile,
   mapApi,
