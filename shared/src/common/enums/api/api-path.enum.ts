@@ -11,6 +11,7 @@ enum ApiPath {
   PERMISSIONS = '/permissions',
   MAP = '/map',
   CITIES = '/cities',
+  DOCTORS = '/doctors',
 }
 
 export { ApiPath };

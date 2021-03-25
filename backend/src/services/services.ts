@@ -1,18 +1,18 @@
 import { LogLevel } from '~/common/enums';
 import { AppAsyncStorage } from '~/common/types';
 import { AsyncLocalStorage } from './async-storage/async-storage.service';
-import { Document } from './document-service/document-service.service';
+import { Document } from './document/document.service';
 import { Auth } from './auth/auth.service';
 import { User } from './user-service/user-service.service';
 import { Clinic } from './clinic-service/clinic-service.service';
 import { Geolocation } from './geolocation/geolocation.service';
-import { Doctor } from './doctor-service/doctor-service.service';
+import { Notification } from './notification/notification.service';
+import { Doctor } from './doctor/doctor.service';
 import { Logger } from './logger/logger.service';
 import { Appointment } from './appointment/appoitment-service.service';
 import { Diagnosis } from './diagnosis/diagnosis.service';
 import { UploadFile } from './upload-file/upload-file.service';
 import { Permission } from './permission/permission.service';
-import { Notification } from './notification/notification.service';
 import { City } from './city-service/city-service.service';
 
 const appAsyncStorage = new AsyncLocalStorage<AppAsyncStorage>();
