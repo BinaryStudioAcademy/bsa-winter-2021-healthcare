@@ -2,7 +2,7 @@ import * as yup from 'yup';
 import {
   ClinicKey,
   ClinicType,
-  ClinicValidationMessage,
+  ClinicValidationMessage,  
 } from '~/common/enums';
 
 const addClinic = yup.object().shape({
@@ -16,6 +16,10 @@ const addClinic = yup.object().shape({
     .mixed<ClinicType>()
     .oneOf(Object.values(ClinicType))
     .required(),
+  [ClinicKey.IMAGE_PATH]: yup
+    .string()
+    .required()
+    .url(),
 });
 
 export { addClinic };
