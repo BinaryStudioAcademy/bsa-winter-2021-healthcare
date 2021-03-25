@@ -6,7 +6,7 @@ class Doctor {
     return doctorRepository.createDoctor(doctorPayload);
   }
 
-  public addDoctorToClinic(doctorId:string,clinicId:string): Promise<boolean>{
+  public addDoctorToClinic(doctorId:string,clinicId:string): Promise<IDoctor>{
     return doctorRepository.addDoctorToClinic(doctorId,clinicId);
   }
 

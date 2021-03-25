@@ -1,6 +1,6 @@
 import { Http } from 'services/http/http.service';
 import { HttpMethod, ApiPath, ContentType } from 'common/enums';
-import { IClinic } from 'common/interfaces';
+import { IDoctor } from 'common/interfaces';
 
 type Constructor = {
   http: Http;
@@ -16,7 +16,7 @@ class DoctorApi {
     this.#apiPrefix = apiPrefix;
   }
 
-  public addDoctorToClinic(payload: { doctorId:string,clinicId:string }): Promise<IClinic> {
+  public addDoctorToClinic(payload: { doctorId:string,clinicId:string }): Promise<IDoctor> {
     return this.#http.load(`${this.#apiPrefix}${ApiPath.DOCTOR}/${payload.doctorId}`, {
       method: HttpMethod.PUT,
       contentType: ContentType.JSON,

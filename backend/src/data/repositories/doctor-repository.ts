@@ -9,7 +9,7 @@ class DoctorRepository {
   public async addDoctorToClinic(
     doctorId: string,
     clinicId: string,
-  ): Promise<boolean> {
+  ): Promise<IDoctor> {
     const [, [doctor]] = await DoctorModel.update(
       { clinicId },
       {
@@ -17,7 +17,7 @@ class DoctorRepository {
         returning: true,
       },
     );
-    return Boolean(doctor);
+    return doctor;
   }
 
   public getByUserId(userId: string): Promise<IDoctor | null> {
