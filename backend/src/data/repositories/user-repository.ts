@@ -28,7 +28,7 @@ import { Op } from 'sequelize';
 class User {
   public getById(id: string): Promise<IUser | null> {
     return UserModel.findByPk(id, {
-      include:{
+      include: {
         model: PermissionModel,
         as: ModelAlias.PERMISSIONS,
       },
@@ -44,14 +44,19 @@ class User {
     });
   }
 
-  public getByType(type: UserType, filter: IDoctorFiltrationPayload): Promise<IUserWithPermissions[]> {
+  public getByType(
+    type: UserType,
+    filter: IDoctorFiltrationPayload,
+  ): Promise<IUserWithPermissions[]> {
     if (type === UserType.DOCTOR) {
       const where = {
         type,
         ...(filter.doctorName && { name: { [Op.iLike]: `%${filter.doctorName}%` } }),
         ...(filter.typeOfClinic && { '$doctor.clinic.clinicType$': filter.typeOfClinic }),
         ...(filter.city && { '$doctor.clinic.city.name$': filter.city }),
-        ...(filter.specialty && { '$doctor.profession.name$': filter.specialty }),
+        ...(filter.specialty && {
+          '$doctor.profession.name$': filter.specialty,
+        }),
       };
 
       return UserModel.findAll({
@@ -82,9 +87,7 @@ class User {
               {
                 model: ProfessionModel,
                 as: ModelAlias.PROFESSION,
-                attributes: [
-                  ProfessionKey.NAME,
-                ],
+                attributes: [ProfessionKey.NAME],
               },
             ],
           },
@@ -106,10 +109,20 @@ class User {
           model: DoctorModel,
           as: ModelAlias.DOCTOR,
           attributes: [DoctorKey.ID, DoctorKey.ABOUT],
-          include:[
+          include: [
             {
-              model:DocumentModel,
-              as:ModelAlias.DOCUMENT,
+              model: DocumentModel,
+              as: ModelAlias.DOCUMENT,
+            },
+            {
+              model: ClinicModel,
+              as: ModelAlias.CLINIC,
+              attributes: [
+                ClinicKey.ID,
+                ClinicKey.NAME,
+                ClinicKey.ADDRESS,
+                ClinicKey.CLINIC_TYPE,
+              ],
             },
           ],
         },
@@ -141,7 +154,7 @@ class User {
   }
 
   public async updateById(id: string, data: IUser): Promise<IUser> {
-    const [ , [user]] = await UserModel.update(data, {
+    const [, [user]] = await UserModel.update(data, {
       where: { id },
       returning: true,
     });
