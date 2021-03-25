@@ -39,6 +39,7 @@ const Clinics: React.FC = () => {
         ...clinicInfo,
       }, nameValue),
     );
+    handleTogglePopUp();
   };
 
   const handleTogglePopUp = () => setIsShowPopUp(!isShowPopUp);
