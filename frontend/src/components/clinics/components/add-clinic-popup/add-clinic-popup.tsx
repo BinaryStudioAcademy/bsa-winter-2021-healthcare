@@ -12,8 +12,9 @@ import {
 } from 'common/enums';
 import { Button, Modal, Select, TextInput } from 'components/common';
 import styles from './styles.module.scss';
-import { IOption, IClinicPayload } from 'common/interfaces';
+import { IClinicPayload } from 'common/interfaces';
 import { createOptions } from 'helpers';
+import { getCitiesOptions } from './helpers';
 import { addClinic as validationClinicSchema } from 'validation-schemas';
 import { DEFAULT_CLINIC_VALUE } from 'components/clinics/components/common/constants';
 import { useDispatch, useSelector } from 'react-redux';
@@ -46,7 +47,7 @@ const AddClinicPopup: React.FC<IProps> = ({
     dispatch(ClinicsActionCreator.getCities());
   }, []);
 
-  const cityList: IOption[] = cities.map(city => ({ label: city.name, value: city.id }));
+  const citiesOptions = getCitiesOptions(cities);
 
   const { handleSubmit, errors, control } = useForm<IClinicPayload>({
     resolver: yupResolver(validationClinicSchema),
@@ -137,7 +138,7 @@ const AddClinicPopup: React.FC<IProps> = ({
               label="City"
               hasHiddenLabel={false}
               placeholder="City"
-              options={cityList}
+              options={citiesOptions}
               color={InputColor.GRAY_LIGHT}
               control={control}
               errors={errors}
