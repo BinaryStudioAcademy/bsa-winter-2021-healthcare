@@ -1,9 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import { IUser } from 'common/interfaces/user';
-import { BindingCb } from 'common/types';
+import { BindingCb, InputChangeEvent } from 'common/types';
 import { getFormattedDate } from 'helpers';
+import { IUserTypeDoctor } from 'common/interfaces';
+import { ProfileActionCreator } from 'store/slices';
 import { Button } from 'components/common';
+import Documents from '../documents/documents';
 import {
   ButtonColor,
   ButtonStyleType,
@@ -11,8 +15,10 @@ import {
   DateFormat,
 } from 'common/enums';
 import styles from './styles.module.scss';
-import Documents from '../documents/documents';
-import { IUserTypeDoctor } from 'common/interfaces';
+import defaultAvatar from 'assets/images/default-avatar.svg';
+import AddClinic from '../add-clinic/add-clinic';
+
+const DEFAULT_FILE_IDX = 0;
 
 type Props = {
   user: IUser;
@@ -22,6 +28,13 @@ type Props = {
 
 const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
   const birthdate = getFormattedDate(user.birthdate, DateFormat.D_MMMM_YYYY);
+  const dispatch = useDispatch();
+
+  const handleUploadFile = (evt: InputChangeEvent) => {
+    const file = (evt.target.files as FileList)[DEFAULT_FILE_IDX];
+    dispatch(ProfileActionCreator.uploadDocument(file));
+  };
+
   return (
     <div className={styles.mainInfo}>
       <div className={styles.infoHeader}>
@@ -37,7 +50,11 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
       </div>
       <div className={styles.infoBloks}>
         <div className={styles.photo}>
-          <img className={styles.image} src={user.imagePath} alt={user.name} />
+          <img
+            className={styles.image}
+            src={user.imagePath ?? defaultAvatar}
+            alt={user.name}
+          />
         </div>
         <div className={styles.mainUserInfo}>
           <div className={styles.card}>{user.type}</div>
@@ -59,7 +76,25 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
           </div>
         </div>
       </div>
-      { isDoctor && (user as IUserTypeDoctor).doctor?.document && (
+
+      {isDoctor && (
+        <div className={styles.actionWrapper}>
+          <AddClinic user={user as IUserTypeDoctor} />
+          <label htmlFor="uploadFile">
+            <span className={styles.uploadDocument}>Upload document</span>
+            <input
+              className={clsx(styles.inputDocument, 'visually-hidden')}
+              name="uploadFile"
+              type="file"
+              id="uploadFile"
+              hidden
+              onChange={handleUploadFile}
+            />
+          </label>
+        </div>
+      )}
+
+      {isDoctor && (user as IUserTypeDoctor).doctor?.document && (
         <Documents document={(user as IUserTypeDoctor).doctor.document} />
       )}
     </div>

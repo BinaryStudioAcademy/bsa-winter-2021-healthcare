@@ -1,5 +1,6 @@
 import * as React from 'react';
 import iconLogo from 'assets/images/icon-logo.svg';
+import defaultAvatar from 'assets/images/default-avatar.svg';
 import { Button, Link } from '../index';
 import {
   AppRoute,
@@ -10,13 +11,20 @@ import {
 } from 'common/enums';
 import { Props } from './common';
 import { useVisible } from 'hooks';
+import { AuthActionCreator } from 'store/slices';
 import styles from './header.module.scss';
+import { useDispatch } from 'react-redux';
 
 const Header: React.FC<Props> = ({ user }) => {
   const { ref, isVisible, setIsVisible } = useVisible(false);
+  const dispatch = useDispatch();
 
   const toggleShowMenu = () => {
     setIsVisible(!isVisible);
+  };
+
+  const handleLogOutClick = () => {
+    dispatch(AuthActionCreator.logout());
   };
 
   return (
@@ -31,7 +39,6 @@ const Header: React.FC<Props> = ({ user }) => {
         <Link to={AppRoute.DOCTORS}>Doctors</Link>
         <Link to={AppRoute.CLINICS}>Clinics</Link>
         <Link to={`${AppRoute.USER_PROFILE}/${user.id}`}>My Profile</Link>
-        <Link to={AppRoute.MY_CALENDAR}>My Calendar</Link>
         <Link to={AppRoute.MY_CHATS}>My Chats</Link>
       </div>
       <div className={styles.userSection}>
@@ -48,7 +55,7 @@ const Header: React.FC<Props> = ({ user }) => {
           width={35}
           height={32}
           className={styles.avatar}
-          src={user.imagePath}
+          src={user.imagePath ?? defaultAvatar}
         />
         <div className={styles.userInfo}>{user.name}</div>
         <Button
@@ -68,7 +75,7 @@ const Header: React.FC<Props> = ({ user }) => {
               styleType={ButtonStyleType.WITHOUT_BORDER}
               color={ButtonColor.GRAY_LIGHT}
               label="Logout"
-              onClick={toggleShowMenu}
+              onClick={handleLogOutClick}
               hasHiddenLabel={false}
             />
           </div>

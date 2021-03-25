@@ -7,7 +7,7 @@ import {
   documentApi,
   appointment as appointmentService,
 } from 'services';
-import { ReducerName } from 'common/enums';
+import { DocumentStatus, ReducerName, DocumentKey } from 'common/enums';
 import { AppThunk } from 'common/types';
 import {
   IDocument,
@@ -54,6 +54,9 @@ const { reducer, actions } = createSlice({
     },
     setAppointments: (state, action: PayloadAction<IAppointmentInfo[]>) => {
       state.appointments = action.payload;
+    },
+    uploadDocuments: (state, action: PayloadAction<IDocument>) => {
+      (state.user as IUserTypeDoctor).doctor.document = action.payload;
     },
   },
 });
@@ -150,6 +153,23 @@ const getAllAppointments = (doctorId: string): AppThunk => async (dispatch) => {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
     }
+    throw error;
+  }
+};
+
+const uploadDocument = (file: File): AppThunk => async (dispatch) => {
+  try {
+    const path = await uploadFileService.addImage(file);
+    const document = await documentApi.uploadDocument({
+      [DocumentKey.IMAGE_PATH]: path,
+      [DocumentKey.STATUS]: DocumentStatus.IN_REVIEW,
+    });
+    dispatch(actions.uploadDocuments(document));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
   }
 };
 
@@ -162,6 +182,7 @@ const ProfileActionCreator = {
   addDiagnosis,
   uploadImage,
   getAllAppointments,
+  uploadDocument,
 };
 
 export { ProfileActionCreator, reducer };

@@ -13,6 +13,9 @@ const createDoctorModel = (orm: Sequelize): ModelCtor<DoctorInstance> => {
       },
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
+      clinicId: DataTypes.STRING,
+      documentId: DataTypes.STRING,
+      professionId: DataTypes.STRING,
     },
     {
       tableName: TableName.DOCTORS,

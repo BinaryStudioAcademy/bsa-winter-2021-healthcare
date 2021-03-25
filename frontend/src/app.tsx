@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { AppRoute, PermissionName } from 'common/enums';
 import Users from 'components/users/users';
 import Sign from 'components/sign/sign';
@@ -15,6 +15,7 @@ import { AuthorizedRoute } from 'components/common';
 
 const App: React.FC = () => (
   <Switch>
+    <Redirect from={AppRoute.ROOT} exact to={AppRoute.DOCTORS} />
     <Route path={[AppRoute.SIGN_IN, AppRoute.SIGN_UP]} component={Sign} />
     <AuthorizedRoute path={AppRoute.NOTIFICATIONS} component={Notifications} />
     <AuthorizedRoute
