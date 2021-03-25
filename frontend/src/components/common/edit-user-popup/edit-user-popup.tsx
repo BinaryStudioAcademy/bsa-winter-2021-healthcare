@@ -49,8 +49,8 @@ const EditUserPopup: React.FC<Props> = ({ user, isShow, onEditUser, onFormHide }
     mode: 'onChange',
   });
 
-  const handleUploadFile = (event: InputChangeEvent) => {
-    const file = (event.target.files as FileList)[DEFAULT_FILE_IDX];
+  const handleUploadFile = (evt: InputChangeEvent) => {
+    const file = (evt.target.files as FileList)[DEFAULT_FILE_IDX];
     dispatch(ProfileActionCreator.uploadImage(file));
   };
 
