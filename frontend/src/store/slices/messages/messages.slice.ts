@@ -32,6 +32,7 @@ const { reducer, actions } = createSlice({
 
     setUsers: (state, action: PayloadAction<IUser[]>) => {
       state.users = action.payload;
+      state.messages = [];
     },
 
     selectUser: (state, action: PayloadAction<string>) => {
@@ -75,11 +76,6 @@ const loadFilteredUsersAsChats = (name: string): AppThunk => async dispatch => {
   try {
     const response = await userApi.filterUsersByName(name);
     dispatch(actions.setUsers(response));
-
-    const firstUserId: string | undefined = response.find(user => user !== undefined)?.id;
-    firstUserId
-      ? dispatch(selectUser(firstUserId))
-      : dispatch(actions.setMessages([]));
 
   } catch (error) {
     if (error instanceof HttpError) {

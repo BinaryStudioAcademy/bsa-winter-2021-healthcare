@@ -1,9 +1,10 @@
 .messageList {
   display: flex;
   flex-direction: column-reverse;
+  flex-grow: 1;
 
   overflow-y: auto;
-  height: 100%;
+
   padding: 20px 57px;
   border: 1px solid #DBDBDB;
   border-left: 0;

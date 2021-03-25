@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { validateSchema } from '~/middlewares';
 import { message as validationMessageSchema } from '~/validation-schemas';
 import { ApiPath, HttpCode, MessagesApiPath } from '~/common/enums';
-import { messages as messagesService } from '~/services/services';
+import { message as messageService } from '~/services/services';
 
 const initMessagesApi = (apiRouter: Router): Router => {
   const messagesRouter = Router();
@@ -11,7 +11,7 @@ const initMessagesApi = (apiRouter: Router): Router => {
 
   messagesRouter.get(MessagesApiPath.$TO_USER_ID, async (req, res, next) => {
     try {
-      const result = await messagesService.getMessagesByUserId(req.params.toUserId, req.user?.id ?? '');
+      const result = await messageService.getMessagesByUserId(req.params.toUserId, req.user?.id ?? '');
       res.status(HttpCode.OK).json(result);
     } catch (error) {
       next(error);
@@ -20,7 +20,7 @@ const initMessagesApi = (apiRouter: Router): Router => {
 
   messagesRouter.post(MessagesApiPath.ROOT, validateSchema(validationMessageSchema), async (req, res, next) => {
     try {
-      const result = await messagesService.createMessage({ ...req.body, userId: req.user?.id });
+      const result = await messageService.createMessage({ ...req.body, userId: req.user?.id });
       res.status(HttpCode.CREATED).json(result);
     } catch (error) {
       next(error);

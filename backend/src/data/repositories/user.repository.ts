@@ -140,7 +140,7 @@ class User {
     });
   }
 
-  public filterUsersByName(name: string): Promise<IUser[] | null> {
+  public filterUsersByName(name: string): Promise<IUser[]> {
     return UserModel.findAll({
 
       attributes: [

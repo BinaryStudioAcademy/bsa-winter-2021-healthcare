@@ -3,9 +3,9 @@ import { MessageModel } from '../models';
 import { IMessage } from '~/common/interfaces';
 import { MessageKey, SortType } from '~/common/enums';
 
-class MessagesRepository {
+class Messages {
 
-  public getMessagesByUserId(toUserId: string, userId: string): Promise<IMessage[] | null> {
+  public getMessagesByUserId(toUserId: string, userId: string): Promise<IMessage[]> {
     return MessageModel.findAll({
 
       attributes: {
@@ -36,9 +36,9 @@ class MessagesRepository {
     });
   }
 
-  public createMessage(message: IMessage): Promise<IMessage | null> {
+  public createMessage(message: IMessage): Promise<IMessage> {
     return MessageModel.create(message);
   }
 }
 
-export { MessagesRepository };
+export { Messages };

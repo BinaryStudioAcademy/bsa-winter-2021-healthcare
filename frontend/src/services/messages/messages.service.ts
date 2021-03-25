@@ -20,7 +20,7 @@ class Messages {
     this.#apiPrefix = apiPrefix;
   }
 
-  public loadUserMessages(toUserId: string | undefined): Promise<IMessage[]> {
+  public loadUserMessages(toUserId: string): Promise<IMessage[]> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.MESSAGES}/${toUserId}`,
       {

@@ -1,7 +1,7 @@
 import { DoctorModel } from '../models';
 import { IDoctor, IDoctorRegisterPayload } from '~/common/interfaces';
 
-class DoctorRepository {
+class Doctor {
   public createDoctor(doctor: IDoctorRegisterPayload): Promise<IDoctor> {
     return DoctorModel.create(doctor);
   }
@@ -34,4 +34,4 @@ class DoctorRepository {
   }
 }
 
-export { DoctorRepository };
+export { Doctor };
