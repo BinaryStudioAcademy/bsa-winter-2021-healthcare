@@ -34,7 +34,7 @@ const Documents: React.FC<Props> = ({ document, hasPermissionToEdit }) => {
         <span className={clsx(styles[document.status], styles.label)}>
           {documentStatusToReadable[document.status]}
         </span>
-        {hasPermissionToEdit && 
+        {hasPermissionToEdit &&
         <div className={styles.checkButton}>
           <Button
             label="Check document"

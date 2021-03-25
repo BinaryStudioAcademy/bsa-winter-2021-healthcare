@@ -101,7 +101,7 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
       )}
 
       {isDoctor && (user as IUserTypeDoctor).doctor?.document && (
-        <Documents 
+        <Documents
           document={(user as IUserTypeDoctor).doctor.document}
           hasPermissionToEdit={hasPermissionToEdit}
         />
