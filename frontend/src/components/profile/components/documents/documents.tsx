@@ -11,9 +11,10 @@ import styles from './styles.module.scss';
 
 type Props = {
   document: IDocument;
+  hasPermissionToEdit:boolean;
 };
 
-const Documents: React.FC<Props> = ({ document }) => {
+const Documents: React.FC<Props> = ({ document, hasPermissionToEdit }) => {
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
   const dispatch = useDispatch();
 
@@ -33,6 +34,7 @@ const Documents: React.FC<Props> = ({ document }) => {
         <span className={clsx(styles[document.status], styles.label)}>
           {documentStatusToReadable[document.status]}
         </span>
+        {hasPermissionToEdit && 
         <div className={styles.checkButton}>
           <Button
             label="Check document"
@@ -47,7 +49,7 @@ const Documents: React.FC<Props> = ({ document }) => {
             onToggleModal={handleToggleModal}
             onEditDocument={handleEditDocument}
           />
-        </div>
+        </div>}
       </div>
     )
   );
