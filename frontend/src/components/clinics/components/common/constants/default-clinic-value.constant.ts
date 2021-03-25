@@ -7,7 +7,7 @@ const DEFAULT_CLINIC_VALUE: IClinicPayload = {
   [ClinicKey.ADDRESS]: '',
   [ClinicKey.IMAGE_PATH]: ClinicDefaultImage,
   [ClinicKey.CLINIC_TYPE]: ClinicType.STATE,
-  [ClinicKey.CITY_ID]:' ',
+  [ClinicKey.CITY_ID]:'',
 };
 
 export { DEFAULT_CLINIC_VALUE };

@@ -54,7 +54,7 @@ const addClinic = (clinicInfo: IClinicPayload, cityValue?: string): AppThunk => 
   dispatch,
 ) => {
   try {
-    if (clinicInfo.cityId === ' ' && cityValue !== '') {
+    if (clinicInfo.cityId === '' && cityValue !== '') {
       const response = await cityApi.addCity({ name: cityValue });
       dispatch(actions.addCity(response));
       clinicInfo.cityId=response.id;

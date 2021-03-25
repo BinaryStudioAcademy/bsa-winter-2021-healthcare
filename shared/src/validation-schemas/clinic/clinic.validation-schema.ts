@@ -17,8 +17,7 @@ const addClinic = yup.object().shape({
     .oneOf(Object.values(ClinicType))
     .required(),
   [ClinicKey.CITY_ID]: yup
-    .string()
-    .required(ClinicValidationMessage.CITY_REQUIRED),
+    .string(),
 });
 
 export { addClinic };
