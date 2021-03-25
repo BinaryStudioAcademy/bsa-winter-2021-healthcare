@@ -20,8 +20,8 @@
   overflow: hidden;
 }
 
-.image{
-  width:100%;
+.image {
+  width: 100%;
   border-radius: 15px;
 }
 
@@ -89,7 +89,7 @@
   text-align: left;
 }
 
-.icon{
+.icon {
   width: 22px;
   height: 22px;
 }
@@ -104,4 +104,33 @@
   background-image: url('../../../../assets/images/mail.svg');
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.uploadWrapper {
+  display: inline-block;
+  margin-top: 30px;
+}
+
+.uploadDocument {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 230px;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 7px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  background-color: var(--color-primary-dark);
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.92;
+    cursor: pointer;
+  }
+}
+
+.inputDocument {
+  cursor: inherit;
 }

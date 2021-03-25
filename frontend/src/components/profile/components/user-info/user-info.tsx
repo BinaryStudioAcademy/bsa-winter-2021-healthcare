@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { IUser } from 'common/interfaces/user';
-import { BindingCb } from 'common/types';
+import { BindingCb, InputChangeEvent } from 'common/types';
 import { getFormattedDate } from 'helpers';
 import { Button } from 'components/common';
 import {
@@ -13,6 +13,10 @@ import {
 import styles from './styles.module.scss';
 import Documents from '../documents/documents';
 import { IUserTypeDoctor } from 'common/interfaces';
+import { useDispatch } from 'react-redux';
+import { ProfileActionCreator } from 'store/slices';
+
+const DEFAULT_FILE_IDX = 0;
 
 type Props = {
   user: IUser;
@@ -22,6 +26,13 @@ type Props = {
 
 const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
   const birthdate = getFormattedDate(user.birthdate, DateFormat.D_MMMM_YYYY);
+  const dispatch = useDispatch();
+
+  const handleUploadFile = (event: InputChangeEvent) => {
+    const file = (event.target.files as FileList)[DEFAULT_FILE_IDX];
+    dispatch(ProfileActionCreator.uploadDocument(file));
+  };
+
   return (
     <div className={styles.mainInfo}>
       <div className={styles.infoHeader}>
@@ -59,6 +70,14 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
           </div>
         </div>
       </div>
+
+      { isDoctor && (
+        <label htmlFor="uploadFile" className={styles.uploadWrapper}>
+          <span className={styles.uploadDocument}>Upload document</span>
+          <input className={clsx(styles.inputDocument, 'visually-hidden')} name="uploadFile" type="file" id="uploadFile" hidden onChange={handleUploadFile} />
+        </label>
+      )}
+
       { isDoctor && (user as IUserTypeDoctor).doctor?.document && (
         <Documents document={(user as IUserTypeDoctor).doctor.document} />
       )}
