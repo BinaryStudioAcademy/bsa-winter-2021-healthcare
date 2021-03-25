@@ -47,7 +47,7 @@ const createAppointmentAsync = (payload:Partial<ICreateAppointment>): AppThunk =
     const appointmentData:Partial<ICreateAppointment> = {
       ...payload,
       userId: auth.user?.id,
-      doctorId: doctorDetails.doctorDetails?.id,
+      doctorId: doctorDetails.doctorDetails?.doctor?.id,
       type: AppointmentType.OFFLINE,
     };
     await appointment.createAppointment(appointmentData);
