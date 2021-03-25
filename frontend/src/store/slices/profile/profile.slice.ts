@@ -2,10 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   notification as notificationService,
   diagnosis as diagnosisService,
+  uploadFile as uploadFileService,
   userApi,
   documentApi,
 } from 'services';
-import { ReducerName } from 'common/enums';
+import { DocumentStatus, ReducerName, DocumentKey } from 'common/enums';
 import { AppThunk } from 'common/types';
 import {
   IDocument,
@@ -13,6 +14,7 @@ import {
   IEditUserPayload,
   IDiagnosis,
   IUserWithPermissions,
+  IDiagnosisPayload,
 } from 'common/interfaces';
 import { AuthActionCreator } from 'store/slices';
 import { HttpError } from 'exceptions';
@@ -40,8 +42,14 @@ const { reducer, actions } = createSlice({
     setDiagnoses: (state, action: PayloadAction<IDiagnosis[]>) => {
       state.diagnoses = action.payload;
     },
-    addDiagnosis: (state, action: PayloadAction<IDiagnosis>) => {
-      state.diagnoses = [action.payload, ...state.diagnoses];
+    addDiagnosis: (state, action: PayloadAction<IDiagnosis[]>) => {
+      state.diagnoses = [...action.payload, ...state.diagnoses];
+    },
+    uploadDocuments: (state, action: PayloadAction<IDocument>) => {
+      (state.user as IUserTypeDoctor).doctor.document = action.payload;
+    },
+    editImagePath: (state, action: PayloadAction<string>) => {
+      (state.user as IUserWithPermissions).imagePath = action.payload;
     },
   },
 });
@@ -50,6 +58,18 @@ const getUser = (id: string): AppThunk => async (dispatch) => {
   try {
     const user = await userApi.getUser(id);
     dispatch(actions.setUser(user));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
+const uploadImage = (file: File): AppThunk => async (dispatch) => {
+  try {
+    const path = await uploadFileService.addImage(file);
+    dispatch(actions.editImagePath(path));
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
@@ -92,9 +112,9 @@ const editUserDocument = (payload: IDocument): AppThunk => async (dispatch) => {
   }
 };
 
-const getAllDiagnoses = (userId: string): AppThunk => async (dispatch) => {
+const getAllDiagnoses = (): AppThunk => async (dispatch) => {
   try {
-    const diagnoses = await diagnosisService.getAllByUserId(userId);
+    const diagnoses = await diagnosisService.getAllDiagnoses();
     dispatch(actions.setDiagnoses(diagnoses));
   } catch (error) {
     if (error instanceof HttpError) {
@@ -104,12 +124,28 @@ const getAllDiagnoses = (userId: string): AppThunk => async (dispatch) => {
   }
 };
 
-const addDiagnosis = (userId: string, diagnosis: string): AppThunk => async (
+const addDiagnosis = (diagnosis: IDiagnosisPayload): AppThunk => async (
   dispatch,
 ) => {
   try {
-    const response = await diagnosisService.create(userId, diagnosis);
-    dispatch(actions.addDiagnosis(response));
+    const response = await diagnosisService.create(diagnosis);
+    dispatch(actions.addDiagnosis([response]));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
+const uploadDocument = (file: File): AppThunk => async (dispatch) => {
+  try {
+    const path = await uploadFileService.addImage(file);
+    const document = await documentApi.uploadDocument({
+      [DocumentKey.IMAGE_PATH]: path,
+      [DocumentKey.STATUS]: DocumentStatus.IN_REVIEW,
+    });
+    dispatch(actions.uploadDocuments(document));
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
@@ -125,6 +161,8 @@ const ProfileActionCreator = {
   editUserDocument,
   getAllDiagnoses,
   addDiagnosis,
+  uploadDocument,
+  uploadImage,
 };
 
 export { ProfileActionCreator, reducer };

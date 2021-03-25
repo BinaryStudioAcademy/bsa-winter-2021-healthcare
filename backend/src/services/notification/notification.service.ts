@@ -1,3 +1,4 @@
+import { INotification } from '~/common/interfaces';
 import { NotificationKey } from '~/common/enums';
 import { notification as notificationRepository, geolocation as geolocationRepository } from '~/data/repositories';
 import { ICoordsSet, INewNotification } from '~/common/interfaces';
@@ -22,6 +23,10 @@ class Notification {
 
       notificationRepository.createNotification(newNotification);
     });
+  }
+
+  public getNotificationsByUser(userId: string): Promise<INotification[]> {
+    return notificationRepository.getNotificationsByUser(userId);
   }
 }
 

@@ -4,22 +4,16 @@ import { useParams } from 'react-router';
 import {
   SideMenu,
   UserInfo,
-  Documents,
   Diagnoses,
-  AddClinic,
 } from './components';
 import { EditUserPopup } from 'components/common';
-import {
-  IEditUserPayload,
-  IUserTypeDoctor,
-  IUserWithPermissions,
-} from 'common/interfaces';
+import { IEditUserPayload, IUserWithPermissions } from 'common/interfaces';
 import { UserType } from 'common/enums';
 import { RootState } from 'common/types';
 import { ProfileActionCreator } from 'store/slices';
+import { ProfileTab } from './common/enums';
 
 import styles from './styles.module.scss';
-import { ProfileTab } from './common/enums';
 
 type RouteParam = {
   id: string;
@@ -41,7 +35,7 @@ const Profile: React.FC = () => {
   const getProfileTab = (tab: ProfileTab) => {
     switch (tab) {
       case ProfileTab.DIAGNOSES: {
-        return <Diagnoses user={user as IUserWithPermissions} />;
+        return <Diagnoses userId={user?.id as string} isDoctor={isDoctor} />;
       }
 
       default:
@@ -50,8 +44,8 @@ const Profile: React.FC = () => {
             <UserInfo
               user={user as IUserWithPermissions}
               onEdit={handleTogglePopUp}
+              isDoctor
             />
-            {isDoctor && <AddClinic user={user as IUserTypeDoctor} />}
           </>
         );
     }
@@ -78,9 +72,6 @@ const Profile: React.FC = () => {
         <>
           <div className={styles.infoContainer}>
             {getProfileTab(profileTab)}
-            {isDoctor && (
-              <Documents document={(user as IUserTypeDoctor).doctor.document} />
-            )}
           </div>
           <EditUserPopup
             isShow={isEditMode}

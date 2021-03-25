@@ -10,8 +10,8 @@ const useVisible = (isInitialIsVisible: boolean): VisibleHookType => {
   const [isVisible, setIsVisible] = React.useState<boolean>(isInitialIsVisible);
   const ref = React.useRef<HTMLDivElement>(null);
 
-  const handleClickOutside = (event: MouseEvent) => {
-    const element = event.target as HTMLElement;
+  const handleClickOutside = (evt: MouseEvent) => {
+    const element = evt.target as HTMLElement;
     if (ref.current && !ref.current.contains(element)) {
       setIsVisible(false);
     }

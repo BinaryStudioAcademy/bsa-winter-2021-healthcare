@@ -18,3 +18,4 @@ export * from './filtration';
 export * from './profession';
 export * from './map';
 export * from './doctor-register-payload';
+export * from './doctor-extended';

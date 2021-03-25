@@ -11,14 +11,14 @@ import { ReducerName, DataStatus } from 'common/enums';
 
 type DoctorsState = {
   doctors: IUserTypeDoctor[];
-  doctorDetails: IDoctorDetails | null;
   dataStatus: DataStatus;
+  doctorDetails: IDoctorDetails | null;
 };
 
 const initialState: DoctorsState = {
   doctors: [],
-  doctorDetails: null,
   dataStatus: DataStatus.PENDING,
+  doctorDetails:null,
 };
 
 const { reducer, actions } = createSlice({
@@ -31,7 +31,6 @@ const { reducer, actions } = createSlice({
     },
     setDoctorDetail: (state, action: PayloadAction<IDoctorDetails>) => {
       state.doctorDetails = action.payload;
-      state.dataStatus = DataStatus.SUCCESS;
     },
   },
 });

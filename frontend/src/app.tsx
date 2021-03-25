@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { AppRoute, PermissionName } from 'common/enums';
 import Users from 'components/users/users';
 import Sign from 'components/sign/sign';
@@ -8,13 +8,16 @@ import Profile from 'components/profile/profile';
 import Clinics from 'components/clinics/clinics';
 import Doctors from 'components/doctors/doctors';
 import DoctorDetails from 'components/doctor-details/doctor-details';
+import Notifications from 'components/notifications/notifications';
 import Map from 'components/map/map';
 import Permissions from 'components/permissions/permissions-page';
 import { AuthorizedRoute } from 'components/common';
 
 const App: React.FC = () => (
   <Switch>
+    <Redirect from={AppRoute.ROOT} exact to={AppRoute.DOCTORS} />
     <Route path={[AppRoute.SIGN_IN, AppRoute.SIGN_UP]} component={Sign} />
+    <AuthorizedRoute path={AppRoute.NOTIFICATIONS} component={Notifications} />
     <AuthorizedRoute
       path={AppRoute.USER_PROFILE_$ID}
       exact

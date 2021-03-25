@@ -1,9 +1,14 @@
 .profileContainer {
-  display: flex;
-  flex-grow: 1;
+  display: grid;
+  flex: 1 1;
+  grid-template-columns: 300px auto;
+  grid-template-rows: 100%;
 }
 
 .infoContainer {
+  grid-column: 2;
+  grid-row: 1;
   padding: 57px;
+  height: 100%;
 }
 

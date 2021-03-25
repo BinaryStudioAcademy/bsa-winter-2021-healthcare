@@ -18,29 +18,33 @@ interface Props {
 const Radio: React.FC<Props> = ({ options, register, value, isDisabled, errors, name }) => {
   const hasError = Boolean(errors[name]);
   return (
-    <div className={styles.radioContainer}>
-      {
-        options.map(option => (
-          <label
-            key={option.value}
-            className={clsx(styles.radioLabel,
-              hasError && styles.error,
-              option.value === value && styles.isChecked)
-            }
-          >
-            {option.label}
-            <input
-              disabled={isDisabled}
-              name={name}
-              ref={register}
-              value={option.value}
-              className={styles.radioInput}
-              type="radio"
-            />
-            <ErrorMessage errors={errors} as="span" name={name} />
-          </label>
-        ))
-      }
+    <div className={styles.mainContainer}>
+      <div className={styles.radioContainer}>
+        {
+          options.map(option => (
+            <label
+              key={option.value}
+              className={clsx(styles.radioLabel,
+                hasError && styles.error,
+                option.value === value && styles.isChecked)
+              }
+            >
+              {option.label}
+              <input
+                disabled={isDisabled}
+                name={name}
+                ref={register}
+                value={option.value}
+                className={styles.radioInput}
+                type="radio"
+              />
+            </label>
+          ))
+        }
+      </div>
+      <div className={styles.errorContainer}>
+        <ErrorMessage errors={errors} as="span" name={name} />
+      </div>
     </div>
   );
 };

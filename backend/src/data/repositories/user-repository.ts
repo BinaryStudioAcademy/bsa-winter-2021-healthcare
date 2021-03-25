@@ -23,6 +23,7 @@ import {
   CityKey,
   ProfessionKey,
 } from '~/common/enums';
+import { Op } from 'sequelize';
 
 class User {
   public getById(id: string): Promise<IUser | null> {
@@ -50,10 +51,8 @@ class User {
     if (type === UserType.DOCTOR) {
       const where = {
         type,
-        ...(filter.doctorName && { name: filter.doctorName }),
-        ...(filter.typeOfClinic && {
-          '$doctor.clinic.clinicType$': filter.typeOfClinic,
-        }),
+        ...(filter.doctorName && { name: { [Op.iLike]: `%${filter.doctorName}%` } }),
+        ...(filter.typeOfClinic && { '$doctor.clinic.clinicType$': filter.typeOfClinic }),
         ...(filter.city && { '$doctor.clinic.city.name$': filter.city }),
         ...(filter.specialty && {
           '$doctor.profession.name$': filter.specialty,
