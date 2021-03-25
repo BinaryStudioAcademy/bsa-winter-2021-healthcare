@@ -80,3 +80,25 @@
   text-shadow: 0 0 0 gray;
   cursor: pointer;
 }
+
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 157px;
+  height: 150px;
+  border-radius: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 157px 150px;
+  cursor: pointer;
+}
+
+.photoEditContainer {
+  width: 157px;
+  height: 30px;
+  background-image: url(../../../assets/images/photo-edit.svg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

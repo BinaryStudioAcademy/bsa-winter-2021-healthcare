@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
 import {
   ButtonColor,
   ButtonStyleType,
@@ -17,12 +18,18 @@ import { editUser as validationEditUser } from 'validation-schemas';
 import { Button, DateInput, Select, TextInput, Modal } from 'components/common';
 import { createOptions } from 'helpers';
 import { EditUserCb, HideFormCb } from 'components/users/common/types';
+import { InputChangeEvent } from 'common/types';
+import defaultAvatar from 'assets/images/default-avatar.svg';
+import camera from 'assets/images/camera.svg';
+import { ProfileActionCreator } from 'store/slices';
+
+const DEFAULT_FILE_IDX = 0;
 
 type Props = {
   user: IUser;
   onEditUser: EditUserCb;
   onFormHide: HideFormCb;
-  isShow:boolean;
+  isShow: boolean;
 };
 
 const genderOptions = createOptions<string>(Object.values(UserSex));
@@ -34,13 +41,22 @@ const EditUserPopup: React.FC<Props> = ({ user, isShow, onEditUser, onFormHide }
     birthdate: new Date(user.birthdate),
   };
 
+  const dispatch = useDispatch();
+
   const { handleSubmit, errors, control } = useForm<IEditUserPayload>({
     resolver: yupResolver(validationEditUser),
     defaultValues: userWithDate,
     mode: 'onChange',
   });
 
-  const handleFormSubmit = (userData: IEditUserPayload) => onEditUser(userData);
+  const handleUploadFile = (event: InputChangeEvent) => {
+    const file = (event.target.files as FileList)[DEFAULT_FILE_IDX];
+    dispatch(ProfileActionCreator.uploadImage(file));
+  };
+
+  const handleFormSubmit = (userData: IEditUserPayload) => {
+    onEditUser({ ...userData, imagePath: user.imagePath });
+  };
 
   return (
     <Modal isShow={isShow}>
@@ -59,6 +75,17 @@ const EditUserPopup: React.FC<Props> = ({ user, isShow, onEditUser, onFormHide }
               &#10060;
               <span className="visually-hidden">Close edit user popup</span>
             </button>
+          </div>
+
+          <div>
+            <label htmlFor="uploadFile">
+              <div className={styles.imageContainer} style={{ backgroundImage: `url(${user.imagePath ?? defaultAvatar})` }}>
+                <div className={styles.photoEditContainer}>
+                  <img src={camera} alt="camera" width="20" height="20" loading="lazy" />
+                </div>
+              </div>
+              <input className="visually-hidden" name="uploadFile" type="file" id="uploadFile" hidden onChange={handleUploadFile} />
+            </label>
           </div>
 
           <div className={styles.inputBlock}>
@@ -145,18 +172,6 @@ const EditUserPopup: React.FC<Props> = ({ user, isShow, onEditUser, onFormHide }
               hasHiddenLabel={false}
               placeholder="Status"
               options={userTypeOptions}
-              color={InputColor.GRAY_LIGHT}
-              control={control}
-              errors={errors}
-            />
-          </div>
-
-          <div className={styles.inputBlock} style={{ display: 'none' }}>
-            <TextInput
-              name={EditUserPayloadKey.IMAGE_PATH}
-              label="Avatar"
-              hasHiddenLabel={true}
-              type={InputType.HIDDEN}
               color={InputColor.GRAY_LIGHT}
               control={control}
               errors={errors}
