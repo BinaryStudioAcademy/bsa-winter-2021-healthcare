@@ -13,6 +13,7 @@ import {
 import styles from './styles.module.scss';
 import Documents from '../documents/documents';
 import { IUserTypeDoctor } from 'common/interfaces';
+import defaultAvatar from 'assets/images/default-avatar.svg';
 
 type Props = {
   user: IUser;
@@ -37,7 +38,7 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
       </div>
       <div className={styles.infoBloks}>
         <div className={styles.photo}>
-          <img className={styles.image} src={user.imagePath} alt={user.name} />
+          <img className={styles.image} src={user.imagePath ?? defaultAvatar} alt={user.name} />
         </div>
         <div className={styles.mainUserInfo}>
           <div className={styles.card}>{user.type}</div>

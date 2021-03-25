@@ -48,10 +48,6 @@ const userRegister = yup.object().shape({
     .mixed<UserType>()
     .oneOf(Object.values(UserType))
     .required(),
-  [RegisterPayloadKey.IMAGE_PATH]: yup
-    .string()
-    .required(RegisterValidationMessage.IMAGE_REQUIRED)
-    .url(RegisterValidationMessage.IMAGE_INCORRECT),
 });
 
 export { userRegister };

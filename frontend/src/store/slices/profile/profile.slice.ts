@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   notification as notificationService,
   diagnosis as diagnosisService,
+  uploadFile as uploadFileService,
   userApi,
   documentApi,
 } from 'services';
@@ -44,6 +45,9 @@ const { reducer, actions } = createSlice({
     addDiagnosis: (state, action: PayloadAction<IDiagnosis[]>) => {
       state.diagnoses = [...action.payload, ...state.diagnoses];
     },
+    editImagePath: (state, action: PayloadAction<string>) => {
+      (state.user as IUserWithPermissions).imagePath = action.payload;
+    },
   },
 });
 
@@ -51,6 +55,18 @@ const getUser = (id: string): AppThunk => async (dispatch) => {
   try {
     const user = await userApi.getUser(id);
     dispatch(actions.setUser(user));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
+const uploadImage = (file: File): AppThunk => async (dispatch) => {
+  try {
+    const path = await uploadFileService.addImage(file);
+    dispatch(actions.editImagePath(path));
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
@@ -126,6 +142,7 @@ const ProfileActionCreator = {
   editUserDocument,
   getAllDiagnoses,
   addDiagnosis,
+  uploadImage,
 };
 
 export { ProfileActionCreator, reducer };

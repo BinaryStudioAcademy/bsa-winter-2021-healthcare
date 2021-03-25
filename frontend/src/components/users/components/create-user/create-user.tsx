@@ -34,8 +34,6 @@ const DEFAULT_VALUES: IRegisterPayload = {
   [RegisterPayloadKey.RETYPE_PASSWORD]: '',
   [RegisterPayloadKey.PHONE]: '',
   [RegisterPayloadKey.TYPE]: UserType.PATIENT,
-  [RegisterPayloadKey.IMAGE_PATH]:
-    'https://www.pikpng.com/pngl/b/80-805523_default-avatar-svg-png-icon-free-download-264157.png',
 };
 
 const genderOptions = createOptions<string>(Object.values(UserSex));
