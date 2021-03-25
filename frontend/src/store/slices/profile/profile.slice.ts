@@ -48,6 +48,9 @@ const { reducer, actions } = createSlice({
     uploadDocuments: (state, action: PayloadAction<IDocument>) => {
       (state.user as IUserTypeDoctor).doctor.document = action.payload;
     },
+    editImagePath: (state, action: PayloadAction<string>) => {
+      (state.user as IUserWithPermissions).imagePath = action.payload;
+    },
   },
 });
 
@@ -55,6 +58,18 @@ const getUser = (id: string): AppThunk => async (dispatch) => {
   try {
     const user = await userApi.getUser(id);
     dispatch(actions.setUser(user));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
+const uploadImage = (file: File): AppThunk => async (dispatch) => {
+  try {
+    const path = await uploadFileService.addImage(file);
+    dispatch(actions.editImagePath(path));
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
@@ -147,6 +162,7 @@ const ProfileActionCreator = {
   getAllDiagnoses,
   addDiagnosis,
   uploadDocument,
+  uploadImage,
 };
 
 export { ProfileActionCreator, reducer };

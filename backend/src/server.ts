@@ -20,14 +20,13 @@ sequelize
   .catch(({ message, stack }: DbConnectionError) => {
     return logger.error(message, stack);
   });
-
 app.use(setTraceId);
 app.use(logRequest);
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(passport.initialize());
 
-app.use(`${AppConfig.API_V1_PREFIX}`, authorizationMiddleware(routesWhiteList));
+app.use(AppConfig.API_V1_PREFIX, authorizationMiddleware(routesWhiteList));
 
 initApi(app);
 
