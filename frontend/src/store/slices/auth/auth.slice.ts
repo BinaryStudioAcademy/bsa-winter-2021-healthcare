@@ -4,6 +4,7 @@ import { IUserWithPermissions, IUserLoginPayload, IRegisterPayload } from 'commo
 import { authApi, notification as notificationService, storage, geolocation as geolocationService } from 'services';
 import { LoginResponse } from 'common/types/responses';
 import { HttpError } from 'exceptions';
+import { AppThunk } from 'common/types';
 
 type AuthState = {
   user: IUserWithPermissions | null;
@@ -59,6 +60,9 @@ const { reducer, actions } = createSlice({
     setUser:(state, action: PayloadAction<IUserWithPermissions>) => {
       state.user = action.payload;
     },
+    removeUser: (state) => {
+      state.user = null;
+    },
   },
   extraReducers: (builder) => {
     const sharedReducer = (
@@ -73,10 +77,16 @@ const { reducer, actions } = createSlice({
   },
 });
 
+const logout = (): AppThunk => async(dispatch) => {
+  storage.removeItem(StorageKey.TOKEN);
+  dispatch(actions.removeUser());
+};
+
 const AuthActionCreator = {
   ...actions,
   login,
   registration,
+  logout,
 };
 
 export { AuthActionCreator, reducer };
