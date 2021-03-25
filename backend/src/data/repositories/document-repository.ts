@@ -9,6 +9,10 @@ class Document {
     });
     return document;
   }
+
+  public addDocument(data: IDocument): Promise<IDocument> {
+    return DocumentModel.create(data);
+  }
 }
 
 export { Document };
