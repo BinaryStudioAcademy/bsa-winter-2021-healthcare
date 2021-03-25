@@ -72,5 +72,13 @@ class UserApi {
       method: HttpMethod.GET,
     });
   }
+
+  public getCurrentUser(): Promise<IUser> {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.CURRENT_USER}`,
+      {
+        method: HttpMethod.GET,
+      },
+    );
+  }
 }
 export { UserApi };
