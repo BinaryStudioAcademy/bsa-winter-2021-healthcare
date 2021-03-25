@@ -13,12 +13,12 @@ class Document {
   }
 
   public async addDocumentIdToDoctor(document: IDocument, userId: string): Promise<IDoctor> {
-    const doctor = await doctorService.getByUserId(userId);
-    const newDoctorData = {
+    const doctor: IDoctor | null = await doctorService.getByUserId(userId);
+    const newDoctorData: IDoctor = {
       ...doctor as IDoctor,
       [DoctorKey.DOCUMENT_ID]: document.id as string,
     };
-    const updatedDoctor = await doctorService.updateByUserId(userId, newDoctorData);
+    const updatedDoctor: IDoctor = await doctorService.updateByUserId(userId, newDoctorData);
     return updatedDoctor;
   }
 }
