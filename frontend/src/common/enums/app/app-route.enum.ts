@@ -10,7 +10,6 @@ enum AppRoute {
   USER_PROFILE_$ID = '/user-profile/:id',
   DIAGNOSES = '/diagnoses',
   USER_PROFILE_$ID_DIAGNOSES = '/user-profile/:id/diagnoses',
-  MY_CALENDAR = '/my-calendar',
   MY_CHATS = '/my-chats',
   NOTIFICATIONS = '/notifications',
   MAP = '/map',
