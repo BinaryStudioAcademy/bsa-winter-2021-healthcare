@@ -47,7 +47,7 @@ const SelectClinic: React.FC<Props> = ({ user, doctorDetails }) => {
       label: clinicName,
     }),
   );
-  
+
   const handleSubmitForm = (data: DoctorsClinic) => {
     dispatch(
       DoctorsActionCreator.addDoctorToClinic(user.id as string, data.name),
