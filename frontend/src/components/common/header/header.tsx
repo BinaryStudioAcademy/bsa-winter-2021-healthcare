@@ -11,13 +11,20 @@ import {
 } from 'common/enums';
 import { Props } from './common';
 import { useVisible } from 'hooks';
+import { AuthActionCreator } from 'store/slices';
 import styles from './header.module.scss';
+import { useDispatch } from 'react-redux';
 
 const Header: React.FC<Props> = ({ user }) => {
   const { ref, isVisible, setIsVisible } = useVisible(false);
+  const dispatch = useDispatch();
 
   const toggleShowMenu = () => {
     setIsVisible(!isVisible);
+  };
+
+  const handleLogOutClick = () => {
+    dispatch(AuthActionCreator.logout());
   };
 
   return (
@@ -69,7 +76,7 @@ const Header: React.FC<Props> = ({ user }) => {
               styleType={ButtonStyleType.WITHOUT_BORDER}
               color={ButtonColor.GRAY_LIGHT}
               label="Logout"
-              onClick={toggleShowMenu}
+              onClick={handleLogOutClick}
               hasHiddenLabel={false}
             />
           </div>
