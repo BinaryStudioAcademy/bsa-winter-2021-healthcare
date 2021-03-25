@@ -27,6 +27,16 @@ class DocumentApi {
       payload: document,
     });
   }
+
+  public uploadDocument(
+    document: Partial<IDocument>,
+  ): Promise<IDocument> {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.DOCUMENTS}`, {
+      method: HttpMethod.POST,
+      contentType: ContentType.JSON,
+      payload: document,
+    });
+  }
 }
 
 export { DocumentApi };
