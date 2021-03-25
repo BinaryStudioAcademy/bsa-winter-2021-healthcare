@@ -39,7 +39,6 @@ const Header: React.FC<Props> = ({ user }) => {
         <Link to={AppRoute.DOCTORS}>Doctors</Link>
         <Link to={AppRoute.CLINICS}>Clinics</Link>
         <Link to={`${AppRoute.USER_PROFILE}/${user.id}`}>My Profile</Link>
-        <Link to={AppRoute.MY_CALENDAR}>My Calendar</Link>
         <Link to={AppRoute.MY_CHATS}>My Chats</Link>
       </div>
       <div className={styles.userSection}>
