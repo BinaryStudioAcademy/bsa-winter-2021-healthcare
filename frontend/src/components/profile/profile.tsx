@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
-import { SideMenu, UserInfo, Diagnoses } from './components';
+import {
+  SideMenu,
+  UserInfo,
+  Diagnoses,
+} from './components';
 import { EditUserPopup } from 'components/common';
 import { IEditUserPayload, IUserWithPermissions } from 'common/interfaces';
 import { UserType } from 'common/enums';
@@ -36,11 +40,13 @@ const Profile: React.FC = () => {
 
       default:
         return (
-          <UserInfo
-            user={user as IUserWithPermissions}
-            isDoctor={isDoctor}
-            onEdit={handleTogglePopUp}
-          />
+          <>
+            <UserInfo
+              user={user as IUserWithPermissions}
+              onEdit={handleTogglePopUp}
+              isDoctor
+            />
+          </>
         );
     }
   };
