@@ -1,7 +1,7 @@
 import { PermissionModel, UserPermissionModel } from '../models';
 import { IUserPermission } from '~/common/interfaces';
 
-class PermissionRepository {
+class Permission {
 
   public getAll(): Promise<IUserPermission[]> {
     return PermissionModel.findAll();
@@ -20,4 +20,4 @@ class PermissionRepository {
   }
 }
 
-export { PermissionRepository };
+export { Permission };

@@ -1,7 +1,7 @@
 import { CityModel } from '../models';
 import { ICity } from '~/common/interfaces';
 
-class CityRepository {
+class City {
 
   public getAll(): Promise<ICity[]> {
     return CityModel.findAll();
@@ -12,4 +12,4 @@ class CityRepository {
   }
 }
 
-export { CityRepository };
+export { City };
