@@ -16,7 +16,7 @@ import {
   IDiagnosis,
   IUserWithPermissions,
   IDiagnosisPayload,
-  IAppointment,
+  IAppointmentInfo,
 } from 'common/interfaces';
 import { AuthActionCreator } from 'store/slices';
 import { HttpError } from 'exceptions';
@@ -24,7 +24,7 @@ import { HttpError } from 'exceptions';
 interface IState {
   user: IUserWithPermissions | null;
   diagnoses: IDiagnosis[];
-  appointments: IAppointment[];
+  appointments: IAppointmentInfo[];
 }
 
 const initialState: IState = {
@@ -52,7 +52,7 @@ const { reducer, actions } = createSlice({
     editImagePath: (state, action: PayloadAction<string>) => {
       (state.user as IUserWithPermissions).imagePath = action.payload;
     },
-    setAppointments: (state, action: PayloadAction<IAppointment[]>) => {
+    setAppointments: (state, action: PayloadAction<IAppointmentInfo[]>) => {
       state.appointments = action.payload;
     },
   },
@@ -142,9 +142,9 @@ const addDiagnosis = (diagnosis: IDiagnosisPayload): AppThunk => async (
   }
 };
 
-const getAllAppointments = (): AppThunk => async (dispatch) => {
+const getAllAppointments = (doctorId: string): AppThunk => async (dispatch) => {
   try {
-    const appointments = await appointmentService.getAll();
+    const appointments = await appointmentService.getAllById(doctorId);
     dispatch(actions.setAppointments(appointments));
   } catch (error) {
     if (error instanceof HttpError) {
