@@ -9,7 +9,7 @@ class Doctor {
   public addDoctorToClinic(doctorId:string,clinicId:string): Promise<boolean>{
     return doctorRepository.addDoctorToClinic(doctorId,clinicId);
   }
-  
+
   public getByUserId(userId: string): Promise<IDoctor | null> {
     return doctorRepository.getByUserId(userId);
   }
