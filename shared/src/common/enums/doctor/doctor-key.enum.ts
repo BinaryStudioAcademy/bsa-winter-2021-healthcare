@@ -4,6 +4,9 @@ enum DoctorKey {
   USER_ID = 'userId',
   CREATED_AT = 'createdAt',
   UPDATED_AT = 'updatedAt',
+  DOCUMENT_ID = 'documentId',
+  PROFESSION_ID = 'professionId',
+  CLINIC_ID = 'clinicId',
 }
 
 export { DoctorKey };
