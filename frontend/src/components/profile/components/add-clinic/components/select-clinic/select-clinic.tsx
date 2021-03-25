@@ -41,22 +41,23 @@ const SelectClinic: React.FC<Props> = ({ user, doctorDetails }) => {
   });
 
   const clinicsNamesOptions = createOptions<string>(
-    Object.values(getClinicsName(clinics)),
+    getClinicsName(clinics),
+    (clinicName) => ({
+      value: getClinicByName(clinicName, clinics)!.id,
+      label: clinicName,
+    }),
   );
+  
   const handleSubmitForm = (data: DoctorsClinic) => {
-    const clinicName = data.name;
-    const clinic = getClinicByName(clinicName, clinics);
-
     dispatch(
-      clinic &&
-        DoctorsActionCreator.addDoctorToClinic(user.id as string, clinic.id),
+      DoctorsActionCreator.addDoctorToClinic(user.id as string, data.name),
     );
   };
 
   React.useEffect(() => {
     doctorDetails &&
       doctorDetails.doctor.clinic &&
-      setValue(ClinicKey.NAME, doctorDetails.doctor.clinic.name);
+      setValue(ClinicKey.NAME, doctorDetails.doctor.clinic.id);
   }, [doctorDetails]);
 
   return (
