@@ -19,7 +19,7 @@ const AddClinic: React.FC<Props> = ({ user }) => {
   React.useEffect(() => {
     dispatch(ClinicsActionCreator.getClinics());
     user.id && dispatch(DoctorsActionCreator.getDoctorDetailsAsync(user.id));
-  }, []);
+  }, [user]);
 
   return <SelectClinic user={user} doctorDetails={doctorDetails} />;
 };
