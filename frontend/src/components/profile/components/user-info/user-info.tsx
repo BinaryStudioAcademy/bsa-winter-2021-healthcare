@@ -29,8 +29,8 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
   const birthdate = getFormattedDate(user.birthdate, DateFormat.D_MMMM_YYYY);
   const dispatch = useDispatch();
 
-  const handleUploadFile = (event: InputChangeEvent) => {
-    const file = (event.target.files as FileList)[DEFAULT_FILE_IDX];
+  const handleUploadFile = (evt: InputChangeEvent) => {
+    const file = (evt.target.files as FileList)[DEFAULT_FILE_IDX];
     dispatch(ProfileActionCreator.uploadDocument(file));
   };
 
