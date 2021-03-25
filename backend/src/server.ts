@@ -1,12 +1,14 @@
 import { join } from 'path';
 import express, { json, urlencoded } from 'express';
 import passport from 'passport';
-import { ENV } from '~/common/enums';
+import { AppConfig, ENV } from '~/common/enums';
 import { initApi } from '~/api/api';
 import { logger } from '~/services/services';
 import { setTraceId, logRequest, handleError } from '~/middlewares';
 import { DbConnectionError } from '~/exceptions';
 import { sequelize } from '~/data/db/connection';
+import { authorization as authorizationMiddleware } from './middlewares';
+import { routesWhiteList } from './configs';
 
 const app = express();
 
@@ -18,12 +20,13 @@ sequelize
   .catch(({ message, stack }: DbConnectionError) => {
     return logger.error(message, stack);
   });
-
 app.use(setTraceId);
 app.use(logRequest);
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(passport.initialize());
+
+app.use(AppConfig.API_V1_PREFIX, authorizationMiddleware(routesWhiteList));
 
 initApi(app);
 
