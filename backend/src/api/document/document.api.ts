@@ -11,7 +11,7 @@ const initDocumentApi = (apiRouter: Router): Router => {
     try {
       const newDocument = await documentService.createDocument(req.body);
       await documentService.addDocumentIdToDoctor(newDocument, req.user?.id as string);
-      res.status(HttpCode.OK).json(newDocument);
+      res.status(HttpCode.CREATED).json(newDocument);
     } catch(error) {
       next(error);
     }
