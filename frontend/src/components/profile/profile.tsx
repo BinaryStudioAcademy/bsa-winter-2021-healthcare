@@ -51,7 +51,7 @@ const Profile: React.FC = () => {
               user={user as IUserWithPermissions}
               onEdit={handleTogglePopUp}
             />
-            <AddClinic user={user as IUserTypeDoctor} />
+            {isDoctor && <AddClinic user={user as IUserTypeDoctor} />}
           </>
         );
     }
