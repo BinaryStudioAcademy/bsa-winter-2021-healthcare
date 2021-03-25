@@ -4,16 +4,21 @@ import { ProfileTab } from 'components/profile/common';
 import { SideMenuItem } from 'components/profile/components';
 
 type Props = {
+  isDoctor: boolean;
   onChangeProfileTab: React.Dispatch<React.SetStateAction<ProfileTab>>;
 };
 
-const SideMenu: React.FC<Props> = ({ onChangeProfileTab }) => {
+const SideMenu: React.FC<Props> = ({ isDoctor, onChangeProfileTab }) => {
   const handleChangeTabToPersonalInfo = () => {
     onChangeProfileTab(ProfileTab.PERSONAL_INFO);
   };
 
   const handleChangeTabToDiagnoses = () => {
     onChangeProfileTab(ProfileTab.DIAGNOSES);
+  };
+
+  const handleChangeTabToAppointments = () => {
+    onChangeProfileTab(ProfileTab.APPOINTMENTS);
   };
 
   return (
@@ -29,6 +34,13 @@ const SideMenu: React.FC<Props> = ({ onChangeProfileTab }) => {
         title="Diagnoses"
         onChangeProfileTab={handleChangeTabToDiagnoses}
       />
+      {isDoctor && (
+        <SideMenuItem
+          iconStyle={styles.appointment}
+          title="Appointments"
+          onChangeProfileTab={handleChangeTabToAppointments}
+        />
+      )}
     </div>
   );
 };

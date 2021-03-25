@@ -10,6 +10,7 @@ import { ProfileActionCreator } from 'store/slices';
 import { ProfileTab } from './common/enums';
 
 import styles from './styles.module.scss';
+import Appointments from './components/appointments/appointments';
 
 type RouteParam = {
   id: string;
@@ -31,7 +32,11 @@ const Profile: React.FC = () => {
   const getProfileTab = (tab: ProfileTab) => {
     switch (tab) {
       case ProfileTab.DIAGNOSES: {
-        return <Diagnoses userId={user?.id as string} isDoctor={isDoctor} />;
+        return <Diagnoses userId={user?.id as string} />;
+      }
+
+      case ProfileTab.APPOINTMENTS: {
+        return <Appointments />;
       }
 
       default:
@@ -47,7 +52,8 @@ const Profile: React.FC = () => {
 
   React.useEffect(() => {
     dispatch(ProfileActionCreator.getUser(id));
-  }, []);
+    setProfileTab(ProfileTab.PERSONAL_INFO);
+  }, [id]);
 
   const handleTogglePopUp = () => {
     setIsEditMode(!isEditMode);
@@ -61,7 +67,7 @@ const Profile: React.FC = () => {
 
   return (
     <div className={styles.profileContainer}>
-      <SideMenu onChangeProfileTab={setProfileTab} />
+      <SideMenu isDoctor={isDoctor} onChangeProfileTab={setProfileTab} />
       {user && (
         <>
           <div className={styles.infoContainer}>
