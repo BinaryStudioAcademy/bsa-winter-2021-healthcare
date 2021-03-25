@@ -42,10 +42,14 @@ const SelectClinic: React.FC<Props> = ({ user, doctorDetails }) => {
 
   const clinicsNamesOptions = createOptions<string>(
     getClinicsName(clinics),
-    (clinicName) => ({
-      value: getClinicByName(clinicName, clinics)!.id,
-      label: clinicName,
-    }),
+    (clinicName) => {
+      const clinic = getClinicByName(clinicName, clinics);
+      const clinicId = clinic && clinic.id;
+      return {
+        value: clinicId as string,
+        label: clinicName,
+      };
+    },
   );
 
   const handleSubmitForm = (data: DoctorsClinic) => {
