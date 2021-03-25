@@ -5,7 +5,7 @@ import { doctor } from '~/services/services';
 const initDoctorApi = (apiRouter: Router): Router => {
   const doctorRouter = Router();
 
-  apiRouter.use(ApiPath.DOCTOR, doctorRouter);
+  apiRouter.use(ApiPath.DOCTORS, doctorRouter);
 
   doctorRouter.put(DoctorApiPath.$ID, async (req, res, next) => {
     try {

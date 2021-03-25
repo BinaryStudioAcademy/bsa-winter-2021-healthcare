@@ -17,7 +17,7 @@ class DoctorApi {
   }
 
   public addDoctorToClinic(payload: { doctorId:string,clinicId:string }): Promise<IDoctor> {
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.DOCTOR}/${payload.doctorId}`, {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.DOCTORS}/${payload.doctorId}`, {
       method: HttpMethod.PUT,
       contentType: ContentType.JSON,
       payload,
