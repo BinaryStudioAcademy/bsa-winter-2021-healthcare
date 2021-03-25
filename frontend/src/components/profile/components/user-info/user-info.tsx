@@ -16,6 +16,7 @@ import {
 } from 'common/enums';
 import styles from './styles.module.scss';
 import defaultAvatar from 'assets/images/default-avatar.svg';
+import AddClinic from '../add-clinic/add-clinic';
 
 const DEFAULT_FILE_IDX = 0;
 
@@ -49,7 +50,11 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
       </div>
       <div className={styles.infoBloks}>
         <div className={styles.photo}>
-          <img className={styles.image} src={user.imagePath ?? defaultAvatar} alt={user.name} />
+          <img
+            className={styles.image}
+            src={user.imagePath ?? defaultAvatar}
+            alt={user.name}
+          />
         </div>
         <div className={styles.mainUserInfo}>
           <div className={styles.card}>{user.type}</div>
@@ -72,14 +77,24 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
         </div>
       </div>
 
-      { isDoctor && (
-        <label htmlFor="uploadFile" className={styles.uploadWrapper}>
-          <span className={styles.uploadDocument}>Upload document</span>
-          <input className={clsx(styles.inputDocument, 'visually-hidden')} name="uploadFile" type="file" id="uploadFile" hidden onChange={handleUploadFile} />
-        </label>
+      {isDoctor && (
+        <div className={styles.actionWrapper}>
+          <AddClinic user={user as IUserTypeDoctor} />
+          <label htmlFor="uploadFile">
+            <span className={styles.uploadDocument}>Upload document</span>
+            <input
+              className={clsx(styles.inputDocument, 'visually-hidden')}
+              name="uploadFile"
+              type="file"
+              id="uploadFile"
+              hidden
+              onChange={handleUploadFile}
+            />
+          </label>
+        </div>
       )}
 
-      { isDoctor && (user as IUserTypeDoctor).doctor?.document && (
+      {isDoctor && (user as IUserTypeDoctor).doctor?.document && (
         <Documents document={(user as IUserTypeDoctor).doctor.document} />
       )}
     </div>

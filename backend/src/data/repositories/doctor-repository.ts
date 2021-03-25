@@ -6,6 +6,20 @@ class DoctorRepository {
     return DoctorModel.create(doctor);
   }
 
+  public async addDoctorToClinic(
+    doctorId: string,
+    clinicId: string,
+  ): Promise<IDoctor> {
+    const [, [doctor]] = await DoctorModel.update(
+      { clinicId },
+      {
+        where: { userId: doctorId },
+        returning: true,
+      },
+    );
+    return doctor;
+  }
+
   public getByUserId(userId: string): Promise<IDoctor | null> {
     return DoctorModel.findOne({ where: { userId } });
   }
