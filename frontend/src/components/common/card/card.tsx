@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ButtonColor, ButtonStyleType, AppRoute } from 'common/enums';
 import { Button } from 'components/common';
-import clsx from 'clsx';
 import styles from './styles.module.scss';
 
 type Props = {
@@ -9,7 +8,7 @@ type Props = {
   title: string;
   label?: string;
   btnLabel?: string;
-  btnHref?: AppRoute;
+  btnHref?: AppRoute | string;
   imagePath: string;
 };
 
@@ -25,14 +24,14 @@ const Card: React.FC<Props> = ({
   return (
     <div className={styles.cardContainer}>
       <div className={styles.imageContainer}>
-        <img className={styles.image} src={imagePath} />
+        <img className={styles.image} src={imagePath} alt={title} width={208} height={199} loading="lazy" />
       </div>
       <div className={styles.cardBody}>
         <div className={styles.cardHead}>
           <span className={styles.subtitle}>{subtitle}</span>
           <span className={styles.title}>{title}</span>
           {label && (
-            <span className={clsx(styles.label, styles[label])}>{label}</span>
+            <span className={styles.label}>{label}</span>
           )}
         </div>
         <div className={styles.cardInfoBlocks}>{children}</div>

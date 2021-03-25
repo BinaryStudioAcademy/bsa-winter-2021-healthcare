@@ -13,7 +13,7 @@
     flex-direction: column;
     align-items: center;
     border-radius: 15px;
-    z-index: 99;
+    z-index: var(--z-index--level-two);
     background-color: rgba(242, 242, 245, 0.7);
     backdrop-filter: blur(7px);
 }

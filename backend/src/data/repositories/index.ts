@@ -1,3 +1,4 @@
+import { Appointment } from './appointment-repository';
 import { User } from './user-repository';
 import { Clinic } from './clinic-repository';
 import { Geolocation } from './geolocation-repository';
@@ -13,6 +14,7 @@ const geolocation = new Geolocation();
 const diagnosis = new Diagnosis();
 const document = new Document();
 const doctorRepository = new DoctorRepository();
+const appointment = new Appointment();
 const notification = new Notification();
 const permissionRepository = new PermissionRepository();
 
@@ -25,4 +27,5 @@ export {
   doctorRepository,
   notification,
   permissionRepository,
+  appointment,
 };

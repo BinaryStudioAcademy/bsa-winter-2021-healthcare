@@ -25,6 +25,7 @@ const Documents: React.FC<Props> = ({ document }) => {
   const handleToggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+
   return (
     document && (
       <div className={styles.documentContainer}>

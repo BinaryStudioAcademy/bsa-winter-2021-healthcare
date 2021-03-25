@@ -8,6 +8,7 @@ enum ReducerName {
   NOTIFICATIONS = 'notifications',
   MAP = 'map',
   PROFILE = 'profile',
+  DOCTOR_DETAILS = 'doctorDetails',
   PERMISSIONS = 'permissions',
 }
 

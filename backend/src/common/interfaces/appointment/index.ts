@@ -1,1 +1,1 @@
-export type { IAppointment } from 'healthcare-shared/common/interfaces';
+export type { IAppointment, ICreateAppointment } from 'healthcare-shared/common/interfaces';
