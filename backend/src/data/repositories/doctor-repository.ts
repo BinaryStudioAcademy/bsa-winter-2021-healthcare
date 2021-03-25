@@ -6,13 +6,19 @@ class DoctorRepository {
     return DoctorModel.create(doctor);
   }
 
-  public async addDoctorToClinic(doctorId:string,clinicId:string): Promise<boolean>{
-      const [ , [doctor]] = await DoctorModel.update({clinicId}, {
-        where: { userId:doctorId },
+  public async addDoctorToClinic(
+    doctorId: string,
+    clinicId: string,
+  ): Promise<boolean> {
+    const [, [doctor]] = await DoctorModel.update(
+      { clinicId },
+      {
+        where: { userId: doctorId },
         returning: true,
-      });
-      return Boolean(doctor);
-    }
+      },
+    );
+    return Boolean(doctor);
+  }
 
   public getByUserId(userId: string): Promise<IDoctor | null> {
     return DoctorModel.findOne({ where: { userId } });
