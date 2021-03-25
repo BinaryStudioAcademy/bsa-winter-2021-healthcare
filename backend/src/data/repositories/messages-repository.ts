@@ -1,33 +1,11 @@
-import { Sequelize, Op } from 'sequelize';
-import { MemberModel, MessageModel } from '../models';
-import { IMember, IMessage } from '~/common/interfaces';
-import { MessageKey, MemberKey, SortType } from '~/common/enums';
+import { Op } from 'sequelize';
+import { MessageModel } from '../models';
+import { IMessage } from '~/common/interfaces';
+import { MessageKey, SortType } from '~/common/enums';
 
 class MessagesRepository {
 
-  public getMembersByName(name: string): Promise<IMember[] | null> {
-    return MemberModel.findAll({
-
-      attributes: [
-        'id',
-        ['imagePath', MemberKey.AVATAR_PATH],
-        [Sequelize.fn('concat', Sequelize.col(MemberKey.NAME), ' ', Sequelize.col('surname')), MemberKey.NAME],
-      ],
-
-      where: {
-        [Op.or]: {
-          [MemberKey.NAME]: {
-            [Op.iLike]: `%${name}%`,
-          },
-          surname: {
-            [Op.iLike]: `%${name}%`,
-          },
-        },
-      },
-    });
-  }
-
-  public getMessagesByMemberId(memberId: string, userId: string): Promise<IMessage[] | null> {
+  public getMessagesByUserId(toUserId: string, userId: string): Promise<IMessage[] | null> {
     return MessageModel.findAll({
 
       attributes: {
@@ -38,14 +16,14 @@ class MessagesRepository {
         [Op.or]: [
           {
             [Op.and]: [
-              { [MessageKey.TO]: memberId },
+              { [MessageKey.TO]: toUserId },
               { [MessageKey.USER_ID]: userId },
             ],
           },
           {
             [Op.and]: [
               { [MessageKey.TO]: userId },
-              { [MessageKey.USER_ID]: memberId },
+              { [MessageKey.USER_ID]: toUserId },
             ],
           },
         ],

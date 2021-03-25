@@ -1,14 +1,10 @@
 import { messagesRepository } from '~/data/repositories';
-import { IMember, IMessage } from '~/common/interfaces';
+import { IMessage } from '~/common/interfaces';
 
 class Messages {
 
-  public getMembersByName(name: string): Promise<IMember[] | null> {
-    return messagesRepository.getMembersByName(name);
-  }
-
-  public getMessagesByMemberId(memberId: string, userId: string): Promise<IMessage[] | null> {
-    return messagesRepository.getMessagesByMemberId(memberId, userId);
+  public getMessagesByUserId(toUserId: string, userId: string): Promise<IMessage[] | null> {
+    return messagesRepository.getMessagesByUserId(toUserId, userId);
   }
 
   public createMessage(message: IMessage): Promise<IMessage | null> {

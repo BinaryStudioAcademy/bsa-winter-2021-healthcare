@@ -9,25 +9,16 @@ const initMessagesApi = (apiRouter: Router): Router => {
 
   apiRouter.use(ApiPath.MESSAGES, messagesRouter);
 
-  messagesRouter.get(MessagesApiPath.MEMBERS_$NAME, async (req, res, next) => {
+  messagesRouter.get(MessagesApiPath.$TO_USER_ID, async (req, res, next) => {
     try {
-      const result = await messagesService.getMembersByName(req.params.name);
+      const result = await messagesService.getMessagesByUserId(req.params.toUserId, req.user?.id ?? '');
       res.status(HttpCode.OK).json(result);
     } catch (error) {
       next(error);
     }
   });
 
-  messagesRouter.get(MessagesApiPath.MESSAGES_$ID, async (req, res, next) => {
-    try {
-      const result = await messagesService.getMessagesByMemberId(req.params.id, req.user?.id ?? '');
-      res.status(HttpCode.OK).json(result);
-    } catch (error) {
-      next(error);
-    }
-  });
-
-  messagesRouter.post(MessagesApiPath.MESSAGES, validateSchema(validationMessageSchema), async (req, res, next) => {
+  messagesRouter.post(MessagesApiPath.ROOT, validateSchema(validationMessageSchema), async (req, res, next) => {
     try {
       const result = await messagesService.createMessage({ ...req.body, userId: req.user?.id });
       res.status(HttpCode.CREATED).json(result);

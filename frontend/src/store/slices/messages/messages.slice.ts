@@ -1,26 +1,27 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { notification as notificationService, messagesApi } from 'services';
+import { notification as notificationService, messagesApi, userApi } from 'services';
 import { ReducerName } from 'common/enums';
 import { AppThunk } from 'common/types';
-import { IMember, IMessage, IMessagePayload } from 'common/interfaces';
+import { IUser, IMessage, IMessagePayload } from 'common/interfaces';
 import { HttpError } from 'exceptions';
 
 interface IMessages {
   messages: IMessage[];
-  members: IMember[];
-  selectedMember?: IMember;
+  users: IUser[];
+  selectedUser?: IUser;
 }
 
 const initialState: IMessages = {
   messages: [],
-  members: [],
-  selectedMember: undefined,
+  users: [],
+  selectedUser: undefined,
 };
 
 const { reducer, actions } = createSlice({
   name: ReducerName.MESSAGES,
   initialState,
   reducers: {
+
     addMessage: (state, action: PayloadAction<IMessage>) => {
       state.messages.unshift(action.payload);
     },
@@ -29,17 +30,13 @@ const { reducer, actions } = createSlice({
       state.messages = action.payload;
     },
 
-    addMember: (state, action: PayloadAction<IMember>) => {
-      !state.members.some(member => member.id === action.payload.id) && state.members.unshift(action.payload);
+    setUsers: (state, action: PayloadAction<IUser[]>) => {
+      state.users = action.payload;
     },
 
-    setMembers: (state, action: PayloadAction<IMember[]>) => {
-      state.members = action.payload;
-    },
-
-    selectMember: (state, action: PayloadAction<string>) => {
-      state.selectedMember = state.members.find(
-        (member: IMember) => member.id === action.payload,
+    selectUser: (state, action: PayloadAction<string>) => {
+      state.selectedUser = state.users.find(
+        (user: IUser) => user.id === action.payload,
       );
     },
 
@@ -59,16 +56,11 @@ const sendMessage = (formData: IMessagePayload): AppThunk => async dispatch => {
   }
 };
 
-const addMember = (member: IMember): AppThunk => dispatch => {
-  dispatch(actions.addMember(member));
-  dispatch(selectMember(member.id));
-};
-
-const selectMember = (id: string): AppThunk => async dispatch => {
+const selectUser = (id: string): AppThunk => async dispatch => {
   try {
-    dispatch(actions.selectMember(id));
+    dispatch(actions.selectUser(id));
 
-    const response = await messagesApi.loadMemberMessages(id);
+    const response = await messagesApi.loadUserMessages(id);
     dispatch(actions.setMessages(response));
 
   } catch (error) {
@@ -79,14 +71,14 @@ const selectMember = (id: string): AppThunk => async dispatch => {
   }
 };
 
-const loadFilteredMembersAsChats = (name: string): AppThunk => async dispatch => {
+const loadFilteredUsersAsChats = (name: string): AppThunk => async dispatch => {
   try {
-    const response = await messagesApi.getMembersByName(name);
-    dispatch(actions.setMembers(response));
+    const response = await userApi.filterUsersByName(name);
+    dispatch(actions.setUsers(response));
 
     const firstUserId: string | undefined = response.find(user => user !== undefined)?.id;
     firstUserId
-      ? dispatch(selectMember(firstUserId))
+      ? dispatch(selectUser(firstUserId))
       : dispatch(actions.setMessages([]));
 
   } catch (error) {
@@ -99,10 +91,9 @@ const loadFilteredMembersAsChats = (name: string): AppThunk => async dispatch =>
 
 const MessagesActionCreator = {
   ...actions,
-  addMember,
-  selectMember,
+  selectUser,
   sendMessage,
-  loadFilteredMembersAsChats,
+  loadFilteredUsersAsChats,
 };
 
 export { MessagesActionCreator, reducer };

@@ -15,16 +15,16 @@ const timeOptions = { hour: '2-digit', minute: '2-digit', hour12:false };
 const locale = 'en-GB';
 
 const MessageList: React.FC<Props> = ({ className }) => {
-  const { userId, userAvatarPath = '', messages, memberAvatarPath = '' } = useSelector(({ auth: { user }, messages: { messages, selectedMember } }: RootState) => ({
+  const { userId, messages, userAvatarPath = '', selectedUserAvatarPath = '' } = useSelector(({ auth: { user }, messages: { messages, selectedUser } }: RootState) => ({
     userId: user?.id,
     userAvatarPath: user?.imagePath,
     messages,
-    memberAvatarPath: selectedMember?.avatarPath,
+    selectedUserAvatarPath: selectedUser?.imagePath,
   }));
 
   return (
     <div className={clsx(styles.messageList, className)}>
-      {messages.map(({ id, userId: memberId, text, createdAt }, index, array) => {
+      {messages.map(({ id, userId: messageUserId, text, createdAt }, index, array) => {
 
         const curFromNow = new Date(createdAt).toLocaleDateString(locale, dateOptions);
         const prevFromNow = new Date(array[index + 1]?.createdAt).toLocaleDateString(locale, dateOptions);
@@ -38,8 +38,8 @@ const MessageList: React.FC<Props> = ({ className }) => {
             <Message
               message={text}
               time={new Date(createdAt).toLocaleTimeString(locale, timeOptions)}
-              avatar={memberId === userId ? userAvatarPath : memberAvatarPath}
-              isOutcoming={memberId === userId}
+              avatar={messageUserId === userId ? userAvatarPath : selectedUserAvatarPath}
+              isOutcoming={messageUserId === userId}
             />
           </div>
         );

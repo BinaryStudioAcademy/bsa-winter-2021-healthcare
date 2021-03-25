@@ -1,8 +1,7 @@
-import { IMember, IMessage, IMessagePayload } from 'common/interfaces';
+import { IMessage, IMessagePayload } from 'common/interfaces';
 import { Http } from '../http/http.service';
 import {
   ApiPath,
-  MessagesApiPath,
   HttpMethod,
   ContentType,
 } from 'common/enums';
@@ -21,27 +20,9 @@ class Messages {
     this.#apiPrefix = apiPrefix;
   }
 
-  public getMembersByName(name: string | undefined): Promise<IMember[]> {
+  public loadUserMessages(toUserId: string | undefined): Promise<IMessage[]> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.MESSAGES}${MessagesApiPath.MEMBERS}/${name}`,
-      {
-        method: HttpMethod.GET,
-      },
-    );
-  }
-
-  public loadMembersAsChats(): Promise<IMember[]> {
-    return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.MESSAGES}${MessagesApiPath.MEMBERS}`,
-      {
-        method: HttpMethod.GET,
-      },
-    );
-  }
-
-  public loadMemberMessages(memberId: string | undefined): Promise<IMessage[]> {
-    return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.MESSAGES}${MessagesApiPath.MESSAGES}/${memberId}`,
+      `${this.#apiPrefix}${ApiPath.MESSAGES}/${toUserId}`,
       {
         method: HttpMethod.GET,
       },
@@ -49,7 +30,7 @@ class Messages {
   }
 
   public sendMessage(payload: Partial<IMessagePayload>): Promise<IMessage> {
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.MESSAGES}${MessagesApiPath.MESSAGES}`, {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.MESSAGES}`, {
       method: HttpMethod.POST,
       contentType: ContentType.JSON,
       payload,

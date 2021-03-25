@@ -14,7 +14,6 @@ enum ModelName {
   SPECIALIZATION = 'Specialization',
   USER_SPECIALIZATION = 'UserSpecialization',
   PROFESSION = 'Profession',
-  MEMBER = 'MemberModel',
 }
 
 export { ModelName };

@@ -8,7 +8,7 @@ import {
   ButtonType,
   ButtonColor,
   ButtonStyleType,
-  MemberKey,
+  UserKey,
 } from 'common/enums';
 import { TextInput, Button } from 'components/common';
 import { MessagesActionCreator } from 'store/slices';
@@ -20,11 +20,11 @@ interface Props {
   className?: string;
 }
 
-const AddMemberForm: React.FC<Props> = ({ className }) => {
+const AddUserForm: React.FC<Props> = ({ className }) => {
 
   const { handleSubmit, errors, control, formState: { isDirty }, getValues } = useForm({
     defaultValues: {
-      [MemberKey.NAME]: null,
+      [UserKey.NAME]: null,
     },
     mode: 'onChange',
   });
@@ -32,15 +32,15 @@ const AddMemberForm: React.FC<Props> = ({ className }) => {
   const dispatch = useDispatch();
 
   const handleFormSubmit = React.useCallback(() => {
-    const name = getValues()[MemberKey.NAME] || '*';
-    dispatch(MessagesActionCreator.loadFilteredMembersAsChats(name));
+    const name = getValues()[UserKey.NAME] || '*';
+    dispatch(MessagesActionCreator.loadFilteredUsersAsChats(name));
   }, []);
 
   const DELAY_TIMEOUT = 1000;
   const handleChange = React.useCallback(debounce(handleFormSubmit, DELAY_TIMEOUT), []);
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} onChange={handleChange} className={clsx(styles.addMemberForm, className)}>
+    <form onSubmit={handleSubmit(handleFormSubmit)} onChange={handleChange} className={clsx(styles.addUserForm, className)}>
       <div className={styles.submitBtn}>
         <Button
           label="New chat"
@@ -53,7 +53,7 @@ const AddMemberForm: React.FC<Props> = ({ className }) => {
       </div>
       <div className={styles.inputText}>
         <TextInput
-          name={MemberKey.NAME}
+          name={UserKey.NAME}
           placeholder="Type a name..."
           type={InputType.TEXT}
           label=""
@@ -67,4 +67,4 @@ const AddMemberForm: React.FC<Props> = ({ className }) => {
   );
 };
 
-export default AddMemberForm;
+export default AddUserForm;

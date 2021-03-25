@@ -12,14 +12,14 @@ interface Props {
   onClick?: (id: string) => void;
 }
 
-const Member: React.FC<Props> = ({ id, label, info, avatar, isSelected, className, onClick }) => {
+const User: React.FC<Props> = ({ id, label, info, avatar, isSelected, className, onClick }) => {
   const handlerOnClick = () => {
     !isSelected && onClick?.(id);
   };
 
   return (
     <div
-      className={clsx(styles.member, { [styles.selected]: isSelected }, className)}
+      className={clsx(styles.user, { [styles.selected]: isSelected }, className)}
       onClick={handlerOnClick}
     >
       <img src={avatar} />
@@ -29,4 +29,4 @@ const Member: React.FC<Props> = ({ id, label, info, avatar, isSelected, classNam
   );
 };
 
-export default Member;
+export default User;

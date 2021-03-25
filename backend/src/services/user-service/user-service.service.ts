@@ -23,6 +23,10 @@ class User {
     return userRepository.getDoctorDetailsById(id);
   }
 
+  public filterUsersByName(name: string): Promise<IUser[] | null> {
+    return userRepository.filterUsersByName(name);
+  }
+
   public createNewUser(registerPayload: IRegisterPayload): Promise<IUser> {
     return userRepository.createUser(registerPayload);
   }

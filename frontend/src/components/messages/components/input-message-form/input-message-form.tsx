@@ -23,14 +23,14 @@ interface Props {
 }
 
 const InputMessageForm: React.FC<Props> = ({ className }) => {
-  const { selectedMemberId = '' } = useSelector(({ messages: { selectedMember } }: RootState) => ({
-    selectedMemberId: selectedMember?.id,
+  const { selectedUserId = '' } = useSelector(({ messages: { selectedUser } }: RootState) => ({
+    selectedUserId: selectedUser?.id,
   }));
 
   const { handleSubmit, errors, control, register, reset, formState: { isDirty } } = useForm<IMessagePayload>({
     resolver: yupResolver(messageValidationSchema),
     defaultValues: {
-      to: selectedMemberId,
+      to: selectedUserId,
       text: '',
     },
     mode: 'onChange',
@@ -59,7 +59,7 @@ const InputMessageForm: React.FC<Props> = ({ className }) => {
         <input
           name={MessageKey.TO}
           type={InputType.HIDDEN}
-          value={selectedMemberId}
+          value={selectedUserId}
           ref={register}
         />
       </div>
