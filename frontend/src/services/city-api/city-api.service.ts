@@ -1,5 +1,5 @@
 import { Http } from 'services/http/http.service';
-import { HttpMethod, ApiPath, CityApiPath, ContentType } from 'common/enums';
+import { HttpMethod, ApiPath, ContentType } from 'common/enums';
 import { ICity } from 'common/interfaces';
 
 type Constructor = {
@@ -17,7 +17,7 @@ class CityApi {
   }
 
   public addCity(payload: Partial<ICity>): Promise<ICity> {
-    return this.#http.load(`${this.#apiPrefix}${ApiPath.CITIES}${CityApiPath.ROOT}`, {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.CITIES}`, {
       method: HttpMethod.POST,
       contentType: ContentType.JSON,
       payload,
@@ -26,7 +26,7 @@ class CityApi {
 
   public getCities(): Promise<ICity[]> {
     return this.#http.load(
-      `${this.#apiPrefix}${ApiPath.CITIES}${CityApiPath.ROOT}`,
+      `${this.#apiPrefix}${ApiPath.CITIES}`,
       {
         method: HttpMethod.GET,
       },
