@@ -73,6 +73,14 @@ class UserApi {
     });
   }
 
+  public getCurrentUser(): Promise<IUser> {
+    return this.#http.load(`${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.CURRENT_USER}`,
+      {
+        method: HttpMethod.GET,
+      },
+    );
+  }
+
   public filterUsersByName(name: string): Promise<IUser[]> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.FILTER_BY_NAME}/${name}`,
@@ -82,4 +90,5 @@ class UserApi {
     );
   }
 }
+
 export { UserApi };

@@ -8,6 +8,7 @@ interface IClinic {
   [ClinicKey.CLINIC_TYPE]: ClinicType;
   [ClinicKey.CREATED_AT]: string;
   [ClinicKey.UPDATED_AT]: string;
+  [ClinicKey.CITY_ID]:string;
 }
 
 export type { IClinic };
