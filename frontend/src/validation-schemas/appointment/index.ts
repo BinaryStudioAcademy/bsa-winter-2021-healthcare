@@ -1,1 +1,1 @@
-export { createAppointment } from 'healthcare-shared/validation-schemas';
+export { createdAppointment } from 'healthcare-shared/validation-schemas';

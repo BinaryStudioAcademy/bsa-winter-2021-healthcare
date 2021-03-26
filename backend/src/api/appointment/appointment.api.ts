@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { ApiPath, HttpCode, AppointmentsApiPath } from '~/common/enums';
 import { appointment as appointmentService } from '~/services/services';
-import { createAppointment as createAppointmentSchema } from '~/validation-schemas';
+import { createdAppointment as createdAppointmentSchema } from '~/validation-schemas';
 import { validateSchema } from '~/middlewares';
 import { setTimeToDate } from '~/helpers';
 import { ICreateAppointment } from '~/common/interfaces';
@@ -25,7 +25,7 @@ const initAppointmentApi = (apiRouter: Router): Router => {
 
   appointmentRouter.post(
     AppointmentsApiPath.ROOT,
-    validateSchema(createAppointmentSchema),
+    validateSchema(createdAppointmentSchema),
     async (req, res, next) => {
       try {
         const payload: ICreateAppointment = {
