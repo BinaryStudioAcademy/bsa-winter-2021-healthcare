@@ -18,7 +18,7 @@ const SideMenu: React.FC<Props> = ({ onChangeProfileTab }) => {
 
   return (
     <div className={styles.menuContainer}>
-      <span className={styles.infoHeader}>My Profile</span>
+      <span className={styles.infoHeader}>Profile</span>
       <SideMenuItem
         iconStyle={styles.person}
         title="Personal Information"
