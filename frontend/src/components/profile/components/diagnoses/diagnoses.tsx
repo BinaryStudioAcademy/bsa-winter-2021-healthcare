@@ -6,9 +6,10 @@ import {
   ButtonType,
   Icon,
   DateFormat,
+  NoDataLabels,
 } from 'common/enums';
 import { RootState } from 'common/types';
-import { Button, Details } from 'components/common';
+import { Button, Details, NoData } from 'components/common';
 import { ProfileActionCreator } from 'store/slices';
 import { getFormattedDate } from 'helpers';
 import AddDiagnosisPopup from '../add-diagnosis-popup/add-diagnosis-popup';
@@ -54,6 +55,9 @@ const Diagnoses: React.FC<Props> = ({ userId, isDoctor }) => {
             )}
           </div>
           <div className={styles.diagnosesContainer}>
+
+            {!diagnoses.length && <NoData label={NoDataLabels.NO_DIAGNOSES} />}
+
             {diagnoses.map((diagnosis) => {
               return (
                 <div key={diagnosis.id} className={styles.item}>

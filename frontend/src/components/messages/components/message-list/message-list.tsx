@@ -3,8 +3,9 @@ import { useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { RootState } from 'common/types';
 import { Message, HorizontalLine } from '../../components';
+import { NoData } from 'components/common';
 import { getFormattedDate } from 'helpers';
-import { DateFormat } from 'common/enums';
+import { DateFormat, NoDataLabels } from 'common/enums';
 import { DELTA_INDEX } from './common/constants';
 
 import styles from './styles.module.scss';
@@ -23,6 +24,9 @@ const MessageList: React.FC<Props> = ({ className }) => {
 
   return (
     <div className={clsx(styles.messageList, className)}>
+
+      {!messages.length && <NoData label={NoDataLabels.NO_MESSAGES} />}
+
       {messages.map(({ id, userId: messageUserId, text, createdAt }, index, array) => {
 
         const curFromNow = getFormattedDate(createdAt, DateFormat.DD_MMM);

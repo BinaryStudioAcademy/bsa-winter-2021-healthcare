@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'common/types';
 import { ClinicsActionCreator } from 'store/slices';
 import styles from './styles.module.scss';
-import { Button } from 'components/common';
+import { Button, NoData } from 'components/common';
 import { Clinic, AddClinicPopup } from './components';
 import { IClinicPayload } from 'common/interfaces';
 import { DEFAULT_CLINIC_VALUE } from './components/common/constants';
@@ -12,6 +12,7 @@ import {
   ButtonStyleType,
   ButtonType,
   PermissionName,
+  NoDataLabels,
 } from 'common/enums';
 import { checkHasPermission } from 'helpers';
 
@@ -65,6 +66,9 @@ const Clinics: React.FC = () => {
         )}
         <div className={styles.clinicsWrapper}>
           <div className={styles.clinicsContainer}>
+
+            {!clinics.length && <NoData label={NoDataLabels.NO_CLINICS} />}
+
             {clinics.map((clinic) => (
               <Clinic key={clinic?.id} clinic={clinic} />
             ))}
