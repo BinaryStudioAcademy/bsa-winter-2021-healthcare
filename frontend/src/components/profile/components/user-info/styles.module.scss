@@ -105,10 +105,10 @@
   background-repeat: no-repeat;
   background-position: center;
 }
-
-.uploadWrapper {
-  display: inline-block;
+.actionWrapper{
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
 .uploadDocument {
