@@ -16,7 +16,7 @@ import {
   IDiagnosis,
   IUserWithPermissions,
   IDiagnosisPayload,
-  IAppointmentInfo,
+  IAppointmentWithUser,
 } from 'common/interfaces';
 import { AuthActionCreator } from 'store/slices';
 import { HttpError } from 'exceptions';
@@ -24,7 +24,7 @@ import { HttpError } from 'exceptions';
 interface IState {
   user: IUserWithPermissions | null;
   diagnoses: IDiagnosis[];
-  appointments: IAppointmentInfo[];
+  appointments: IAppointmentWithUser[];
 }
 
 const initialState: IState = {
@@ -52,7 +52,7 @@ const { reducer, actions } = createSlice({
     editImagePath: (state, action: PayloadAction<string>) => {
       (state.user as IUserWithPermissions).imagePath = action.payload;
     },
-    setAppointments: (state, action: PayloadAction<IAppointmentInfo[]>) => {
+    setAppointments: (state, action: PayloadAction<IAppointmentWithUser[]>) => {
       state.appointments = action.payload;
     },
     uploadDocuments: (state, action: PayloadAction<IDocument>) => {
