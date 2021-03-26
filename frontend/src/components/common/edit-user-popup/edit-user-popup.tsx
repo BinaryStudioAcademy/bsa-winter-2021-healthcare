@@ -19,10 +19,10 @@ import { Button, DateInput, Select, TextInput, Modal } from 'components/common';
 import { createOptions } from 'helpers';
 import { EditUserCb, HideFormCb } from 'components/users/common/types';
 import { InputChangeEvent } from 'common/types';
-import defaultAvatar from 'assets/images/default-avatar.svg';
 import camera from 'assets/images/camera.svg';
 import { ProfileActionCreator } from 'store/slices';
 import { DEFAULT_FILE_IDX } from 'common/constants';
+import { getDefaultAvatar } from 'helpers';
 
 type Props = {
   user: IUser;
@@ -78,7 +78,7 @@ const EditUserPopup: React.FC<Props> = ({ user, isShow, onEditUser, onFormHide }
 
           <div>
             <label htmlFor="uploadFile">
-              <div className={styles.imageContainer} style={{ backgroundImage: `url(${user.imagePath ?? defaultAvatar})` }}>
+              <div className={styles.imageContainer} style={{ backgroundImage: `url(${user.imagePath ?? getDefaultAvatar(user)})` }}>
                 <div className={styles.photoEditContainer}>
                   <img src={camera} alt="camera" width="20" height="20" loading="lazy" />
                 </div>
