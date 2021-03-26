@@ -5,6 +5,8 @@ enum UsersApiPath {
   TYPE_$TYPE = '/type/:type',
   DOCTOR_DETAILS = '/doctor-details',
   DOCTOR_DETAILS_$ID = '/doctor-details/:id',
+  FILTER_BY_NAME = '/filter-by-name',
+  FILTER_BY_$NAME = '/filter-by-name/:name',
 }
 
 export { UsersApiPath };

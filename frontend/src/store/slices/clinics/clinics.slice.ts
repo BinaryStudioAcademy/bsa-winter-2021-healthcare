@@ -1,7 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName } from 'common/enums';
 import { IClinic, IClinicPayload } from 'common/interfaces';
-import { clinicApi, notification as notificationService } from 'services';
+import {
+  clinicApi,
+  notification as notificationService,
+  uploadFile as uploadFileService,
+} from 'services';
 import { AppThunk } from 'common/types';
 import { HttpError } from 'exceptions';
 
@@ -50,10 +54,23 @@ const addClinic = (clinicInfo: IClinicPayload): AppThunk => async (dispatch) => 
   }
 };
 
+const uploadClinicImage = async (file: File):Promise<string> => {
+  try {
+    const path = uploadFileService.addImage(file);
+    return path;
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
 const ClinicsActionCreator = {
   ...actions,
   getClinics,
   addClinic,
+  uploadClinicImage,
 };
 
 export { ClinicsActionCreator, reducer };

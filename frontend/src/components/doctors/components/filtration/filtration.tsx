@@ -15,7 +15,7 @@ import { DEFAULT_FILTER_VALUE } from '../common/constants';
 import { doctorSpecialtiesToReadable, clinicTypesToReadable } from '../../common';
 import { useDispatch } from 'react-redux';
 import { DoctorsActionCreator } from 'store/slices';
-import { debounce } from 'common/helpers';
+import { debounce } from 'helpers';
 
 const doctorSpecialties = Object.values(DoctorType);
 const clinicTypes = Object.values(ClinicType);

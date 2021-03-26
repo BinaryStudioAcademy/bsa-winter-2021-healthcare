@@ -11,6 +11,7 @@ import { initUploadFileApi } from './upload-file/upload-file.api';
 import { initPermissionApi } from './permission/permission.api';
 import { initNotificationApi } from './notification/notification.api';
 import { initDoctorApi } from './doctor/doctor.api';
+import { initMessagesApi } from './messages/messages.api';
 
 const apis = [
   initUserApi,
@@ -26,6 +27,7 @@ const apis = [
   initUploadFileApi,
   initPermissionApi,
   initDoctorApi,
+  initMessagesApi,
 ];
 
 const initApi = (app: Router): Router => {

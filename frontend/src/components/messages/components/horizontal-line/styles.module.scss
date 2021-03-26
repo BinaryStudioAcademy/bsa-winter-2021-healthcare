@@ -1,0 +1,30 @@
+.horizontalLine {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 5px 0px 15px;
+  align-items: center;
+  justify-content: center;
+
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  line-height: 15px;
+  font-style: normal;
+  font-weight: normal;
+
+  &::before,
+  &::after {
+    content: '';
+    height: 1px;
+    background: #DBDBDB;
+    flex: 1;
+    margin: 0;
+  }
+
+  span {
+    padding: 8px 25px;
+    background: var(--color-gray-light);
+    border-radius: 50px;
+    color: #9DBFF9;
+  }
+}
