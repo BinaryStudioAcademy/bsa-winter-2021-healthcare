@@ -27,8 +27,8 @@ const { reducer, actions } = createSlice({
     setClinics: (state, action: PayloadAction<IClinic[]>) => {
       state.clinics = action.payload;
     },
-    addClinic: (state, action: PayloadAction<IClinic[]>) => {
-      state.clinics = [...state.clinics, ...action.payload];
+    addClinic: (state, action: PayloadAction<IClinic>) => {
+      state.clinics = [...state.clinics, action.payload];
     },
     setCities: (state, action: PayloadAction<ICity[]>) => {
       state.cities = action.payload;
@@ -55,14 +55,17 @@ const addClinic = (clinicInfo: IClinicPayload, cityValue?: string): AppThunk => 
   dispatch,
 ) => {
   try {
+    const updatedClinic: IClinicPayload = {
+      ...clinicInfo,
+    };
     if (clinicInfo.cityId === '' && cityValue !== '') {
       const response = await cityApi.addCity({ name: cityValue });
       dispatch(actions.addCity(response));
-      clinicInfo.cityId=response.id;
+      updatedClinic.cityId = response.id;
     }
 
-    const response = await clinicApi.addClinic(clinicInfo);
-    dispatch(actions.addClinic([response]));
+    const response = await clinicApi.addClinic(updatedClinic);
+    dispatch(actions.addClinic(response));
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
