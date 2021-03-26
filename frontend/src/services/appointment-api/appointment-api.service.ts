@@ -1,8 +1,9 @@
-import { IAppointment, IAppointmentInfo, ICreateAppointment } from 'common/interfaces';
+import { IAppointment, ICreateAppointment } from 'common/interfaces';
 import { ContentType } from 'common/enums';
 import { Http } from 'services/http/http.service';
 import { HttpMethod, ApiPath } from 'common/enums';
 import { AppointmentsApiPath } from 'healthcare-shared/common/enums/api';
+import { IAppointmentWithUser } from 'healthcare-shared/common/interfaces';
 
 type Constructor = {
   http: Http;
@@ -28,7 +29,7 @@ class AppointmentApi {
     });
   }
 
-  public getAllById(doctorId: string): Promise<IAppointmentInfo[]> {
+  public getAllById(doctorId: string): Promise<IAppointmentWithUser[]> {
     return this.#http.load(
       `${this.#apiPrefix}${ApiPath.APPOINTMENTS}${
         AppointmentsApiPath.DOCTOR

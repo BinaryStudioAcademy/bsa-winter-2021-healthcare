@@ -39,13 +39,28 @@
 
         .appointmentInfo {
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
           margin-top: 16px;
           margin-bottom: 8px;
 
-          & div {
+          .leftInfo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 50%;
+
+            div {
+              margin-top: 8px;
+              margin-bottom: 8px;
+            }
+          }
+
+          .rightInfo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: 50%;
             margin-top: 8px;
-            margin-bottom: 8px;
           }
         }
       }
