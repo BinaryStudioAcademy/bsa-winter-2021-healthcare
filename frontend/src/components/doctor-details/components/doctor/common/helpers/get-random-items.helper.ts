@@ -1,5 +1,7 @@
+import { getshuffledItems } from './get-shuffled-items.helper';
+
 const getRandomItems = <T>(items: T[], count: number): T[] => {
-  const shuffledItems = items.sort(() => 0.5 - Math.random());
+  const shuffledItems = getshuffledItems(items);
   return shuffledItems.slice(0, count);
 };
 
