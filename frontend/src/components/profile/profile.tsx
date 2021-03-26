@@ -32,10 +32,6 @@ const Profile: React.FC = () => {
   const { id } = useParams<RouteParam>();
   const isDoctor = user?.type === UserType.DOCTOR;
 
-  /*eslint-disable no-console*/
-  console.log(isDoctor);
-  /*eslint-disable no-console*/
-
   const getProfileTab = (tab: ProfileTab) => {
     switch (tab) {
       case ProfileTab.DIAGNOSES: {
