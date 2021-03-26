@@ -5,7 +5,7 @@ import {
   AppointmentValidationMessage,
 } from '~/common/enums';
 
-const createAppointment = yup.object().shape({
+const createdAppointment = yup.object().shape({
   [CreateAppointmentKey.TIME]: yup
     .mixed<AppointmentTime>()
     .required(AppointmentValidationMessage.TIME_REQUIRED)
@@ -15,4 +15,4 @@ const createAppointment = yup.object().shape({
     .required(AppointmentValidationMessage.DATE_REQUIRED),
 });
 
-export { createAppointment };
+export { createdAppointment };

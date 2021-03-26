@@ -4,7 +4,7 @@ import { InputColor, AppointmentTime, CreateAppointmentKey } from 'common/enums'
 import { ICreateAppointment } from 'common/interfaces';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { createAppointment as createAppointmentSchema } from 'validation-schemas';
+import { createdAppointment as createdAppointmentSchema } from 'validation-schemas';
 import { createOptions } from 'helpers';
 import { ButtonColor, ButtonStyleType, ButtonType, ButtonIcon } from 'common/enums';
 import { CreateAppointmentCb } from '../../common';
@@ -32,7 +32,7 @@ const Appointment: React.FC<Props> = ({ onCreate }) => {
     errors,
     control,
   } = useForm<Partial<ICreateAppointment>>({
-    resolver: yupResolver(createAppointmentSchema),
+    resolver: yupResolver(createdAppointmentSchema),
   });
   const time = watch( CreateAppointmentKey.TIME, undefined);
 

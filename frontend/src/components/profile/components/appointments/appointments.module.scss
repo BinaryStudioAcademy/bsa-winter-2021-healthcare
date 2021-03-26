@@ -22,22 +22,11 @@
         width: 80%;
         margin-right: 20px;
       }
-
-      .addButton {
-        width: 20%;
-        display: flex;
-        justify-content: flex-end;
-
-        button {
-          width: 50%;
-        }
-      }
     }
 
-    .diagnosesContainer {
+    .appointmentContainer {
       display: flex;
       flex-direction: column;
-      flex-grow: 1;
       margin-top: 28px;
       overflow-y: scroll;
 
@@ -48,20 +37,30 @@
       .item {
         margin-top: 16px;
 
-        .diagnosisInfo {
+        .appointmentInfo {
           display: flex;
           flex-direction: row;
           margin-top: 16px;
           margin-bottom: 8px;
 
-          .name {
+          .leftInfo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
             width: 50%;
+
+            div {
+              margin-top: 8px;
+              margin-bottom: 8px;
+            }
           }
 
-          .time {
+          .rightInfo {
             display: flex;
+            flex-direction: column;
+            align-items: flex-end;
             width: 50%;
-            justify-content: flex-end;
+            margin-top: 8px;
           }
         }
       }

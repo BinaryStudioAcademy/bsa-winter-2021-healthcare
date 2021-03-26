@@ -16,6 +16,7 @@ import AuthorizedRoute from './authorized-route/authorized-route';
 import AuthorizedWrapper from './authorized-wrapper/authorized-wrapper';
 import CovidButton from './covid-button/covid-button';
 import Spinner from './spinner/spinner';
+import NoDataPlaceholder from './no-data-placeholder/no-data-placeholder';
 
 export {
   Link,
@@ -36,4 +37,5 @@ export {
   AuthorizedWrapper,
   CovidButton,
   Spinner,
+  NoDataPlaceholder,
 };

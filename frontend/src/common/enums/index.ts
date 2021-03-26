@@ -20,4 +20,5 @@ export * from './upload-file';
 export * from './map';
 export * from './profession';
 export * from './messages';
+export * from './no-data';
 
