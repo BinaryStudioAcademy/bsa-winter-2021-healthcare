@@ -25,7 +25,7 @@ const DoctorItem: React.FC<Props> = ({ user }) => {
       </div>
       <div className={styles.infoItem}>
         <span className={clsx(styles.icon, styles.phone)}></span>
-        <a href={'tel:' + user.phone} className={styles.text}>{user.phone}</a>
+        <a href={`tel:${user.phone}`} className={styles.text}>{user.phone}</a>
       </div>
     </Card>
   );

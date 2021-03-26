@@ -79,11 +79,11 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
         <div className={styles.secUserInfo}>
           <div className={styles.item}>
             <span className={clsx(styles.icon, styles.phone)}></span>
-            <a href={'tel:' + user.phone} className={styles.text}>{user.phone}</a>
+            <a href={`tel:${user.phone}`} className={styles.text}>{user.phone}</a>
           </div>
           <div className={styles.item}>
             <span className={clsx(styles.icon, styles.email)}></span>
-            <a href={'mailto:' + user.email} className={styles.text}>{user.email}</a>
+            <a href={`mailto:${user.email}`} className={styles.text}>{user.email}</a>
           </div>
         </div>
       </div>
