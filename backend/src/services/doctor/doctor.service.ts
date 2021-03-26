@@ -1,4 +1,4 @@
-import { doctorRepository } from '~/data/repositories';
+import { doctor as doctorRepository } from '~/data/repositories';
 import { IDoctorRegisterPayload, IDoctor } from '~/common/interfaces';
 
 class Doctor {

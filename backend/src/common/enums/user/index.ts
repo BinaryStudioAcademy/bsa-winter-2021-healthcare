@@ -1,1 +1,1 @@
-export { UserSex, UserType } from 'healthcare-shared/common/enums';
+export { UserSex, UserType, UserKey } from 'healthcare-shared/common/enums';

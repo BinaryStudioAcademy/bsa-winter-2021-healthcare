@@ -4,7 +4,7 @@ export * from './clinic';
 export * from './diagnosis';
 export * from './doctor';
 export * from './document';
-export * from './message';
+export * from './messages';
 export * from './notification';
 export * from './register';
 export * from './geolocation';

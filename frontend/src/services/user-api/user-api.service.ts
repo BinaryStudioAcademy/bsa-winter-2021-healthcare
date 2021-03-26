@@ -72,5 +72,14 @@ class UserApi {
       method: HttpMethod.GET,
     });
   }
+
+  public filterUsersByName(name: string): Promise<IUser[]> {
+    return this.#http.load(
+      `${this.#apiPrefix}${ApiPath.USERS}${UsersApiPath.FILTER_BY_NAME}/${name}`,
+      {
+        method: HttpMethod.GET,
+      },
+    );
+  }
 }
 export { UserApi };

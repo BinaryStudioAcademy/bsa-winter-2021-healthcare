@@ -19,3 +19,4 @@ export * from './notification';
 export * from './upload-file';
 export * from './sort';
 export * from './diagnosis';
+export * from './messages';
