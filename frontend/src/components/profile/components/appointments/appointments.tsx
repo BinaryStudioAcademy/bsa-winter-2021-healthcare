@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppRoute, DateFormat, Icon } from 'common/enums';
+import { AppRoute, DateFormat, Icon, NoDataLabel } from 'common/enums';
 import { IUserTypeDoctor } from 'common/interfaces';
 import { RootState } from 'common/types';
-import { Details, Link } from 'components/common';
+import { Details, Link, NoDataPlaceholder } from 'components/common';
 import { getFormattedDate } from 'helpers';
 import { ProfileActionCreator } from 'store/slices';
 import styles from './appointments.module.scss';
@@ -62,7 +62,7 @@ const Appointments: React.FC = () => {
               );
             })
           ) : (
-            <p>There is no information here yet.</p>
+            <NoDataPlaceholder label={NoDataLabel.NO_APPOINTMENTS} />
           )}
         </div>
       </div>
