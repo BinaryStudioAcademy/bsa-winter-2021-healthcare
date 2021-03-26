@@ -14,6 +14,7 @@ enum Icon {
   SEARCH_FIELD_ICON = 'search-field-icon',
   SPECIALTY = 'specialty',
   TRASH_ICON = 'trash-icon',
+  APPOINTMENT = 'appointment',
 }
 
 export { Icon };

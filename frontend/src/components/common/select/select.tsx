@@ -25,6 +25,7 @@ interface Props {
   control: Control;
   errors: FormErrors;
   defaultValue?: FormDefaultValue;
+  onInputChange?: (inputValue: string) => void;
 }
 
 const Select: React.FC<Props> = ({
@@ -38,11 +39,13 @@ const Select: React.FC<Props> = ({
   control,
   defaultValue,
   errors,
+  onInputChange,
 }) => {
   const { field } = useController({ name, control, defaultValue });
 
-  const handleSelectChange = (option: IOption<string> | null) =>
+  const handleSelectChange = (option: IOption<string> | null) => {
     field.onChange(option?.value);
+  };
   const handleSelectSetValue = options.find((c) => c.value === field.value);
 
   return (
@@ -68,6 +71,7 @@ const Select: React.FC<Props> = ({
           className={'selectStyles'}
           classNamePrefix={'selectStyles'}
           isSearchable
+          onInputChange={onInputChange}
         />
       </label>
       <ErrorMessage errors={errors} as="span" name={name} />

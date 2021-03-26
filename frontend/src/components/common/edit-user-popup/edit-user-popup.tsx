@@ -22,8 +22,7 @@ import { InputChangeEvent } from 'common/types';
 import defaultAvatar from 'assets/images/default-avatar.svg';
 import camera from 'assets/images/camera.svg';
 import { ProfileActionCreator } from 'store/slices';
-
-const DEFAULT_FILE_IDX = 0;
+import { DEFAULT_FILE_IDX } from 'common/constants';
 
 type Props = {
   user: IUser;

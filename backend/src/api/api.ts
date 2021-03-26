@@ -10,6 +10,8 @@ import { initDiagnosisApi } from './diagnosis/diagnosis.api';
 import { initUploadFileApi } from './upload-file/upload-file.api';
 import { initPermissionApi } from './permission/permission.api';
 import { initNotificationApi } from './notification/notification.api';
+import { initProfessionApi } from './profession/profession.api';
+import { initCityApi } from './city/city.api';
 import { initDoctorApi } from './doctor/doctor.api';
 import { initMessagesApi } from './messages/messages.api';
 
@@ -26,6 +28,8 @@ const apis = [
   initNotificationApi,
   initUploadFileApi,
   initPermissionApi,
+  initProfessionApi,
+  initCityApi,
   initDoctorApi,
   initMessagesApi,
 ];
