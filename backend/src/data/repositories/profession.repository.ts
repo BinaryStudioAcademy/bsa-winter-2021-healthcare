@@ -1,7 +1,7 @@
 import { ProfessionModel } from '../models';
 import { IProfession } from '~/common/interfaces';
 
-class ProfessionRepository {
+class Profession {
   public getAll(): Promise<IProfession[]> {
     return ProfessionModel.findAll();
   }
@@ -11,4 +11,4 @@ class ProfessionRepository {
   }
 }
 
-export { ProfessionRepository };
+export { Profession };
