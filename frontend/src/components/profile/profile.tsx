@@ -49,7 +49,7 @@ const Profile: React.FC = () => {
             <UserInfo
               user={user as IUserWithPermissions}
               onEdit={handleTogglePopUp}
-              isDoctor
+              isDoctor={isDoctor}
             />
           </>
         );
