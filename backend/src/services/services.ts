@@ -13,6 +13,7 @@ import { Appointment } from './appointment/appoitment-service.service';
 import { Diagnosis } from './diagnosis/diagnosis.service';
 import { UploadFile } from './upload-file/upload-file.service';
 import { Permission } from './permission/permission.service';
+import { Profession } from './profession/profession.service';
 
 const appAsyncStorage = new AsyncLocalStorage<AppAsyncStorage>();
 
@@ -32,6 +33,7 @@ const uploadFile = new UploadFile();
 const notification = new Notification();
 const doctor = new Doctor();
 const permission = new Permission();
+const profession = new Profession();
 
 export {
   appAsyncStorage,
@@ -47,4 +49,5 @@ export {
   notification,
   doctor,
   permission,
+  profession,
 };
