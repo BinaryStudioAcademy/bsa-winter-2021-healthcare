@@ -14,6 +14,7 @@ import { MapApi } from './map-api/map-api.service';
 import { PermissionApi } from './permission-api/permission-api.service';
 import { CityApi } from './city-api/city-api.service';
 import { DoctorApi } from './doctor-api/doctor-api.service';
+import { Messages } from './messages/messages.service';
 
 const http = new Http();
 
@@ -66,6 +67,11 @@ const mapApi = new MapApi({
   apiPrefix: ENV.API_PATH,
 });
 
+const messagesApi = new Messages({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
 const permissionApi = new PermissionApi({
   http,
   apiPrefix: ENV.API_PATH,
@@ -101,4 +107,5 @@ export {
   permissionApi,
   cityApi,
   doctorApi,
+  messagesApi,
 };

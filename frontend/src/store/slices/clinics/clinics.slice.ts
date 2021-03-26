@@ -5,6 +5,7 @@ import {
   clinicApi,
   notification as notificationService,
   cityApi,
+  uploadFile as uploadFileService,
 } from 'services';
 import { AppThunk } from 'common/types';
 import { HttpError } from 'exceptions';
@@ -94,12 +95,25 @@ const addCity = (cityName: Partial<ICity>): AppThunk => async (dispatch) => {
   }
 };
 
+const uploadClinicImage = async (file: File):Promise<string> => {
+  try {
+    const path = uploadFileService.addImage(file);
+    return path;
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
 const ClinicsActionCreator = {
   ...actions,
   getClinics,
   addClinic,
   getCities,
   addCity,
+  uploadClinicImage,
 };
 
 export { ClinicsActionCreator, reducer };

@@ -4,3 +4,4 @@ export * from './clinic';
 export * from './appointment';
 export * from './diagnosis';
 export * from './city';
+export * from './messages';

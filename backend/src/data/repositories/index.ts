@@ -8,6 +8,7 @@ import { Notification } from './notification.repository';
 import { Doctor } from './doctor.repository';
 import { Permission } from './permission.repository';
 import { City } from './city.repository';
+import { Messages } from './messages.repository';
 
 const user = new User();
 const clinic = new Clinic();
@@ -19,6 +20,11 @@ const appointment = new Appointment();
 const notification = new Notification();
 const permissionRepository = new Permission();
 const cityRepository = new City();
+const doctor = new Doctor();
+const appointment = new Appointment();
+const notification = new Notification();
+const permission = new Permission();
+const messages = new Messages();
 
 export {
   user,
@@ -26,9 +32,10 @@ export {
   geolocation,
   diagnosis,
   document,
-  doctorRepository,
+  doctor,
   notification,
-  permissionRepository,
+  permission,
   appointment,
   cityRepository,
+  messages,
 };

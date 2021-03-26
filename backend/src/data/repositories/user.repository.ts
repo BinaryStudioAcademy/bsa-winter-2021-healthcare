@@ -16,6 +16,7 @@ import {
 } from '~/common/interfaces';
 import {
   UserType,
+  UserKey,
   ModelAlias,
   DoctorKey,
   ClinicKey,
@@ -23,7 +24,7 @@ import {
   CityKey,
   ProfessionKey,
 } from '~/common/enums';
-import { Op } from 'sequelize';
+import { Sequelize, Op } from 'sequelize';
 
 class User {
   public getById(id: string): Promise<IUser | null> {
@@ -108,7 +109,7 @@ class User {
         {
           model: DoctorModel,
           as: ModelAlias.DOCTOR,
-          attributes: [DoctorKey.ABOUT],
+          attributes: [DoctorKey.ID, DoctorKey.ABOUT],
           include: [
             {
               model: DocumentModel,
@@ -136,6 +137,28 @@ class User {
           as: ModelAlias.PERMISSIONS,
         },
       ],
+    });
+  }
+
+  public filterUsersByName(name: string): Promise<IUser[]> {
+    return UserModel.findAll({
+
+      attributes: [
+        UserKey.ID,
+        UserKey.IMAGE_PATH,
+        [Sequelize.fn('concat', Sequelize.col(UserKey.NAME), ' ', Sequelize.col(UserKey.SURNAME)), UserKey.NAME],
+      ],
+
+      where: {
+        [Op.or]: {
+          [UserKey.NAME]: {
+            [Op.iLike]: `%${name}%`,
+          },
+          [UserKey.SURNAME]: {
+            [Op.iLike]: `%${name}%`,
+          },
+        },
+      },
     });
   }
 
