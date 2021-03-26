@@ -16,10 +16,10 @@ const addClinic = yup.object().shape({
     .mixed<ClinicType>()
     .oneOf(Object.values(ClinicType))
     .required(),
+  [ClinicKey.CITY_ID]: yup
+    .string(),
   [ClinicKey.IMAGE_PATH]: yup
-    .string()
-    .required()
-    .url(),
+    .string(),
 });
 
 export { addClinic };
