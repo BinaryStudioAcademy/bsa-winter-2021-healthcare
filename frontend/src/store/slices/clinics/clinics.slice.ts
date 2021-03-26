@@ -51,9 +51,10 @@ const getClinics = (): AppThunk => async (dispatch) => {
   }
 };
 
-const addClinic = (clinicInfo: IClinicPayload, cityValue?: string): AppThunk => async (
-  dispatch,
-) => {
+const addClinic = (
+  clinicInfo: IClinicPayload,
+  cityValue?: string,
+): AppThunk => async (dispatch) => {
   try {
     const updatedClinic: IClinicPayload = {
       ...clinicInfo,
@@ -98,7 +99,7 @@ const addCity = (cityName: Partial<ICity>): AppThunk => async (dispatch) => {
   }
 };
 
-const uploadClinicImage = async (file: File):Promise<string> => {
+const uploadClinicImageAsync = (file: File): AppThunk => async () => {
   try {
     const path = uploadFileService.addImage(file);
     return path;
@@ -116,7 +117,7 @@ const ClinicsActionCreator = {
   addClinic,
   getCities,
   addCity,
-  uploadClinicImage,
+  uploadClinicImageAsync,
 };
 
 export { ClinicsActionCreator, reducer };
