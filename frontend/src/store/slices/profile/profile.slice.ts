@@ -5,6 +5,7 @@ import {
   uploadFile as uploadFileService,
   userApi,
   documentApi,
+  professionApi,
 } from 'services';
 import { DocumentStatus, ReducerName, DocumentKey } from 'common/enums';
 import { AppThunk } from 'common/types';
@@ -15,6 +16,7 @@ import {
   IDiagnosis,
   IUserWithPermissions,
   IDiagnosisPayload,
+  IProfession,
 } from 'common/interfaces';
 import { AuthActionCreator } from 'store/slices';
 import { HttpError } from 'exceptions';
@@ -22,11 +24,13 @@ import { HttpError } from 'exceptions';
 interface IState {
   user: IUserWithPermissions | null;
   diagnoses: IDiagnosis[];
+  professions: IProfession[];
 }
 
 const initialState: IState = {
   user: null,
   diagnoses: [],
+  professions: [],
 };
 
 const { reducer, actions } = createSlice({
@@ -50,6 +54,12 @@ const { reducer, actions } = createSlice({
     },
     editImagePath: (state, action: PayloadAction<string>) => {
       (state.user as IUserWithPermissions).imagePath = action.payload;
+    },
+    setProfessions: (state, action: PayloadAction<IProfession[]>) => {
+      state.professions = action.payload;
+    },
+    selectProfession: (state, action: PayloadAction<IProfession>) => {
+      (state.user as IUserTypeDoctor).doctor.profession = action.payload;
     },
   },
 });
@@ -154,6 +164,30 @@ const uploadDocument = (file: File): AppThunk => async (dispatch) => {
   }
 };
 
+const getAllProfessions = (): AppThunk => async (dispatch) => {
+  try {
+    const professions = await professionApi.getAllProfessions();
+    dispatch(actions.setProfessions(professions));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
+const addSelectedProfession = (id: string, userId: string): AppThunk => async (dispatch) => {
+  try {
+    const profession = await professionApi.addSelectedProfession(id, userId);
+    dispatch(actions.selectProfession(profession));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
 const ProfileActionCreator = {
   ...actions,
   getUser,
@@ -163,6 +197,8 @@ const ProfileActionCreator = {
   addDiagnosis,
   uploadDocument,
   uploadImage,
+  getAllProfessions,
+  addSelectedProfession,
 };
 
 export { ProfileActionCreator, reducer };
