@@ -1,8 +1,8 @@
 import React from 'react';
+import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import clsx from 'clsx';
-import { IUser } from 'common/interfaces/user';
+import { IUserWithPermissions } from 'common/interfaces/user';
 import { BindingCb, InputChangeEvent, RootState } from 'common/types';
 import { getFormattedDate } from 'helpers';
 import { IOption, IProfession, IUserTypeDoctor } from 'common/interfaces';
@@ -17,6 +17,7 @@ import {
   InputColor,
   ButtonType,
   ProfessionKey,
+  PermissionName,
 } from 'common/enums';
 import styles from './styles.module.scss';
 import defaultAvatar from 'assets/images/default-avatar.svg';
@@ -24,15 +25,25 @@ import AddClinic from '../add-clinic/add-clinic';
 import { getProfessionOptions } from './helpers';
 import { DEFAULT_FILE_IDX } from 'common/constants';
 import { DEFAULT_PROFESSION_VALUE } from './common/constants';
+import { checkHasPermission } from 'helpers';
 
 type Props = {
-  user: IUser;
+  user: IUserWithPermissions;
   isDoctor: boolean;
   onEdit: BindingCb;
 };
 
 const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
+
+  const { authUser } = useSelector(({ auth: { user: authUser } }: RootState) => ({
+    authUser,
+  }));
+
   const birthdate = getFormattedDate(user.birthdate, DateFormat.D_MMMM_YYYY);
+  const hasPermissionToEdit = checkHasPermission(
+    [PermissionName.EDIT_USER],
+    authUser?.permissions ?? [],
+  );
   const dispatch = useDispatch();
   const { handleSubmit, errors, control } = useForm<IProfession>({
     defaultValues: DEFAULT_PROFESSION_VALUE,
@@ -61,15 +72,15 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
   return (
     <div className={styles.mainInfo}>
       <div className={styles.infoHeader}>
-        <span className={styles.title}>My Profile</span>
-        <Button
+        <span className={styles.title}>Profile</span>
+        {user?.id === authUser?.id && <Button
           label="Edit"
           icon={ButtonIcon.EDIT}
           hasHiddenLabel={true}
           color={ButtonColor.GRAY_LIGHT}
           styleType={ButtonStyleType.MEDIUM_ROUND}
           onClick={onEdit}
-        />
+        />}
       </div>
       <div className={styles.infoBloks}>
         <div className={styles.photo}>
@@ -144,7 +155,10 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
       )}
 
       {isDoctor && (user as IUserTypeDoctor).doctor?.document && (
-        <Documents document={(user as IUserTypeDoctor).doctor.document} />
+        <Documents
+          document={(user as IUserTypeDoctor).doctor.document}
+          hasPermissionToEdit={hasPermissionToEdit}
+        />
       )}
     </div>
   );

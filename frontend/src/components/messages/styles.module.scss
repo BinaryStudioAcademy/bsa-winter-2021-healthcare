@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 80px);
+  background: var(--color-gray-light);
+
+  .chat {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    min-width: 570px;
+    max-width: 990px;
+    min-height: 100%;
+    background: #faf9f9;
+
+    .headMessageList {
+      min-height: 60px;
+      padding: 20px 57px;
+      font-family: var(--font-family-primary);
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      color: #000;
+      background: #fff;
+    }
+  }
+}
+

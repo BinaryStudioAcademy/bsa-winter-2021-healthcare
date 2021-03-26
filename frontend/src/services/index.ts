@@ -13,7 +13,9 @@ import { UploadFile } from './upload-file/upload-file.service';
 import { MapApi } from './map-api/map-api.service';
 import { PermissionApi } from './permission-api/permission-api.service';
 import { ProfessionApi } from './profession-api/profession-api.service';
+import { CityApi } from './city-api/city-api.service';
 import { DoctorApi } from './doctor-api/doctor-api.service';
+import { Messages } from './messages/messages.service';
 
 const http = new Http();
 
@@ -66,7 +68,17 @@ const mapApi = new MapApi({
   apiPrefix: ENV.API_PATH,
 });
 
+const messagesApi = new Messages({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
 const permissionApi = new PermissionApi({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
+const cityApi = new CityApi({
   http,
   apiPrefix: ENV.API_PATH,
 });
@@ -100,5 +112,7 @@ export {
   mapApi,
   permissionApi,
   professionApi,
+  cityApi,
   doctorApi,
+  messagesApi,
 };

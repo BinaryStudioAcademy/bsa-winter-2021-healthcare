@@ -14,6 +14,8 @@ import { Diagnosis } from './diagnosis/diagnosis.service';
 import { UploadFile } from './upload-file/upload-file.service';
 import { Permission } from './permission/permission.service';
 import { Profession } from './profession/profession.service';
+import { City } from './city-service/city-service.service';
+import { Message } from './messages/message.service';
 
 const appAsyncStorage = new AsyncLocalStorage<AppAsyncStorage>();
 
@@ -34,6 +36,8 @@ const notification = new Notification();
 const doctor = new Doctor();
 const permission = new Permission();
 const profession = new Profession();
+const city = new City();
+const message = new Message();
 
 export {
   appAsyncStorage,
@@ -50,4 +54,6 @@ export {
   doctor,
   permission,
   profession,
+  city,
+  message,
 };

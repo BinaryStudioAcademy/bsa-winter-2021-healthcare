@@ -1,0 +1,25 @@
+.userList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  overflow-y: auto;
+
+  height: 100%;
+  padding: 39px 57px 39px 0;
+
+  background: var(--color-gray-light);
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--color-gray-light);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(172, 93, 217, 0.3);
+    border-radius: 5px;
+  }
+}

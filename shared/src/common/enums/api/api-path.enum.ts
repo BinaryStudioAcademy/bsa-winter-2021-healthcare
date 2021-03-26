@@ -10,7 +10,9 @@ enum ApiPath {
   FILES = '/files',
   PERMISSIONS = '/permissions',
   PROFESSION = '/profession',
+  CITIES = '/cities',
   DOCTORS = '/doctors',
+  MESSAGES = '/messages',
 }
 
 export { ApiPath };
