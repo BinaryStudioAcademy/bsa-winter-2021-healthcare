@@ -1,4 +1,4 @@
-import { getRandomNumber } from "~/helpers";
+import { getRandomNumber } from '~/helpers';
 
 const RANDOM_ITEM_START_IDX = 0;
 const RANDOM_ITEM_DECREMENT = 1;
