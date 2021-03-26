@@ -22,4 +22,4 @@ export * from './user-specialization';
 export * from './profession';
 export * from './map';
 export * from './doctor-register-payload';
-export * from './clinic-extended';
+export * from './clinic-with-city';
