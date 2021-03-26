@@ -92,6 +92,10 @@
       color: #787878;
       list-style: none;
 
+      .conditionsItem {
+        text-transform: capitalize;
+      }
+
       li::before {
         content: "\2022";
         color: #5B8DEF;
