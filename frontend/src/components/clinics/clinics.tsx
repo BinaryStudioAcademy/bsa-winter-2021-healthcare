@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'common/types';
 import { ClinicsActionCreator } from 'store/slices';
 import styles from './styles.module.scss';
-import { Button } from 'components/common';
+import { Button, NoDataPlaceholder } from 'components/common';
 import { Clinic, AddClinicPopup } from './components';
 import { IClinicPayload } from 'common/interfaces';
 import { DEFAULT_CLINIC_VALUE } from './components/common/constants';
@@ -12,6 +12,7 @@ import {
   ButtonStyleType,
   ButtonType,
   PermissionName,
+  NoDataLabel,
 } from 'common/enums';
 import { checkHasPermission } from 'helpers';
 
@@ -48,6 +49,8 @@ const Clinics: React.FC = () => {
     dispatch(ClinicsActionCreator.getClinics());
   }, []);
 
+  const hasClinics = Boolean(clinics.length);
+
   return (
     <>
       <div className={styles.clinicsPageWrapper}>
@@ -65,9 +68,11 @@ const Clinics: React.FC = () => {
         )}
         <div className={styles.clinicsWrapper}>
           <div className={styles.clinicsContainer}>
-            {clinics.map((clinic) => (
-              <Clinic key={clinic?.id} clinic={clinic} />
-            ))}
+
+            {hasClinics
+              ? clinics.map(clinic => <Clinic key={clinic?.id} clinic={clinic} />)
+              : <NoDataPlaceholder label={NoDataLabel.NO_CLINICS} />}
+
           </div>
         </div>
       </div>
