@@ -1,11 +1,10 @@
 import { ClinicKey, ClinicType } from 'common/enums';
 import { IClinicPayload } from 'common/interfaces';
-import ClinicDefaultImage from 'assets/images/clinic-default.jpg';
 
 const DEFAULT_CLINIC_VALUE: IClinicPayload = {
   [ClinicKey.NAME]: '',
   [ClinicKey.ADDRESS]: '',
-  [ClinicKey.IMAGE_PATH]: ClinicDefaultImage,
+  [ClinicKey.IMAGE_PATH]: null,
   [ClinicKey.CLINIC_TYPE]: ClinicType.STATE,
   [ClinicKey.CITY_ID]:'',
 };
