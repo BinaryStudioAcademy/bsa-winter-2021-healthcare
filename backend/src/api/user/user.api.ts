@@ -5,6 +5,7 @@ import { userRegister as userRegisterSchema, editUser as validationEditUser } fr
 import { user as userService } from '~/services/services';
 import { checkIsOneOf } from '~/helpers';
 import { IDoctorFiltrationPayload } from '~/common/interfaces';
+import jwt from 'jsonwebtoken';
 
 const initUserApi = (apiRouter: Router): Router => {
   const userRouter = Router();
@@ -31,6 +32,17 @@ const initUserApi = (apiRouter: Router): Router => {
 
       const users = await userService.getUsersByType(req.params.type as UserType, filter);
       res.status(HttpCode.OK).json(users);
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  userRouter.get(UsersApiPath.CURRENT_USER, async (req, res, next) => {
+    try {
+      const token = (req.header('authorization') as string).split(' ')[1];
+      const decoded = jwt.decode(token) as { [key: string]: string };
+      const user = await userService.getUserById(decoded.id);
+      res.status(HttpCode.OK).json(user);
     } catch (error) {
       next(error);
     }
