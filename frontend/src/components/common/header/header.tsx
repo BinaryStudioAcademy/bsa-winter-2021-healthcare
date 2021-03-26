@@ -1,6 +1,5 @@
 import * as React from 'react';
 import iconLogo from 'assets/images/icon-logo.svg';
-import defaultAvatar from 'assets/images/default-avatar.svg';
 import { Button, Link } from '../index';
 import {
   AppRoute,
@@ -14,6 +13,7 @@ import { useVisible } from 'hooks';
 import { AuthActionCreator } from 'store/slices';
 import styles from './header.module.scss';
 import { useDispatch } from 'react-redux';
+import { getDefaultAvatar } from 'helpers';
 
 const Header: React.FC<Props> = ({ user }) => {
   const { ref, isVisible, setIsVisible } = useVisible(false);
@@ -55,7 +55,7 @@ const Header: React.FC<Props> = ({ user }) => {
           width={35}
           height={32}
           className={styles.avatar}
-          src={user.imagePath ?? defaultAvatar}
+          src={user.imagePath ?? getDefaultAvatar(user)}
         />
         <div className={styles.userInfo}>{user.name}</div>
         <Button

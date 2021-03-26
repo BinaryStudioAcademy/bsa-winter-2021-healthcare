@@ -1,11 +1,11 @@
-import { IProfession } from '~/common/interfaces';
 import { IDoctor } from '../doctor';
-import { IClinic } from '../clinic';
 import { IDocument } from '../document';
 import { DoctorExtendedKey } from '~/common/enums';
+import { IClinicWithCity } from '../clinic-with-city';
+import { IProfession } from '../profession';
 
 interface IDoctorExtended extends IDoctor {
-  [DoctorExtendedKey.CLINIC]: IClinic
+  [DoctorExtendedKey.CLINIC]: IClinicWithCity
   [DoctorExtendedKey.DOCUMENT]: IDocument
   [DoctorExtendedKey.PROFESSION]: IProfession
 }

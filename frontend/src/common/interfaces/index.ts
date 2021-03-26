@@ -21,3 +21,4 @@ export * from './permission';
 export * from './map';
 export * from './profession';
 export * from './city';
+export * from './clinic-with-city';
