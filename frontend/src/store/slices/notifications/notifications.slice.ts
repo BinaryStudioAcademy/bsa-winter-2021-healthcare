@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName } from 'common/enums';
 import { AppThunk } from 'common/types';
 import { INotification } from 'common/interfaces';
-import { notification } from 'services';
+import { notification as notificationService } from 'services';
 import { HttpError } from 'exceptions';
 
 interface IState {
@@ -23,13 +23,17 @@ const { reducer, actions } = createSlice({
   },
 });
 
-const getNotificationsByUser = (userId: string): AppThunk => async (dispatch) => {
+const getNotificationsByUser = (userId: string): AppThunk => async (
+  dispatch,
+) => {
   try {
-    const notifications = await notification.getNotificationsByUser(userId);
+    const notifications = await notificationService.getNotificationsByUser(
+      userId,
+    );
     dispatch(actions.setNotifications(notifications));
   } catch (error) {
     if (error instanceof HttpError) {
-      notification.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }

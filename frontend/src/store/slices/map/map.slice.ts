@@ -13,7 +13,7 @@ const selectArea = (coords: ICoordsSet): AppThunk => async () => {
     return response;
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
