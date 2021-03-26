@@ -59,9 +59,7 @@ const SelectClinic: React.FC<Props> = ({ user, doctorDetails }) => {
   };
 
   React.useEffect(() => {
-    doctorDetails &&
-      doctorDetails.doctor.clinic &&
-      setValue(ClinicKey.NAME, doctorDetails.doctor.clinic.id);
+    doctorDetails?.doctor?.clinic && setValue(ClinicKey.NAME, doctorDetails.doctor.clinic.id);
   }, [doctorDetails]);
 
   return (
