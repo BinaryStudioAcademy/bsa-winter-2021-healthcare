@@ -108,7 +108,7 @@ class User {
         {
           model: DoctorModel,
           as: ModelAlias.DOCTOR,
-          attributes: [DoctorKey.ABOUT],
+          attributes: [DoctorKey.ID, DoctorKey.ABOUT],
           include: [
             {
               model: DocumentModel,
