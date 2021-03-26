@@ -5,6 +5,7 @@ import {
   uploadFile as uploadFileService,
   userApi,
   documentApi,
+  professionApi,
   appointment as appointmentService,
   clinicApi,
   doctorApi,
@@ -18,6 +19,7 @@ import {
   IDiagnosis,
   IUserWithPermissions,
   IDiagnosisPayload,
+  IProfession,
   IAppointmentWithUser,
   IClinic,
   IDoctorDetails,
@@ -28,6 +30,7 @@ import { HttpError } from 'exceptions';
 interface IState {
   user: IUserWithPermissions | null;
   diagnoses: IDiagnosis[];
+  professions: IProfession[];
   appointments: IAppointmentWithUser[];
   clinics: IClinic[];
   doctorDetails: IDoctorDetails | null;
@@ -36,6 +39,7 @@ interface IState {
 const initialState: IState = {
   user: null,
   diagnoses: [],
+  professions: [],
   appointments: [],
   clinics: [],
   doctorDetails: null,
@@ -59,6 +63,12 @@ const { reducer, actions } = createSlice({
     },
     editImagePath: (state, action: PayloadAction<string>) => {
       (state.user as IUserWithPermissions).imagePath = action.payload;
+    },
+    setProfessions: (state, action: PayloadAction<IProfession[]>) => {
+      state.professions = action.payload;
+    },
+    selectProfession: (state, action: PayloadAction<IProfession>) => {
+      (state.user as IUserTypeDoctor).doctor.profession = action.payload;
     },
     setAppointments: (state, action: PayloadAction<IAppointmentWithUser[]>) => {
       state.appointments = action.payload;
@@ -187,6 +197,30 @@ const uploadDocument = (file: File): AppThunk => async (dispatch) => {
   }
 };
 
+const getAllProfessions = (): AppThunk => async (dispatch) => {
+  try {
+    const professions = await professionApi.getAllProfessions();
+    dispatch(actions.setProfessions(professions));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
+const addSelectedProfession = (id: string, userId: string): AppThunk => async (dispatch) => {
+  try {
+    const profession = await professionApi.addSelectedProfession(id, userId);
+    dispatch(actions.selectProfession(profession));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
 const getClinics = (): AppThunk => async (dispatch) => {
   try {
     const clinics = await clinicApi.getClinics();
@@ -233,6 +267,8 @@ const ProfileActionCreator = {
   getAllDiagnoses,
   addDiagnosis,
   uploadImage,
+  getAllProfessions,
+  addSelectedProfession,
   getAllAppointments,
   uploadDocument,
   getClinics,

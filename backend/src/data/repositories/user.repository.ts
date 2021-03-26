@@ -125,6 +125,10 @@ class User {
                 ClinicKey.CLINIC_TYPE,
               ],
             },
+            {
+              model:ProfessionModel,
+              as:ModelAlias.PROFESSION,
+            },
           ],
         },
         {
@@ -146,6 +150,8 @@ class User {
       attributes: [
         UserKey.ID,
         UserKey.IMAGE_PATH,
+        UserKey.SEX,
+        UserKey.TYPE,
         [Sequelize.fn('concat', Sequelize.col(UserKey.NAME), ' ', Sequelize.col(UserKey.SURNAME)), UserKey.NAME],
       ],
 

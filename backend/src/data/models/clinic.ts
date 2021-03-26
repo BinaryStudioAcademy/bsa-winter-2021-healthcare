@@ -19,7 +19,6 @@ const createClinicModel = (orm: Sequelize): ModelCtor<ClinicInstance> => {
         unique: true,
       },
       imagePath: {
-        allowNull: false,
         type: DataTypes.STRING,
       },
       clinicType: {

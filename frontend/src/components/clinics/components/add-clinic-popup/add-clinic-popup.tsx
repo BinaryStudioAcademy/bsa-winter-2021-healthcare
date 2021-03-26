@@ -59,21 +59,19 @@ const AddClinicPopup: React.FC<IProps> = ({
   });
 
   register(ClinicKey.IMAGE_PATH);
+
   const image = watch(ClinicKey.IMAGE_PATH, DEFAULT_CLINIC_VALUE.imagePath);
-  const handleUploadFile = (evt: InputChangeEvent) => {
+
+  const handleUploadFile = async (evt: InputChangeEvent) => {
     const file = (evt.target.files as FileList)[DEFAULT_FILE_IDX];
     if (file){
-      ClinicsActionCreator.uploadClinicImage(file).then(path => {
-        setValue(ClinicKey.IMAGE_PATH, path);
-      });
+      const path= await dispatch(ClinicsActionCreator.uploadClinicImageAsync(file));
+      setValue(ClinicKey.IMAGE_PATH, path);
     }
   };
 
   const handleSubmitForm = (clinicData: IClinicPayload) => {
-    onCreateClinic({
-      ...clinicData,
-      imagePath: DEFAULT_CLINIC_VALUE.imagePath,
-    }, selectInputValue);
+    onCreateClinic(clinicData, selectInputValue);
   };
 
   const handleInputChange = (inputValue: string) => {
