@@ -111,6 +111,10 @@ class User {
               model:DocumentModel,
               as:ModelAlias.DOCUMENT,
             },
+            {
+              model:ProfessionModel,
+              as:ModelAlias.PROFESSION,
+            },
           ],
         },
         {

@@ -7,6 +7,7 @@ import { Document } from './document-repository';
 import { Notification } from './notification.repository';
 import { DoctorRepository } from './doctor-repository';
 import { PermissionRepository } from './permission-repository';
+import { ProfessionRepository } from './profession.repository';
 
 const user = new User();
 const clinic = new Clinic();
@@ -17,6 +18,7 @@ const doctorRepository = new DoctorRepository();
 const appointment = new Appointment();
 const notification = new Notification();
 const permissionRepository = new PermissionRepository();
+const professionRepository = new ProfessionRepository();
 
 export {
   user,
@@ -28,4 +30,5 @@ export {
   notification,
   permissionRepository,
   appointment,
+  professionRepository,
 };
