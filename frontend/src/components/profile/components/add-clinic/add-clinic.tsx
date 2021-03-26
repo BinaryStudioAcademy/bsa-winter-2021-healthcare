@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IUserTypeDoctor } from 'common/interfaces';
 import { RootState } from 'common/types';
-import { ClinicsActionCreator, DoctorsActionCreator } from 'store/slices';
+import { ProfileActionCreator } from 'store/slices';
 import { SelectClinic } from './components';
 
 type Props = {
@@ -10,15 +10,15 @@ type Props = {
 };
 
 const AddClinic: React.FC<Props> = ({ user }) => {
-  const { doctorDetails } = useSelector(({ doctors }: RootState) => ({
-    doctorDetails: doctors.doctorDetails,
+  const { doctorDetails } = useSelector(({ profile }: RootState) => ({
+    doctorDetails: profile.doctorDetails,
   }));
 
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(ClinicsActionCreator.getClinics());
-    user.id && dispatch(DoctorsActionCreator.getDoctorDetailsAsync(user.id));
+    dispatch(ProfileActionCreator.getClinics());
+    user.id && dispatch(ProfileActionCreator.getDoctorDetailsAsync(user.id));
   }, [user]);
 
   return <SelectClinic user={user} doctorDetails={doctorDetails} />;
