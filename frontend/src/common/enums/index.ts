@@ -18,3 +18,4 @@ export * from './permission';
 export * from './diagnosis';
 export * from './upload-file';
 export * from './map';
+export * from './profession';
