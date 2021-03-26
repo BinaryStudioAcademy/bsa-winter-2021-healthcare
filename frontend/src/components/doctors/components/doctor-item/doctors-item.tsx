@@ -30,7 +30,7 @@ const DoctorItem: React.FC<Props> = ({ user }) => {
       {user.doctor.profession?.name &&
         <div className={styles.infoItem}>
           <span className={clsx(styles.icon, styles.stethoscope)}></span>
-          <span className={styles.text}>{user.doctor.profession?.name}</span>
+          <span className={clsx(styles.text, styles.textCapitalize)}>{user.doctor.profession?.name}</span>
         </div>
       }
     </Card>

@@ -20,7 +20,7 @@ const MessageList: React.FC<Props> = ({ className }) => {
     userId: user?.id,
     userAvatarPath: (user?.imagePath ?? getDefaultAvatar(user as IUser)),
     messages,
-    selectedUserAvatarPath: (selectedUser?.imagePath ?? (selectedUser ? getDefaultAvatar(user as IUser): '')),
+    selectedUserAvatarPath: (selectedUser?.imagePath ?? (selectedUser ? getDefaultAvatar(selectedUser as IUser): '')),
   }));
 
   const hasMessages = Boolean(messages.length);

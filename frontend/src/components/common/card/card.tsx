@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ButtonColor, ButtonStyleType, AppRoute } from 'common/enums';
 import { Button } from 'components/common';
 import styles from './styles.module.scss';
+import clsx from 'clsx';
 
 type Props = {
   subtitle?: string;
@@ -31,7 +32,7 @@ const Card: React.FC<Props> = ({
           <span className={styles.subtitle}>{subtitle}</span>
           <span className={styles.title}>{title}</span>
           {label && (
-            <span className={styles.label}>{label}</span>
+            <span className={clsx(styles.label, styles.textCapitalize)}>{label}</span>
           )}
         </div>
         <div className={styles.cardInfoBlocks}>{children}</div>

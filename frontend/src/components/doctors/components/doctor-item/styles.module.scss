@@ -18,6 +18,9 @@
   margin-top: 12px;
 }
 
+.textCapitalize {
+  text-transform: capitalize;
+}
 
 .location {
   background-image: url('../../../../assets/images/location.svg');
@@ -35,5 +38,4 @@
   background-image: url('../../../../assets/images/icons/stethoscope.svg');
   background-repeat: no-repeat;
   background-position: center;
-  color: rgb(119, 119, 250);
 }
