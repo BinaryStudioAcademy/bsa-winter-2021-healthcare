@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { AppRoute, PermissionName } from 'common/enums';
+import { AppRoute, PermissionName, StorageKey } from 'common/enums';
 import Users from 'components/users/users';
 import Sign from 'components/sign/sign';
 import NotFound from 'components/not-found/not-found';
@@ -11,16 +11,31 @@ import DoctorDetails from 'components/doctor-details/doctor-details';
 import Notifications from 'components/notifications/notifications';
 import Map from 'components/map/map';
 import Permissions from 'components/permissions/permissions-page';
-import { AuthorizedRoute } from 'components/common';
+import { AuthorizedRoute, Spinner } from 'components/common';
 import { AuthActionCreator } from 'store/slices';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'common/types';
+import { storage } from 'services';
 
 const App: React.FC = () => {
+  const { user } = useSelector(({ auth }: RootState) => ({
+    user: auth.user,
+  }));
+
   const dispatch = useDispatch();
 
+  const hasToken = Boolean(storage.getItem(StorageKey.TOKEN));
+  const hasUser = Boolean(user);
+
   React.useEffect(() => {
-    dispatch(AuthActionCreator.getCurrentUser());
+    if (hasToken) {
+      dispatch(AuthActionCreator.getCurrentUser());
+    }
   }, []);
+
+  if (!hasUser && hasToken) {
+    return <Spinner />;
+  }
 
   return (
     <Switch>
