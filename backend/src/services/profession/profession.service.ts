@@ -1,4 +1,4 @@
-import { professionRepository } from '~/data/repositories';
+import { profession as professionRepository } from '~/data/repositories';
 import { IDoctor, IProfession } from '~/common/interfaces';
 import { doctor as doctorService } from '../services';
 import { DoctorKey } from '~/common/enums';

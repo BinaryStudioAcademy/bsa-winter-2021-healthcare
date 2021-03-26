@@ -57,7 +57,7 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
   const professionOptions: IOption<string>[] = getProfessionOptions(professions);
 
   React.useEffect(() => {
-    dispatch(ProfileActionCreator.getAllProfessions());
+    isDoctor && dispatch(ProfileActionCreator.getAllProfessions());
   }, []);
 
   const handleUploadFile = (evt: InputChangeEvent) => {
