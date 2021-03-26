@@ -1,23 +1,31 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
 import { IUser } from 'common/interfaces/user';
-import { BindingCb, InputChangeEvent } from 'common/types';
+import { BindingCb, InputChangeEvent, RootState } from 'common/types';
 import { getFormattedDate } from 'helpers';
-import { IUserTypeDoctor } from 'common/interfaces';
+import { IOption, IProfession, IUserTypeDoctor } from 'common/interfaces';
 import { ProfileActionCreator } from 'store/slices';
-import { Button } from 'components/common';
+import { Button, Select } from 'components/common';
 import Documents from '../documents/documents';
 import {
   ButtonColor,
   ButtonStyleType,
   ButtonIcon,
   DateFormat,
+  InputColor,
+  ButtonType,
 } from 'common/enums';
 import styles from './styles.module.scss';
 import defaultAvatar from 'assets/images/default-avatar.svg';
+import { ProfessionKey } from 'healthcare-shared/common/enums';
 
 const DEFAULT_FILE_IDX = 0;
+const DEFAULT_PROFESSION_VALUE = {
+  id: '',
+  name: '',
+};
 
 type Props = {
   user: IUser;
@@ -28,10 +36,34 @@ type Props = {
 const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
   const birthdate = getFormattedDate(user.birthdate, DateFormat.D_MMMM_YYYY);
   const dispatch = useDispatch();
+  
+  const { handleSubmit, errors, control } = useForm<IProfession>({
+    defaultValues: DEFAULT_PROFESSION_VALUE,
+    mode: 'onChange',
+  });
+
+  const { professions } = useSelector(({ profile }: RootState) => ({
+    professions: profile.professions,
+  }));
+  
+  const professionOptions: IOption<string>[] = professions.map((profession: IProfession) => {
+    return {
+      label: profession[ProfessionKey.NAME],
+      value: profession[ProfessionKey.ID],
+    };
+  });
+
+  React.useEffect(() => {
+    dispatch(ProfileActionCreator.getAllProfessions());
+  }, []);
 
   const handleUploadFile = (evt: InputChangeEvent) => {
     const file = (evt.target.files as FileList)[DEFAULT_FILE_IDX];
     dispatch(ProfileActionCreator.uploadDocument(file));
+  };
+
+  const handleSubmitProfessionForm = (profession: IProfession) => {
+    dispatch(ProfileActionCreator.addSelectedProfession(profession.id, user.id as string));
   };
 
   return (
@@ -73,10 +105,36 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
       </div>
 
       { isDoctor && (
-        <label htmlFor="uploadFile" className={styles.uploadWrapper}>
-          <span className={styles.uploadDocument}>Upload document</span>
-          <input className={clsx(styles.inputDocument, 'visually-hidden')} name="uploadFile" type="file" id="uploadFile" hidden onChange={handleUploadFile} />
-        </label>
+        <>
+          <form className={styles.selectFormWrapper} onSubmit={handleSubmit(handleSubmitProfessionForm)}>
+            <div className={styles.selectWrapper}>
+              <Select
+                name={ProfessionKey.ID}
+                label="Select specialty:"
+                hasHiddenLabel={false}
+                placeholder={(user as IUserTypeDoctor).doctor.profession.name || 'Select'}
+                options={professionOptions}
+                color={InputColor.GRAY_LIGHT}
+                control={control}
+                errors={errors}
+              />
+            </div>
+            <div className={styles.selectSubmitWrapper}>
+              <Button
+                type={ButtonType.SUBMIT}
+                styleType={ButtonStyleType.WITHOUT_BORDER}
+                color={ButtonColor.PRIMARY_DARK}
+                label={'Submit'}
+                hasHiddenLabel={false}
+              />
+            </div>
+          </form>
+
+          <label htmlFor="uploadFile" className={styles.uploadWrapper}>
+            <span className={styles.uploadDocument}>Upload document</span>
+            <input className={clsx(styles.inputDocument, 'visually-hidden')} name="uploadFile" type="file" id="uploadFile" hidden onChange={handleUploadFile} />
+          </label>
+        </>
       )}
 
       { isDoctor && (user as IUserTypeDoctor).doctor?.document && (
