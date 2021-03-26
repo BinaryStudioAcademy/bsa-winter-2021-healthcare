@@ -5,7 +5,8 @@ import checkIcon from 'assets/images/icons/check.svg';
 import styles from './styles.module.scss';
 import { getDefaultAvatar } from 'helpers';
 import { DOCTOR_SPECIALIZATIONS, SPECIALIZATIONS_COUNT } from './common';
-import { getRandomItems } from 'helpers/array';
+import { getRandomItem, getRandomItems } from 'helpers/array';
+import { DOCTOR_DESCRIPTIONS } from './common/constants/doctor-descriptions';
 
 type Props = {
   doctor: IDoctorDetails;
@@ -32,7 +33,9 @@ const Doctor: React.FC<Props> = ({ doctor }) => {
               loading="lazy"
               alt="phone-icon"
             />
-            <a href={`tel:${doctor.phone}`} className={styles.phoneNumber}>{doctor.phone}</a>
+            <a href={`tel:${doctor.phone}`} className={styles.phoneNumber}>
+              {doctor.phone}
+            </a>
           </div>
           <span className={styles.name}>
             {doctor.name} {doctor.surname}
@@ -43,7 +46,9 @@ const Doctor: React.FC<Props> = ({ doctor }) => {
         <span className={styles.aboutTitle}>
           About {doctor.name} {doctor.surname}
         </span>
-        <div className={styles.aboutBody}>{doctor.doctor.about}</div>
+        <div className={styles.aboutBody}>
+          {getRandomItem(DOCTOR_DESCRIPTIONS)}
+        </div>
       </div>
 
       <div className={styles.conditionsContainer}>
@@ -58,9 +63,13 @@ const Doctor: React.FC<Props> = ({ doctor }) => {
           <span className={styles.titleText}>Conditions Treated</span>
         </div>
         <ul className={styles.conditionsList}>
-          {getRandomItems(DOCTOR_SPECIALIZATIONS, SPECIALIZATIONS_COUNT).map((spec) => (
-            <li className={styles.conditionsItem} key={spec}>{spec}</li>
-          ))}
+          {getRandomItems(DOCTOR_SPECIALIZATIONS, SPECIALIZATIONS_COUNT).map(
+            (spec) => (
+              <li className={styles.conditionsItem} key={spec}>
+                {spec}
+              </li>
+            ),
+          )}
         </ul>
       </div>
     </div>

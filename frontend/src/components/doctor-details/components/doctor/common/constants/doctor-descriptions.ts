@@ -1,0 +1,9 @@
+const DOCTOR_DESCRIPTIONS: string[] = [
+  'Member of the Association of Endocrinologists of Ukraine. In her medical practice, she uses modern methods of prevention, diagnosis and treatment of the endocrinological profile that meet European, American and Ukrainian standards.',
+  'USAID national trainer, worked in obstetric institutions in Ukraine, Lithuania, Georgia, Kazakhstan. Permanent participant in national and international seminars and trainings.',
+  'Works with children of all age groups. Determines the examination plan and, on the basis of clinical observations and research, establishes a diagnosis, prescribes and monitors the necessary treatment. Provides advice on issues related to vaccination of young patients. Helps parents plan the child\'s daily routine and diet. In addition, the doctor\'s specialization covers anesthesiology and resuscitation care, he is an experienced specialist in preparation for surgery.',
+  'An experienced specialist in the diagnosis and treatment of diseases of internal organs and musculoskeletal system. Conducts consultative reception of patients with a therapeutic profile, is engaged in the prevention of chronic non-communicable diseases. He treats each patient as carefully as possible, tries to find an individual approach, successfully diagnoses and gets good results in the treatment of acute and chronic diseases.',
+  'A general practitioner knows modern methods of diagnostics and treatment of internal diseases, in particular, specializes in the problems of the pathology of the gastrointestinal tract in diseases of the esophagus, stomach, pancreas, biliary tract and intestines. Extensive experience in working with patients with occupational diseases of the respiratory system, nervous and osteoarticular systems, as well as in the treatment of pathology of internal organs in pregnant women.',
+];
+
+export { DOCTOR_DESCRIPTIONS };
