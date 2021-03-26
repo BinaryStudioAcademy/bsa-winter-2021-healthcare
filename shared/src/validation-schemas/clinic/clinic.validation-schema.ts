@@ -19,9 +19,7 @@ const addClinic = yup.object().shape({
   [ClinicKey.CITY_ID]: yup
     .string(),
   [ClinicKey.IMAGE_PATH]: yup
-    .string()
-    .required()
-    .url(),
+    .string(),
 });
 
 export { addClinic };
