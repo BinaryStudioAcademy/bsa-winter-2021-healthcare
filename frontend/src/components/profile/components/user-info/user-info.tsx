@@ -1,8 +1,8 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { IUserWithPermissions } from 'common/interfaces/user';
-import { BindingCb, InputChangeEvent } from 'common/types';
+import { BindingCb, InputChangeEvent, RootState } from 'common/types';
 import { getFormattedDate } from 'helpers';
 import { IUserTypeDoctor } from 'common/interfaces';
 import { ProfileActionCreator } from 'store/slices';
@@ -29,10 +29,15 @@ type Props = {
 };
 
 const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
+
+  const { authUser } = useSelector(({ auth: { user: authUser } }: RootState) => ({
+    authUser,
+  }));
+
   const birthdate = getFormattedDate(user.birthdate, DateFormat.D_MMMM_YYYY);
   const hasPermissionToEdit = checkHasPermission(
     [PermissionName.EDIT_USER],
-    user?.permissions ?? [],
+    authUser?.permissions ?? [],
   );
   const dispatch = useDispatch();
 
@@ -44,15 +49,15 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
   return (
     <div className={styles.mainInfo}>
       <div className={styles.infoHeader}>
-        <span className={styles.title}>My Profile</span>
-        <Button
+        <span className={styles.title}>Profile</span>
+        {user?.id === authUser?.id && <Button
           label="Edit"
           icon={ButtonIcon.EDIT}
           hasHiddenLabel={true}
           color={ButtonColor.GRAY_LIGHT}
           styleType={ButtonStyleType.MEDIUM_ROUND}
           onClick={onEdit}
-        />
+        />}
       </div>
       <div className={styles.infoBloks}>
         <div className={styles.photo}>
