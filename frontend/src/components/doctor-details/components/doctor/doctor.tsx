@@ -3,6 +3,7 @@ import { IDoctorDetails } from 'common/interfaces';
 import phoneIcon from 'assets/images/phone.svg';
 import checkIcon from 'assets/images/icons/check.svg';
 import styles from './styles.module.scss';
+import { getDefaultAvatar } from 'helpers';
 
 type Props = {
   doctor: IDoctorDetails;
@@ -14,7 +15,7 @@ const Doctor: React.FC<Props> = ({ doctor }) => {
       <div className={styles.personalDataContainer}>
         <img
           className={styles.doctorImage}
-          src={doctor.imagePath}
+          src={doctor.imagePath ?? getDefaultAvatar(doctor)}
           width="58"
           height="60"
           loading="lazy"

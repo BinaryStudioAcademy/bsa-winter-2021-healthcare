@@ -20,3 +20,4 @@ export * from './user-with-permissions';
 export * from './permission';
 export * from './map';
 export * from './city';
+export * from './clinic-extended';

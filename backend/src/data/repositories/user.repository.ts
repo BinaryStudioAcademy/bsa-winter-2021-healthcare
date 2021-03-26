@@ -146,6 +146,8 @@ class User {
       attributes: [
         UserKey.ID,
         UserKey.IMAGE_PATH,
+        UserKey.SEX,
+        UserKey.TYPE,
         [Sequelize.fn('concat', Sequelize.col(UserKey.NAME), ' ', Sequelize.col(UserKey.SURNAME)), UserKey.NAME],
       ],
 
