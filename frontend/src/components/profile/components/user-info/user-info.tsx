@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import clsx from 'clsx';
-import { IUser } from 'common/interfaces/user';
+import { IUserWithPermissions } from 'common/interfaces/user';
 import { BindingCb, InputChangeEvent } from 'common/types';
 import { getFormattedDate } from 'helpers';
 import { IUserTypeDoctor } from 'common/interfaces';
@@ -13,21 +13,27 @@ import {
   ButtonStyleType,
   ButtonIcon,
   DateFormat,
+  PermissionName,
 } from 'common/enums';
 import styles from './styles.module.scss';
 import defaultAvatar from 'assets/images/default-avatar.svg';
 import AddClinic from '../add-clinic/add-clinic';
+import { checkHasPermission } from 'helpers';
 
 const DEFAULT_FILE_IDX = 0;
 
 type Props = {
-  user: IUser;
+  user: IUserWithPermissions;
   isDoctor: boolean;
   onEdit: BindingCb;
 };
 
 const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
   const birthdate = getFormattedDate(user.birthdate, DateFormat.D_MMMM_YYYY);
+  const hasPermissionToEdit = checkHasPermission(
+    [PermissionName.EDIT_USER],
+    user?.permissions ?? [],
+  );
   const dispatch = useDispatch();
 
   const handleUploadFile = (evt: InputChangeEvent) => {
@@ -95,7 +101,10 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
       )}
 
       {isDoctor && (user as IUserTypeDoctor).doctor?.document && (
-        <Documents document={(user as IUserTypeDoctor).doctor.document} />
+        <Documents
+          document={(user as IUserTypeDoctor).doctor.document}
+          hasPermissionToEdit={hasPermissionToEdit}
+        />
       )}
     </div>
   );
