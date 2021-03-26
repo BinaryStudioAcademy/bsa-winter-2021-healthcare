@@ -12,6 +12,7 @@ import { Diagnosis } from './diagnosis/diagnosis.service';
 import { UploadFile } from './upload-file/upload-file.service';
 import { MapApi } from './map-api/map-api.service';
 import { PermissionApi } from './permission-api/permission-api.service';
+import { ProfessionApi } from './profession-api/profession-api.service';
 
 const http = new Http();
 
@@ -74,6 +75,11 @@ const appointment = new AppointmentApi({
   apiPrefix: ENV.API_PATH,
 });
 
+const professionApi = new ProfessionApi({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
 export {
   http,
   authApi,
@@ -88,4 +94,5 @@ export {
   uploadFile,
   mapApi,
   permissionApi,
+  professionApi,
 };
