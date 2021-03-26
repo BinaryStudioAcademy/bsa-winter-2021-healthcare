@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { RootState } from 'common/types';
 import { Message, HorizontalLine } from '../../components';
-import { NoData } from 'components/common';
+import { NoDataPlaceholder } from 'components/common';
 import { getFormattedDate } from 'helpers';
-import { DateFormat, NoDataLabels } from 'common/enums';
+import { DateFormat, NoDataLabel } from 'common/enums';
 import { DELTA_INDEX } from './common/constants';
 
 import styles from './styles.module.scss';
@@ -22,31 +22,32 @@ const MessageList: React.FC<Props> = ({ className }) => {
     selectedUserAvatarPath: selectedUser?.imagePath,
   }));
 
+  const hasMessages = Boolean(messages.length);
+
   return (
     <div className={clsx(styles.messageList, className)}>
 
-      {!messages.length && <NoData label={NoDataLabels.NO_MESSAGES} />}
+      {hasMessages
+        ? messages.map(({ id, userId: messageUserId, text, createdAt }, index, array) => {
+          const curFromNow = getFormattedDate(createdAt, DateFormat.DD_MMM);
+          const prevFromNow = getFormattedDate(array[index + DELTA_INDEX]?.createdAt, DateFormat.DD_MMM);
 
-      {messages.map(({ id, userId: messageUserId, text, createdAt }, index, array) => {
+          return (
+            <div key={id} className={styles.messageContainer}>
 
-        const curFromNow = getFormattedDate(createdAt, DateFormat.DD_MMM);
-        const prevFromNow = getFormattedDate(array[index + DELTA_INDEX]?.createdAt, DateFormat.DD_MMM);
+              {(curFromNow !== prevFromNow || (index + DELTA_INDEX) === array.length)
+                && <HorizontalLine label={curFromNow} />}
 
-        return (
-          <div key={id} className={styles.messageContainer}>
-
-            {(curFromNow !== prevFromNow || (index + DELTA_INDEX) === array.length)
-              && <HorizontalLine label={curFromNow} />}
-
-            <Message
-              message={text}
-              time={getFormattedDate(createdAt, DateFormat.HH_MM)}
-              avatar={messageUserId === userId ? userAvatarPath : selectedUserAvatarPath}
-              isOutcoming={messageUserId === userId}
-            />
-          </div>
-        );
-      })}
+              <Message
+                message={text}
+                time={getFormattedDate(createdAt, DateFormat.HH_MM)}
+                avatar={messageUserId === userId ? userAvatarPath : selectedUserAvatarPath}
+                isOutcoming={messageUserId === userId}
+              />
+            </div>
+          );
+        })
+        : <NoDataPlaceholder label={NoDataLabel.NO_MESSAGES} />}
     </div>
   );
 };

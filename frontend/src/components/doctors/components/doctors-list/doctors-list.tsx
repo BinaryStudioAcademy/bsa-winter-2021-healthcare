@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { NoData } from 'components/common';
+import { NoDataPlaceholder } from 'components/common';
 import DoctorItem from '../doctor-item/doctors-item';
 import { IUserTypeDoctor } from 'common/interfaces';
-import { NoDataLabels } from 'common/enums';
+import { NoDataLabel } from 'common/enums';
 
 import styles from './styles.module.scss';
 
@@ -11,14 +11,16 @@ type Props = {
 };
 
 const DoctorsList: React.FC<Props> = ({ users }) => {
+
+  const hasUsers = Boolean(users.length);
+
   return (
     <div className={styles.doctorsListContainer}>
 
-      {!users.length && <NoData label={NoDataLabels.NO_DOCTORS} />}
+      {hasUsers
+        ? users.map(user => <DoctorItem key={user.id} user={user} />)
+        : <NoDataPlaceholder label={NoDataLabel.NO_DOCTORS} />}
 
-      {users.map((user) => (
-        <DoctorItem key={user.id} user={user} />
-      ))}
     </div>
   );
 };

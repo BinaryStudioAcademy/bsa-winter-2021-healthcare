@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NotificationsActionCreator } from 'store/slices';
 import { RootState } from 'common/types';
-import { NoDataLabels } from 'common/enums';
-import { NoData } from 'components/common';
+import { NoDataLabel } from 'common/enums';
+import { NoDataPlaceholder } from 'components/common';
 import Notification from './components/notification/notification';
 
 import styles from './styles.module.scss';
@@ -19,19 +19,22 @@ const Notifications: React.FC = () => {
     dispatch(NotificationsActionCreator.getNotificationsByUser(user?.id as string));
   }, []);
 
+  const hasNotifications = Boolean(notifications.length);
+
   return (
     <div className={styles.wrapper}>
 
-      {!notifications.length && <NoData label={NoDataLabels.NO_NOTIFICATIONS} />}
+      {hasNotifications
+        ? notifications.map((notification, index) => (
+          <Notification
+            key={index}
+            title={notification.topic}
+            text={notification.text}
+            time={notification.createdAt}
+          />
+        ))
+        : <NoDataPlaceholder label={NoDataLabel.NO_NOTIFICATIONS} />}
 
-      {notifications.map((notification, index) => (
-        <Notification
-          key={index}
-          title={notification.topic}
-          text={notification.text}
-          time={notification.createdAt}
-        />
-      ))}
     </div>
   );
 };

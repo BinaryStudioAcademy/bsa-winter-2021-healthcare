@@ -1,1 +1,1 @@
-export * from './no-data-labels';
+export * from './no-data-label';

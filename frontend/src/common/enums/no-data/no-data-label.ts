@@ -1,4 +1,4 @@
-enum NoDataLabels {
+enum NoDataLabel {
   IS_EMPTY = 'Is empty.',
   NO_MESSAGES = 'There are no messages yet.',
   NO_USERS = 'User list is empty.',
@@ -8,4 +8,4 @@ enum NoDataLabels {
   NO_NOTIFICATIONS = 'There are no notifications yet.',
 }
 
-export { NoDataLabels };
+export { NoDataLabel };

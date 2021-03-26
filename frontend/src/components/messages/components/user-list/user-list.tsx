@@ -4,8 +4,8 @@ import clsx from 'clsx';
 import { RootState } from 'common/types';
 import { MessagesActionCreator } from 'store/slices';
 import { User, AddUserForm, HorizontalLine } from '..';
-import { NoData } from 'components/common';
-import { NoDataLabels  } from 'common/enums';
+import { NoDataPlaceholder } from 'components/common';
+import { NoDataLabel  } from 'common/enums';
 import { IUser  } from 'common/interfaces';
 
 import styles from './styles.module.scss';
@@ -28,23 +28,25 @@ const UserList: React.FC<Props> = ({ className }) => {
     [dispatch],
   );
 
+  const hasUsers = Boolean(users.length);
+
   return (
     <div className={clsx(styles.userList, className)}>
       <AddUserForm />
       <HorizontalLine />
 
-      {!users.length && <NoData label={NoDataLabels.NO_USERS} />}
-
-      {users.map((user: IUser) => (
-        <User
-          key={user.id}
-          label={user.name}
-          avatar={user.imagePath}
-          isSelected={user.id === selectedUserId}
-          id={user?.id ?? ''}
-          onClick={handlerSelectUser}
-        />
-      ))}
+      {hasUsers
+        ? users.map((user: IUser) => (
+          <User
+            key={user.id}
+            label={user.name}
+            avatar={user.imagePath}
+            isSelected={user.id === selectedUserId}
+            id={user?.id ?? ''}
+            onClick={handlerSelectUser}
+          />
+        ))
+        : <NoDataPlaceholder label={NoDataLabel.NO_USERS} />}
 
     </div>
   );

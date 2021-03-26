@@ -6,10 +6,10 @@ import {
   ButtonType,
   Icon,
   DateFormat,
-  NoDataLabels,
+  NoDataLabel,
 } from 'common/enums';
 import { RootState } from 'common/types';
-import { Button, Details, NoData } from 'components/common';
+import { Button, Details, NoDataPlaceholder } from 'components/common';
 import { ProfileActionCreator } from 'store/slices';
 import { getFormattedDate } from 'helpers';
 import AddDiagnosisPopup from '../add-diagnosis-popup/add-diagnosis-popup';
@@ -35,6 +35,8 @@ const Diagnoses: React.FC<Props> = ({ userId, isDoctor }) => {
 
   const handleTogglePopup = () => setIsModalOpen(!isModalOpen);
 
+  const hasDiagnoses = Boolean(diagnoses.length);
+
   return (
     <>
       <div className={styles.tabContainer}>
@@ -56,25 +58,26 @@ const Diagnoses: React.FC<Props> = ({ userId, isDoctor }) => {
           </div>
           <div className={styles.diagnosesContainer}>
 
-            {!diagnoses.length && <NoData label={NoDataLabels.NO_DIAGNOSES} />}
-
-            {diagnoses.map((diagnosis) => {
-              return (
-                <div key={diagnosis.id} className={styles.item}>
-                  <Details icon={Icon.SPECIALTY} title={diagnosis.diagnosis}>
-                    <div className={styles.diagnosisInfo}>
-                      <div className={styles.name}>{diagnosis.description}</div>
-                      <div className={styles.time}>
-                        {getFormattedDate(
-                          diagnosis.createdAt,
-                          DateFormat.D_MMMM_YYYY_H_MM_SS,
-                        )}
+            {hasDiagnoses
+              ? diagnoses.map(diagnosis => {
+                return (
+                  <div key={diagnosis.id} className={styles.item}>
+                    <Details icon={Icon.SPECIALTY} title={diagnosis.diagnosis}>
+                      <div className={styles.diagnosisInfo}>
+                        <div className={styles.name}>{diagnosis.description}</div>
+                        <div className={styles.time}>
+                          {getFormattedDate(
+                            diagnosis.createdAt,
+                            DateFormat.D_MMMM_YYYY_H_MM_SS,
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </Details>
-                </div>
-              );
-            })}
+                    </Details>
+                  </div>
+                );
+              })
+              : <NoDataPlaceholder label={NoDataLabel.NO_DIAGNOSES} />}
+
           </div>
         </div>
       </div>
