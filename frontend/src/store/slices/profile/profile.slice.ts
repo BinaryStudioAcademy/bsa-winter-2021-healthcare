@@ -38,7 +38,7 @@ const initialState: IState = {
   diagnoses: [],
   appointments: [],
   clinics: [],
-  doctorDetails:null,
+  doctorDetails: null,
 };
 
 const { reducer, actions } = createSlice({
@@ -133,9 +133,9 @@ const editUserDocument = (payload: IDocument): AppThunk => async (dispatch) => {
   }
 };
 
-const getAllDiagnoses = (): AppThunk => async (dispatch) => {
+const getAllDiagnoses = (userId: string): AppThunk => async (dispatch) => {
   try {
-    const diagnoses = await diagnosisService.getAllDiagnoses();
+    const diagnoses = await diagnosisService.getAllDiagnoses(userId);
     dispatch(actions.setDiagnoses(diagnoses));
   } catch (error) {
     if (error instanceof HttpError) {

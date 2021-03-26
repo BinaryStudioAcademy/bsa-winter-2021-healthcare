@@ -32,7 +32,7 @@ const Diagnoses: React.FC<Props> = ({ userId }) => {
   );
 
   React.useEffect(() => {
-    dispatch(ProfileActionCreator.getAllDiagnoses());
+    dispatch(ProfileActionCreator.getAllDiagnoses(userId));
   }, []);
 
   const handleTogglePopup = () => setIsModalOpen(!isModalOpen);
