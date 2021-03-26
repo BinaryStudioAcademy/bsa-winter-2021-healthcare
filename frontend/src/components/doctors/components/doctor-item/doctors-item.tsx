@@ -21,7 +21,7 @@ const DoctorItem: React.FC<Props> = ({ user }) => {
     >
       <div className={styles.infoItem}>
         <span className={clsx(styles.icon, styles.location)}></span>
-        <span className={styles.text}>{`${user.doctor.clinic.city.name}, ${user.doctor?.clinic?.address}`}</span>
+        <span className={styles.text}>{`${user.doctor.clinic?.city?.name}, ${user.doctor?.clinic?.address}`}</span>
       </div>
       <div className={styles.infoItem}>
         <span className={clsx(styles.icon, styles.phone)}></span>
