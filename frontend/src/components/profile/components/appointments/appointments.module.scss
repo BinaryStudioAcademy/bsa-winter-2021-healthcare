@@ -1,0 +1,69 @@
+.tabContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+    .infoHeader {
+      font-size: 18px;
+      grid-row: 1;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+
+      .title {
+        display: flex;
+        width: 80%;
+        margin-right: 20px;
+      }
+    }
+
+    .appointmentContainer {
+      display: flex;
+      flex-direction: column;
+      margin-top: 28px;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      .item {
+        margin-top: 16px;
+
+        .appointmentInfo {
+          display: flex;
+          flex-direction: row;
+          margin-top: 16px;
+          margin-bottom: 8px;
+
+          .leftInfo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 50%;
+
+            div {
+              margin-top: 8px;
+              margin-bottom: 8px;
+            }
+          }
+
+          .rightInfo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: 50%;
+            margin-top: 8px;
+          }
+        }
+      }
+    }
+  }
+}

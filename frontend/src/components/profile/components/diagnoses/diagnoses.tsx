@@ -6,6 +6,7 @@ import {
   ButtonType,
   Icon,
   DateFormat,
+  UserType,
   NoDataLabel,
 } from 'common/enums';
 import { RootState } from 'common/types';
@@ -18,19 +19,21 @@ import styles from './diagnoses.module.scss';
 
 type Props = {
   userId: string;
-  isDoctor: boolean;
 };
 
-const Diagnoses: React.FC<Props> = ({ userId, isDoctor }) => {
+const Diagnoses: React.FC<Props> = ({ userId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const { diagnoses } = useSelector(({ profile }: RootState) => ({
-    diagnoses: profile.diagnoses,
-  }));
+  const { diagnoses, authorizedUser } = useSelector(
+    ({ profile, auth }: RootState) => ({
+      diagnoses: profile.diagnoses,
+      authorizedUser: auth.user,
+    }),
+  );
 
   React.useEffect(() => {
-    dispatch(ProfileActionCreator.getAllDiagnoses());
+    dispatch(ProfileActionCreator.getAllDiagnoses(userId));
   }, []);
 
   const handleTogglePopup = () => setIsModalOpen(!isModalOpen);
@@ -43,7 +46,7 @@ const Diagnoses: React.FC<Props> = ({ userId, isDoctor }) => {
         <div className={styles.container}>
           <div className={styles.infoHeader}>
             <span className={styles.title}>Diagnoses</span>
-            {isDoctor && (
+            {authorizedUser?.type === UserType.DOCTOR && (
               <div className={styles.addButton}>
                 <Button
                   label="Add"
