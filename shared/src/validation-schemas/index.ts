@@ -6,4 +6,5 @@ export * from './city/city.validation-schema';
 export * from './doctor';
 export * from './create-appointment/appointment.validation-schema';
 export * from './diagnosis/diagnosis.validation-schema';
+export * from './profession/profession.validation-schema';
 export * from './messages/message.validation-schema';
