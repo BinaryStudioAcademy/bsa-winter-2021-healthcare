@@ -45,7 +45,7 @@ const getClinics = (): AppThunk => async (dispatch) => {
     dispatch(actions.setClinics(clinics));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -69,7 +69,7 @@ const addClinic = (
     dispatch(actions.addClinic(response));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -81,7 +81,7 @@ const getCities = (): AppThunk => async (dispatch) => {
     dispatch(actions.setCities(cities));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -93,7 +93,7 @@ const addCity = (cityName: Partial<ICity>): AppThunk => async (dispatch) => {
     dispatch(actions.addCity(response));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -105,7 +105,7 @@ const uploadClinicImageAsync = (file: File): AppThunk => async () => {
     return path;
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }

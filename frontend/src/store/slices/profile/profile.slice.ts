@@ -91,7 +91,7 @@ const getUser = (id: string): AppThunk => async (dispatch) => {
     dispatch(actions.setUser(user));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -103,7 +103,7 @@ const uploadImage = (file: File): AppThunk => async (dispatch) => {
     dispatch(actions.editImagePath(path));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -124,7 +124,7 @@ const editUserInProfile = (userData: IEditUserPayload): AppThunk => async (
     }
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -137,7 +137,7 @@ const editUserDocument = (payload: IDocument): AppThunk => async (dispatch) => {
     dispatch(actions.editDocumentStatus(document));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -149,7 +149,7 @@ const getAllDiagnoses = (userId: string): AppThunk => async (dispatch) => {
     dispatch(actions.setDiagnoses(diagnoses));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -163,7 +163,7 @@ const addDiagnosis = (diagnosis: IDiagnosisPayload): AppThunk => async (
     dispatch(actions.addDiagnosis([response]));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -175,7 +175,7 @@ const getAllAppointments = (doctorId: string): AppThunk => async (dispatch) => {
     dispatch(actions.setAppointments(appointments));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -191,7 +191,7 @@ const uploadDocument = (file: File): AppThunk => async (dispatch) => {
     dispatch(actions.uploadDocuments(document));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -203,19 +203,21 @@ const getAllProfessions = (): AppThunk => async (dispatch) => {
     dispatch(actions.setProfessions(professions));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
 };
 
-const addSelectedProfession = (id: string, userId: string): AppThunk => async (dispatch) => {
+const addSelectedProfession = (id: string, userId: string): AppThunk => async (
+  dispatch,
+) => {
   try {
     const profession = await professionApi.addSelectedProfession(id, userId);
     dispatch(actions.selectProfession(profession));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -227,7 +229,7 @@ const getClinics = (): AppThunk => async (dispatch) => {
     dispatch(actions.setClinics(clinics));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -239,7 +241,7 @@ const getDoctorDetailsAsync = (id: string): AppThunk => async (dispatch) => {
     dispatch(actions.setDoctorDetail(doctorDetails));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -253,7 +255,7 @@ const addDoctorToClinic = (
     await doctorApi.addDoctorToClinic({ doctorId, clinicId });
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
