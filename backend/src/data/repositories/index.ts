@@ -15,14 +15,10 @@ const clinic = new Clinic();
 const geolocation = new Geolocation();
 const diagnosis = new Diagnosis();
 const document = new Document();
-const doctorRepository = new Doctor();
 const appointment = new Appointment();
 const notification = new Notification();
-const permissionRepository = new Permission();
-const cityRepository = new City();
+const city = new City();
 const doctor = new Doctor();
-const appointment = new Appointment();
-const notification = new Notification();
 const permission = new Permission();
 const messages = new Messages();
 
@@ -36,6 +32,6 @@ export {
   notification,
   permission,
   appointment,
-  cityRepository,
+  city,
   messages,
 };
