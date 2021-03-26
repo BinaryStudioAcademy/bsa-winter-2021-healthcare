@@ -9,3 +9,7 @@ export * from './diagnoses-api-path.enum';
 export * from './upload-file-api-path.enum';
 export * from './permission-api-path';
 export * from './notification-api-path.enum';
+export * from './city-api-path.enum';
+export * from './doctor-api-path.enum';
+export * from './messages-api-path.enum';
+

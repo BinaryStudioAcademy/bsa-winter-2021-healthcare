@@ -13,6 +13,9 @@
   --z-index--level-four: 400;
   --z-index--level-five: 500;
   --z-index--level-six: 600;
+  --z-index--level-ten: 1000;
+
+  --font-family-primary: 'Inter', sans-serif;
 }
 
 body {
@@ -20,9 +23,9 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-family-primary);
   font-size: 14px;
-  color: #787878;
+  color: var(--color-gray);
   -webkit-font-smoothing: antialiased;
   background-color: #ffffff;
 }

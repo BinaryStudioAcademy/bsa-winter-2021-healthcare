@@ -1,9 +1,16 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ReducerName, DataStatus, StorageKey } from 'common/enums';
 import { IUserWithPermissions, IUserLoginPayload, IRegisterPayload } from 'common/interfaces';
-import { authApi, notification as notificationService, storage, geolocation as geolocationService } from 'services';
+import {
+  authApi,
+  userApi,
+  storage,
+  geolocation as geolocationService,
+  notification as notificationService,
+} from 'services';
 import { LoginResponse } from 'common/types/responses';
 import { HttpError } from 'exceptions';
+import { AppThunk } from 'common/types';
 
 type AuthState = {
   user: IUserWithPermissions | null;
@@ -56,8 +63,11 @@ const { reducer, actions } = createSlice({
   name: ReducerName.AUTH,
   initialState,
   reducers: {
-    setUser:(state, action: PayloadAction<IUserWithPermissions>) => {
+    setUser: (state, action: PayloadAction<IUserWithPermissions>) => {
       state.user = action.payload;
+    },
+    removeUser: (state) => {
+      state.user = null;
     },
   },
   extraReducers: (builder) => {
@@ -73,10 +83,29 @@ const { reducer, actions } = createSlice({
   },
 });
 
+const logout = (): AppThunk => async (dispatch) => {
+  storage.removeItem(StorageKey.TOKEN);
+  dispatch(actions.removeUser());
+};
+
+const getCurrentUser = (): AppThunk => async (dispatch) => {
+  try {
+    const currentUser = await userApi.getCurrentUser();
+    dispatch(actions.setUser(currentUser));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
 const AuthActionCreator = {
   ...actions,
   login,
   registration,
+  logout,
+  getCurrentUser,
 };
 
 export { AuthActionCreator, reducer };

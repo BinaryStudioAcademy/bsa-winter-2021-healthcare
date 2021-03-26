@@ -1,4 +1,4 @@
-import { permissionRepository } from '~/data/repositories';
+import { permission as permissionRepository } from '~/data/repositories';
 import { IUserPermission } from '~/common/interfaces';
 
 class Permission {

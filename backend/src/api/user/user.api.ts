@@ -5,6 +5,7 @@ import { userRegister as userRegisterSchema, editUser as validationEditUser } fr
 import { user as userService } from '~/services/services';
 import { checkIsOneOf } from '~/helpers';
 import { IDoctorFiltrationPayload } from '~/common/interfaces';
+import jwt from 'jsonwebtoken';
 
 const initUserApi = (apiRouter: Router): Router => {
   const userRouter = Router();
@@ -36,6 +37,17 @@ const initUserApi = (apiRouter: Router): Router => {
     }
   });
 
+  userRouter.get(UsersApiPath.CURRENT_USER, async (req, res, next) => {
+    try {
+      const token = (req.header('authorization') as string).split(' ')[1];
+      const decoded = jwt.decode(token) as { [key: string]: string };
+      const user = await userService.getUserById(decoded.id);
+      res.status(HttpCode.OK).json(user);
+    } catch (error) {
+      next(error);
+    }
+  });
+
   userRouter.get(UsersApiPath.$ID, async (req, res, next) => {
     try {
       const user = await userService.getUserById(req.params.id);
@@ -55,6 +67,15 @@ const initUserApi = (apiRouter: Router): Router => {
       }
 
       return res.status(HttpCode.OK).json(doctorDetails);
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  userRouter.get(UsersApiPath.FILTER_BY_$NAME, async (req, res, next) => {
+    try {
+      const result = await userService.filterUsersByName(req.params.name);
+      res.status(HttpCode.OK).json(result);
     } catch (error) {
       next(error);
     }
