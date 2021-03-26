@@ -5,6 +5,8 @@ import {
   uploadFile as uploadFileService,
   userApi,
   documentApi,
+  clinicApi,
+  doctorApi,
 } from 'services';
 import { DocumentStatus, ReducerName, DocumentKey } from 'common/enums';
 import { AppThunk } from 'common/types';
@@ -15,6 +17,8 @@ import {
   IDiagnosis,
   IUserWithPermissions,
   IDiagnosisPayload,
+  IClinic,
+  IDoctorDetails,
 } from 'common/interfaces';
 import { AuthActionCreator } from 'store/slices';
 import { HttpError } from 'exceptions';
@@ -22,11 +26,15 @@ import { HttpError } from 'exceptions';
 interface IState {
   user: IUserWithPermissions | null;
   diagnoses: IDiagnosis[];
+  clinics: IClinic[];
+  doctorDetails: IDoctorDetails | null;
 }
 
 const initialState: IState = {
   user: null,
   diagnoses: [],
+  clinics: [],
+  doctorDetails:null,
 };
 
 const { reducer, actions } = createSlice({
@@ -50,6 +58,12 @@ const { reducer, actions } = createSlice({
     },
     editImagePath: (state, action: PayloadAction<string>) => {
       (state.user as IUserWithPermissions).imagePath = action.payload;
+    },
+    setClinics: (state, action: PayloadAction<IClinic[]>) => {
+      state.clinics = action.payload;
+    },
+    setDoctorDetail: (state, action: PayloadAction<IDoctorDetails>) => {
+      state.doctorDetails = action.payload;
     },
   },
 });
@@ -154,6 +168,44 @@ const uploadDocument = (file: File): AppThunk => async (dispatch) => {
   }
 };
 
+const getClinics = (): AppThunk => async (dispatch) => {
+  try {
+    const clinics = await clinicApi.getClinics();
+    dispatch(actions.setClinics(clinics));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
+const getDoctorDetailsAsync = (id: string): AppThunk => async (dispatch) => {
+  try {
+    const doctorDetails = await userApi.getDoctorDetails(id);
+    dispatch(actions.setDoctorDetail(doctorDetails));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
+const addDoctorToClinic = (
+  doctorId: string,
+  clinicId: string,
+): AppThunk => async () => {
+  try {
+    await doctorApi.addDoctorToClinic({ doctorId, clinicId });
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
 const ProfileActionCreator = {
   ...actions,
   getUser,
@@ -163,6 +215,9 @@ const ProfileActionCreator = {
   addDiagnosis,
   uploadDocument,
   uploadImage,
+  getClinics,
+  getDoctorDetailsAsync,
+  addDoctorToClinic,
 };
 
 export { ProfileActionCreator, reducer };
