@@ -6,6 +6,7 @@ enum ClinicKey {
   CLINIC_TYPE = 'clinicType',
   CREATED_AT = 'createdAt',
   UPDATED_AT = 'updatedAt',
+  CITY_ID = 'cityId',
 }
 
 export { ClinicKey };
