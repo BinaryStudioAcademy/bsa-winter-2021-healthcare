@@ -29,10 +29,15 @@ type Props = {
 };
 
 const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
+
+  const { authUser } = useSelector(({ auth: { user: authUser } }: RootState) => ({
+    authUser,
+  }));
+
   const birthdate = getFormattedDate(user.birthdate, DateFormat.D_MMMM_YYYY);
   const hasPermissionToEdit = checkHasPermission(
     [PermissionName.EDIT_USER],
-    user?.permissions ?? [],
+    authUser?.permissions ?? [],
   );
   const dispatch = useDispatch();
 
@@ -41,15 +46,11 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
     dispatch(ProfileActionCreator.uploadDocument(file));
   };
 
-  const { authUserId } = useSelector(({ auth: { user: authUser } }: RootState) => ({
-    authUserId: authUser?.id,
-  }));
-
   return (
     <div className={styles.mainInfo}>
       <div className={styles.infoHeader}>
         <span className={styles.title}>Profile</span>
-        {user?.id === authUserId && <Button
+        {user?.id === authUser?.id && <Button
           label="Edit"
           icon={ButtonIcon.EDIT}
           hasHiddenLabel={true}
