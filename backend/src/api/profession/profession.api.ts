@@ -1,6 +1,8 @@
 import { Router } from 'express';
+import { validateSchema } from '~/middlewares';
 import { ApiPath, ProfessionApiPath, HttpCode } from '~/common/enums';
 import { profession as professionService } from '~/services/services';
+import { addProfessionIdToDoctor as addProfessionIdToDoctorSchema } from '~/validation-schemas';
 
 const initProfessionApi = (apiRouter: Router): Router => {
   const professionRouter = Router();
@@ -16,7 +18,7 @@ const initProfessionApi = (apiRouter: Router): Router => {
     }
   });
 
-  professionRouter.post(ProfessionApiPath.$ID, async (req, res, next) => {
+  professionRouter.post(ProfessionApiPath.$ID, validateSchema(addProfessionIdToDoctorSchema), async (req, res, next) => {
     try {
       professionService.addProfessionIdToDoctor(req.params.id, req.body.userId as string);
       const profession = await professionService.getById(req.params.id);
