@@ -18,7 +18,7 @@ type DoctorsState = {
 const initialState: DoctorsState = {
   doctors: [],
   dataStatus: DataStatus.PENDING,
-  doctorDetails:null,
+  doctorDetails: null,
 };
 
 const { reducer, actions } = createSlice({
@@ -43,7 +43,7 @@ const getDoctorsAsync = (filter?: IDoctorFiltrationPayload): AppThunk => async (
     dispatch(actions.setDoctors(doctors));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -55,7 +55,7 @@ const getDoctorDetailsAsync = (id: string): AppThunk => async (dispatch) => {
     dispatch(actions.setDoctorDetail(doctorDetails));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }

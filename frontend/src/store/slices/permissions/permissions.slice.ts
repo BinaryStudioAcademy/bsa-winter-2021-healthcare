@@ -29,7 +29,7 @@ const getPermissions = (): AppThunk => async (dispatch) => {
     dispatch(actions.addPermissions(response));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -42,7 +42,7 @@ const deletePermissionForUser = (
     await permissionApi.deletePermissionForUser({ userId, permissionId });
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -55,7 +55,7 @@ const addPermissionForUser = (
     await permissionApi.addPermissionForUser({ userId, permissionId });
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }

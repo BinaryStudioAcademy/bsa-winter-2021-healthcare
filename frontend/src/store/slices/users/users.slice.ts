@@ -43,7 +43,7 @@ const getUsers = (): AppThunk => async (dispatch) => {
     dispatch(actions.addUsers(response));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -60,7 +60,7 @@ const editUser = (userInfo: IEditUserPayload): AppThunk => async (dispatch) => {
       : null;
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -72,7 +72,7 @@ const addUser = (userInfo: IUser): AppThunk => async (dispatch) => {
     dispatch(actions.addUsers([response]));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -83,7 +83,7 @@ const deleteUser = (id: string): AppThunk => async (dispatch) => {
     await userApi.deleteUser(id);
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }

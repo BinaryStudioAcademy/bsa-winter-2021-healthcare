@@ -35,7 +35,7 @@ const getDoctorDetailsAsync = (id: string): AppThunk => async (dispatch) => {
     dispatch(actions.setDoctorDetail(doctorDetails));
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
@@ -51,10 +51,10 @@ const createAppointmentAsync = (payload:Partial<ICreateAppointment>): AppThunk =
       type: AppointmentType.OFFLINE,
     };
     await appointment.createAppointment(appointmentData);
-    notificationService.success('Appointment was created', []);
+    return notificationService.success('Appointment was created', []);
   } catch (error) {
     if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
+      return notificationService.error(`Error ${error.status}`, error.messages);
     }
     throw error;
   }
