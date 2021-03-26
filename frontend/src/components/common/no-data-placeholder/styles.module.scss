@@ -1,0 +1,20 @@
+.noData {
+
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  align-self: center;
+  justify-self: center;
+
+  place-items: center center;
+  place-content: center center;
+
+  font-family: var(--font-family-primary);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-gray);
+
+}

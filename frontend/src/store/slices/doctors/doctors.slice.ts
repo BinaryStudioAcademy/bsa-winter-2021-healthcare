@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from 'common/types';
-import { userApi, notification as notificationService, doctorApi } from 'services';
+import { userApi, notification as notificationService } from 'services';
 import {
   IDoctorDetails,
   IDoctorFiltrationPayload,
@@ -61,25 +61,10 @@ const getDoctorDetailsAsync = (id: string): AppThunk => async (dispatch) => {
   }
 };
 
-const addDoctorToClinic = (
-  doctorId: string,
-  clinicId: string,
-): AppThunk => async () => {
-  try {
-    await doctorApi.addDoctorToClinic({ doctorId, clinicId });
-  } catch (error) {
-    if (error instanceof HttpError) {
-      notificationService.error(`Error ${error.status}`, error.messages);
-    }
-    throw error;
-  }
-};
-
 const DoctorsActionCreator = {
   ...actions,
   getDoctorsAsync,
   getDoctorDetailsAsync,
-  addDoctorToClinic,
 };
 
 export { DoctorsActionCreator, reducer };

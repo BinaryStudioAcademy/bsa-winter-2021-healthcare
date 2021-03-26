@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IDoctorDetails, IUserTypeDoctor } from 'common/interfaces';
 import { RootState } from 'common/types';
-import { DoctorsActionCreator } from 'store/slices';
+import { ProfileActionCreator } from 'store/slices';
 import { Button, Select } from 'components/common';
 import { createOptions } from 'helpers';
 import {
@@ -29,8 +29,8 @@ type Props = {
 };
 
 const SelectClinic: React.FC<Props> = ({ user, doctorDetails }) => {
-  const { clinics } = useSelector(({ clinics }: RootState) => ({
-    clinics: clinics.clinics,
+  const { clinics } = useSelector(({ profile }: RootState) => ({
+    clinics: profile.clinics,
   }));
   const dispatch = useDispatch();
 
@@ -54,12 +54,12 @@ const SelectClinic: React.FC<Props> = ({ user, doctorDetails }) => {
 
   const handleSubmitForm = (data: DoctorsClinic) => {
     dispatch(
-      DoctorsActionCreator.addDoctorToClinic(user.id as string, data.name),
+      ProfileActionCreator.addDoctorToClinic(user.id as string, data.name),
     );
   };
 
   React.useEffect(() => {
-    doctorDetails?.doctor?.clinic && setValue(ClinicKey.NAME, doctorDetails.doctor.clinic.id);
+    doctorDetails?.doctor?.clinic && setValue(ClinicKey.NAME, doctorDetails.doctor?.clinic?.id);
   }, [doctorDetails]);
 
   return (
