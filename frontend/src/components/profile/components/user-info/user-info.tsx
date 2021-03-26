@@ -21,12 +21,9 @@ import {
 import styles from './styles.module.scss';
 import defaultAvatar from 'assets/images/default-avatar.svg';
 import AddClinic from '../add-clinic/add-clinic';
-
-const DEFAULT_FILE_IDX = 0;
-const DEFAULT_PROFESSION_VALUE = {
-  id: '',
-  name: '',
-};
+import { getProfessionOptions } from './helpers';
+import { DEFAULT_FILE_IDX } from 'common/constants';
+import { DEFAULT_PROFESSION_VALUE } from './common/constants';
 
 type Props = {
   user: IUser;
@@ -37,7 +34,6 @@ type Props = {
 const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
   const birthdate = getFormattedDate(user.birthdate, DateFormat.D_MMMM_YYYY);
   const dispatch = useDispatch();
-  
   const { handleSubmit, errors, control } = useForm<IProfession>({
     defaultValues: DEFAULT_PROFESSION_VALUE,
     mode: 'onChange',
@@ -46,13 +42,8 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
   const { professions } = useSelector(({ profile }: RootState) => ({
     professions: profile.professions,
   }));
-  
-  const professionOptions: IOption<string>[] = professions.map((profession: IProfession) => {
-    return {
-      label: profession[ProfessionKey.NAME],
-      value: profession[ProfessionKey.ID],
-    };
-  });
+
+  const professionOptions: IOption<string>[] = getProfessionOptions(professions);
 
   React.useEffect(() => {
     dispatch(ProfileActionCreator.getAllProfessions());
@@ -111,32 +102,33 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
 
       { isDoctor && (
         <>
-          <form className={styles.selectFormWrapper} onSubmit={handleSubmit(handleSubmitProfessionForm)}>
-            <div className={styles.selectWrapper}>
-              <Select
-                name={ProfessionKey.ID}
-                label="Select specialty:"
-                hasHiddenLabel={false}
-                placeholder={(user as IUserTypeDoctor).doctor.profession.name || 'Select'}
-                options={professionOptions}
-                color={InputColor.GRAY_LIGHT}
-                control={control}
-                errors={errors}
-              />
-            </div>
-            <div className={styles.selectSubmitWrapper}>
-              <Button
-                type={ButtonType.SUBMIT}
-                styleType={ButtonStyleType.WITHOUT_BORDER}
-                color={ButtonColor.PRIMARY_DARK}
-                label={'Submit'}
-                hasHiddenLabel={false}
-              />
-            </div>
-          </form>
           <div className={styles.actionWrapper}>
+            <form className={styles.selectFormWrapper} onSubmit={handleSubmit(handleSubmitProfessionForm)}>
+              <div className={styles.selectWrapper}>
+                <Select
+                  name={ProfessionKey.ID}
+                  label="Select specialty:"
+                  hasHiddenLabel={false}
+                  placeholder={(user as IUserTypeDoctor).doctor?.profession?.name ?? 'Select'}
+                  options={professionOptions}
+                  color={InputColor.GRAY_LIGHT}
+                  control={control}
+                  errors={errors}
+                />
+              </div>
+              <div className={styles.selectSubmitWrapper}>
+                <Button
+                  type={ButtonType.SUBMIT}
+                  styleType={ButtonStyleType.WITHOUT_BORDER}
+                  color={ButtonColor.PRIMARY_DARK}
+                  label={'Save'}
+                  hasHiddenLabel={false}
+                />
+              </div>
+            </form>
+
             <AddClinic user={user as IUserTypeDoctor} />
-            <label htmlFor="uploadFile">
+            <label className={styles.uploadDocumentLabel} htmlFor="uploadFile">
               <span className={styles.uploadDocument}>Upload document</span>
               <input
                 className={clsx(styles.inputDocument, 'visually-hidden')}
