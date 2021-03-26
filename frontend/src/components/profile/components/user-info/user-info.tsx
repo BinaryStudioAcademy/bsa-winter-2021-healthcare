@@ -16,9 +16,8 @@ import {
   PermissionName,
 } from 'common/enums';
 import styles from './styles.module.scss';
-import defaultAvatar from 'assets/images/default-avatar.svg';
 import AddClinic from '../add-clinic/add-clinic';
-import { checkHasPermission } from 'helpers';
+import { checkHasPermission, getDefaultAvatar } from 'helpers';
 
 const DEFAULT_FILE_IDX = 0;
 
@@ -29,7 +28,6 @@ type Props = {
 };
 
 const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
-
   const { authUser } = useSelector(({ auth: { user: authUser } }: RootState) => ({
     authUser,
   }));
@@ -63,7 +61,7 @@ const UserInfo: React.FC<Props> = ({ user, isDoctor, onEdit }) => {
         <div className={styles.photo}>
           <img
             className={styles.image}
-            src={user.imagePath ?? defaultAvatar}
+            src={user.imagePath ?? getDefaultAvatar(user)}
             alt={user.name}
           />
         </div>

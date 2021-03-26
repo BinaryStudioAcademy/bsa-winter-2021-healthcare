@@ -6,8 +6,9 @@ import { Message, HorizontalLine } from '../../components';
 import { getFormattedDate } from 'helpers';
 import { DateFormat } from 'common/enums';
 import { DELTA_INDEX } from './common/constants';
-
 import styles from './styles.module.scss';
+import { getDefaultAvatar } from 'helpers';
+import { IUser } from 'common/interfaces';
 
 interface Props {
   className?: string;
@@ -16,9 +17,9 @@ interface Props {
 const MessageList: React.FC<Props> = ({ className }) => {
   const { userId, messages, userAvatarPath = '', selectedUserAvatarPath = '' } = useSelector(({ auth: { user }, messages: { messages, selectedUser } }: RootState) => ({
     userId: user?.id,
-    userAvatarPath: user?.imagePath,
+    userAvatarPath: (user?.imagePath ?? getDefaultAvatar(user as IUser)),
     messages,
-    selectedUserAvatarPath: selectedUser?.imagePath,
+    selectedUserAvatarPath: (selectedUser?.imagePath ?? (selectedUser ? getDefaultAvatar(user as IUser): '')),
   }));
 
   return (

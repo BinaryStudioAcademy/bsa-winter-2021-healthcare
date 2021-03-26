@@ -8,14 +8,15 @@ interface Props {
   title: string;
   text: string;
   time: string;
+  avatar: string;
 }
 
-const Notification: React.FC<Props> = ({ title, text, time }) => {
+const Notification: React.FC<Props> = ({ title, text, time, avatar }) => {
   return (
     <div className={styles.container}>
       <div className={styles.innerContainer}>
         <div className={styles.avatar}>
-          <img src="https://www.pikpng.com/pngl/b/80-805523_default-avatar-svg-png-icon-free-download-264157.png" alt="User avatar."/>
+          <img src={avatar} alt="User avatar."/>
         </div>
         <div className={styles.notificationInfo}>
           <div className={styles.title}>{title}</div>

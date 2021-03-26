@@ -5,6 +5,7 @@ import { RootState } from 'common/types';
 import { MessagesActionCreator } from 'store/slices';
 import { User, AddUserForm, HorizontalLine  } from '..';
 import { IUser  } from 'common/interfaces';
+import { getDefaultAvatar } from 'helpers';
 
 import styles from './styles.module.scss';
 
@@ -34,7 +35,7 @@ const UserList: React.FC<Props> = ({ className }) => {
         <User
           key={user.id}
           label={user.name}
-          avatar={user.imagePath}
+          avatar={user.imagePath ?? getDefaultAvatar(user)}
           isSelected={user.id === selectedUserId}
           id={user?.id ?? ''}
           onClick={handlerSelectUser}
