@@ -6,6 +6,7 @@ enum NoDataLabel {
   NO_CLINICS = 'There are no clinics yet.',
   NO_DIAGNOSES = 'There are no diagnoses yet.',
   NO_NOTIFICATIONS = 'There are no notifications yet.',
+  NO_APPOINTMENTS = 'There are no appointments yet.',
 }
 
 export { NoDataLabel };

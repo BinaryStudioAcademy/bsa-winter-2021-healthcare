@@ -5,6 +5,7 @@ import {
   uploadFile as uploadFileService,
   userApi,
   documentApi,
+  appointment as appointmentService,
   clinicApi,
   doctorApi,
 } from 'services';
@@ -17,6 +18,7 @@ import {
   IDiagnosis,
   IUserWithPermissions,
   IDiagnosisPayload,
+  IAppointmentWithUser,
   IClinic,
   IDoctorDetails,
 } from 'common/interfaces';
@@ -26,6 +28,7 @@ import { HttpError } from 'exceptions';
 interface IState {
   user: IUserWithPermissions | null;
   diagnoses: IDiagnosis[];
+  appointments: IAppointmentWithUser[];
   clinics: IClinic[];
   doctorDetails: IDoctorDetails | null;
 }
@@ -33,8 +36,9 @@ interface IState {
 const initialState: IState = {
   user: null,
   diagnoses: [],
+  appointments: [],
   clinics: [],
-  doctorDetails:null,
+  doctorDetails: null,
 };
 
 const { reducer, actions } = createSlice({
@@ -53,11 +57,14 @@ const { reducer, actions } = createSlice({
     addDiagnosis: (state, action: PayloadAction<IDiagnosis[]>) => {
       state.diagnoses = [...action.payload, ...state.diagnoses];
     },
-    uploadDocuments: (state, action: PayloadAction<IDocument>) => {
-      (state.user as IUserTypeDoctor).doctor.document = action.payload;
-    },
     editImagePath: (state, action: PayloadAction<string>) => {
       (state.user as IUserWithPermissions).imagePath = action.payload;
+    },
+    setAppointments: (state, action: PayloadAction<IAppointmentWithUser[]>) => {
+      state.appointments = action.payload;
+    },
+    uploadDocuments: (state, action: PayloadAction<IDocument>) => {
+      (state.user as IUserTypeDoctor).doctor.document = action.payload;
     },
     setClinics: (state, action: PayloadAction<IClinic[]>) => {
       state.clinics = action.payload;
@@ -126,9 +133,9 @@ const editUserDocument = (payload: IDocument): AppThunk => async (dispatch) => {
   }
 };
 
-const getAllDiagnoses = (): AppThunk => async (dispatch) => {
+const getAllDiagnoses = (userId: string): AppThunk => async (dispatch) => {
   try {
-    const diagnoses = await diagnosisService.getAllDiagnoses();
+    const diagnoses = await diagnosisService.getAllDiagnoses(userId);
     dispatch(actions.setDiagnoses(diagnoses));
   } catch (error) {
     if (error instanceof HttpError) {
@@ -144,6 +151,18 @@ const addDiagnosis = (diagnosis: IDiagnosisPayload): AppThunk => async (
   try {
     const response = await diagnosisService.create(diagnosis);
     dispatch(actions.addDiagnosis([response]));
+  } catch (error) {
+    if (error instanceof HttpError) {
+      notificationService.error(`Error ${error.status}`, error.messages);
+    }
+    throw error;
+  }
+};
+
+const getAllAppointments = (doctorId: string): AppThunk => async (dispatch) => {
+  try {
+    const appointments = await appointmentService.getAllById(doctorId);
+    dispatch(actions.setAppointments(appointments));
   } catch (error) {
     if (error instanceof HttpError) {
       notificationService.error(`Error ${error.status}`, error.messages);
@@ -213,8 +232,9 @@ const ProfileActionCreator = {
   editUserDocument,
   getAllDiagnoses,
   addDiagnosis,
-  uploadDocument,
   uploadImage,
+  getAllAppointments,
+  uploadDocument,
   getClinics,
   getDoctorDetailsAsync,
   addDoctorToClinic,
