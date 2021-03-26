@@ -4,7 +4,8 @@ import phoneIcon from 'assets/images/phone.svg';
 import checkIcon from 'assets/images/icons/check.svg';
 import styles from './styles.module.scss';
 import { getDefaultAvatar } from 'helpers';
-import { DOCTOR_SPECIALIZATIONS, getRandomItems } from './common';
+import { DOCTOR_SPECIALIZATIONS, SPECIALIZATIONS_COUNT } from './common';
+import { getRandomItems } from 'helpers/array';
 
 type Props = {
   doctor: IDoctorDetails;
@@ -57,7 +58,7 @@ const Doctor: React.FC<Props> = ({ doctor }) => {
           <span className={styles.titleText}>Conditions Treated</span>
         </div>
         <ul className={styles.conditionsList}>
-          {getRandomItems(DOCTOR_SPECIALIZATIONS, 4).map((spec) => (
+          {getRandomItems(DOCTOR_SPECIALIZATIONS, SPECIALIZATIONS_COUNT).map((spec) => (
             <li className={styles.conditionsItem} key={spec}>{spec}</li>
           ))}
         </ul>
