@@ -9,6 +9,7 @@ enum ApiPath {
   DIAGNOSES = '/diagnoses',
   FILES = '/files',
   PERMISSIONS = '/permissions',
+  PROFESSION = '/profession',
   CITIES = '/cities',
   DOCTORS = '/doctors',
   MESSAGES = '/messages',
