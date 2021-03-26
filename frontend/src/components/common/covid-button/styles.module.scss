@@ -2,5 +2,5 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: 500;
+  z-index: var(--z-index--level-ten);
 }
