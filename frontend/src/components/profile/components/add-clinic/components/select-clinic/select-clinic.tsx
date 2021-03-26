@@ -60,26 +60,28 @@ const SelectClinic: React.FC<Props> = ({ user, doctorDetails }) => {
 
   React.useEffect(() => {
     doctorDetails &&
-      doctorDetails.doctor.clinic &&
-      setValue(ClinicKey.NAME, doctorDetails.doctor.clinic.id);
+      doctorDetails?.doctor?.clinic &&
+      setValue(ClinicKey.NAME, doctorDetails?.doctor?.clinic.id);
   }, [doctorDetails]);
 
   return (
     <form
-      className={styles.addClinicForm}
+      className={styles.selectFormWrapper}
       onSubmit={handleSubmit(handleSubmitForm)}
     >
-      <Select
-        name={ClinicKey.NAME}
-        label="Select your clinic:"
-        hasHiddenLabel={false}
-        placeholder="Clinics"
-        options={clinicsNamesOptions}
-        color={InputColor.GRAY_LIGHT}
-        control={control}
-        errors={errors}
-      />
-      <div className={styles.submitBtn}>
+      <div className={styles.selectWrapper}>
+        <Select
+          name={ClinicKey.NAME}
+          label="Select clinic:"
+          hasHiddenLabel={false}
+          placeholder="Select"
+          options={clinicsNamesOptions}
+          color={InputColor.GRAY_LIGHT}
+          control={control}
+          errors={errors}
+        />
+      </div>
+      <div className={styles.selectSubmitWrapper}>
         <Button
           label="Save"
           hasHiddenLabel={false}
