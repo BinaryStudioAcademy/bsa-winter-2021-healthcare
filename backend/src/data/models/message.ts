@@ -8,6 +8,10 @@ const createMessageModel = (orm: Sequelize): ModelCtor<MessageInstance> => {
   const Message = orm.define<MessageInstance>(
     ModelName.MESSAGE,
     {
+      to: {
+        allowNull: false,
+        type: DataTypes.UUID,
+      },
       text: {
         allowNull: false,
         type: DataTypes.STRING,

@@ -86,7 +86,7 @@ const EditDocumentPopup: React.FC<Props> = ({
           </div>
         </form>
         <div className={styles.imgContainer}>
-          <img src={document.imagePath} />
+          <img className={styles.documentImg} src={document.imagePath} />
         </div>
       </div>
     </Modal>

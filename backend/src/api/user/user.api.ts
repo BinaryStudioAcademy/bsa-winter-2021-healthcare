@@ -72,6 +72,15 @@ const initUserApi = (apiRouter: Router): Router => {
     }
   });
 
+  userRouter.get(UsersApiPath.FILTER_BY_$NAME, async (req, res, next) => {
+    try {
+      const result = await userService.filterUsersByName(req.params.name);
+      res.status(HttpCode.OK).json(result);
+    } catch (error) {
+      next(error);
+    }
+  });
+
   userRouter.post(UsersApiPath.ROOT, validateSchema(userRegisterSchema), async (req, res, next) => {
     try {
       const user = await userService.createNewUser(req.body);

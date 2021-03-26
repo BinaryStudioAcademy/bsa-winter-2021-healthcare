@@ -13,9 +13,13 @@ import {
 import { Button, Modal, Select, TextInput } from 'components/common';
 import styles from './styles.module.scss';
 import { IClinicPayload } from 'common/interfaces';
+import { InputChangeEvent } from 'common/types';
 import { createOptions } from 'helpers';
 import { addClinic as validationClinicSchema } from 'validation-schemas';
 import { DEFAULT_CLINIC_VALUE } from 'components/clinics/components/common/constants';
+import { ClinicsActionCreator } from 'store/slices';
+
+const DEFAULT_FILE_IDX = 0;
 
 interface IProps {
   onFormHide: () => void;
@@ -30,16 +34,25 @@ const AddClinicPopup: React.FC<IProps> = ({
   onCreateClinic,
   isOpen,
 }) => {
-  const { handleSubmit, errors, control } = useForm<IClinicPayload>({
+  const { handleSubmit, setValue, register, watch, errors, control } = useForm<IClinicPayload>({
     resolver: yupResolver(validationClinicSchema),
     defaultValues: DEFAULT_CLINIC_VALUE,
     mode: 'onChange',
   });
+  register(ClinicKey.IMAGE_PATH);
+  const image = watch(ClinicKey.IMAGE_PATH, DEFAULT_CLINIC_VALUE.imagePath);
+
+  const handleUploadFile = (evt: InputChangeEvent) => {
+    const file = (evt.target.files as FileList)[DEFAULT_FILE_IDX];
+    if (file){
+      ClinicsActionCreator.uploadClinicImage(file).then(path => {
+        setValue(ClinicKey.IMAGE_PATH, path);
+      });
+    }
+  };
+
   const handleSubmitForm = (clinicData: IClinicPayload) => {
-    onCreateClinic({
-      ...clinicData,
-      imagePath: DEFAULT_CLINIC_VALUE.imagePath,
-    });
+    onCreateClinic(clinicData);
   };
 
   return (
@@ -57,20 +70,18 @@ const AddClinicPopup: React.FC<IProps> = ({
               type="button"
             >
               &#10060;
+              <span className="visually-hidden">Close edit user popup</span>
             </button>
           </div>
 
           <div className={styles.inputBlock}>
-            {/* <input type="button" value="Upload documents" /> */}
-            <label className={styles.inputImage}>
-              {/* Upload file: */}
+            <label className={styles.inputImage} style={{ backgroundImage: `url(${image})` }}>
               <div className={styles.blurBottom}>
                 <div className={styles.cameraIcon}></div>
               </div>
-              <input type="file" className={styles.inputImageBtn} />
+              <span className="visually-hidden">Upload image input</span>
+              <input type="file" className={styles.inputImageBtn} onChange={handleUploadFile} />
             </label>
-            {/* <span>file1.pdf</span>
-            <span>file2.jpg</span> */}
           </div>
 
           <div className={styles.inputBlock}>

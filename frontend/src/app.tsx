@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { AppRoute, PermissionName, StorageKey } from 'common/enums';
+import { AuthorizedRoute, Spinner } from 'components/common';
 import Users from 'components/users/users';
 import Sign from 'components/sign/sign';
 import NotFound from 'components/not-found/not-found';
@@ -11,7 +12,7 @@ import DoctorDetails from 'components/doctor-details/doctor-details';
 import Notifications from 'components/notifications/notifications';
 import Map from 'components/map/map';
 import Permissions from 'components/permissions/permissions-page';
-import { AuthorizedRoute, Spinner } from 'components/common';
+import Messages from 'components/messages/messages';
 import { AuthActionCreator } from 'store/slices';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'common/types';
@@ -66,6 +67,7 @@ const App: React.FC = () => {
         permissions={[PermissionName.MAP_MANIPULATION]}
       />
       <AuthorizedRoute path={AppRoute.PERMISSIONS} component={Permissions} permissions={[PermissionName.EDIT_PERMISSIONS]} />
+      <AuthorizedRoute path={AppRoute.MY_CHATS} component={Messages} />
       <Route path="*" exact component={NotFound} />
     </Switch>
   );
