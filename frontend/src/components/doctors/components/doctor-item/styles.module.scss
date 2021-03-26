@@ -10,6 +10,8 @@
     font-size: 14px;
     font-weight: 400;
     margin-left: 22px;
+    text-decoration: none;
+    color: var(--color-gray);
   }
 }
 .infoItem:not(:first-child){

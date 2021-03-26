@@ -19,5 +19,6 @@ export * from './doctor-details';
 export * from './user-with-permissions';
 export * from './permission';
 export * from './map';
+export * from './profession';
 export * from './city';
 export * from './clinic-extended';

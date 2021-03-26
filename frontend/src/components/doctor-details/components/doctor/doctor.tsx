@@ -30,7 +30,7 @@ const Doctor: React.FC<Props> = ({ doctor }) => {
               loading="lazy"
               alt="phone-icon"
             />
-            <span className={styles.phoneNumber}>{doctor.phone}</span>
+            <a href={`tel:${doctor.phone}`} className={styles.phoneNumber}>{doctor.phone}</a>
           </div>
           <span className={styles.name}>
             {doctor.name} {doctor.surname}

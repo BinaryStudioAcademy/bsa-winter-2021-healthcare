@@ -125,6 +125,10 @@ class User {
                 ClinicKey.CLINIC_TYPE,
               ],
             },
+            {
+              model:ProfessionModel,
+              as:ModelAlias.PROFESSION,
+            },
           ],
         },
         {

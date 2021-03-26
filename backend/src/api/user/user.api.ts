@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { ApiPath, HttpCode, UsersApiPath, UserType, DoctorType, ClinicType } from '~/common/enums';
 import { validateSchema } from '~/middlewares';
 import { userRegister as userRegisterSchema, editUser as validationEditUser } from '~/validation-schemas';
-import { user as userService } from '~/services/services';
+import { user as userService, doctor as doctorService } from '~/services/services';
 import { checkIsOneOf } from '~/helpers';
 import { IDoctorFiltrationPayload } from '~/common/interfaces';
 import jwt from 'jsonwebtoken';
@@ -92,6 +92,14 @@ const initUserApi = (apiRouter: Router): Router => {
 
   userRouter.put(UsersApiPath.$ID, validateSchema(validationEditUser), async (req, res, next) => {
     try {
+      const isDoctorType = checkIsOneOf(req.body.type, UserType.DOCTOR);
+      const hasDoctor = await doctorService.getByUserId(req.body.id);
+      if (isDoctorType && !hasDoctor) {
+        await doctorService.createDoctor({
+          about: '',
+          userId: req.body.id as string,
+        });
+      }
       const user = await userService.updateUser(req.params.id, req.body);
       res.status(HttpCode.OK).json(user);
     } catch (error) {

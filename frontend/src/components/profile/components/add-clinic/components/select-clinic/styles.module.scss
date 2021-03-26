@@ -8,3 +8,17 @@
   margin-top: 20px;
   width: 30%;
 }
+
+.selectFormWrapper {
+  display: flex;
+  align-items: flex-end;
+}
+
+.selectWrapper {
+  width: 230px;
+  margin: 30px 30px 0 0;
+}
+
+.selectSubmitWrapper {
+  flex: 0 1 10%;
+}

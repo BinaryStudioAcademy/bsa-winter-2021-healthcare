@@ -33,7 +33,7 @@ class User {
 
   public async updateUser(id: string, data: IUser): Promise<IUser | null>{
     const user = await userRepository.updateById(id, data);
-    if (user?.type === UserType.DOCTOR){
+    if (user?.type === UserType.DOCTOR) {
       return userRepository.getDoctorDetailsById((user.id as string));
     }
     return userRepository.getById((user.id as string));

@@ -9,11 +9,9 @@ const initDiagnosisApi = (apiRouter: Router): Router => {
 
   apiRouter.use(ApiPath.DIAGNOSES, diagnosisRouter);
 
-  diagnosisRouter.get(DiagnosesApiPath.ROOT, async (req, res, next) => {
+  diagnosisRouter.get(DiagnosesApiPath.USERS_$ID, async (req, res, next) => {
     try {
-      const diagnoses = await diagnosisService.getAllByUserId(
-        req.user?.id as string,
-      );
+      const diagnoses = await diagnosisService.getAllByUserId(req.params.id);
       res.status(HttpCode.OK).json(diagnoses);
     } catch (error) {
       next(error);

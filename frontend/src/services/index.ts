@@ -12,6 +12,7 @@ import { Diagnosis } from './diagnosis/diagnosis.service';
 import { UploadFile } from './upload-file/upload-file.service';
 import { MapApi } from './map-api/map-api.service';
 import { PermissionApi } from './permission-api/permission-api.service';
+import { ProfessionApi } from './profession-api/profession-api.service';
 import { CityApi } from './city-api/city-api.service';
 import { DoctorApi } from './doctor-api/doctor-api.service';
 import { Messages } from './messages/messages.service';
@@ -91,6 +92,11 @@ const appointment = new AppointmentApi({
   apiPrefix: ENV.API_PATH,
 });
 
+const professionApi = new ProfessionApi({
+  http,
+  apiPrefix: ENV.API_PATH,
+});
+
 export {
   http,
   authApi,
@@ -105,6 +111,7 @@ export {
   uploadFile,
   mapApi,
   permissionApi,
+  professionApi,
   cityApi,
   doctorApi,
   messagesApi,
