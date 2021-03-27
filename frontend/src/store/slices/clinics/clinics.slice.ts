@@ -59,7 +59,8 @@ const addClinic = (
     const updatedClinic: IClinicPayload = {
       ...clinicInfo,
     };
-    if (clinicInfo.cityId === '' && cityValue !== '') {
+
+    if (clinicInfo.cityId === cityValue && cityValue !== '') {
       const response = await cityApi.addCity({ name: cityValue });
       dispatch(actions.addCity(response));
       updatedClinic.cityId = response.id;

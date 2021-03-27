@@ -1,0 +1,42 @@
+.inputControl {
+  width: 100%;
+
+  & > span {
+    color: var(--color-error);
+  }
+}
+
+.label {
+  width: 100%;
+  max-width: 257px;
+}
+
+.labelText {
+  display: block;
+  margin: 0 100% 5px 0;
+  font-size: 12px;
+  text-transform: capitalize;
+  width: 100%;
+}
+
+.error {
+  border: 1px solid var(--color-error);
+  color: var(--color-error);
+  background-color: #fff;
+
+  &::placeholder {
+    color: var(--color-error);
+  }
+
+  &:focus {
+    color: var(--color-error);
+  }
+}
+
+.white {
+  background-color: #fff;
+}
+
+.gray-light {
+  background-color: var(--color-gray-light);
+}

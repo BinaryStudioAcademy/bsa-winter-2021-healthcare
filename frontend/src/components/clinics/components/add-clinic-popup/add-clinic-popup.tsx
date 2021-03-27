@@ -10,7 +10,7 @@ import {
   InputColor,
   InputType,
 } from 'common/enums';
-import { Button, Modal, Select, TextInput } from 'components/common';
+import { Button, Modal, Select, SelectCreatable, TextInput } from 'components/common';
 import styles from './styles.module.scss';
 import { IClinicPayload } from 'common/interfaces';
 import { InputChangeEvent } from 'common/types';
@@ -74,8 +74,10 @@ const AddClinicPopup: React.FC<IProps> = ({
     onCreateClinic(clinicData, selectInputValue);
   };
 
-  const handleInputChange = (inputValue: string) => {
-    setSelectInputValue(inputValue);
+  const handleInputChange = (inputValue: string, actionMeta: { action: string }) => {
+    if (actionMeta.action === 'input-change') {
+      setSelectInputValue(inputValue);
+    }
   };
 
   return (
@@ -147,7 +149,7 @@ const AddClinicPopup: React.FC<IProps> = ({
           </div>
 
           <div className={styles.inputBlock}>
-            <Select
+            <SelectCreatable
               name={ClinicKey.CITY_ID}
               label="City"
               hasHiddenLabel={false}

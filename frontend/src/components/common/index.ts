@@ -17,6 +17,7 @@ import AuthorizedWrapper from './authorized-wrapper/authorized-wrapper';
 import CovidButton from './covid-button/covid-button';
 import Spinner from './spinner/spinner';
 import NoDataPlaceholder from './no-data-placeholder/no-data-placeholder';
+import SelectCreatable from './select-creatable/select-creatable';
 
 export {
   Link,
@@ -38,4 +39,5 @@ export {
   CovidButton,
   Spinner,
   NoDataPlaceholder,
+  SelectCreatable,
 };
