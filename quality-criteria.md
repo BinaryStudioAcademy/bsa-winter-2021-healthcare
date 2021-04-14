@@ -674,28 +674,14 @@
   </p>
   </details>
 
-### Security
+- **B29**. The project works correctly in the current NodeJS LTS version.
+
+- **B30**. 🗄 It is forbidden to use the GET method to write data.
 
 -
   <details>
     <summary>
-      <b>B29.</b> Event handlers are added and removed in a timely manner.
-    </summary>
-  <p>
-
-  Event handlers are added only when the element appears on the page and are removed when it disappear.
-
-  </p>
-  </details>
-
-- **B30**. The project works correctly in the current NodeJS LTS version.
-
-- **B31**. 🗄 It is forbidden to use the GET method to write data.
-
--
-  <details>
-    <summary>
-      <b>B32.</b> 🗄 There are no SQL Injections in the code.
+      <b>B31.</b> 🗄 There are no SQL Injections in the code.
     </summary>
   <p>
 
@@ -707,7 +693,7 @@
 -
   <details>
     <summary>
-      <b>B33.</b> 🗄 Code protected from XSS.
+      <b>B32.</b> 🗄 Code protected from XSS.
     </summary>
   <p>
 
@@ -719,7 +705,7 @@
 -
   <details>
     <summary>
-      <b>B34.</b> 🗄 Password is always hashed.
+      <b>B33.</b> 🗄 Password is always hashed.
     </summary>
   <p>
 
